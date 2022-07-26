@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class BuatTabelMetodePembayaranToko extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
+        Schema::create('metode_pembayaran_toko', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('nama');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->enum('roles',['admin','owner','pelanggan']);
+            $table->string('nomor_rekening');
             $table->string('nomor_hp');
-            $table->rememberToken();
+            $table->string('deskripsi');
+            $table->enum('jenis', ['COD','Cash', 'Bank', 'E-Wallet', 'Custom']);
+            $table->enum('status', ['Aktif','Nonaktif']);
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('metode_pembayaran_toko');
     }
 }
