@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
-
+use App\Http\Controllers\Website\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +14,14 @@ use App\Http\Controllers\Admin\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Normal laravel homepage
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+//My own project pages
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->namespace('Admin')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
