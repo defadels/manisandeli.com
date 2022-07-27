@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Owner\OwnerController;
 use App\Http\Controllers\Website\HomeController;
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +24,15 @@ use App\Http\Controllers\Website\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+
+Route::prefix('owner')->namespace('Owner')->group(function(){
+    Route::get('/', [OwnerController::class, 'index'])->name('dashboard');
+});
+
 Route::prefix('admin')->namespace('Admin')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

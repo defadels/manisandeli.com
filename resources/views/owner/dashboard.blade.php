@@ -1,4 +1,4 @@
-@extends('layout.admin_layout')
+@extends('layout.owner_layout')
 
 @section('content')
 <div class="page-content">
