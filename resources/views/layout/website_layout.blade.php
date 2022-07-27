@@ -23,7 +23,7 @@
         =======================================-->
 
         <!-- WEBPAGE TITLE -->
-        <title>Index Home - Greeny</title>
+        <title>@yield('title','Manisan Putra Deli')</title>
 
         <!--=====================================
                     CSS LINK PART START

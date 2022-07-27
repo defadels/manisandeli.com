@@ -6,7 +6,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<title>Syndash - Bootstrap4 Admin Template</title>
+	<title>@yield('title', 'Admin Dashboard')</title>
 	<!--favicon-->
 	<link rel="icon" href="{{asset('backend/assets/images/favicon-32x32.png')}}" type="image/png" />
 	<!-- Vector CSS -->
@@ -45,6 +45,7 @@
 		<div class="page-wrapper">
 			<!--page-content-wrapper-->
 			<div class="page-content-wrapper">
+				@include('layout.admin.error')
 				@yield('content')
 			</div>
 			<!--end page-content-wrapper-->

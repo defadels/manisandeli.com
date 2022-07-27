@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RedirectIfNotCustomer
 {
@@ -15,7 +16,11 @@ class RedirectIfNotCustomer
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {
+    {   
+        if(!(Auth::user()->roles == 'pelanggan'))
+        {
+            return redirect(RouteServiceProvider::HOME);
+        }
         return $next($request);
     }
 }

@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Middleware;
-use App\Providers\RouteService;
+use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RedirectIfNotOwner
 {
@@ -16,8 +17,8 @@ class RedirectIfNotOwner
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::user()->role == 'owner'){
-            return redirect(RouteService::HOME);
+        if(!(Auth::user()->roles == 'owner')){
+            return redirect(RouteServiceProvider::OWNER);
         }
         return $next($request);
     }

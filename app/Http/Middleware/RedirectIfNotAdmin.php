@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Middleware;
-
 use Closure;
 use Illuminate\Http\Request;
-use App\Providers\RouteService;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
+
 class RedirectIfNotAdmin
 {
     /**
@@ -16,8 +17,9 @@ class RedirectIfNotAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::user()->role == 'admin'){
-            return redirect(RouteService::HOME);
+        if(!(Auth::user()->roles == 'admin'))
+        {
+            return redirect(RouteServiceProvider::ADMIN);
         }
         return $next($request);
     }
