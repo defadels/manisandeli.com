@@ -29,7 +29,7 @@
     <!--end breadcrumb-->
     <div class="mb-2">
         @if(isset($produk))
-        <a href="{{ route('admin.produk.destroy', $produk->id) }}" class="btn btn-md btn-danger">Hapus Produk</a>
+        <a data-toggle="modal" data-target="#exampleModal1" class="btn btn-md btn-danger">Hapus Produk</a>
         @endif
     </div>
     <div class="card radius-15">
@@ -49,10 +49,15 @@
                     @method('put')
                 @endif
 
+                @if(isset($produk->foto_produk))
                 <div class="form-group">
-                        
+                    <img src="{{ Storage::url($produk->foto_produk) }}" alt="" class="thumbnail">
+                </div>
+                @endif
+
+                <div class="form-group">
                         <label for="foto_produk">Foto Produk</label>
-                        <input type="file" class="form-control" name="foto_produk" value="{{old('foto_produk')}} ?? ''">
+                        <input type="file" class="form-control" name="foto_produk" value="{{ $produk->foto ?? old('foto_produk')}} ?? ''">
                         @error('foto_produk')
                             <span class="text-danger">
                                 {{ $message }}
@@ -151,6 +156,33 @@
     </div>
 
 </div>
+
+
+
+@if(isset($produk))
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Hapus data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">	<span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">Yakin untuk menghapus data?</div>
+
+            <form action="{{ route('admin.produk.destroy', $produk->id ?? '') }}" method="POST">
+                @csrf
+                @method('delete')
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endif
 @endsection
 
 @section('script')

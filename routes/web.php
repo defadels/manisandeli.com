@@ -37,6 +37,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'reject_except_admin'
     Route::get('/produk', [ProdukController::class, 'index'])->name('produk');
     Route::get('/produk/tambah', [ProdukController::class, 'create'])->name('produk.create');
     Route::post('/produk', [ProdukController::class, 'store'])->name('produk.store');
+    Route::get('/produk/edit/{produk}', [ProdukController::class, 'edit'])->name('produk.edit');
+    Route::put('/produk/edit/{produk}', [ProdukController::class, 'update'])->name('produk.update');
+    Route::get('/produk/show/{produk}', [ProdukController::class, 'show'])->name('produk.show');
+    Route::delete('/produk/edit/{produk}', [ProdukController::class, 'destroy'])->name('produk.destroy');
 });
 
 Auth::routes(['verify' => true]);

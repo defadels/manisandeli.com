@@ -69,8 +69,8 @@
                             <td>{{$produk->nama}}</td>
                             <td><img src="{{ Storage::url($produk->foto_produk) }}" alt=""></td>
                             <td>
-                                <a href="" class="btn btn-md btn-primary">Edit</a>
-                                <a href="" class="btn btn-md btn-secondary">Lihat</a>
+                                <a href="{{ route('admin.produk.edit', $produk->id) }}" class="btn btn-md btn-primary">Edit</a>
+                                <a href="{{ route('admin.produk.show', $produk->id) }}" class="btn btn-md btn-secondary">Lihat</a>
                             </td>
                         </tr>
                         @endforeach

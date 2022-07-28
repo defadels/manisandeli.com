@@ -119,9 +119,9 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Produk $produk)
     {
-        //
+        return view('admin.produk.show', compact('produk'));
     }
 
     /**
@@ -130,9 +130,13 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Produk $produk)
     {
-        //
+        $url = 'admin.produk.update';
+        $button = 'Update';
+
+
+        return view('admin.produk.form', compact('produk','url','button'));
     }
 
     /**
@@ -142,9 +146,67 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Produk $produk)
     {
-        //
+        $input = $request->all();
+
+        $rules = [
+            'nama' => ['required', 'max:255'],
+            'kode_produk' => ['required'],
+            'foto_produk' => ['mimes:jpeg,jpg,png','max:10240'],
+            'harga_pokok' => ['required','numeric'], 
+            'harga_jual' => ['required','numeric'] 
+        ];
+
+        $messages = [
+            'nama.required' => 'Nama produk harus diisi',
+            'nama.max' => 'Nama harus maksimal 255 karakter',
+            'foto_produk.mimes' => 'Foto harus berupa file jpeg, jpg dan png',
+            'foto_produk.size' => 'Foto maksimal ukuran 1 MB',
+            'harga_jual.required' => 'Harga jual harus diisi',
+            'harga_jual.numeric' => 'Harga jual harus diisi angka',
+            'harga_pokok.required' => 'Harga pokok harus diisi',
+            'harga_pokok.numeric' => 'Harga pokok harus diisi angka',
+        ];
+
+        $validator = Validator::make($input, $rules, $messages)->validate();
+
+        $produk->nama = $request->nama;
+        $produk->kode_produk = $request->kode_produk;
+        $produk->deskripsi = $request->deskripsi;
+        $produk->konten = $request->konten;
+        $produk->harga_pokok = $request->harga_pokok;
+        $produk->harga_jual = $request->harga_jual;
+        $produk->status = $request->status;
+
+        if($request->hasFile('foto_produk')) {
+
+            $foto_lama = $produk->foto_produk;
+
+            $nama_file = Str::uuid();
+
+            $path = 'produk/foto/';
+            $file_extension = $request->foto_produk->extension();
+            $produk->foto_produk = $path.$nama_file.".".$file_extension;
+            
+            $gambar = $request->file('foto_produk');
+            $destinationPath = storage_path('/app/public/');
+
+            $img = Image::make($gambar->path());
+            $img->fit(450, 450, function($cons){
+                $cons->aspectRatio();
+            })->save($destinationPath.$produk->foto_produk);
+
+            // dd($produk);
+
+            Storage::disk('public')->delete($foto_lama);
+            
+        }
+        
+        $produk->save();
+
+        return redirect()->route('admin.produk')
+        ->with('messages', __('pesan.update', ['modlue' => $produk->nama]));
     }
 
     /**
@@ -153,8 +215,21 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Produk $produk)
     {
-        //
+        try{
+
+            $nama = $produk->nama;
+
+            Storage::disk('public')->delete($produk->foto_produk);
+            $produk->delete();
+
+
+        }catch(Exception $e){
+            return redirect()->route('admin.produk')
+            ->with('messages', __('pesan.delete', ['module' => $nama]));
+        }
+            return redirect()->route('admin.produk')
+            ->with('messages', __('pesan.delete', ['module' => $nama]));
     }
 }
