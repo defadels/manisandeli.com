@@ -78,6 +78,7 @@ class ProdukController extends Controller
             [
                 'nama' => $request->nama,
                 'kode_produk' => $request->kode_produk,
+                'foto_produk' => $request->foto_produk,
                 'deskripsi' => $request->deskripsi,
                 'harga_jual' => $request->harga_jual,
                 'harga_pokok' => $request->harga_pokok,
@@ -101,11 +102,12 @@ class ProdukController extends Controller
                 $cons->aspectRatio();
             })->save($destinationPath.$produk->foto_produk);
 
+            // dd($produk);
+
             $produk->save();
     
         }
 
-        dd($produk);
 
         return redirect()->route('admin.produk')
         ->with('messages', __('pesan.create', ['module' => $request->input('nama')]));

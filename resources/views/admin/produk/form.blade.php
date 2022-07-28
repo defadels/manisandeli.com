@@ -43,7 +43,7 @@
         </div>
         <div class="card-body">
 
-            <form action="{{ route($url, $produk->id ?? '') }}" method="POST">
+            <form action="{{ route($url, $produk->id ?? '') }}" method="POST"  enctype="multipart/form-data">
             @csrf
                 @if(isset($produk))
                     @method('put')
