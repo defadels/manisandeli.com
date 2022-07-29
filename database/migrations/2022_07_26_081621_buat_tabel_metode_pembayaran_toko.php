@@ -16,11 +16,12 @@ class BuatTabelMetodePembayaranToko extends Migration
         Schema::create('metode_pembayaran_toko', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->string('nomor_rekening');
-            $table->string('nomor_hp');
-            $table->string('deskripsi');
+            $table->string('nama_pemilik')->nullable();
+            $table->string('nomor_rekening')->nullable();
+            $table->string('nomor_hp')->nullable();
+            $table->string('deskripsi')->nullable();
             $table->enum('jenis', ['COD','Cash', 'Bank', 'E-Wallet', 'Custom']);
-            $table->enum('status', ['Aktif','Nonaktif']);
+            $table->enum('status', ['Aktif','Nonaktif'])->default('Aktif');
             $table->timestamps();
         });
     }

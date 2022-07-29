@@ -3,7 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\Admin\Pengaturan\MetodePembayaranController;
+
 use App\Http\Controllers\Owner\OwnerController;
+
+
 use App\Http\Controllers\Website\HomeController;
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +45,16 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'reject_except_admin'
     Route::put('/produk/edit/{produk}', [ProdukController::class, 'update'])->name('produk.update');
     Route::get('/produk/show/{produk}', [ProdukController::class, 'show'])->name('produk.show');
     Route::delete('/produk/edit/{produk}', [ProdukController::class, 'destroy'])->name('produk.destroy');
+
+    Route::prefix('pengaturan')->name('pengaturan.')->namespace('Pengaturan')->group(function(){
+        Route::get('/metode-pembayaran', [MetodePembayaranController::class, 'index'])->name('pembayaran');
+        Route::get('/metode-pembayaran/tambah', [MetodePembayaranController::class, 'create'])->name('pembayaran.create');
+        Route::post('/metode-pembayaran', [MetodePembayaranController::class, 'store'])->name('pembayaran.store');
+        Route::get('/metode-pembayaran/edit/{pembayaran}', [MetodePembayaranController::class, 'edit'])->name('pembayaran.edit');
+        Route::put('/metode-pembayaran/edit/{pembayaran}', [MetodePembayaranController::class, 'update'])->name('pembayaran.update');
+        Route::delete('/metode-pembayaran/edit/{pembayaran}', [MetodePembayaranController::class, 'destroy'])->name('pembayaran.destroy');
+        Route::get('/metode-pembayaran/show/{pembayaran}', [MetodePembayaranController::class, 'show'])->name('pembayaran.show');
+    });
 });
 
 Auth::routes(['verify' => true]);

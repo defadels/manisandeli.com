@@ -293,8 +293,8 @@
                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-toggle="dropdown">
                     <div class="media user-box align-items-center">
                         <div class="media-body user-info">
-                            <p class="user-name mb-0">Jessica Doe</p>
-                            <p class="designattion mb-0">Available</p>
+                            <p class="user-name mb-0">{{Auth::user()->nama}}</p>
+                            <p class="designattion mb-0 btn btn-primary btn-md radius-30">{{ucfirst(Auth::user()->roles)}}</p>
                         </div>
                         <img src="https://via.placeholder.com/110x110" class="user-img" alt="user avatar">
                     </div>

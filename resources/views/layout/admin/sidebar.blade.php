@@ -27,31 +27,33 @@
         <li class="menu-label">Penjualan</li>
         <li>
             <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon icon-color-12"> <i class="bx bx-donate-blood"></i>
+                <div class="parent-icon icon-color-12"> <i class="bx bx-cart"></i>
                 </div>
-                <div class="menu-title">Icons</div>
+                <div class="menu-title">Pesanan</div>
             </a>
             <ul>
-                <li> <a href="icons-line-icons.html"><i class="bx bx-right-arrow-alt"></i>Line Icons</a>
+                <li> <a href="icons-line-icons.html"><i class="bx bx-right-arrow-alt"></i>Masuk</a>
                 </li>
-                <li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>Boxicons</a>
+                <li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>Proses</a>
                 </li>
-                <li> <a href="icons-feather-icons.html"><i class="bx bx-right-arrow-alt"></i>Feather Icons</a>
+                <li> <a href="icons-feather-icons.html"><i class="bx bx-right-arrow-alt"></i>Dikirim</a>
+                </li>
+                <li> <a href="icons-feather-icons.html"><i class="bx bx-right-arrow-alt"></i>Batal</a>
                 </li>
             </ul>
         </li>
 
         <li>
             <a href="emailbox.html">
-                <div class="parent-icon icon-color-2"><i class="bx bx-envelope"></i>
+                <div class="parent-icon icon-color-3"><i class="bx bx-user"></i>
                 </div>
-                <div class="menu-title">User</div>
+                <div class="menu-title">Pelanggan</div>
             </a>
         </li>
         
         <li>
             <a href="{{route('admin.produk')}}">
-                <div class="parent-icon icon-color-2"><i class="bx bx-envelope"></i>
+                <div class="parent-icon icon-color-2"><i class="bx bx-shopping-bag"></i>
                 </div>
                 <div class="menu-title">Produk</div>
             </a>
@@ -60,8 +62,8 @@
         
         <li class="menu-label">Pengaturan</li>
         <li>
-            <a href="widgets.html">
-                <div class="parent-icon icon-color-9"><i class="bx bx-ghost"></i>
+            <a href="{{route('admin.pengaturan.pembayaran')}}">
+                <div class="parent-icon icon-color-9"><i class="bx bx-credit-card-front"></i>
                 </div>
                 <div class="menu-title">Metode Pembayaran</div>
             </a>
@@ -69,7 +71,7 @@
 
         <li>
             <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon icon-color-10"><i class="bx bx-spa"></i>
+                <div class="parent-icon icon-color-10"><i class="bx bx-store-alt"></i>
                 </div>
                 <div class="menu-title">Profil Toko</div>
             </a>

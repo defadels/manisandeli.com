@@ -12,13 +12,13 @@
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
-        <div class="breadcrumb-title pr-3">Produk</div>
+        <div class="breadcrumb-title pr-3">Pengaturan</div>
         <div class="pl-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Daftar Produk</li>
+                    <li class="breadcrumb-item active" aria-current="page">Tambah Metode Pembayaran</li>
                 </ol>
             </nav>
         </div>
@@ -28,8 +28,8 @@
     </div>
     <!--end breadcrumb-->
     <div class="mb-2">
-        @if(isset($produk))
-        <a data-toggle="modal" data-target="#exampleModal1" class="btn btn-md btn-danger">Hapus Produk</a>
+        @if(isset($pembayaran))
+        <a data-toggle="modal" data-target="#exampleModal1" class="btn btn-md btn-danger">Hapus Pembayaran</a>
         @endif
     </div>
     <div class="card radius-15">
@@ -37,44 +37,28 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-8 align-self-center">
-                    <h4>Form Tambah Produk</h4>
+                    <h4>Form Tambah Metode Pembayaran</h4>
                 </div>
             </div>
         </div>
         <div class="card-body">
 
-            <form action="{{ route($url, $produk->id ?? '') }}" method="POST"  enctype="multipart/form-data">
+            <form action="{{ route($url, $pembayaran->id ?? '') }}" method="POST">
             @csrf
-                @if(isset($produk))
+                @if(isset($pembayaran))
                     @method('put')
                 @endif
 
-                @if(isset($produk->foto_produk))
-                <div class="form-group">
-                    <img src="{{ Storage::url($produk->foto_produk) }}" alt="" class="thumbnail">
-                </div>
-                @endif
-
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input form-control" aria-describedby="inputGroupFileAddon01" id="foto_produk" name="foto_produk" value="{{ $produk->foto ?? old('foto_produk')}} ?? ''">
-                        <label for="foto_produk" class="custom-file-label">Foto Produk</label>
-                        @error('foto_produk')
-                            <span class="text-danger">
-                                {{ $message }}
-                            </span>
-                        @enderror
-                    </div>
-                        
-                </div>
+            
 
                 <div class="form-group">
-                    <label for="kode_produk">Kode Produk</label>
-                    <input type="text" class="form-control @error('kode_produk') {{'is-invalid'}} @enderror" name="kode_produk" value="{{old('kode_produk') ??  $produk->kode_produk ?? '' }}">
-                        @error('kode_produk')'
+                    <label for="jenis">Jenis Pembayaran</label>
+                    <select name="jenis" class="form-control  @error('jenis') {{ 'is-invalid' }} @enderror" id="">
+                        @foreach($daftar_jenis as $jenis)
+                            <option value="{{ $jenis }}" @if($pembayaran->jenis == $jenis) {{ 'selected' }} @endif>{{ $jenis }}</option>
+                        @endforeach
+                    </select>
+                        @error('jenis')'
                             <span class="text-danger">
                                 {{$message}}
                             </span>
@@ -82,8 +66,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="nama">Nama Produk</label>
-                    <input type="text" class="form-control @error('nama') {{'is-invalid'}} @enderror" name="nama" value="{{old('nama') ??  $produk->nama ?? '' }}">
+                    <label for="nama">Nama Bank/E-Wallet/Lokasi COD</label>
+                    <input type="text" class="form-control @error('nama') {{'is-invalid'}} @enderror" name="nama" value="{{old('nama') ??  $pembayaran->nama ?? '' }}">
                         @error('nama')'
                             <span class="text-danger">
                                 {{$message}}
@@ -93,8 +77,9 @@
 
                 <div class="form-group">
                     <label for="deskripsi">Deskripsi</label>
-                    <input type="text" class="form-control @error('deskripsi') {{'is-invalid'}} @enderror" name="deskripsi" value="{{ old('deskripsi') ?? $produk->deskripsi ?? '' }}">
-                
+                    
+                    <textarea name="deskripsi" class="form-control @error('deskripsi') {{'is-invalid'}} @enderror" id="" cols="30" rows="10">{{ old('deskripsi') ?? $pembayaran->deskripsi ?? '' }}</textarea>
+
                     @error('deskripsi')
                         <span class="text-danger">
                             {{ $message }}
@@ -103,30 +88,35 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="harga_pokok">Harga Pokok</label>
-                    <input type="number" class="form-control @error('harga_pokok') {{'is-invalid'}} @enderror" name="harga_pokok" value="{{ old('harga_pokok') ?? $produk->harga_pokok ?? '' }}">
-                
-                    @error('harga_pokok')
-                        <span class="text-danger">
-                            {{ $message }}
-                        </span>
-                    @enderror
-                </div>
-                
-                <div class="form-group">
-                    <label for="harga_jual">Harga Jual</label>
-                    <input type="number" class="form-control @error('harga_jual') {{'is-invalid'}} @enderror" name="harga_jual" value="{{ old('harga_jual') ?? $produk->harga_jual ?? '' }}">
-                
-                    @error('harga_jual')
-                        <span class="text-danger">
-                            {{ $message }}
-                        </span>
-                    @enderror
+                    <label for="nama_pemilik">Nama Pemilik / Atas Nama</label>
+                    <input type="text" class="form-control @error('nama_pemilik') {{'is-invalid'}} @enderror" name="nama_pemilik" value="{{old('nama_pemilik') ??  $pembayaran->nama_pemilik ?? '' }}">
+                        @error('nama_pemilik')'
+                            <span class="text-danger">
+                                {{$message}}
+                            </span>
+                        @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="konten">Konten Produk</label>
-                    <textarea name="konten" id="summernote">{!! old('konten') ?? $produk->konten ?? '' !!}</textarea>
+                    <label for="nomor_rekening">Nomor Rekening</label>
+                    <input type="text" class="form-control @error('nomor_rekening') {{'is-invalid'}} @enderror" name="nomor_rekening" value="{{ old('nomor_rekening') ?? $pembayaran->nomor_rekening ?? '' }}">
+                
+                    @error('nomor_rekening')
+                        <span class="text-danger">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
+                
+                <div class="form-group">
+                    <label for="nomor_hp">Nomor Handphone</label>
+                    <input type="text" class="form-control @error('nomor_hp') {{'is-invalid'}} @enderror" name="nomor_hp" value="{{ old('nomor_hp') ?? $pembayaran->nomor_hp ?? '' }}">
+                
+                    @error('nomor_hp')
+                        <span class="text-danger">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
 
 
@@ -134,12 +124,12 @@
                     <label for="status">Status</label>
                 </div>    
                 <div class="form-check form-check-inline">
-                    <input type="radio" value="aktif" name="status" class="form-check-input" id="aktif" @if((old('status') ?? $produk->status ?? '') == 'aktif') checked @endif>
-                    <label for="aktif" class="form-check-label">Aktif</label>
+                    <input type="radio" value="Aktif" name="status" class="form-check-input" id="Aktif" @if((old('status') ?? $pembayaran->status ?? '') == 'Aktif') checked @endif>
+                    <label for="Aktif" class="form-check-label">Aktif</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input type="radio" value="nonaktif" name="status" class="form-check-input" id="nonaktif" @if((old('status') ?? $produk->status ?? '') == 'nonaktif') checked @endif>
-                    <label for="nonaktif" class="form-check-label">Nonaktif</label>
+                    <input type="radio" value="Nonaktif" name="status" class="form-check-input" id="Nonaktif" @if((old('status') ?? $pembayaran->status ?? '') == 'Nonaktif') checked @endif>
+                    <label for="Nonaktif" class="form-check-label">Nonaktif</label>
                 </div>
 
                 <div>
@@ -165,7 +155,7 @@
 
 
 
-@if(isset($produk))
+@if(isset($pembayaran))
 <!-- Modal -->
 <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -177,7 +167,7 @@
             </div>
             <div class="modal-body">Yakin untuk menghapus data?</div>
 
-            <form action="{{ route('admin.produk.destroy', $produk->id ?? '') }}" method="POST">
+            <form action="{{ route('admin.pengaturan.pembayaran.destroy', $pembayaran->id ?? '') }}" method="POST">
                 @csrf
                 @method('delete')
                 <div class="modal-footer">
