@@ -52,7 +52,6 @@
                             <select wire:model="status" class="form-control @error('status') is-invalid  @enderror" id="">
                                     <option value="Aktif">Aktif</option>
                                     <option value="Nonaktif">Nonaktif</option>
-                             
                             </select>
 
                             @error('status')
