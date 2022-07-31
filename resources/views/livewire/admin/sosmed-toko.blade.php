@@ -4,8 +4,6 @@
         {{ session('message') }}
     </div>
     @endif
-
-    <livewire:admin.sosmed-toko-create />
     
     <div class="card radius-15">
 

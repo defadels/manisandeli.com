@@ -21,6 +21,7 @@
            
         </div>
     </div>
+        <livewire:admin.sosmed-toko-create />
     <!--end breadcrumb-->
         <livewire:admin.sosmed-toko />
 

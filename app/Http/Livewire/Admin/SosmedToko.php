@@ -24,7 +24,7 @@ class SosmedToko extends Component
     }
 
 
-    public function handledStored($sosmed){
+    public function handleStored($sosmed){
         session()->flash('message', __('pesan.create', ['module' => $sosmed_toko->nama]));
     }
 
