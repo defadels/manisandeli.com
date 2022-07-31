@@ -16,9 +16,9 @@ class BuatTabelSosmedToko extends Migration
         Schema::create('sosmed_toko', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->string('deskripsi');
             $table->string('username');
-            $table->string('slug');
+            $table->string('url');
+            $table->enum('status', ['Aktif', 'Nonaktif'])->default('Aktif');
             $table->timestamps();
         });
     }

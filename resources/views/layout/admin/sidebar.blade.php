@@ -78,7 +78,7 @@
             <ul>
                 <li> <a href="component-alerts.html"><i class="bx bx-right-arrow-alt"></i>Profil Umum</a>
                 </li>
-                <li> <a href="component-bedges.html"><i class="bx bx-right-arrow-alt"></i>Sosmed Toko</a>
+                <li> <a href="{{route('admin.pengaturan.sosmed-toko')}}"><i class="bx bx-right-arrow-alt"></i>Sosmed Toko</a>
                 </li>
                 </li>
             </ul>

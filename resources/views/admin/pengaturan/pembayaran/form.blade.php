@@ -55,7 +55,7 @@
                     <label for="jenis">Jenis Pembayaran</label>
                     <select name="jenis" class="form-control  @error('jenis') {{ 'is-invalid' }} @enderror" id="">
                         @foreach($daftar_jenis as $jenis)
-                            <option value="{{ $jenis }}" @if($pembayaran->jenis == $jenis) {{ 'selected' }} @endif>{{ $jenis }}</option>
+                            <option value="{{ $jenis }}" @if(isset($pembayaran)) {{ 'selected' }} @endif>{{ $jenis }}</option>
                         @endforeach
                     </select>
                         @error('jenis')'
