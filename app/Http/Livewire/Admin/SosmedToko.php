@@ -30,8 +30,8 @@ class SosmedToko extends Component
     public function destroy($id){
         if($id) {
             $sosmed = SosmedTokoModel::find($id);
-            $this->emit('sosmedDeleted', $sosmed); 
             $sosmed->delete();
+            $this->emit('sosmedDeleted', $sosmed); 
         }
     }
 
