@@ -11,6 +11,6 @@ class SosmedTokoModel extends Model
 
     protected $table = 'sosmed_toko';
     protected $guarded = [];
-    protected $fillable = ['nama', 'url', 'username'. 'status'];
+
 
 }

@@ -28,6 +28,7 @@
 	<link rel="stylesheet" href="{{asset('backend/assets/css/dark-theme.css')}}" />
 
 	@yield('style')
+	@livewireStyles
 </head>
 
 <body>
@@ -116,6 +117,7 @@
 	<script src="{{asset('backend/assets/js/app.js')}}"></script>
 
 	@yield('script')
+	@livewireScripts
 </body>
 
 </html>
