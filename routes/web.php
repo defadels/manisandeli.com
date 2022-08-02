@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\Admin\ProdukController;
     use App\Http\Controllers\Admin\Pengaturan\MetodePembayaranController;
     use App\Http\Controllers\Admin\Pengaturan\SosmedController;
+    use App\Http\Controllers\Admin\Pengaturan\ProfilTokoController;
 
     // Owner Controller
     use App\Http\Controllers\Owner\OwnerController;
@@ -75,6 +76,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'reject_except_admin'
 
         // Sosmed Toko Routes
         Route::get('/sosmed-toko', [SosmedController::class, 'index'])->name('sosmed-toko');
+
+        //Profil Toko Routes
+        Route::get('/profil-toko', [ProfilTokoController::class, 'index'])->name('profil-toko');
     });
 });
 
