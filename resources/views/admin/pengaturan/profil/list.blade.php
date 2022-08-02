@@ -18,7 +18,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Tambah Metode Pembayaran</li>
+                    <li class="breadcrumb-item active" aria-current="page">Profil Toko</li>
                 </ol>
             </nav>
         </div>
@@ -27,31 +27,8 @@
         </div>
     </div>
     <!--end breadcrumb-->
-    <div class="mb-2">
 
-    </div>
-    <div class="card radius-15">
-
-        <div class="card-header">
-            <div class="row">
-                <div class="col-11 align-self-center">
-                    <h4>Tabel Metode Pembayaran</h4>
-                </div>
-                <div class="col-1">
-                        <div class="input-group">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-        <div class="card-body">
-
-            
-            
-        </div>
-    </div>
+    <livewire:admin.profil-toko />
 
 </div>
 
