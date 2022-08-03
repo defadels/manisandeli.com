@@ -28,9 +28,30 @@
     </div>
     <!--end breadcrumb-->
 
+    @if($profil == null)
+    <livewire:admin.profil-toko-create />
+    @elseif($profil)
     <livewire:admin.profil-toko />
+    <livewire:admin.profil-toko-update /> 
+    @endif
 
 </div>
 
+
+@endsection
+
+@section('scripts')
+
+<script>
+    function myFunction(){
+        var x = document.getElementById("updateForm");
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
 
 @endsection

@@ -1,5 +1,5 @@
 <div>
-    <div class="card radius-15">
+    <div class="card radius-15" id="updateForm" style="@if($statusUpdate == false) display : none  @endif">
 
         <div class="card-header">
             <div class="row">
@@ -17,10 +17,11 @@
         </div>
         <div class="card-body">
 
-            <form wire:submit.prevent="store">
+            <form wire:submit.prevent="update">
                 @csrf
+                <input type="hidden" name="" wire:model="profilId">
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="">Logo Website</label>
                     <input type="file" name="logo" wire:model="logo" class="form-control" id="">
                     @error('logo')
@@ -28,12 +29,12 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                </div>
+                </div> --}}
 
                 <div class="form-group">
                     <label for="">Nama Website</label>
                     <input type="text" name="nama" wire:model="nama" id="" class="form-control @error('nama') is-invalid @enderror">
-                    @error('logo')
+                    @error('nama')
                         <span class="text-danger">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -42,7 +43,7 @@
 
                 <div class="form-group">
                     <label for="">URL Website</label>
-                    <input type="url" name="" id="" class="form-control @error('url') is-invalid @enderror">
+                    <input type="url" name="" wire:model="url" id="" class="form-control @error('url') is-invalid @enderror">
                     @error('url')
                         <span class="text-danger">
                             <strong>{{ $message }}</strong>

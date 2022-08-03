@@ -15,11 +15,11 @@ class BuatTabelProfilToko extends Migration
     {
         Schema::create('profil_toko', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama');
-            $table->string('url');
-            $table->string('logo');
-            $table->string('email');
-            $table->string('nomor_hp');
+            $table->string('nama')->nullable();
+            $table->string('url')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('email')->nullable();
+            $table->string('nomor_hp')->nullable();
             $table->timestamps();
         });
     }

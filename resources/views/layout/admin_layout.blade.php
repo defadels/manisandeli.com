@@ -113,10 +113,14 @@
 	<script src="{{asset('backend/assets/plugins/vectormap/jquery-jvectormap-au-mill.js')}}"></script>
 	<script src="{{asset('backend/assets/plugins/apexcharts-bundle/js/apexcharts.min.js')}}"></script>
 	<script src="{{asset('backend/assets/js/index2.js')}}"></script>
+	<!--notification js -->
+	<script src="{{asset('backend/assets/plugins/notifications/js/lobibox.min.js')}}"></script>
+	<script src="{{asset('backend/assets/plugins/notifications/js/notifications.min.js')}}"></script>
+	<script src="{{asset('backend/assets/plugins/notifications/js/notification-custom-script.js')}}"></script>
 	<!-- App JS -->
 	<script src="{{asset('backend/assets/js/app.js')}}"></script>
 
-	@yield('script')
+	@yield('scripts')
 	@livewireScripts
 </body>
 

@@ -76,7 +76,7 @@
                 <div class="menu-title">Profil Toko</div>
             </a>
             <ul>
-                <li> <a href="component-alerts.html"><i class="bx bx-right-arrow-alt"></i>Profil Umum</a>
+                <li> <a href="{{route('admin.pengaturan.profil-toko')}}"><i class="bx bx-right-arrow-alt"></i>Profil Umum</a>
                 </li>
                 <li> <a href="{{route('admin.pengaturan.sosmed-toko')}}"><i class="bx bx-right-arrow-alt"></i>Sosmed Toko</a>
                 </li>

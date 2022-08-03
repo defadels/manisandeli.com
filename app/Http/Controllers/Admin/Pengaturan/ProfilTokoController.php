@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Pengaturan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ProfilTokoModels;
 
 class ProfilTokoController extends Controller
 {
@@ -14,7 +15,13 @@ class ProfilTokoController extends Controller
      */
     public function index()
     {
-        return view('admin.pengaturan.profil.list');
+        $profil = ProfilTokoModels::get()->first();
+
+        $statusUpdate = false;
+
+        // dd($profil);
+
+        return view('admin.pengaturan.profil.list',['profil' => $profil, 'statusUpdate' => $statusUpdate]);
     }
 
     /**
