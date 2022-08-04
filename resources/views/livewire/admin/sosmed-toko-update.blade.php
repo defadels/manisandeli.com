@@ -7,7 +7,7 @@
             <div class="card-body">
 
         
-                    <form wire:submit.prevent="update">
+                    <form wire:submit.prevent="updateProfile">
                         @csrf
                         <input type="hidden" name="" wire:model="dataId">
                         <div class="form-group">

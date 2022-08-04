@@ -8,7 +8,7 @@ use App\Models\SosmedTokoModel;
 class SosmedTokoUpdate extends Component
 {
 
-    public $nama, $username, $url, $status, $dataId, $sosmed;
+    public $nama, $username, $url, $status, $dataId;
 
     protected $listeners = [
         'getData' => 'showData'
@@ -19,6 +19,7 @@ class SosmedTokoUpdate extends Component
         $this->username = $sosmed['username'];
         $this->url = $sosmed['url'];
         $this->status = $sosmed['status'];
+        $this->dataId = $sosmed['id'];
     }
 
     public function render()
@@ -26,7 +27,7 @@ class SosmedTokoUpdate extends Component
         return view('livewire.admin.sosmed-toko-update');
     }
 
-    public function update()
+    public function updateProfile()
     {
         $this->validate([
             'nama' => 'required|string',
@@ -37,18 +38,25 @@ class SosmedTokoUpdate extends Component
         if($this->dataId){
             $sosmed = SosmedTokoModel::find($this->dataId);
 
-            $sosmed->nama = $this->nama;
-            $sosmed->username = $this->username;
-            $sosmed->url = $this->url;
-            $sosmed->status = $this->status;
-            $sosmed->save();
+            // $sosmed->nama = $this->nama;
+            // $sosmed->username = $this->username;
+            // $sosmed->url = $this->url;
+            // $sosmed->status = $this->status;
+            // $sosmed->save();
 
-        }
+            $sosmed->update([
+                'nama' => $this->nama,
+                'username' => $this->username,
+                'url' => $this->url,
+                'status' => $this->status,
+            ]);
+        }    
+
+            // dd($sosmed);
+
         $this->resetInput();
 
-           // $this->emit('sosmedUpdated', $sosmed);
-        
-       
+        $this->emit('sosmedUpdated', $sosmed);
             
     }
 
