@@ -2,6 +2,15 @@
  
 
     <div>    
+        @if(session()->has('message'))
+        <div class="alert alert-success">
+            <strong>{{session('message')}}</strong>
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+        </div>
+        @endif
+
        
         @if($statusUpdate)
         <livewire:admin.sosmed-toko-update />

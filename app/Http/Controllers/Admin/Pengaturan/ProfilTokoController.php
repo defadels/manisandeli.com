@@ -17,11 +17,9 @@ class ProfilTokoController extends Controller
     {
         $profil = ProfilTokoModels::get()->first();
 
-        $statusUpdate = false;
-
         // dd($profil);
 
-        return view('admin.pengaturan.profil.list',['profil' => $profil, 'statusUpdate' => $statusUpdate]);
+        return view('admin.pengaturan.profil.list',['profil' => $profil]);
     }
 
     /**

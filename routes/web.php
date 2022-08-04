@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
     // Admin Livewire
     use App\Http\Livewire\Admin\SosmedToko;
+    use App\Http\Livewire\Admin\ProfilTokoUpdate;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,38 +49,35 @@ Route::prefix('owner')->name('owner.')->middleware('auth', 'reject_except_owner'
     Route::get('/', [OwnerController::class, 'index'])->name('dashboard');
 });
 
-Route::prefix('admin')->name('admin.')->middleware('auth', 'reject_except_admin')->namespace('Admin')->group(function(){
-    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+Route::middleware('auth', 'reject_except_admin')->group(function(){
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 
-    Route::get('/produk', [ProdukController::class, 'index'])->name('produk');
-    Route::get('/produk/tambah', [ProdukController::class, 'create'])->name('produk.create');
-    Route::post('/produk', [ProdukController::class, 'store'])->name('produk.store');
-    Route::get('/produk/edit/{produk}', [ProdukController::class, 'edit'])->name('produk.edit');
-    Route::put('/produk/edit/{produk}', [ProdukController::class, 'update'])->name('produk.update');
-    Route::get('/produk/show/{produk}', [ProdukController::class, 'show'])->name('produk.show');
-    Route::delete('/produk/edit/{produk}', [ProdukController::class, 'destroy'])->name('produk.destroy');
-
-
-    
-    Route::prefix('pengaturan')->name('pengaturan.')->namespace('Pengaturan')->group(function(){
+    Route::get('admin/produk', [ProdukController::class, 'index'])->name('admin.produk');
+    Route::get('admin/produk/tambah', [ProdukController::class, 'create'])->name('admin.produk.create');
+    Route::post('admin/produk', [ProdukController::class, 'store'])->name('admin.produk.store');
+    Route::get('admin/produk/edit/{produk}', [ProdukController::class, 'edit'])->name('admin.produk.edit');
+    Route::put('admin/produk/edit/{produk}', [ProdukController::class, 'update'])->name('admin.produk.update');
+    Route::get('admin/produk/show/{produk}', [ProdukController::class, 'show'])->name('admin.produk.show');
+    Route::delete('admin/produk/edit/{produk}', [ProdukController::class, 'destroy'])->name('admin.produk.destroy');
         
         
         // Metode Pemabayran Routes
-        Route::get('/metode-pembayaran', [MetodePembayaranController::class, 'index'])->name('pembayaran');
-        Route::get('/metode-pembayaran/tambah', [MetodePembayaranController::class, 'create'])->name('pembayaran.create');
-        Route::post('/metode-pembayaran', [MetodePembayaranController::class, 'store'])->name('pembayaran.store');
-        Route::get('/metode-pembayaran/edit/{pembayaran}', [MetodePembayaranController::class, 'edit'])->name('pembayaran.edit');
-        Route::put('/metode-pembayaran/edit/{pembayaran}', [MetodePembayaranController::class, 'update'])->name('pembayaran.update');
-        Route::delete('/metode-pembayaran/edit/{pembayaran}', [MetodePembayaranController::class, 'destroy'])->name('pembayaran.destroy');
-        Route::get('/metode-pembayaran/show/{pembayaran}', [MetodePembayaranController::class, 'show'])->name('pembayaran.show');
+        Route::get('admin/pengaturan/metode-pembayaran', [MetodePembayaranController::class, 'index'])->name('admin.pengaturan.pembayaran');
+        Route::get('admin/pengaturan/metode-pembayaran/tambah', [MetodePembayaranController::class, 'create'])->name('admin.pengaturan.pembayaran.create');
+        Route::post('admin/pengaturan/metode-pembayaran', [MetodePembayaranController::class, 'store'])->name('admin.pengaturan.pembayaran.store');
+        Route::get('admin/pengaturan/metode-pembayaran/edit/{pembayaran}', [MetodePembayaranController::class, 'edit'])->name('admin.pengaturan.pembayaran.edit');
+        Route::put('admin/pengaturan/metode-pembayaran/edit/{pembayaran}', [MetodePembayaranController::class, 'update'])->name('admin.pengaturan.pembayaran.update');
+        Route::delete('admin/pengaturan/metode-pembayaran/edit/{pembayaran}', [MetodePembayaranController::class, 'destroy'])->name('admin.pengaturan.pembayaran.destroy');
+        Route::get('admin/pengaturan/metode-pembayaran/show/{pembayaran}', [MetodePembayaranController::class, 'show'])->name('admin.pengaturan.pembayaran.show');
 
 
         // Sosmed Toko Routes
-        Route::get('/sosmed-toko', [SosmedController::class, 'index'])->name('sosmed-toko');
+        Route::get('admin/pengaturan/sosmed-toko', [SosmedController::class, 'index'])->name('admin.pengaturan.sosmed-toko');
 
         //Profil Toko Routes
-        Route::get('/profil-toko', [ProfilTokoController::class, 'index'])->name('profil-toko');
-    });
+        Route::get('admin/pengaturan/profil-toko', [ProfilTokoController::class, 'index'])->name('admin.pengaturan.profil-toko');
+        Route::get('admin/pengaturan/profil-toko/{id}/edit', ProfilTokoUpdate::class)->name('admin.pengaturan.profil-toko.edit');
+    
 });
 
 Auth::routes(['verify' => true]);

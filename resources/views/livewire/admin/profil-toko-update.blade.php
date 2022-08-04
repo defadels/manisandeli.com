@@ -1,10 +1,23 @@
 <div>
-    <div class="card radius-15" id="updateForm" style="@if($statusUpdate == false) display : none  @endif">
+
+    @if(session()->has('message'))
+        <div class="alert alert-success">
+            <strong>{{session('message')}}</strong>
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+        </div>
+        @endif
+
+    <div class="page-content">
+
+   
+    <div class="card radius-15">
 
         <div class="card-header">
             <div class="row">
                 <div class="col-11 align-self-center">
-                    <h4>Tabel Metode Pembayaran</h4>
+                    <h4>Ubah Profil</h4>
                 </div>
                 <div class="col-1">
                         <div class="input-group">
@@ -19,7 +32,7 @@
 
             <form wire:submit.prevent="update">
                 @csrf
-                <input type="hidden" name="" wire:model="profilId">
+                <input type="hidden" name="" wire:model="id">
 
                 {{-- <div class="form-group">
                     <label for="">Logo Website</label>
@@ -76,4 +89,5 @@
             
         </div>
     </div>
+</div>
 </div>

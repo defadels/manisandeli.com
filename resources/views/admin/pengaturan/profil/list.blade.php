@@ -32,7 +32,6 @@
     <livewire:admin.profil-toko-create />
     @elseif($profil)
     <livewire:admin.profil-toko />
-    <livewire:admin.profil-toko-update /> 
     @endif
 
 </div>

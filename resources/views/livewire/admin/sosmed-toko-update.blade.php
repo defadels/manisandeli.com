@@ -1,12 +1,5 @@
-@if(session()->has('message'))
-<div class="alert alert-success">
-    <strong>{{session('messages')}}</strong>
-    <button type="button" class="close" data-dismiss="alert">
-        <span>&times;</span>
-    </button>
-</div>
-@endif
     <div>
+
         <div class="card radius-15">
             <div class="card-header">
                 <h5>Form Edit Sosmed Toko</h5>

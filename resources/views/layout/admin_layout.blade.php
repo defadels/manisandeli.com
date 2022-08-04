@@ -48,6 +48,7 @@
 			<div class="page-content-wrapper">
 				@include('layout.admin.error')
 				@yield('content')
+				{{$slot ?? ''}}
 			</div>
 			<!--end page-content-wrapper-->
 		</div>

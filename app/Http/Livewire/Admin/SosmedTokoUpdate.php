@@ -8,7 +8,7 @@ use App\Models\SosmedTokoModel;
 class SosmedTokoUpdate extends Component
 {
 
-    public $nama, $username, $url, $status, $dataId;
+    public $nama, $username, $url, $status, $dataId, $sosmed;
 
     protected $listeners = [
         'getData' => 'showData'
@@ -32,28 +32,24 @@ class SosmedTokoUpdate extends Component
             'nama' => 'required|string',
             'username' => 'required|string',
             'url'   => 'required',
-        ],[
-            'nama.required' => 'Nama sosmed harus diisi',
-            'nama.string' =>'Nama sosmed harus string',
-            'username.required' => 'Username harus diisi',
-            'username.string' => 'Username harus string',
-            'url' => 'URL sosmed harus diisi'
         ]);
 
         if($this->dataId){
             $sosmed = SosmedTokoModel::find($this->dataId);
 
-            $sosmed->update([
-                'nama' => $this->nama,
-                'username' => $this->username,
-                'url' => $this->url,
-                'status' => $this->status,
-            ]);
-    
-        }
+            $sosmed->nama = $this->nama;
+            $sosmed->username = $this->username;
+            $sosmed->url = $this->url;
+            $sosmed->status = $this->status;
+            $sosmed->save();
 
-            $this->resetInput();
-            $this->emit('sosmedUpdated', $sosmed);
+        }
+        $this->resetInput();
+
+           // $this->emit('sosmedUpdated', $sosmed);
+        
+       
+            
     }
 
     private function resetInput(){

@@ -1,7 +1,7 @@
 
 <div>
     
-    <div class="card radius-15" style="@if($statusUpdate) display : none  @endif">
+    <div class="card radius-15">
 
         <div class="card-header">
             <div class="row">
@@ -11,7 +11,7 @@
                 <div class="col-1">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button id="edit" wire:click="getData({{$profil->id}})" onclick="myFunction()" class="btn btn-sm btn-secondary">Edit</button>
+                                <a href="{{ route('admin.pengaturan.profil-toko.edit', $profil->id) }}" class="btn btn-sm btn-secondary">Edit</a>
                             </div>
                         </div>
                 </div>
