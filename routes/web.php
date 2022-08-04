@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Route;
     // Admin Livewire
     use App\Http\Livewire\Admin\SosmedToko;
     use App\Http\Livewire\Admin\ProfilTokoUpdate;
+    use App\Http\Livewire\Admin\EditProfileUser;
+    use App\Http\Livewire\Admin\EditProfieUserUpdate;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,7 +79,10 @@ Route::middleware('auth', 'reject_except_admin')->group(function(){
         //Profil Toko Routes
         Route::get('admin/pengaturan/profil-toko', [ProfilTokoController::class, 'index'])->name('admin.pengaturan.profil-toko');
         Route::get('admin/pengaturan/profil-toko/{id}/edit', ProfilTokoUpdate::class)->name('admin.pengaturan.profil-toko.edit');
-    
+
+        //Profil User Routes
+        Route::get('/admin/{id}/profile-user', EditProfileUser::class)->name('admin.profile-user');
+        Route::get('/admin/{id}/profile-user/update', EditProfieUserUpdate::class)->name('admin.profile-user.update');
 });
 
 Auth::routes(['verify' => true]);

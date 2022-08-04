@@ -1,14 +1,4 @@
 <div>
-
-    @if(session()->has('message'))
-        <div class="alert alert-success">
-            <strong>{{session('message')}}</strong>
-            <button type="button" class="close" data-dismiss="alert">
-                <span>&times;</span>
-            </button>
-        </div>
-        @endif
-
     <div class="page-content">
 
    
@@ -17,7 +7,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-11 align-self-center">
-                    <h4>Ubah Profil</h4>
+                    <h4>Ubah Profil Toko</h4>
                 </div>
                 <div class="col-1">
                         <div class="input-group">

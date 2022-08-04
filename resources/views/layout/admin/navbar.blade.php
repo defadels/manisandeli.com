@@ -294,12 +294,12 @@
                     <div class="media user-box align-items-center">
                         <div class="media-body user-info">
                             <p class="user-name mb-0">{{Auth::user()->nama}}</p>
-                            <p class="designattion mb-0 btn btn-primary btn-md radius-30">{{ucfirst(Auth::user()->roles)}}</p>
+                            <p class="designattion mb-0 btn btn-primary btn-sm radius-30">{{ucfirst(Auth::user()->roles)}}</p>
                         </div>
                         <img src="https://via.placeholder.com/110x110" class="user-img" alt="user avatar">
                     </div>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right">	<a class="dropdown-item" href="javascript:;"><i
+                <div class="dropdown-menu dropdown-menu-right">	<a class="dropdown-item" href="{{route('admin.profile-user', ['id' => Auth::user()->id])}}"><i
                             class="bx bx-user"></i><span>Profile</span></a>
                     <div class="dropdown-divider mb-0"></div>	<a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();"><i

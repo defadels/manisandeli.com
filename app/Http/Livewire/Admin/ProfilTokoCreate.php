@@ -39,7 +39,8 @@ class ProfilTokoCreate extends Component
         ]);
 
         $this->resetInput();
-        $this->emit('profilCreated', $profil);
+        return redirect()->route('admin.pengaturan.profil-toko')
+        ->with('message', __('pesan.create', ['module' => $profil->nama]));
     }
 
     public function resetInput(){

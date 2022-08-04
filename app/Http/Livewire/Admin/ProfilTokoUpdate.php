@@ -57,9 +57,9 @@ class ProfilTokoUpdate extends Component
         $profil->save();
 
         $this->resetInput();
-        $this->emit('profilUpdated', $profil);
 
-        return redirect()->route('admin.pengaturan.profil-toko');
+        return redirect()->route('admin.pengaturan.profil-toko')
+        ->with('message', __('pesan.update', ['module' => $profil->nama]));
     }
 
     public function resetInput(){
