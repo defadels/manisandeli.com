@@ -62,6 +62,13 @@
         
         <li class="menu-label">Pengaturan</li>
         <li>
+            <a href="{{route('admin.pengaturan.user')}}">
+                <div class="parent-icon icon-color-8"><i class="bx bx-user"></i>
+                </div>
+                <div class="menu-title">User</div>
+            </a>
+        </li>
+        <li>
             <a href="{{route('admin.pengaturan.pembayaran')}}">
                 <div class="parent-icon icon-color-9"><i class="bx bx-credit-card-front"></i>
                 </div>

@@ -1,6 +1,6 @@
 @extends('layout.admin_layout')
 
-@section('title','Form Tambah Produk')
+@section('title','Form Tambah Metode Pembayaran')
 
 @section('style')
 

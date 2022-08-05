@@ -1,10 +1,7 @@
-@extends('layout.admin_layout')
+@section('title', 'User Pengelola')
 
-@section('title', 'Metode Pembayaran')
-
-@section('content')
-<div class="page-content">
-    <!--breadcrumb-->
+<div>
+   <div class="page-content">
     <div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
         <div class="breadcrumb-title pr-3">Pengaturan</div>
         <div class="pl-3">
@@ -12,25 +9,40 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Metode Pembayaran</li>
+                    <li class="breadcrumb-item active" aria-current="page">User</li>
                 </ol>
             </nav>
         </div>
         <div class="ml-auto">
-  
+           
         </div>
     </div>
-    <!--end breadcrumb-->
-    <div class="mb-2"><a href="{{ route('admin.pengaturan.pembayaran.create') }}" class="btn btn-md btn-primary">+ Tambah Pembayaran</a></div>
+
+    @if(session()->has('message'))
+    <div class="alert alert-success">
+        <strong>{{session('message')}}</strong>
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+    </div>
+    @endif
+
+   
+    @if($statusUpdate)
+    <livewire:admin.user-update-component />
+    @else
+    <livewire:admin.user-create-component />
+    @endif
+    
     <div class="card radius-15">
 
         <div class="card-header">
             <div class="row">
-                <div class="col-8 align-self-center">
-                    <h4>Tabel Metode Pembayaran</h4>
+                <div class="col-md-8 mb-4 align-self-center">
+                    <h5>Tabel User Pengelola</h5>
                 </div>
-                <div class="col-4">
-                    <form method="get" action="{{ url('admin/pengaturan/pembayaran') }}">
+                <div class="col-md-4">
+                    <form method="get" action="">
                         <div class="input-group">
                             <input type="text" name="q" class="form-control form-control-sm" value="{{ $req['q'] ?? '' }}">
                             <div class="input-group-append">
@@ -44,15 +56,14 @@
         <div class="card-body">
 
             <div class="table-responsive">
-                @if(count($daftar_pembayaran) > 0) 
+                @if(count($daftar_user) > 0) 
                 <table class="table mb-0">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Nama</th>
-                            <th scope="col">Nomor Rekening / Nomor Handphone</th>
-                            <th scope="col">Jenis</th>
-                            <th scope="col">Nama Pemilik / Atas Nama</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Role</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -63,28 +74,27 @@
                     @endphp
                     
                     <tbody>
-                       @foreach($daftar_pembayaran as $pembayaran) 
+                    @foreach($daftar_user as $user) 
                         <tr>
                             <th scope="row">{{ $no++ }}</th>
-                            <td>{{$pembayaran->nama}}</td>
-                            <td>{{$pembayaran->nomor_rekening}}</td>
-                            <td>{{ ucfirst($pembayaran->jenis) }}</td>
-                            <td>{{$pembayaran->nama_pemilik}}</td>
+                            <td>{{$user->nama}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->roles}}</td>
                             <td>
-                                <a href="{{ route('admin.pengaturan.pembayaran.edit', $pembayaran->id) }}" class="btn btn-md btn-primary">Edit</a>
-                                <a href="{{ route('admin.pengaturan.pembayaran.show', $pembayaran->id) }}" class="btn btn-md btn-secondary">Lihat</a>
+                                <button wire:click="getData({{$user->id}})" class="btn btn-md btn-primary">Edit</button>
+                                <button wire:click="destroy({{$user->id}})" class="btn btn-md btn-danger">Hapus</button>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
-                   
+                
                 </table>
                 @else
-                    <h5 class="text-center">Metode Pembayaran Kosong</h5>
+                    <h5 class="text-center">User Pengelola Kosong</h5>
                 @endif
             </div>
         </div>
     </div>
 
+   </div>
 </div>
-@endsection
