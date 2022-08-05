@@ -3,27 +3,40 @@
 namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Models\SosmedTokoModel;
 
 class SosmedToko extends Component
 {
 
-    public $sosmed_toko;
+    public $search;
     public $statusUpdate = false;
+    public $paginate = 5;
 
     protected $listeners = [
         'sosmedStored' => 'handleStored',
         'sosmedUpdated' => 'handleUpdated',
         'sosmedDeleted' => 'handleDeleted'
     ];
+    protected $updateQueryString = ['search'];
 
+    public function mount(){
+        $this->search = request()->query('search', $this->search);
+    }
 
     public function render(){    
     
 
-    $this->sosmed_toko = SosmedTokoModel::get();
+    // $this->sosmed_toko = SosmedTokoModel::get();
 
-        return view('livewire.admin.sosmed-toko',['sosmed_toko' => $this->sosmed_toko]);
+        return view('livewire.admin.sosmed-toko',[
+            'sosmed_toko' => $this->search == null ?
+            SosmedTokoModel::latest()->paginate($this->paginate) :
+            SosmedTokoModel::latest()->where('nama','like', '%'.$this->search.'%')
+            ->orWhere('status', 'like', '%'.$this->search.'%')
+            ->orWhere('username', 'like', '%'.$this->search.'%')
+            ->paginate($this->paginate)
+        ]);
     }
 
 

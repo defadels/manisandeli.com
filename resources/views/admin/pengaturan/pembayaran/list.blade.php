@@ -71,8 +71,8 @@
                             <td>{{ ucfirst($pembayaran->jenis) }}</td>
                             <td>{{$pembayaran->nama_pemilik}}</td>
                             <td>
-                                <a href="{{ route('admin.pengaturan.pembayaran.edit', $pembayaran->id) }}" class="btn btn-md btn-primary">Edit</a>
-                                <a href="{{ route('admin.pengaturan.pembayaran.show', $pembayaran->id) }}" class="btn btn-md btn-secondary">Lihat</a>
+                                <a href="{{ route('admin.pengaturan.pembayaran.edit', $pembayaran->id) }}" class="btn btn-md btn-primary" title="Edit"><i class="lni lni-pencil-alt"></i></a>
+                                <a href="{{ route('admin.pengaturan.pembayaran.show', $pembayaran->id) }}" class="btn btn-md btn-secondary" title="Lihat"><i class="lni lni-eye"></i></a>
                             </td>
                         </tr>
                         @endforeach

@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Livewire\Admin\EditProfileUser;
     use App\Http\Livewire\Admin\EditProfieUserUpdate;
     use App\Http\Livewire\Admin\UserIndexComponent;
+    use App\Http\Livewire\Admin\PelangganComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,6 +55,10 @@ Route::prefix('owner')->name('owner.')->middleware('auth', 'reject_except_owner'
 
 Route::middleware('auth', 'reject_except_admin')->group(function(){
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('/admin/pelanggan', PelangganComponent::class)->name('admin.pelanggan');
+    Route::get('/admin/pelanggan/alamat', PelangganComponent::class)->name('admin.pelanggan.alamat');
+    Route::get('/admin/pelanggan/keranjang', PelangganComponent::class)->name('admin.pelanggan.keranjang');
 
     Route::get('admin/produk', [ProdukController::class, 'index'])->name('admin.produk');
     Route::get('admin/produk/tambah', [ProdukController::class, 'create'])->name('admin.produk.create');

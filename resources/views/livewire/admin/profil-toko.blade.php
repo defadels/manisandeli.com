@@ -18,7 +18,7 @@
                 <div class="col-1">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <a href="{{ route('admin.pengaturan.profil-toko.edit', $profil->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+                                <a href="{{ route('admin.pengaturan.profil-toko.edit', $profil->id) }}" class="btn btn-sm btn-secondary"><i class="lni lni-pencil-alt"></i> Edit</a>
                             </div>
                         </div>
                 </div>

@@ -44,7 +44,7 @@
         </li>
 
         <li>
-            <a href="emailbox.html">
+            <a href="{{route('admin.pelanggan')}}">
                 <div class="parent-icon icon-color-3"><i class="bx bx-user"></i>
                 </div>
                 <div class="menu-title">Pelanggan</div>

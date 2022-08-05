@@ -28,10 +28,10 @@
                     <div class="col-md-4">
                         <form method="get" action="">
                             <div class="input-group">
-                                <input type="text" name="q" class="form-control form-control-sm" value="{{ $req['q'] ?? '' }}">
                                 <div class="input-group-append">
-                                    <button type="submit" class="btn btn-sm btn-secondary">Search</button>
+                                    <span class="input-group-text" id="addon-wrapping"><i class="lni lni-search-alt"></i></span>
                                 </div>
+                                <input type="text" placeholder="Cari data ..." class="form-control form-control-sm:text" wire:model="search">
                             </div>
                         </form>
                     </div>
@@ -67,14 +67,15 @@
                                 <td><a href="{{ $sosmed->url }}" target="_blank" class="btn btn-sm btn-secondary">Klik URL</a></td>
                                 <td>{{$sosmed->status}}</td>
                                 <td>
-                                    <button wire:click="getData({{$sosmed->id}})" class="btn btn-md btn-primary">Edit</button>
-                                    <button wire:click="destroy({{$sosmed->id}})" class="btn btn-md btn-danger">Hapus</button>
+                                    <button wire:click="getData({{$sosmed->id}})" class="btn btn-md btn-primary" title="Edit"><i class="lni lni-pencil-alt"></i></button>
+                                    <button wire:click="destroy({{$sosmed->id}})" class="btn btn-md btn-danger" title="Hapus"><i class="lni lni-trash"></i></button>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     
                     </table>
+                    {{$sosmed_toko->links()}}
                     @else
                         <h5 class="text-center">Sosmed Toko Kosong</h5>
                     @endif

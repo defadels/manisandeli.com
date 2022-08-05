@@ -81,8 +81,8 @@
                             <td>{{$user->email}}</td>
                             <td>{{$user->roles}}</td>
                             <td>
-                                <button wire:click="getData({{$user->id}})" class="btn btn-md btn-primary">Edit</button>
-                                <button wire:click="destroy({{$user->id}})" class="btn btn-md btn-danger">Hapus</button>
+                                <button wire:click="getData({{$user->id}})" class="btn btn-md btn-primary" title="Edit"><i class="lni lni-pencil-alt"></i></button>
+                                <button wire:click="destroy({{$user->id}})" class="btn btn-md btn-danger" title="Hapus"><i class="lni lni-trash"></i></button>
                             </td>
                         </tr>
                         @endforeach

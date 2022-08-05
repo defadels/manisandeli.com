@@ -29,7 +29,7 @@
     <!--end breadcrumb-->
     <div class="mb-2">
         @if(isset($produk))
-        <a data-toggle="modal" data-target="#exampleModal1" class="btn btn-md btn-danger">Hapus Produk</a>
+        <a data-toggle="modal" data-target="#exampleModal1" class="btn btn-md btn-danger"><i class="lni lni-trash"></i> Hapus Produk</a>
         @endif
     </div>
     <div class="card radius-15">
@@ -191,7 +191,7 @@
 @endif
 @endsection
 
-@section('script')
+@section('scripts')
 <script src="{{asset('/assets-admin/plugins/input-tags/js/tagsinput.js') }}"></script>
 	
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
