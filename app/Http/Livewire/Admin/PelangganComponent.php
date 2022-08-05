@@ -4,17 +4,28 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\User;
+use Livewire\WithPagination;
 
 class PelangganComponent extends Component
 {
-    public $daftar_pelanggan;
+    public $search;
+    public $paginate = 5;
+
+    protected $updateQueryString = ['search'];
 
     public function render()
     
     {
-        $this->daftar_pelanggan = User::whereIn('roles',['pelanggan','admin'])->get();
+        // $this->daftar_pelanggan = User::whereIn('roles',['admin'])->get();
 
-        return view('livewire.admin.pelanggan-component',['daftar_pelanggan'=>$this->daftar_pelanggan])
+        return view('livewire.admin.pelanggan-component',[
+            'daftar_pelanggan'=>$this->search == null ?
+            User::latest()->where('roles',['pelanggan'])->paginate($this->paginate) :
+            User::whereIn('roles',['pelanggan'])->latest()->where('nama', 'like', '%'.$this->search.'%')
+            ->orWhere('email', 'like', '%'.$this->search.'%')
+            ->paginate($this->paginate)
+
+        ])
         ->layout('layout.admin_layout');
     }
 }

@@ -28,10 +28,10 @@
                     <div class="col-md-4">
                         <form method="get" action="">
                             <div class="input-group">
+                                <input type="text" placeholder="Cari data ..." class="form-control form-control-sm:text" wire:model="search">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="addon-wrapping"><i class="lni lni-search-alt"></i></span>
                                 </div>
-                                <input type="text" placeholder="Cari data ..." class="form-control form-control-sm:text" wire:model="search">
                             </div>
                         </form>
                     </div>

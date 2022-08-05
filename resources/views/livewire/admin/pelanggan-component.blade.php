@@ -25,11 +25,11 @@
                         <h4>Tabel Pelanggan</h4>
                     </div>
                     <div class="col-4">
-                        <form method="get" action="{{ url('admin/pengaturan/pembayaran') }}">
+                        <form method="get">
                             <div class="input-group">
-                                <input type="text" name="q" class="form-control form-control-sm" value="{{ $req['q'] ?? '' }}">
+                                <input type="text"  class="form-control form-control-sm" wire:model="search">
                                 <div class="input-group-append">
-                                    <button type="submit" class="btn btn-sm btn-secondary">Search</button>
+                                    <span class="input-group-text" id="addon-wrapping"><i class="lni lni-search-alt"></i></span>
                                 </div>
                             </div>
                         </form>

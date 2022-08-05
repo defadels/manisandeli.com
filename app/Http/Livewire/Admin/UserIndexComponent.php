@@ -4,11 +4,15 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\User;
+use Livewire\WithPagination;
 
 class UserIndexComponent extends Component
 {
-    public $daftar_user;
+    public $search;
     public $statusUpdate = false;
+    public $paginate = 5;
+
+    protected $updateQueryString = ['search'];
 
     protected $listeners = [
         'userStored' => 'handleStored',
@@ -18,9 +22,16 @@ class UserIndexComponent extends Component
 
     public function render()
     {
-        $this->daftar_user = User::whereIn('roles', ['admin','owner'])->get();
+        // $this->daftar_user = User::whereIn('roles', ['admin','owner'])->get();
 
-        return view('livewire.admin.user-index-component',['daftar_user' => $this->daftar_user])->layout('layout.admin_layout');
+        return view('livewire.admin.user-index-component',
+        [
+            'daftar_user' => $this->search == null ?
+            User::latest()->where('roles', ['admin','owner'])->paginate($this->paginate) :
+            User::whereIn('roles', ['admin','owner'])->latest()->where('nama', 'like', '%'.$this->search.'%')
+            ->orWhere('email', 'like', '%'.$this->search.'%')
+            ->paginate($this->paginate)
+        ]) ->layout('layout.admin_layout');
     }
 
     public function handleStored($user){
