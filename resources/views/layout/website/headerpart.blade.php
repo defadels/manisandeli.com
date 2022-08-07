@@ -9,13 +9,14 @@
         <a href="index.html" class="header-logo">
             <img src="{{asset('frontend/images/logo.png')}}" alt="logo">
         </a>
+       
 
         @if(Route::has('login'))
 
         @auth
 
             @if(Auth::user()->roles == 'pelanggan')
-            <a href="login.html" class="header-widget" title="My Account">
+            <a href="{{route('website.profile.user')}}" class="header-widget" title="My Account">
                 <img src="{{asset('frontend/images/user.png')}}" alt="user">
                 <span>{{Auth::user()->nama}}</span>
             </a>
@@ -31,7 +32,7 @@
 
 
             @if(Auth::user()->roles == 'owner')
-            <a href="login.html" class="header-widget" title="My Account">
+            <a href="{{route('website.profile.user')}}" class="header-widget" title="My Account">
                 <img src="{{asset('frontend/images/user.png')}}" alt="user">
                 <span>{{Auth::user()->nama}}</span>
             </a>
@@ -39,7 +40,23 @@
             
             @endauth
 
+            @else
+            <a href="{{route('login')}}" class="header-widget" title="Login">
+                <span>Login</span>
+                
+            </a>
+            <a class="header-widget" title="My Account">
+                <span>| |</span>
+                
+            </a>
+            
+            <a href="{{route('register')}}" class="header-widget" title="Register">
+                <span>Register</span>
+            </a>
+
         @endif
+
+        
 
         <form class="header-form">
             <input type="text" placeholder="Search anything...">

@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 // Laravel Livewire Module
 
+    // Website Livewire
+    use App\Http\Livewire\Website\ProfileUser;
+
+
     // Admin Livewire
     use App\Http\Livewire\Admin\SosmedToko;
     use App\Http\Livewire\Admin\ProfilTokoUpdate;
@@ -44,8 +48,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //My own project pages
-Route::name('website.')->namespace('Website')->group(function(){
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function(){
+    Route::get('/', [HomeController::class, 'index'])->name('website.home');
+    Route::get('/profile-user', ProfileUser::class)->name('website.profile.user');
 });
 
 

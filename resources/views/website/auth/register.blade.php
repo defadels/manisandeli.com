@@ -27,7 +27,7 @@
                     <form class="user-form" method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group">
-                            <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror " placeholder="Masukkan nama lengkap Anda">
+                            <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror " placeholder="Masukkan nama lengkap Anda" value="{{old('nama')}}">
                             @error('nama')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{$message}}</strong>
@@ -35,7 +35,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan email Anda">
+                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan email Anda" value="{{old('email')}}">
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{$message}}</strong>
@@ -43,7 +43,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukkan password Anda">
+                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukkan password Anda" value="{{old('password')}}">
                             @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{$message}}</strong>
@@ -51,7 +51,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input id="password-confirm" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password" placeholder="Konfirmasi password Anda">
+                            <input id="password-confirm" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password" placeholder="Konfirmasi password Anda" value="{{old('password_confirmation')}}">
                             @error('password_confirmation')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{$message}}</strong>

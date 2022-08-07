@@ -25,7 +25,7 @@
                     <form class="user-form" method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">
-                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan email Anda">
+                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan email Anda" value="{{old('email')}}">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{$message}}</strong>
@@ -33,7 +33,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukkan password Anda">
+                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukkan password Anda" value="{{old('password')}}">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{$message}}</strong>
