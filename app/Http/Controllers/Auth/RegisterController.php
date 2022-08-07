@@ -40,6 +40,11 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+    
+    public function showRegistrationForm()
+    {
+        return view('website.auth.register');
+    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -68,6 +73,7 @@ class RegisterController extends Controller
         return User::create([
             'nama' => $data['nama'],
             'email' => $data['email'],
+            'roles' => 'pelanggan',
             'password' => Hash::make($data['password']),
         ]);
     }

@@ -23,7 +23,7 @@
         =======================================-->
 
         <!-- WEBPAGE TITLE -->
-        <title>Greeny - Login</title>
+        <title>@yield('title')</title>
 
         <!--=====================================
                     CSS LINK PART START

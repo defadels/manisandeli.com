@@ -9,10 +9,37 @@
         <a href="index.html" class="header-logo">
             <img src="{{asset('frontend/images/logo.png')}}" alt="logo">
         </a>
-        <a href="login.html" class="header-widget" title="My Account">
-            <img src="{{asset('frontend/images/user.png')}}" alt="user">
-            <span>join</span>
-        </a>
+
+        @if(Route::has('login'))
+
+        @auth
+
+            @if(Auth::user()->roles == 'pelanggan')
+            <a href="login.html" class="header-widget" title="My Account">
+                <img src="{{asset('frontend/images/user.png')}}" alt="user">
+                <span>{{Auth::user()->nama}}</span>
+            </a>
+
+            @endif
+
+            @if(Auth::user()->roles == 'admin')
+            <a href="{{route('admin.dashboard')}}" class="header-widget" title="My Account">
+                <img src="{{asset('frontend/images/user.png')}}" alt="user">
+                <span>{{Auth::user()->nama}}</span>
+            </a>
+            @endif
+
+
+            @if(Auth::user()->roles == 'owner')
+            <a href="login.html" class="header-widget" title="My Account">
+                <img src="{{asset('frontend/images/user.png')}}" alt="user">
+                <span>{{Auth::user()->nama}}</span>
+            </a>
+            @endif
+            
+            @endauth
+
+        @endif
 
         <form class="header-form">
             <input type="text" placeholder="Search anything...">
