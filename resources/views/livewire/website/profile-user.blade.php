@@ -40,19 +40,19 @@
                                     </div>
                                     <div class="col-md-6 col-lg-4">
                                         <div class="form-group">
-                                            <label class="form-label">name</label>
-                                            <input class="form-control" type="text" value="Miron Mahmud">
+                                            <label class="form-label">nama</label>
+                                            <input class="form-control" type="text" value="{{Auth::user()->nama}}">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">Email</label>
-                                            <input class="form-control" type="email" value="mironcoder@gmail.com">
+                                            <input class="form-control" type="email" value="{{Auth::user()->email}}">
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
                                         <div class="profile-btn">
-                                            <a href="change-password.html">change pass.</a>
+                                            <a href="{{route('password.request')}}">change pass.</a>
                                         </div>
                                     </div>
                                 </div>

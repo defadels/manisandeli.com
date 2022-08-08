@@ -25,7 +25,11 @@
             <form wire:submit.prevent="store">
                 @csrf
 
-                {{-- <div class="form-group">
+                <div class="form-group">
+                    @if($logo)
+                        <img src="{{$logo->temporaryUrl()}}" class="img-fluid" alt="" srcset="">
+                    @endif
+                    
                     <label for="">Logo Website</label>
                     <input type="file" name="logo" wire:model="logo" class="form-control" id="">
                     @error('logo')
@@ -33,7 +37,9 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                </div> --}}
+
+                    
+                </div>
 
                 <div class="form-group">
                     <label for="">Nama Website</label>

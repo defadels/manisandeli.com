@@ -44,7 +44,8 @@ class SosmedToko extends Component
         if($id) {
             $sosmed = SosmedTokoModel::find($id);
             $sosmed->delete();
-            $this->emit('sosmedDeleted', $sosmed); 
+            $this->emit('sosmedDeleted', $sosmed);
+            
         }
     }
 

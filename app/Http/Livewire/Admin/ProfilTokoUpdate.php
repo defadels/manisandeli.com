@@ -4,13 +4,16 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\ProfilToko;
+use Livewire\WithFileUploads;
 
 class ProfilTokoUpdate extends Component
 {
 
+    use WithFileUploads;
+
     // public $statusUpdate = true;
 
-    public $profilId, $nama, $email, $url, $nomor_hp;
+    public $profilId, $nama, $email, $url, $nomor_hp, $logo;
 
     // protected $listeners = [
     //     'getData' => 'showProfile'
