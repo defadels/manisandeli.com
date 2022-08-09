@@ -33,15 +33,24 @@
             @csrf
             <input type="hidden" name="" wire:model="id">
 
-            {{-- <div class="form-group">
-                <label for="">Logo Website</label>
-                <input type="file" name="logo" wire:model="logo" class="form-control" id="">
-                @error('logo')
+            <div class="form-group">
+                <label for="">Foto Profil</label>
+
+                @if($foto_profil)
+                    <img src="{{ $foto_profil->temporaryUrl() }}" class="img-fluid" alt="">
+                @endif
+                @if($fotoUrl && !$foto_profil)
+                    <img src="{{ Storage::url($fotoUrl) }}" class="img-fluid" alt="">
+                @endif
+                
+                <input type="file" name="foto_profil" wire:model="foto_profil" class="form-control" id="">
+                
+                @error('foto_profil')
                     <span class="text-danger">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-            </div> --}}
+            </div>
 
             <div class="form-group">
                 <label for="">Nama Website</label>

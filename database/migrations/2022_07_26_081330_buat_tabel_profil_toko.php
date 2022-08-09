@@ -18,6 +18,7 @@ class BuatTabelProfilToko extends Migration
             $table->string('nama')->nullable();
             $table->string('url')->nullable();
             $table->string('logo')->nullable();
+            $table->string('favicon')->nullable();
             $table->string('email')->nullable();
             $table->string('nomor_hp')->nullable();
             $table->timestamps();

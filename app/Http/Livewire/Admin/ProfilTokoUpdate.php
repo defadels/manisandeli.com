@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use App\Models\ProfilToko;
 use Livewire\WithFileUploads;
+use Storage;
 
 class ProfilTokoUpdate extends Component
 {
