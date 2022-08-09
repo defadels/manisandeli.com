@@ -13,7 +13,7 @@ class ProfilTokoUpdate extends Component
 
     // public $statusUpdate = true;
 
-    public $profilId, $nama, $email, $url, $nomor_hp, $logo;
+    public $profilId, $nama, $email, $url, $nomor_hp, $logo, $logoUrl;
 
     // protected $listeners = [
     //     'getData' => 'showProfile'
@@ -28,6 +28,7 @@ class ProfilTokoUpdate extends Component
         $this->email = $profil->email;
         $this->url = $profil->url;
         $this->nomor_hp = $profil->nomor_hp;
+        $this->logoUrl = $profil->logo;
     }
 
 

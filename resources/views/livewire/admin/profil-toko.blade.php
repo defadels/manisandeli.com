@@ -27,32 +27,33 @@
         <div class="card-body">
 
                 <div class="form-group">
-                    <label for="">Logo Website</label>
-                       <p>{{$profil->logo}}</p>  
+                    <h5>Logo Website</h5>
+                      <br>
+                    <img src="{{Storage::url($profil->logo)}}" alt="" class="img-fluid"> 
                 </div>
 
                 <div class="form-group">
-                    <label for="">Nama Website</label>
+                    <h5>Nama Website</h5>
                        <p>{{$profil->nama}}</p>  
                 </div>
 
                 <div class="form-group">
-                    <label for="">URL Website</label>
+                    <h5>URL Website</h5>
                        <p>{{$profil->url}}</p>                     
                 </div>
 
                 <div class="form-group">
-                    <label for="">Email</label>
+                    <h5>Email</h5>
                       <p>{{$profil->email}}</p>   
                 </div>
 
                 <div class="form-group">
-                    <label for="">Nomor Handphone</label>
+                    <h5>Nomor Handphone</h5>
                     <p>{{$profil->nomor_hp}}</p> 
                 </div>
 
                 <div class="form-group">
-                    <button type="button" class="btn btn-md btn-secondary" onclick="window.history.back()">Kembali</button>
+                    <button type="button" class="btn btn-sm btn-secondary" onclick="window.history.back()">Kembali</button>
                 </div>
         </div>
     </div>

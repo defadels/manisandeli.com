@@ -26,8 +26,12 @@
 
                 <div class="form-group">
                     @if($logo)
-                        <img src="{{$logo->temporaryUrl()}}" class="img-thumbnail" alt="" srcset="">
+                        <img src="{{$logo->temporaryUrl()}}" class="img-fluid" alt="" srcset="">
                     @endif
+                    @if($logoUrl && !$logo)
+                        <img src="{{ Storage::url($logoUrl) }}" alt="" class="img-fluid">
+                    @endif
+
 
                     <label for="">Logo Website</label>
                     <input type="file" name="logo" wire:model="logo" class="form-control" id="">

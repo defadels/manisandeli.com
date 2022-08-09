@@ -51,13 +51,13 @@ class ProfilTokoCreate extends Component
             $file_extension = $this->logo->extension();
             $profil->logo = $path.$nama_file.".".$file_extension;
 
-            $gambar = Storage::url('');
+            $gambar = $this->logo;
             $destinationPath = storage_path('/app/public/');
 
             $img = Image::make($gambar->path());
             $img->fit(450, 450, function($cons){
                 $cons->aspectRatio();
-            })->save($destinationPath.$produk->foto_produk);
+            })->save($destinationPath.$profil->logo);
 
             $profil->save();
         }
@@ -69,6 +69,7 @@ class ProfilTokoCreate extends Component
 
     public function resetInput(){
         $this->nama= null;
+        $this->logo = null;
         $this->url = null;
         $this->nomor_hp = null;
         $this->email = null;
