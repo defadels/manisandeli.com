@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\Admin;
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
-use App\Models\User;
 use Str;
 use Image;
+use App\Models\User;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class EditProfieUserUpdate extends Component
 {
@@ -37,7 +38,7 @@ class EditProfieUserUpdate extends Component
         $this->validate([
             'nama' => 'required|string|max:25',
             'email' => 'email|required|unique:users,email,'.$user->id,
-            'foto_profil' => 'mimes:jpeg,jpg,png','max:10240'
+            'foto_profil' => 'mimes:jpeg,jpg,png|max:10240'
         ]);
 
         $user->nama = $this->nama;
@@ -45,6 +46,8 @@ class EditProfieUserUpdate extends Component
         $user->nomor_hp = $this->nomor_hp;
 
         if($this->foto_profil){
+            $foto_lama = $this->foto_profil;
+
             $nama_file = Str::uuid();
 
             $path ='user/foto/';
@@ -59,9 +62,10 @@ class EditProfieUserUpdate extends Component
                 $cons->aspectRatio();
             })->save($destinationPath.$user->foto_profil);
 
-            $user->save();
+            Storage::disk('public')->delete($foto_lama);
         }
-
+        
+        $user->save();
         $this->resetInput();
         $this->emit('profileUpdated', $user);
 

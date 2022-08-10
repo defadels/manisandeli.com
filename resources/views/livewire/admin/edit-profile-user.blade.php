@@ -29,7 +29,9 @@
     
                     <div class="form-group">
                         <label for="">Foto Profil</label>
-                           <p></p>  
+                          <div class="col-6">
+                        <img src="{{ Storage::url($user->foto_profil) }}" alt="" class="img-fluid">    
+                        </div> 
                     </div>
     
                     <div class="form-group">

@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Storage;
 use Livewire\Component;
 use App\Models\ProfilToko;
+use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
-use Storage;
+use Intervention\Image\Facades\Image;
 
 class ProfilTokoUpdate extends Component
 {
@@ -59,6 +61,28 @@ class ProfilTokoUpdate extends Component
         $profil->email = $this->email;
         $profil->url = $this->url;
         $profil->nomor_hp = $this->nomor_hp;
+        $profil->logo = $this->logo;
+
+        if($this->logo){
+            $foto_lama = $this->logo;
+
+            $nama_file = Str::uuid();
+
+            $path ='profil/';
+            $file_extension = $this->logo->extension();
+            $profil->logo = $path.$nama_file.".".$file_extension;
+
+            $gambar = $this->logo;
+            $destinationPath = storage_path('/app/public/');
+
+            $img = Image::make($gambar->path());
+            $img->fit(450, 450, function($cons){
+                $cons->aspectRatio();
+            })->save($destinationPath.$profil->logo);
+
+            Storage::disk('public')->delete($foto_lama);
+        }
+
         $profil->save();
 
         $this->resetInput();
