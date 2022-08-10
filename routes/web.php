@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Route;
 //My own project pages
 Route::middleware('auth')->group(function(){
     Route::get('/', [HomeController::class, 'index'])->name('website.home');
-    Route::get('/profile-user', ProfileUser::class)->name('website.profile.user');
+    Route::get('/{id}/profile-user', ProfileUser::class)->name('website.profile.user');
 });
 
 

@@ -29,25 +29,25 @@
                         <div class="account-card">
                             <div class="account-title">
                                 <h4>Your Profile</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#profile-edit">edit profile</button>
+                                <button data-bs-toggle="modal" wire:click="getData({{ $user->id }})"  data-bs-target="#profile-edit">edit profile</button>
                             </div>
                             <div class="account-content">
                                 <div class="row">
                                     <div class="col-lg-2">
                                         <div class="profile-image">
-                                            <a href="#"><img src="{{asset('frontend/images/user.png')}}" alt="user"></a>
+                                            <a href="#"><img src="@if($user->foto_profil)  {{ Storage::url($user->foto_profil) }} @else {{asset('frontend/images/user.png')}} @endif" alt="user"></a>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">nama</label>
-                                            <input class="form-control" type="text" value="{{Auth::user()->nama}}">
+                                            <input class="form-control" type="text" value="{{$user->nama}}">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">Email</label>
-                                            <input class="form-control" type="email" value="{{Auth::user()->email}}">
+                                            <input class="form-control" type="email" value="{{$user->email}}">
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
@@ -292,29 +292,44 @@
                     MODAL EDIT FORM START
         =======================================-->
         <!-- profile edit form -->
-        <div class="modal fade" id="profile-edit">
+        <div wire:ignore.self class="modal fade" id="profile-edit">
             <div class="modal-dialog modal-dialog-centered"> 
+                
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form">
+                    <form class="modal-form" method="POST">
+                        @csrf
+                        <input type="hidden" name="" wire:model="userId">
                         <div class="form-title">
                             <h3>edit profile info</h3>
                         </div>
                         <div class="form-group">
+                       @if($statusUpdate == true)    
+
+                            @if($user->foto_profil)
+                            <img src="{{ empty(!$foto_profil) ? $foto_profil->temporaryUrl():route('website.profile.user',$user->id)}}" class="img-fluid" alt="" srcset="">
+                            @endif
+                            @if($fotoUrl && !$foto_profil)
+                                <img src="{{ Storage::url($fotoUrl) }}" alt="" class="img-fluid">
+                            @endif
+
+                        @endif
+                        
                             <label class="form-label">profile image</label>
-                            <input class="form-control" type="file">
+                            <input class="form-control" wire:model="foto_profil" type="file">
                         </div>
                         <div class="form-group">
                             <label class="form-label">name</label>
-                            <input class="form-control" type="text" value="Miron Mahmud">
+                            <input class="form-control" type="text" wire:model="nama">
                         </div>
                         <div class="form-group">
                             <label class="form-label">email</label>
-                            <input class="form-control" type="text" value="mironcoder@gmail.com">
+                            <input class="form-control" type="email" wire:model="email">
                         </div>
-                        <button class="form-btn" type="submit">save profile info</button>
+                        <button class="form-btn" type="submit">simpan</button>
                     </form>
                 </div> 
+                
             </div> 
         </div>
 

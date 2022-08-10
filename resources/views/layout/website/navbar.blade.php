@@ -12,6 +12,29 @@
                     <li class="navbar-item">
                         <a class="navbar-link" href="#">tentang kami</a>
                     </li>
+
+                    @if(Route::has('login'))
+
+                    @auth
+
+                        @if(Auth::user()->roles == 'admin')
+
+                        <li class="navbar-item">
+                            <a class="navbar-link" href="{{route('admin.dashboard')}}">halaman dasbor</a>
+                        </li>
+                        @endif
+
+                        @if(Auth::user()->roles == 'owner')
+
+                        <li class="navbar-item">
+                            <a class="navbar-link" href="#">halaman dasbor</a>
+                        </li>
+                        @endif
+
+                    @endauth
+                    
+                    @endif
+
                     <li class="navbar-item dropdown">
                         <a class="navbar-link dropdown-arrow" href="#">authentic</a>
                         <ul class="dropdown-position-list">
@@ -20,8 +43,8 @@
                             <li><a href="reset-password.html">reset password</a></li>
                             <li><a href="change-password.html">change password</a></li>
                         </ul>
-                    </li>
-                    <li class="navbar-item dropdown">
+                    </li> 
+                     <li class="navbar-item dropdown">
                         <a class="navbar-link dropdown-arrow" href="#">blogs</a>
                         <ul class="dropdown-position-list">
                             <li><a href="blog-grid.html">blog grid</a></li>
