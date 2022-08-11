@@ -2,9 +2,11 @@
 <link rel="stylesheet" href="{{asset('frontend/css/profile.css')}}">
 @endsection
 <div>
+    
     <!--=====================================
                     BANNER PART START
         =======================================-->
+        
         <section class="inner-section single-banner" style="background: url({{asset('frontend/images/single-banner.jpg')}}) no-repeat center;">
             <div class="container">
                 <h2>my profile</h2>
@@ -13,7 +15,9 @@
                     <li class="breadcrumb-item active" aria-current="page">profile</li>
                 </ol>
             </div>
+            
         </section>
+        
         <!--=====================================
                     BANNER PART END
         =======================================-->
@@ -22,10 +26,19 @@
         <!--=====================================
                     PROFILE PART START
         =======================================-->
+        
         <section class="inner-section profile-part">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
+                        @if(session()->has('message'))
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Sukses</h4>
+                            <p class="mb-0">{{session('message')}}</p>
+                            <button type="button" class="btn-close"  data-bs-dismiss="alert" aria-label="Close">
+                            </button>
+                        </div>
+                        @endif
                         <div class="account-card">
                             <div class="account-title">
                                 <h4>Your Profile</h4>
@@ -41,13 +54,13 @@
                                     <div class="col-md-6 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">nama</label>
-                                            <input class="form-control" type="text" value="{{$user->nama}}">
+                                            <input readonly class="form-control" type="text" value="{{$user->nama}}">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">Email</label>
-                                            <input class="form-control" type="email" value="{{$user->email}}">
+                                            <input readonly class="form-control" type="email" value="{{$user->email}}">
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
@@ -297,7 +310,7 @@
                 
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form" method="POST">
+                    <form class="modal-form" wire:submit.prevent="userUpdate">
                         @csrf
                         <input type="hidden" name="" wire:model="userId">
                         <div class="form-title">
@@ -316,15 +329,39 @@
                         @endif
                         
                             <label class="form-label">profile image</label>
-                            <input class="form-control" wire:model="foto_profil" type="file">
+                            <input class="form-control @error('foto_profil') is-invalid @enderror" wire:model="foto_profil" type="file">
+                             @error('foto_profil')
+                                <span class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label class="form-label">name</label>
-                            <input class="form-control" type="text" wire:model="nama">
+                            <label class="form-label">nama</label>
+                            <input class="form-control @error('nama') is-invalid @enderror" type="text" wire:model="nama">
+                            @error('nama')
+                                <span class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">nomor handphone</label>
+                            <input class="form-control @error('nomor_hp') is-invalid @enderror" type="text" wire:model="nomor_hp">
+                             @error('nomor_hp')
+                                <span class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="form-label">email</label>
-                            <input class="form-control" type="email" wire:model="email">
+                            <input class="form-control @error('email') is-invalid @enderror" type="email" wire:model="email">
+                             @error('email')
+                                <span class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <button class="form-btn" type="submit">simpan</button>
                     </form>
@@ -391,3 +428,11 @@
                     MODAL EDIT FORM END
         =======================================-->
 </div>
+
+@section('script')
+    <script>
+        window.addEventListener('close-modal', event =>{
+            $('#profile-edit').modal('hide');
+        });
+    </script>
+@endsection
