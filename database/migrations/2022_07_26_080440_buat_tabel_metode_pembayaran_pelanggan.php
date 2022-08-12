@@ -17,10 +17,11 @@ class BuatTabelMetodePembayaranPelanggan extends Migration
             $table->bigIncrements('id');
             $table->foreignId('pelanggan_id')->constrained('users');
             $table->string('nama');
-            $table->string('deskirpsi');
-            $table->string('no_rekening');
-            $table->string('nomor_hp');
-            $table->enum('jenis', ['COD', 'Cash', 'Bank', 'E-Wallet', 'Custom']);
+            $table->string('nama_pemilik')->nullable();
+            $table->string('nomor_rekening')->nullable();
+            $table->string('deskripsi')->nullable();
+            $table->enum('jenis', ['COD','Cash', 'Bank', 'E-Wallet', 'Custom']);
+            $table->enum('status', ['Aktif','Nonaktif'])->default('Aktif')->default('Aktif');
             $table->timestamps();
         });
     }

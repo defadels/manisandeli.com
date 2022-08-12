@@ -9,7 +9,11 @@ class MetodePembayaranPelanggan extends Model
 {
     use HasFactory;
 
-    protected $table = 'metode_pemabyaran_pelanggan';
+    protected $table = 'metode_pembayaran_pelanggan';
 
     protected $guarded = [];
+
+    public function pembayaran_pelanggan(){
+        $this->belongsTo('App\Models\User', 'pelanggan_id')->withDefault();
+    }
 }

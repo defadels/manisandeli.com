@@ -16,10 +16,10 @@ class BuatTabelAlamatPelanggan extends Migration
         Schema::create('alamat', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('pelanggan_id')->constrained('users');
-            $table->string('label');
-            $table->text('alamat');
-            $table->string('longitude');
-            $table->string('latitude');
+            $table->string('label')->nullable();
+            $table->text('alamat')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
             $table->timestamps();
         });
     }

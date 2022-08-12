@@ -12,4 +12,8 @@ class AlamatPelanggan extends Model
     protected $table = 'alamat';
 
     protected $guarded = [];
+
+    public function alamat_pelanggan(){
+        $this->belongsTo('App\Models\User', 'pelanggan_id')->withDefault();
+    }
 }

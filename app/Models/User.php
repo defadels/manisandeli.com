@@ -43,4 +43,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function daftar_alamat(){
+        $this->hasMany('App\Models\AlamatPelanggan', 'pelanggan_id', 'id');
+    }
+
+    public function daftar_pembayaran(){
+        $this->hasMany('App\Models\MetodePembyaranPelanggan', 'pelanggan_id', 'id');
+    }
 }

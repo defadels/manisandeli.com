@@ -2,11 +2,14 @@
 
 namespace App\Http\Livewire\Website;
 
-use Livewire\Component;
-use App\Models\User;
-use Livewire\WithFileUploads;
-use Storage;
 use Str;
+use Storage;
+use App\Models\User;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+use App\Models\AlamatPelanggan;
+use Intervention\Image\Facades\Image;
+use App\Models\MetodePembayaranPelanggan;
 
 class ProfileUser extends Component
 {
@@ -40,8 +43,12 @@ class ProfileUser extends Component
     public function render()
     {
         $user = User::find($this->userId);
+
+        $daftar_alamat = AlamatPelanggan::where('pelanggan_id', $this->userId)->get();
+
+        $daftar_pembayaran = MetodePembayaranPelanggan::where('pelanggan_id', $this->userId)->get();
         
-        return view('livewire.website.profile-user', compact('user'))->layout('layout.website_layout');
+        return view('livewire.website.profile-user', compact('user', 'daftar_alamat', 'daftar_pembayaran'))->layout('layout.website_layout');
     }
 
     public function userUpdate(){
@@ -97,4 +104,25 @@ class ProfileUser extends Component
 
         $this->dispatchBrowserEvent('show-edit-profile-modal');
     }
+
+    // Proses data alamat pelanggan
+    
+    public $label, $alamat, $longitude, $latitude, $getDataAlamat;
+
+    public function createAddress(){
+        $this->validate([
+            'label' => 'required|string',
+            'alamat' => 'required|string|max:100'
+        ]);
+
+        $alamat = AlamatPelanggan::create([
+            'pelanggan_id' => $this->userId,
+            'label' => $this->label,
+            'alamat' => $this->alamat,
+        ]);
+
+        $this->dispatchBrowserEvent('close-modal');
+    }
+
+    // Proses data metode pembayaran pelanggan
 }

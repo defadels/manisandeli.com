@@ -117,41 +117,33 @@
                     <div class="col-lg-12">
                         <div class="account-card">
                             <div class="account-title">
-                                <h4>delivery address</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#address-add">add address</button>
+                                <h4>alamat pengiriman</h4>
+                                <button data-bs-toggle="modal" data-bs-target="#address-add">tambah alamat</button>
                             </div>
                             <div class="account-content">
                                 <div class="row">
+                                    @if(count($daftar_alamat) > 0)
+                                    @foreach($daftar_alamat as $alamat)
                                     <div class="col-md-6 col-lg-4 alert fade show">
                                         <div class="profile-card address active">
-                                            <h6>Home</h6>
-                                            <p>jalkuri, fatullah, narayanganj-1420. word no-09, road no-17/A</p>
+                                            <h6>{{$alamat->label}}</h6>
+                                            <p>{{$alamat->alamat}}</p>
                                             <ul class="user-action">
                                                 <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit"></button></li>
                                                 <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="profile-card address">
-                                            <h6>Office</h6>
-                                            <p>east tejturi bazar, dhaka-1200. word no-04, road no-13/c, house no-4/b</p>
-                                            <ul class="user-action">
-                                                <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit"></button></li>
-                                                <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="profile-card address">
-                                            <h6>Bussiness</h6>
-                                            <p>kawran bazar, dhaka-1100. word no-02, road no-13/d, house no-7/m</p>
-                                            <ul class="user-action">
-                                                <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit"></button></li>
-                                                <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    @endforeach
+                                    
+                                    @else
+
+                                    <h5 class="text-center">
+                                        Silahkan Tambah Data Alamat
+                                    </h5>
+
+                                    @endif
+
                                 </div>
                             </div>
                         </div>
@@ -159,11 +151,14 @@
                     <div class="col-lg-12">
                         <div class="account-card mb-0">
                             <div class="account-title">
-                                <h4>payment option</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#payment-add">add card</button>
+                                <h4>metode pembayaran</h4>
+                                <button data-bs-toggle="modal" data-bs-target="#payment-add">tambah pembayaran</button>
                             </div>
                             <div class="account-content">
                                 <div class="row">
+                                    @if(count($daftar_pembayaran) > 0)
+
+                                    @foreach($daftar_pembayaran as $pembayaran)
                                     <div class="col-md-6 col-lg-4 alert fade show">
                                         <div class="payment-card payment active">
                                             <img src="{{asset('frontend/images/payment/png/01.png')}}" alt="payment">
@@ -178,34 +173,12 @@
                                             <button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="payment-card payment">
-                                            <img src="{{asset('frontend/images/payment/png/02.png')}}" alt="payment">
-                                            <h4>card number</h4>
-                                            <p>
-                                                <span>****</span>
-                                                <span>****</span>
-                                                <span>****</span>
-                                                <sup>1876</sup>
-                                            </p>
-                                            <h5>miron mahmud</h5>
-                                            <button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="payment-card payment">
-                                            <img src="{{asset('frontend/images/payment/png/03.png')}}" alt="payment">
-                                            <h4>card number</h4>
-                                            <p>
-                                                <span>****</span>
-                                                <span>****</span>
-                                                <span>****</span>
-                                                <sup>1876</sup>
-                                            </p>
-                                            <h5>miron mahmud</h5>
-                                            <button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button>
-                                        </div>
-                                    </div>
+                                    @endforeach
+                                    @else
+                                        <h5 class="text-center">
+                                            Silahkan Tambah Data Pembayaran
+                                        </h5>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -249,15 +222,16 @@
         </div>
 
         <!-- address add form -->
-        <div class="modal fade" id="address-add">
+        <div wire:ignore.self class="modal fade" id="address-add">
             <div class="modal-dialog modal-dialog-centered"> 
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form">
+                    <form class="modal-form" wire:submit.prevent="createAddress">
+                        @csrf
                         <div class="form-title">
-                            <h3>add new address</h3>
+                            <h3>tambah alamat baru</h3>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label class="form-label">title</label>
                             <select class="form-select">
                                 <option selected>choose title</option>
@@ -267,12 +241,16 @@
                                 <option value="academy">academy</option>
                                 <option value="others">others</option>
                             </select>
+                        </div> --}}
+                        <div class="form-group">
+                            <label for="" class="form-label">label alamat</label>
+                            <input type="text" class="form-control" wire:model="label" placeholder="Label alamat">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">address</label>
-                            <textarea class="form-control" placeholder="Enter your address"></textarea>
+                            <label class="form-label">alamat</label>
+                            <textarea class="form-control" wire:model="alamat" placeholder="Masukkan alamat lengkap"></textarea>
                         </div>
-                        <button class="form-btn" type="submit">save address info</button>
+                        <button class="form-btn" type="submit">simpan alamat</button>
                     </form>
                 </div> 
             </div> 
@@ -433,6 +411,7 @@
     <script>
         window.addEventListener('close-modal', event =>{
             $('#profile-edit').modal('hide');
+            $('#address-add').modal('hide');
         });
     </script>
 @endsection
