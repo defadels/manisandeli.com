@@ -19,14 +19,6 @@ class ProfileUser extends Component
     public $statusUpdate = false;
     
 
-    // public function showData($user){
-    //     $this->nama = $user->nama;
-    //     $this->email = $user->email;
-    //     $this->foto_profil = $user->foto_profil;
-    //     $this->userId = $user->id;
-    //     $this->fotoUrl = $user->foto_profil;
-    // }
-
     public function mount($id){
 
         $this->userId = $id;
@@ -42,6 +34,8 @@ class ProfileUser extends Component
 
     }
 
+    // function untuk render tampilan
+
     public function render()
     {
         $user = User::find($this->userId);
@@ -52,6 +46,8 @@ class ProfileUser extends Component
         
         return view('livewire.website.profile-user', compact('user', 'daftar_alamat', 'daftar_pembayaran'))->layout('layout.website_layout');
     }
+
+    // update data profil user
 
     public function userUpdate(){
         $user = User::find($this->userId);
@@ -92,6 +88,8 @@ class ProfileUser extends Component
         $this->dispatchBrowserEvent('close-modal');
     }
 
+    // dapatkan data dari tombol function ini dengan parameter $id
+
     public function getData($id){
         $user = User::where('id', $id)->first();
         
@@ -109,51 +107,159 @@ class ProfileUser extends Component
 
     // Proses data alamat pelanggan
     
-    public $label, $alamat, $longitude, $latitude, $getDataAlamat, $alamatId;
+        // Deklarasi public variabel untuk alamat
+            
+            public $label, $alamat, $longitude, $latitude, $getDataAlamat, $alamatId;
 
-    public function createAddress(){
+            // tambah data
+
+            public function createAddress(){
+                $this->validate([
+                    'label' => 'required|string',
+                    'alamat' => 'required|string|max:100'
+                ]);
+
+                $alamat = AlamatPelanggan::create([
+                    'pelanggan_id' => $this->userId,
+                    'label' => $this->label,
+                    'alamat' => $this->alamat,
+                ]);
+
+                session()->flash('message', __('pesan.create', ['module' => $alamat->label]));
+
+                $this->dispatchBrowserEvent('close-modal');
+            }
+
+            // update data
+
+            public function updateAddress() {
+                $alamat = AlamatPelanggan::find($this->alamatId);
+
+                $this->validate([
+                    'label' => 'required|string',
+                    'alamat' => 'required|string|max:100'
+                ]);
+
+                $alamat->label = $this->label;
+                $alamat->alamat = $this->alamat;
+
+                $alamat->save();
+                session()->flash('message', __('pesan.update', ['module' => $alamat->label]));
+
+                $this->dispatchBrowserEvent('close-modal');
+            }
+
+            // hapus data alamat
+
+            public function destroyAddress($id){
+                if($id){
+                    $alamat = AlamatPelanggan::find($id);
+                    $alamat->delete();
+
+                    session()->flash('message', __('pesan.delete', ['module' => $alamat->label]));
+                }
+            }
+
+            // dapatkan data dari tombol function ini dengan parameter $id
+
+            public function getDataAlamat($id){
+                $alamat = AlamatPelanggan::where('id', $id)->first();
+                
+                $this->label = $alamat->label;
+                $this->alamat = $alamat->alamat;
+                $this->alamatId = $alamat->id;
+                $this->statusUpdate = true;
+
+
+                $this->dispatchBrowserEvent('show-edit-address-modal');
+            }
+
+    // Proses data metode pembayaran pelanggan
+
+    // Deklarasi public variabel untuk alamat
+            
+    public $nama_pemilik, $nomor_rekening, $deskripsi, $jenis, $getDataPembayaran, $pembayaranId, $status;
+
+    // tambah data
+
+    public function createPayment(){
         $this->validate([
-            'label' => 'required|string',
-            'alamat' => 'required|string|max:100'
+            'nama' => 'required|string',
+            'nama_pemilik' => 'required|string',
+            'nomor_rekening' => 'required|string',
+            'jenis' => 'required',
+            'deskripsi' => 'required|string|max:100'
         ]);
 
-        $alamat = AlamatPelanggan::create([
+        $pembayaran = MetodePembayaranPelanggan::create([
             'pelanggan_id' => $this->userId,
-            'label' => $this->label,
-            'alamat' => $this->alamat,
+            'nama' => $this->nama,
+            'nama_pemilik' => $this->nama_pemilik,
+            'nomor_rekening' => $this->nomor_rekening,
+            'deskripsi' => $this->deskripsi,
+            'jenis' => $this->jenis,
+            'status' => $this->status,
         ]);
+
+        session()->flash('message', __('pesan.create', ['module' => $pembayaran->nama_pemilik]));
 
         $this->dispatchBrowserEvent('close-modal');
     }
 
-    public function updateAddress() {
-        $alamat = AlamatPelanggan::find($this->alamatId);
+    // update data
+
+    public function updatePayment() {
+        $pembayaran = MetodePembayaranPelanggan::find($this->alamatId);
 
         $this->validate([
-            'label' => 'required|string',
-            'alamat' => 'required|string|max:100'
+            'nama' => 'required|string',
+            'nama_pemilik' => 'required|string',
+            'nomor_rekening' => 'required|string',
+            'jenis' => 'required',
+            'deskripsi' => 'required|string|max:100'
         ]);
 
-        $alamat->label = $this->label;
-        $alamat->alamat = $this->alamat;
+        $pembayaran->nama = $this->nama;
+        $pembayaran->nama_pemilik = $this->nama_pemilik;
+        $pembayaran->nomor_rekening = $this->nomor_rekening;
+        $pembayaran->jenis = $this->jenis;
+        $pembayaran->deskripsi = $this->deskripsi;
+        $pembayaran->jenis = $this->jenis;
+        $pembayaran->status = $this->status;
 
-        $alamat->save();
-        session()->flash('message', __('pesan.update', ['module' => $alamat->label]));
+        $pembayaran->save();
+        session()->flash('message', __('pesan.update', ['module' => $pembayaran->nama_pemilik]));
 
         $this->dispatchBrowserEvent('close-modal');
     }
 
-    public function getDataAlamat($id){
-        $alamat = AlamatPelanggan::where('id', $id)->first();
+    // hapus data alamat
+
+    public function destoryPayment($id){
+        if($id){
+            $pembayaran = MetodePembayaranPelanggan::find($id);
+            $pembayaran->delete();
+
+            session()->flash('message', __('pesan.delete', ['module' => $pembayaran->nama_pemilik]));
+        }
+    }
+
+    // dapatkan data dari tombol function ini dengan parameter $id
+
+    public function getDataPembayaran($id){
+        $pembayaran = MetodePembayaranPelanggan::where('id', $id)->first();
         
-        $this->label = $alamat->label;
-        $this->alamat = $alamat->alamat;
-        $this->alamatId = $alamat->id;
+        $this->label = $pembayaran->label;
+        $this->nama = $pembayaran->nama;
+        $this->nama_pemilik = $pembayaran->nama_pemilik;
+        $this->nomor_rekening = $pembayaran->nomor_rekening;
+        $this->deskripsi = $pembayaran->deskripsi;
+        $this->status = $pembayaran->status;
+        $this->jenis = $pembayaran->jenis;
+        $this->pembayaranId = $pembayaran->id;
         $this->statusUpdate = true;
 
 
-        $this->dispatchBrowserEvent('show-edit-address-modal');
+        $this->dispatchBrowserEvent('show-edit-payment-modal');
     }
-
-    // Proses data metode pembayaran pelanggan
 }

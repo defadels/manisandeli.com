@@ -72,7 +72,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
+
+                     <!--=====================================
+                               CONTACT NUMBER LIST HIDDEN
+                    =======================================-->
+                    
+                    {{-- <div class="col-lg-12">
                         <div class="account-card">
                             <div class="account-title">
                                 <h4>contact number</h4>
@@ -113,7 +118,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-lg-12">
                         <div class="account-card">
                             <div class="account-title">
@@ -130,7 +135,7 @@
                                             <p>{{$alamat->alamat}}</p>
                                             <ul class="user-action">
                                                 <li><button class="edit icofont-edit" wire:click="getDataAlamat({{ $alamat->id }})" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit"></button></li>
-                                                <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
+                                                <li><button class="trash icofont-ui-delete" wire:click="destroyAddress({{ $alamat->id }})" title="Remove This" data-bs-dismiss="alert"></button></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -148,6 +153,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-12">
                         <div class="account-card mb-0">
                             <div class="account-title">
@@ -158,31 +164,39 @@
                                 <div class="row">
                                     @if(count($daftar_pembayaran) > 0)
 
-                                    @foreach($daftar_pembayaran as $pembayaran)
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="payment-card payment active">
-                                            <img src="{{asset('frontend/images/payment/png/01.png')}}" alt="payment">
-                                            <h4>card number</h4>
-                                            <p>
-                                                <span>****</span>
-                                                <span>****</span>
-                                                <span>****</span>
-                                                <sup>1876</sup>
-                                            </p>
-                                            <h5>miron mahmud</h5>
-                                            <button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button>
+                                        @foreach($daftar_pembayaran as $pembayaran)
+                                        <div class="col-md-6 col-lg-4 alert fade show">
+                                            <div class="profile-card payment">
+                                                {{-- <img src="{{asset('frontend/images/payment/png/01.png')}}" alt="payment"> --}}
+                                                <h4>{{$pembayaran->nama}}</h4>
+                                                {{-- <p>
+                                                    <span>****</span>
+                                                    <span>****</span>
+                                                    <span>****</span>
+                                                    <sup>1876</sup>
+                                                </p> --}}
+                                                <p>{{ $pembayaran->nomor_rekening }}</p>
+                                                <h5>{{$pembayaran->nama_pemilik}}</h5>
+                                                <ul class="user-action">
+                                                    <li><button class="edit icofont-edit" wire:click="getDataPembayaran({{ $pembayaran->id }})" title="Edit This" data-bs-toggle="modal" data-bs-target="#payment-edit"></button></li>
+                                                    <li><button class="trash icofont-ui-delete" wire:click="destoryPayment({{ $pembayaran->id }})" title="Remove This" data-bs-dismiss="alert"></button></li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                                    @endforeach
+                                        @endforeach
+
                                     @else
                                         <h5 class="text-center">
                                             Silahkan Tambah Data Pembayaran
                                         </h5>
                                     @endif
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </section>
@@ -257,19 +271,51 @@
         </div>
 
         <!-- payment add form -->
-        <div class="modal fade" id="payment-add">
+        <div wire:ignore.self class="modal fade" id="payment-add">
             <div class="modal-dialog modal-dialog-centered"> 
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form">
+                    <form class="modal-form" wire:submit.prevent="createPayment">
+                        @csrf
                         <div class="form-title">
-                            <h3>add new payment</h3>
+                            <h3>tambah kartu pembayaran</h3>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">card number</label>
-                            <input class="form-control" type="text" placeholder="Enter your card number">
+                            <label class="form-label">nama bank/e-wallet</label>
+                            <input class="form-control" type="text" wire:model="nama" placeholder="Nama bank / e-wallet">
                         </div>
-                        <button class="form-btn" type="submit">save card info</button>
+                        <div class="form-group">
+                            <label class="form-label">nama pemilik</label>
+                            <input class="form-control" type="text" wire:model="nama_pemilik" placeholder="Nama pemilik">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">nomor rekening</label>
+                            <input class="form-control" type="text" wire:model="nomor_rekening" placeholder="Nomor rekening">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">deskripsi</label>
+                            <textarea class="form-control" wire:model="deskripsi" placeholder="Masukkan deskripsi"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">jenis</label>
+                            <select wire:model="jenis" class="form-select">
+                                <option selected>pilih jenis</option>
+                                <option value="COD">COD</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Bank">Bank</option>
+                                <option value="E-Wallet">E-Wallet</option>
+                                <option value="Custom">Custom</option>
+                            </select>
+                        </div> 
+                        <div class="form-group">
+                            <label for="" class="form-label">status</label>
+                            <select wire:model="status" name="" id="" class="form-select">
+                                <option selected>pilih status</option>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Nonaktif">Nonaktif</option>
+                            </select>
+                        </div>
+                        <button class="form-btn" type="submit">simpan kartu pembayaran</button>
                     </form>
                 </div> 
             </div> 
@@ -409,6 +455,58 @@
                 </div> 
             </div> 
         </div>
+
+         <!-- payment edit form -->
+         <div wire:ignore.self class="modal fade" id="payment-edit">
+            <div class="modal-dialog modal-dialog-centered"> 
+                <div class="modal-content">
+                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
+                    <form class="modal-form" wire:submit.prevent="updatePayment">
+                        @csrf
+                        <input type="hidden" name="" wire:model="pembayaranId">
+                        <div class="form-title">
+                            <h3>edit kartu pembayaran</h3>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">nama bank/e-wallet</label>
+                            <input class="form-control" type="text" wire:model="nama" placeholder="Nama bank / e-wallet">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">nama pemilik</label>
+                            <input class="form-control" type="text" wire:model="nama_pemilik" placeholder="Nama pemilik">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">nomor rekening</label>
+                            <input class="form-control" type="text" wire:model="nomor_rekening" placeholder="Nomor rekening">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">deskripsi</label>
+                            <textarea class="form-control" wire:model="deskripsi" placeholder="Masukkan deskripsi"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">jenis</label>
+                            <select wire:model="jenis" class="form-select">
+                                <option selected>pilih jenis</option>
+                                <option value="COD">COD</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Bank">Bank</option>
+                                <option value="E-Wallet">E-Wallet</option>
+                                <option value="Custom">Custom</option>
+                            </select>
+                        </div> 
+                        <div class="form-group">
+                            <label for="" class="form-label">status</label>
+                            <select wire:model="status" name="" id="" class="form-select">
+                                <option selected>pilih status</option>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Nonaktif">Nonaktif</option>
+                            </select>
+                        </div>
+                        <button class="form-btn" type="submit">simpan kartu pembayaran</button>
+                    </form>
+                </div> 
+            </div> 
+        </div>
         <!--=====================================
                     MODAL EDIT FORM END
         =======================================-->
@@ -420,6 +518,8 @@
             $('#profile-edit').modal('hide');
             $('#address-add').modal('hide');
             $('#address-edit').modal('hide');
+            $('#payment-add').modal('hide');
+            $('#payment-edit').modal('hide');
         });
     </script>
 @endsection
