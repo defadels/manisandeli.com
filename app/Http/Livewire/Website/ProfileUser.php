@@ -19,13 +19,13 @@ class ProfileUser extends Component
     public $statusUpdate = false;
     
 
-    public function showData($user){
-        $this->nama = $user->nama;
-        $this->email = $user->email;
-        $this->foto_profil = $user->foto_profil;
-        $this->userId = $user->id;
-        $this->fotoUrl = $user->foto_profil;
-    }
+    // public function showData($user){
+    //     $this->nama = $user->nama;
+    //     $this->email = $user->email;
+    //     $this->foto_profil = $user->foto_profil;
+    //     $this->userId = $user->id;
+    //     $this->fotoUrl = $user->foto_profil;
+    // }
 
     public function mount($id){
 
@@ -38,6 +38,8 @@ class ProfileUser extends Component
         $this->nomor_hp = $user->nomor_hp;
         // $this->foto_profil = $user->foto_profil;
         $this->fotoUrl = $user->foto_profil;
+
+
     }
 
     public function render()
@@ -107,7 +109,7 @@ class ProfileUser extends Component
 
     // Proses data alamat pelanggan
     
-    public $label, $alamat, $longitude, $latitude, $getDataAlamat;
+    public $label, $alamat, $longitude, $latitude, $getDataAlamat, $alamatId;
 
     public function createAddress(){
         $this->validate([
@@ -122,6 +124,35 @@ class ProfileUser extends Component
         ]);
 
         $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function updateAddress() {
+        $alamat = AlamatPelanggan::find($this->alamatId);
+
+        $this->validate([
+            'label' => 'required|string',
+            'alamat' => 'required|string|max:100'
+        ]);
+
+        $alamat->label = $this->label;
+        $alamat->alamat = $this->alamat;
+
+        $alamat->save();
+        session()->flash('message', __('pesan.update', ['module' => $alamat->label]));
+
+        $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function getDataAlamat($id){
+        $alamat = AlamatPelanggan::where('id', $id)->first();
+        
+        $this->label = $alamat->label;
+        $this->alamat = $alamat->alamat;
+        $this->alamatId = $alamat->id;
+        $this->statusUpdate = true;
+
+
+        $this->dispatchBrowserEvent('show-edit-address-modal');
     }
 
     // Proses data metode pembayaran pelanggan

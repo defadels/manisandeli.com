@@ -125,11 +125,11 @@
                                     @if(count($daftar_alamat) > 0)
                                     @foreach($daftar_alamat as $alamat)
                                     <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="profile-card address active">
+                                        <div class="profile-card address">
                                             <h6>{{$alamat->label}}</h6>
                                             <p>{{$alamat->alamat}}</p>
                                             <ul class="user-action">
-                                                <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit"></button></li>
+                                                <li><button class="edit icofont-edit" wire:click="getDataAlamat({{ $alamat->id }})" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit"></button></li>
                                                 <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
                                             </ul>
                                         </div>
@@ -375,29 +375,36 @@
         </div>
 
         <!-- address edit form -->
-        <div class="modal fade" id="address-edit">
+        <div wire:ignore.self class="modal fade" id="address-edit">
             <div class="modal-dialog modal-dialog-centered"> 
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form">
+                    <form class="modal-form" wire:submit.prevent="updateAddress">
+                        @csrf
+                        <input type="hidden" name="" wire:model="alamatId">
                         <div class="form-title">
-                            <h3>edit address info</h3>
+                            <h3>edit alamat</h3>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label class="form-label">title</label>
                             <select class="form-select">
-                                <option value="home" selected>home</option>
+                                <option selected>choose title</option>
+                                <option value="home">home</option>
                                 <option value="office">office</option>
                                 <option value="Bussiness">Bussiness</option>
                                 <option value="academy">academy</option>
                                 <option value="others">others</option>
                             </select>
+                        </div> --}}
+                        <div class="form-group">
+                            <label for="" class="form-label">label alamat</label>
+                            <input type="text" class="form-control" wire:model="label" placeholder="Label alamat">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">address</label>
-                            <textarea class="form-control" placeholder="jalkuri, fatullah, narayanganj-1420. word no-09, road no-17/A"></textarea>
+                            <label class="form-label">alamat</label>
+                            <textarea class="form-control" wire:model="alamat" placeholder="Masukkan alamat lengkap"></textarea>
                         </div>
-                        <button class="form-btn" type="submit">save address info</button>
+                        <button class="form-btn" type="submit">ubah alamat</button>
                     </form>
                 </div> 
             </div> 
@@ -412,6 +419,7 @@
         window.addEventListener('close-modal', event =>{
             $('#profile-edit').modal('hide');
             $('#address-add').modal('hide');
+            $('#address-edit').modal('hide');
         });
     </script>
 @endsection
