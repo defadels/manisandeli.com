@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
     // Website Livewire
     use App\Http\Livewire\Website\ProfileUser;
+    use App\Http\Livewire\Website\ProdukComponent;
 
 
     // Admin Livewire
@@ -51,6 +52,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function(){
     Route::get('/', [HomeController::class, 'index'])->name('website.home');
     Route::get('/{id}/profile-user', ProfileUser::class)->name('website.profile.user');
+    Route::get('/produk', ProdukComponent::class)->name('website.produk');
 });
 
 
