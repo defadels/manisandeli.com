@@ -81,6 +81,7 @@ class ProfileUser extends Component
             Storage::disk('public')->delete($foto_lama);
         }
         
+        $this->resetInputUser();
         $user->save();
 
         session()->flash('message', __('pesan.update', ['module' => $user->nama]));
@@ -95,7 +96,6 @@ class ProfileUser extends Component
         
         $this->nama = $user->nama;
         $this->email = $user->email;
-        // $this->foto_profil = $user['foto_profil'];
         $this->userId = $user->id;
         $this->fotoUrl = $user->foto_profil;
         $this->nomor_hp = $user->nomor_hp;
@@ -103,6 +103,13 @@ class ProfileUser extends Component
 
 
         $this->dispatchBrowserEvent('show-edit-profile-modal');
+    }
+
+    private function resetInputUser(){
+        $this->nama = null;
+        $this->email = null;
+        $this->fotoUrl = null;
+        $this->nomor_hp = null;
     }
 
     // Proses data alamat pelanggan
@@ -125,6 +132,7 @@ class ProfileUser extends Component
                     'alamat' => $this->alamat,
                 ]);
 
+                $this->resetInputAddress();
                 session()->flash('message', __('pesan.create', ['module' => $alamat->label]));
 
                 $this->dispatchBrowserEvent('close-modal');
@@ -144,6 +152,8 @@ class ProfileUser extends Component
                 $alamat->alamat = $this->alamat;
 
                 $alamat->save();
+
+                $this->resetInputAddress();
                 session()->flash('message', __('pesan.update', ['module' => $alamat->label]));
 
                 $this->dispatchBrowserEvent('close-modal');
@@ -174,6 +184,12 @@ class ProfileUser extends Component
                 $this->dispatchBrowserEvent('show-edit-address-modal');
             }
 
+            private function resetInputAddress(){
+                $this->label = null;
+                $this->alamat = null;
+               
+            }
+
     // Proses data metode pembayaran pelanggan
 
     // Deklarasi public variabel untuk alamat
@@ -201,6 +217,7 @@ class ProfileUser extends Component
             'status' => $this->status,
         ]);
 
+        $this->resetInputPayment();
         session()->flash('message', __('pesan.create', ['module' => $pembayaran->nama_pemilik]));
 
         $this->dispatchBrowserEvent('close-modal');
@@ -228,6 +245,7 @@ class ProfileUser extends Component
         $pembayaran->status = $this->status;
 
         $pembayaran->save();
+        $this->resetInputPayment();
         session()->flash('message', __('pesan.update', ['module' => $pembayaran->nama_pemilik]));
 
         $this->dispatchBrowserEvent('close-modal');
@@ -261,5 +279,15 @@ class ProfileUser extends Component
 
 
         $this->dispatchBrowserEvent('show-edit-payment-modal');
+    }
+
+    private function resetInputPayment(){
+        $this->label = null;
+        $this->nama = null;
+        $this->nama_pemilik = null;
+        $this->nomor_rekening = null;
+        $this->deskripsi = null;
+        $this->status = null;
+        $this->jenis = null;
     }
 }
