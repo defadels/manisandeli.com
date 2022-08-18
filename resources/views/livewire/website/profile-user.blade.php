@@ -469,7 +469,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">nama bank/e-wallet</label>
-                            <input class="form-control" type="text" wire:model="nama" placeholder="Nama bank / e-wallet">
+                            <input class="form-control" type="text" wire:model="nama_bank" placeholder="Nama bank / e-wallet">
                         </div>
                         <div class="form-group">
                             <label class="form-label">nama pemilik</label>

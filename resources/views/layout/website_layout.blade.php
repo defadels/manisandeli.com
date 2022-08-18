@@ -45,6 +45,7 @@
         <!-- CUSTOM -->
         <link rel="stylesheet" href="{{asset('frontend/css/main.css')}}">
         <link rel="stylesheet" href="{{asset('frontend/css/index.css')}}">
+        <link rel="stylesheet" href="{{asset('frontend/css/product-details.css')}}">
 
          
 

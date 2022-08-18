@@ -79,7 +79,7 @@
                                     <a href="product-video.html">(3)</a>
                                 </div>
                                 <h6 class="product-name">
-                                    <a href="product-video.html">{{$produk->nama_produk}}</a>
+                                    <a href="{{route('website.detail.produk',$produk->id)}}">{{$produk->nama_produk}}</a>
                                 </h6>
                                 <h6 class="product-price">
                                     {{-- <del>$34</del> --}}

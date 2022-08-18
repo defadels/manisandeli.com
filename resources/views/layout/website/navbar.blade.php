@@ -4,13 +4,13 @@
             <div class="navbar-content">
                 <ul class="navbar-list">
                     <li class="navbar-item">
-                        <a class="navbar-link" href="#">home</a>
+                        <a class="navbar-link" href="{{route('website.home')}}">home</a>
                     </li>
                     <li class="navbar-item">
-                        <a class="navbar-link" href="#">shop</a>
+                        <a class="navbar-link" href="{{route('website.produk')}}">shop</a>
                     </li>
                     <li class="navbar-item">
-                        <a class="navbar-link" href="#">tentang kami</a>
+                        <a class="navbar-link" href="{{route('website.tentang')}}">tentang kami</a>
                     </li>
 
                     @if(Route::has('login'))

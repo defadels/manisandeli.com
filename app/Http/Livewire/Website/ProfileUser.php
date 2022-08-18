@@ -87,6 +87,8 @@ class ProfileUser extends Component
         session()->flash('message', __('pesan.update', ['module' => $user->nama]));
 
         $this->dispatchBrowserEvent('close-modal');
+
+        return redirect()->route('website.profile.user', $user->id);
     }
 
     // dapatkan data dari tombol function ini dengan parameter $id
@@ -226,14 +228,13 @@ class ProfileUser extends Component
     // update data
 
     public function updatePayment() {
-        $pembayaran = MetodePembayaranPelanggan::find($this->alamatId);
+        $pembayaran = MetodePembayaranPelanggan::find($this->pembayaranId);
 
         $this->validate([
-            'nama_bank' => 'required|string',
-            'nama_pemilik' => 'required|string',
-            'nomor_rekening' => 'required|string',
-            'jenis' => 'required',
-            'deskripsi' => 'required|string|max:100'
+            'nama_bank' => 'string',
+            'nama_pemilik' => 'string',
+            'nomor_rekening' => 'string',
+            'deskripsi' => 'string|max:100'
         ]);
 
         $pembayaran->nama_bank = $this->nama_bank;
@@ -267,7 +268,6 @@ class ProfileUser extends Component
     public function getDataPembayaran($id){
         $pembayaran = MetodePembayaranPelanggan::where('id', $id)->first();
         
-        $this->label = $pembayaran->label;
         $this->nama_bank = $pembayaran->nama_bank;
         $this->nama_pemilik = $pembayaran->nama_pemilik;
         $this->nomor_rekening = $pembayaran->nomor_rekening;
@@ -282,7 +282,6 @@ class ProfileUser extends Component
     }
 
     private function resetInputPayment(){
-        $this->label = null;
         $this->nama_bank = null;
         $this->nama_pemilik = null;
         $this->nomor_rekening = null;
