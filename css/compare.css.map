@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAGA;;2CAE2C;AAE3C,MAAM,EAAE,SAAS,EAAE,MAAM;EACrB,AACI,aADS,CACT,UAAU,CAAC;IACP,SAAS,EAAE,IAAI;GAClB",
+    "sources": [
+        "../public/frontend/scss/5-pages/compare.scss"
+    ],
+    "names": [],
+    "file": "compare.css"
+}

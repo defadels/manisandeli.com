@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEA;;2CAE2C;AAC3C,AAAA,aAAa,CAAC;EACV,OAAO,EAAE,IAAI;EACb,QAAQ,EAAE,IAAI;EACd,qBAAqB,EAAE,cAAc;EACrC,kBAAkB,EAAE,IAAI;CAM3B;;AAVD,AAMI,aANS,CAMT,GAAG,CAAC;EACA,KAAK,EAAE,IAAI;EACX,aAAa,EAAE,GAAG;CACrB;;AAGL,AAAA,aAAa,CAAC;EACV,aAAa,EAAE,GAAG;CACrB;;AAED,AAAA,eAAe,CAAE;EACb,aAAa,EAAE,IAAI;CACtB;;AAED,AAAA,cAAc,CAAC;EACX,aAAa,EAAE,IAAI;CACtB;;AAED,AAAA,kBAAkB,CAAC;EACf,MAAM,EAAE,aAAa;CACxB",
+    "sources": [
+        "../public/frontend/scss/5-pages/product-grid.scss"
+    ],
+    "names": [],
+    "file": "product-grid.css"
+}

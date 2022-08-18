@@ -54,7 +54,7 @@ class ProdukController extends Controller
         $input = $request->all();
 
         $rules = [
-            'nama' => ['required', 'max:255'],
+            'nama_produk' => ['required', 'max:255'],
             'kode_produk' => ['required'],
             'foto_produk' => ['mimes:jpeg,jpg,png','max:10240'],
             'harga_pokok' => ['required','numeric'], 
@@ -62,8 +62,8 @@ class ProdukController extends Controller
         ];
 
         $messages = [
-            'nama.required' => 'Nama produk harus diisi',
-            'nama.max' => 'Nama harus maksimal 255 karakter',
+            'nama_produk.required' => 'Nama produk harus diisi',
+            'nama_produk.max' => 'Nama harus maksimal 255 karakter',
             'foto_produk.mimes' => 'Foto harus berupa file jpeg, jpg dan png',
             'foto_produk.size' => 'Foto maksimal ukuran 1 MB',
             'harga_jual.required' => 'Harga jual harus diisi',
@@ -76,7 +76,7 @@ class ProdukController extends Controller
 
         $produk = Produk::create(
             [
-                'nama' => $request->nama,
+                'nama_produk' => $request->nama,
                 'kode_produk' => $request->kode_produk,
                 'foto_produk' => $request->foto_produk,
                 'deskripsi' => $request->deskripsi,
@@ -151,7 +151,7 @@ class ProdukController extends Controller
         $input = $request->all();
 
         $rules = [
-            'nama' => ['required', 'max:255'],
+            'nama_produk' => ['required', 'max:255'],
             'kode_produk' => ['required'],
             'foto_produk' => ['mimes:jpeg,jpg,png','max:10240'],
             'harga_pokok' => ['required','numeric'], 
@@ -159,8 +159,8 @@ class ProdukController extends Controller
         ];
 
         $messages = [
-            'nama.required' => 'Nama produk harus diisi',
-            'nama.max' => 'Nama harus maksimal 255 karakter',
+            'nama_produk.required' => 'Nama produk harus diisi',
+            'nama_produk.max' => 'Nama harus maksimal 255 karakter',
             'foto_produk.mimes' => 'Foto harus berupa file jpeg, jpg dan png',
             'foto_produk.size' => 'Foto maksimal ukuran 1 MB',
             'harga_jual.required' => 'Harga jual harus diisi',

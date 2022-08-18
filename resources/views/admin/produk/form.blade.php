@@ -82,9 +82,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="nama">Nama Produk</label>
-                    <input type="text" class="form-control @error('nama') {{'is-invalid'}} @enderror" name="nama" value="{{old('nama') ??  $produk->nama ?? '' }}">
-                        @error('nama')'
+                    <label for="nama_produk">Nama Produk</label>
+                    <input type="text" class="form-control @error('nama_produk') {{'is-invalid'}} @enderror" name="nama_produk" value="{{old('nama_produk') ??  $produk->nama_produk ?? '' }}">
+                        @error('nama_produk')'
                             <span class="text-danger">
                                 {{$message}}
                             </span>

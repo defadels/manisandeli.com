@@ -168,7 +168,7 @@
                                         <div class="col-md-6 col-lg-4 alert fade show">
                                             <div class="profile-card payment">
                                                 {{-- <img src="{{asset('frontend/images/payment/png/01.png')}}" alt="payment"> --}}
-                                                <h4>{{$pembayaran->nama}}</h4>
+                                                <h4>{{$pembayaran->nama_bank}}</h4>
                                                 {{-- <p>
                                                     <span>****</span>
                                                     <span>****</span>
@@ -282,7 +282,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">nama bank/e-wallet</label>
-                            <input class="form-control" type="text" wire:model="nama" placeholder="Nama bank / e-wallet">
+                            <input class="form-control" type="text" wire:model="nama_bank" placeholder="Nama bank / e-wallet">
                         </div>
                         <div class="form-group">
                             <label class="form-label">nama pemilik</label>

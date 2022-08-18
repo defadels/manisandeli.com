@@ -74,8 +74,8 @@
             </a> --}}
             <button class="header-widget header-cart" title="Cartlist">
                 <i class="fas fa-shopping-basket"></i>
-                <sup>9+</sup>
-                <span>total price<small>$345.00</small></span>
+                <sup>{{Cart::count()}}</sup>
+                <span>total harga<small>Rp.{{ Cart::subtotal() }}</small></span>
             </button>
         </div>
     </div>

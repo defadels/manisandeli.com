@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,cAAc,CAAC;EACX,MAAM,EAAE,aAAa;CACxB;;AAED,MAAM,EAAE,SAAS,EAAE,KAAK;EACpB,AAAA,cAAc,CAAC;IACX,KAAK,EAAE,IAAI;GACd;EAED,AAAA,IAAI,CAAC;IACD,OAAO,EAAE,OAAO;GACnB;;;AAGL,MAAM,EAAE,SAAS,EAAE,KAAK;EACpB,AAAA,cAAc,CAAC;IACX,MAAM,EAAE,YAAY;GACvB",
+    "sources": [
+        "../public/frontend/scss/5-pages/all-category.scss"
+    ],
+    "names": [],
+    "file": "all-category.css"
+}

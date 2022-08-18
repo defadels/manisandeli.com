@@ -16,7 +16,7 @@ class BuatTabelMetodePembayaranPelanggan extends Migration
         Schema::create('metode_pembayaran_pelanggan', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('pelanggan_id')->constrained('users');
-            $table->string('nama');
+            $table->string('nama_bank');
             $table->string('nama_pemilik')->nullable();
             $table->string('nomor_rekening')->nullable();
             $table->string('deskripsi')->nullable();

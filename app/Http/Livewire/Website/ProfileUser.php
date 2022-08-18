@@ -194,13 +194,13 @@ class ProfileUser extends Component
 
     // Deklarasi public variabel untuk alamat
             
-    public $nama_pemilik, $nomor_rekening, $deskripsi, $jenis, $getDataPembayaran, $pembayaranId, $status;
+    public $nama_bank, $nama_pemilik, $nomor_rekening, $deskripsi, $jenis, $getDataPembayaran, $pembayaranId, $status;
 
     // tambah data
 
     public function createPayment(){
         $this->validate([
-            'nama' => 'required|string',
+            'nama_bank' => 'required|string',
             'nama_pemilik' => 'required|string',
             'nomor_rekening' => 'required|string',
             'jenis' => 'required',
@@ -209,7 +209,7 @@ class ProfileUser extends Component
 
         $pembayaran = MetodePembayaranPelanggan::create([
             'pelanggan_id' => $this->userId,
-            'nama' => $this->nama,
+            'nama_bank' => $this->nama_bank,
             'nama_pemilik' => $this->nama_pemilik,
             'nomor_rekening' => $this->nomor_rekening,
             'deskripsi' => $this->deskripsi,
@@ -229,14 +229,14 @@ class ProfileUser extends Component
         $pembayaran = MetodePembayaranPelanggan::find($this->alamatId);
 
         $this->validate([
-            'nama' => 'required|string',
+            'nama_bank' => 'required|string',
             'nama_pemilik' => 'required|string',
             'nomor_rekening' => 'required|string',
             'jenis' => 'required',
             'deskripsi' => 'required|string|max:100'
         ]);
 
-        $pembayaran->nama = $this->nama;
+        $pembayaran->nama_bank = $this->nama_bank;
         $pembayaran->nama_pemilik = $this->nama_pemilik;
         $pembayaran->nomor_rekening = $this->nomor_rekening;
         $pembayaran->jenis = $this->jenis;
@@ -268,7 +268,7 @@ class ProfileUser extends Component
         $pembayaran = MetodePembayaranPelanggan::where('id', $id)->first();
         
         $this->label = $pembayaran->label;
-        $this->nama = $pembayaran->nama;
+        $this->nama_bank = $pembayaran->nama_bank;
         $this->nama_pemilik = $pembayaran->nama_pemilik;
         $this->nomor_rekening = $pembayaran->nomor_rekening;
         $this->deskripsi = $pembayaran->deskripsi;
@@ -283,7 +283,7 @@ class ProfileUser extends Component
 
     private function resetInputPayment(){
         $this->label = null;
-        $this->nama = null;
+        $this->nama_bank = null;
         $this->nama_pemilik = null;
         $this->nomor_rekening = null;
         $this->deskripsi = null;

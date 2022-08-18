@@ -15,7 +15,7 @@ class BuatTabelMetodePembayaranToko extends Migration
     {
         Schema::create('metode_pembayaran_toko', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama');
+            $table->string('nama_bank');
             $table->string('nama_pemilik')->nullable();
             $table->string('nomor_rekening')->nullable();
             $table->string('nomor_hp')->nullable();
