@@ -1,3 +1,12 @@
+<?php
+use App\Models\SosmedTokoModel;
+use App\Models\ProfilTokoModels;
+
+$sosmed_toko = SosmedTokoModel::get();
+$profil = ProfilTokoModels::get()->first();
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +38,7 @@
                     CSS LINK PART START
         =======================================-->
         <!-- FAVICON -->
-        <link rel="icon" href="{{asset('frontend/images/favicon.png')}}">
+        <link rel="icon" href="{{$profil->logo ?? asset('frontend/images/favicon.png')}}">
 
         <!-- FONTS -->
         <link rel="stylesheet" href="{{asset('frontend/fonts/flaticon/flaticon.css')}}">
@@ -46,7 +55,8 @@
         <link rel="stylesheet" href="{{asset('frontend/css/main.css')}}">
         <link rel="stylesheet" href="{{asset('frontend/css/index.css')}}">
         <link rel="stylesheet" href="{{asset('frontend/css/product-details.css')}}">
-
+        <link rel="stylesheet" href="{{asset('frontend/css/contact.css')}}">
+        <link rel="stylesheet" href="{{asset('frontend/css/about.css')}}">
          
 
         @yield('style')

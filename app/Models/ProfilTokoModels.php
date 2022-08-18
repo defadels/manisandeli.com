@@ -11,4 +11,5 @@ class ProfilTokoModels extends Model
 
     protected $table = 'profil_toko';
     protected $guarded = [];
+    protected $fillable = ['nama', 'url', 'logo', 'email', 'alamat', 'nomor_hp'];
 }

@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use Storage;
 use Livewire\Component;
-use App\Models\ProfilToko;
+use App\Models\ProfilTokoModels;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Intervention\Image\Facades\Image;
@@ -26,7 +26,7 @@ class ProfilTokoUpdate extends Component
         
         $this->profilId = $id;
 
-        $profil = ProfilToko::where('id', $id)->first(); 
+        $profil = ProfilTokoModels::where('id', $id)->first(); 
         $this->nama = $profil->nama;
         $this->email = $profil->email;
         $this->url = $profil->url;
@@ -56,7 +56,7 @@ class ProfilTokoUpdate extends Component
             'email.email' => 'Email toko harus diisi dengan kaidah email',
         ]);
 
-        $profil = ProfilToko::find($this->profilId);
+        $profil = ProfilTokoModels::find($this->profilId);
         $profil->nama = $this->nama;
         $profil->email = $this->email;
         $profil->url = $this->url;

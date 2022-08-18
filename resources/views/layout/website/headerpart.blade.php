@@ -1,13 +1,24 @@
 <div class="container">
     <div class="header-content">
         <div class="header-media-group">
-            <button class="header-user"><img src="{{asset('frontend/images/user.png')}}" alt="user"></button>
-            <a href="index.html"><img src="{{asset('frontend/images/logo.png')}}" alt="logo"></a>
+            <button class="header-user">
+                @if($profil)
+                <img src="{{ Storage::url($profil->logo)}}" alt="logo">
+                @else
+                <img src="{{asset('frontend/images/logo.png')}}" alt="logo">
+                @endif
+            </button>
+            <a href="{{route('website.home')}}"><img src="{{$profil->logo ?? asset('frontend/images/logo.png')}}" alt="logo"></a>
             <button class="header-src"><i class="fas fa-search"></i></button>
         </div>
 
-        <a href="index.html" class="header-logo">
+        <a href="{{route('website.home')}}" class="header-logo">
+            @if($profil)
+            <img src="{{ Storage::url($profil->logo)}}" alt="logo">
+            @else
             <img src="{{asset('frontend/images/logo.png')}}" alt="logo">
+            @endif
+            
         </a>
        
 

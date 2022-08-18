@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use App\Models\ProfilToko;
+use App\Models\ProfilTokoModels;
 use Image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -36,7 +36,7 @@ class ProfilTokoCreate extends Component
             'email.email' => 'Email toko harus diisi dengan kaidah email',
         ]);
 
-        $profil = ProfilToko::create([
+        $profil = ProfilTokoModels::create([
             'nama' => $this->nama,
             'url' => $this->url,
             'logo' => $this->logo,

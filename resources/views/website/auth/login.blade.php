@@ -3,11 +3,18 @@
 @section('title','Login')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-sm-10 col-md-12 col-lg-12 col-xl-10">
             <div class="user-form-logo">
-                <a href="index.html"><img src="{{asset('frontend/images/logo.png')}}" alt="logo"></a>
+                <a href="{{route('website.home')}}">
+                    @if($profil)
+                    <img src="{{ Storage::url($profil->logo)}}" alt="logo">
+                    @else
+                    <img src="{{asset('frontend/images/logo.png')}}" alt="logo">
+                    @endif
+                </a>
             </div>
             <div class="user-form-card">
                 <div class="user-form-title">
