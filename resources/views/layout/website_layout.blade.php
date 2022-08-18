@@ -38,7 +38,13 @@ $profil = ProfilTokoModels::get()->first();
                     CSS LINK PART START
         =======================================-->
         <!-- FAVICON -->
-        <link rel="icon" href="{{$profil->logo ?? asset('frontend/images/favicon.png')}}">
+        @if($profil)
+
+        <link rel="icon" href="{{Storage::link($profil->logo)}}">
+        @else
+        <link rel="icon" href="{{asset('frontend/images/favicon.png')}}">
+
+        @endif
 
         <!-- FONTS -->
         <link rel="stylesheet" href="{{asset('frontend/fonts/flaticon/flaticon.css')}}">
