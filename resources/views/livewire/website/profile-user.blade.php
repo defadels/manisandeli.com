@@ -258,11 +258,21 @@
                         </div> --}}
                         <div class="form-group">
                             <label for="" class="form-label">label alamat</label>
-                            <input type="text" class="form-control" wire:model="label" placeholder="Label alamat">
+                            <input type="text" class="form-control @error('label') is-invalid @enderror" wire:model="label" placeholder="Label alamat">
+                            @error('label')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="form-label">alamat</label>
-                            <textarea class="form-control" wire:model="alamat" placeholder="Masukkan alamat lengkap"></textarea>
+                            <textarea class="form-control @error('alamat') is-invalid @enderror" wire:model="alamat" placeholder="Masukkan alamat lengkap"></textarea>
+                            @error('alamat')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <button class="form-btn" type="submit">simpan alamat</button>
                     </form>
@@ -282,23 +292,43 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">nama bank/e-wallet</label>
-                            <input class="form-control" type="text" wire:model="nama_bank" placeholder="Nama bank / e-wallet">
+                            <input class="form-control @error('nama_bank') is-invalid @enderror" type="text" wire:model="nama_bank" placeholder="Nama bank / e-wallet">
+                            @error('nama_bank')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="form-label">nama pemilik</label>
-                            <input class="form-control" type="text" wire:model="nama_pemilik" placeholder="Nama pemilik">
+                            <input class="form-control @error('nama_pemilik') is-invalid @enderror" type="text" wire:model="nama_pemilik" placeholder="Nama pemilik">
+                            @error('nama_pemilik')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="form-label">nomor rekening</label>
-                            <input class="form-control" type="text" wire:model="nomor_rekening" placeholder="Nomor rekening">
+                            <input class="form-control @error('nomor_rekening') is-invalid @enderror" type="text" wire:model="nomor_rekening" placeholder="Nomor rekening">
+                            @error('nomor_rekening')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="form-label">deskripsi</label>
-                            <textarea class="form-control" wire:model="deskripsi" placeholder="Masukkan deskripsi"></textarea>
+                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" wire:model="deskripsi" placeholder="Masukkan deskripsi"></textarea>
+                            @error('deskripsi')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="form-label">jenis</label>
-                            <select wire:model="jenis" class="form-select">
+                            <select wire:model="jenis" class="form-select @error('jenis') is-invalid @enderror">
                                 <option selected>pilih jenis</option>
                                 <option value="COD">COD</option>
                                 <option value="Cash">Cash</option>
@@ -306,14 +336,24 @@
                                 <option value="E-Wallet">E-Wallet</option>
                                 <option value="Custom">Custom</option>
                             </select>
+                            @error('jenis')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
                         </div> 
                         <div class="form-group">
                             <label for="" class="form-label">status</label>
-                            <select wire:model="status" name="" id="" class="form-select">
+                            <select wire:model="status" name="" id="" class="form-select @error('status') is-invalid @enderror">
                                 <option selected>pilih status</option>
                                 <option value="Aktif">Aktif</option>
                                 <option value="Nonaktif">Nonaktif</option>
                             </select>
+                            @error('status')
+                            <span class="text-danger">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
                         </div>
                         <button class="form-btn" type="submit">simpan kartu pembayaran</button>
                     </form>
@@ -444,11 +484,21 @@
                         </div> --}}
                         <div class="form-group">
                             <label for="" class="form-label">label alamat</label>
-                            <input type="text" class="form-control" wire:model="label" placeholder="Label alamat">
+                            <input type="text" class="form-control @error('label') is-invalid @enderror" wire:model="label" placeholder="Label alamat">
+                            @error('label')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="form-label">alamat</label>
-                            <textarea class="form-control" wire:model="alamat" placeholder="Masukkan alamat lengkap"></textarea>
+                            <textarea class="form-control @error('alamat') is-invalid @enderror" wire:model="alamat" placeholder="Masukkan alamat lengkap"></textarea>
+                            @error('alamat')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <button class="form-btn" type="submit">ubah alamat</button>
                     </form>
@@ -469,23 +519,43 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">nama bank/e-wallet</label>
-                            <input class="form-control" type="text" wire:model="nama_bank" placeholder="Nama bank / e-wallet">
+                            <input class="form-control @error('nama_bank') is-invalid @enderror" type="text" wire:model="nama_bank" placeholder="Nama bank / e-wallet">
+                            @error('nama_bank')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="form-label">nama pemilik</label>
-                            <input class="form-control" type="text" wire:model="nama_pemilik" placeholder="Nama pemilik">
+                            <input class="form-control @error('nama_pemilik') is-invalid @enderror" type="text" wire:model="nama_pemilik" placeholder="Nama pemilik">
+                            @error('nama_pemilik')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="form-label">nomor rekening</label>
-                            <input class="form-control" type="text" wire:model="nomor_rekening" placeholder="Nomor rekening">
+                            <input class="form-control @error('nomor_rekening') is-invalid @enderror" type="text" wire:model="nomor_rekening" placeholder="Nomor rekening">
+                            @error('nomor_rekening')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="form-label">deskripsi</label>
-                            <textarea class="form-control" wire:model="deskripsi" placeholder="Masukkan deskripsi"></textarea>
+                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" wire:model="deskripsi" placeholder="Masukkan deskripsi"></textarea>
+                            @error('deskripsi')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="form-label">jenis</label>
-                            <select wire:model="jenis" class="form-select">
+                            <select wire:model="jenis" class="form-select @error('jenis') is-invalid @enderror">
                                 <option selected>pilih jenis</option>
                                 <option value="COD">COD</option>
                                 <option value="Cash">Cash</option>
@@ -493,14 +563,24 @@
                                 <option value="E-Wallet">E-Wallet</option>
                                 <option value="Custom">Custom</option>
                             </select>
+                            @error('jenis')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
                         </div> 
                         <div class="form-group">
                             <label for="" class="form-label">status</label>
-                            <select wire:model="status" name="" id="" class="form-select">
+                            <select wire:model="status" name="" id="" class="form-select @error('status') is-invalid @enderror">
                                 <option selected>pilih status</option>
                                 <option value="Aktif">Aktif</option>
                                 <option value="Nonaktif">Nonaktif</option>
                             </select>
+                            @error('status')
+                            <span class="text-danger">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
                         </div>
                         <button class="form-btn" type="submit">simpan kartu pembayaran</button>
                     </form>

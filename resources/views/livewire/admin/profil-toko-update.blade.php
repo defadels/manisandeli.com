@@ -65,11 +65,31 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="">Deskripsi</label>
+                    <input type="text" wire:model="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror">
+                    @error('deskripsi')
+                        <span class="text-danger">
+                            <strong>{{$message}}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
                     <label for="">Email</label>
                     <input type="email" name="" wire:model="email" id="" class="form-control @error('email') is-invalid @enderror">
                     @error('email')
                         <span class="text-danger">
                             <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="">Alamat</label>
+                    <textarea wire:model="alamat" id="" cols="30" rows="10" class="form-control @error('alamat') is-invalid @enderror"></textarea>
+                    @error('alamat')
+                        <span class="text-danger">
+                            <strong>{{$message}}</strong>
                         </span>
                     @enderror
                 </div>
