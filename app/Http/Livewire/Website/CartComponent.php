@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Website;
 
 use Livewire\Component;
 use Cart;
+use Auth;
 
 class CartComponent extends Component
 {
@@ -26,5 +27,10 @@ class CartComponent extends Component
         $qty = $product->qty - 1;
 
         Cart::update($rowId, $qty);
+    }
+
+    public function hapusItem($rowId){
+
+        Cart::remove($rowId);
     }
 }

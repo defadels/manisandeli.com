@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Produk;
 use Livewire\WithPagination;
 use Cart;
+use Auth;
 
 class ProdukComponent extends Component
 {
@@ -21,6 +22,12 @@ class ProdukComponent extends Component
     {   
 
         $daftar_produk = Produk::paginate(12);
+
+        if(Auth::check())
+        {
+            Cart::instance('cart')->store(Auth::user()->email);
+        }
+
         return view('livewire.website.produk-component',compact('daftar_produk'))->layout('layout.website_layout');
     }
 }

@@ -1,4 +1,5 @@
 <div>
+<header class="header-part">
     <aside wire:ignore.self class="cart-sidebar">
         <div class="cart-header">
             <div class="cart-total">
@@ -13,7 +14,7 @@
             <li class="cart-item">
                 <div class="cart-media">
                     <a href="#"><img src="{{ $item->model->foto_produk ?? asset('frontend/images/product/01.jpg')}}" alt="product"></a>
-                    <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
+                    <button wire:click.prevent="hapusItem('{{$item->rowId}}')" class="cart-delete"><i class="far fa-trash-alt"></i></button>
                 </div>
                 <div class="cart-info-group">
                     <div class="cart-info">
@@ -43,9 +44,11 @@
                 <button type="submit"><span>apply</span></button>
             </form>
             <a class="cart-checkout-btn" href="checkout.html">
-                <span class="checkout-label">Proceed to Checkout</span>
+                <span class="checkout-label">Proses Pembayaran</span>
                 <span class="checkout-price">Rp.{{Cart::total()}}</span>
             </a>
+
         </div>
     </aside>
+</header>
 </div>

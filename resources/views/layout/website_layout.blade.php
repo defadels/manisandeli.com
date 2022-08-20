@@ -90,9 +90,9 @@ $profil = ProfilTokoModels::get()->first();
         <!--=====================================
                     HEADER PART START
         =======================================-->
-        <header class="header-part">
-           @include('layout.website.headerpart')
-        </header>
+        
+            <livewire:website.headerpart-component />
+        
         <!--=====================================
                     HEADER PART END
         =======================================-->
