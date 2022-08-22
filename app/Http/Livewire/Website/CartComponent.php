@@ -18,6 +18,10 @@ class CartComponent extends Component
 
     public function render()
     {
+        // if(Auth::check()){
+
+        //     Cart::instance('cart')->get(Auth::user()->email);
+        // }
         return view('livewire.website.cart-component');
     }
 
