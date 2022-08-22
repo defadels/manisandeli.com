@@ -3,7 +3,7 @@
     <aside wire:ignore.self class="cart-sidebar">
         <div class="cart-header">
             <div class="cart-total">
-                <i class="fas fa-shopping-basket"></i>
+                <i class="fas fa-shopping-basket"></i> 
                 <span>total item ({{Cart::count()}})</span>
             </div>
             <button class="cart-close"><i class="icofont-close"></i></button>
