@@ -17,7 +17,15 @@ class DetailProduk extends Component
         $this->produk_id = $id;
     }
 
+    public function store($produk_id, $nama_produk, $harga_jual){
+        Cart::instance('cart')->add($produk_id,$nama_produk,1,$harga_jual)->associate('App\Models\Produk');
+        session()->flash('message', 'Produk masuk ke keranjang');
+
+        return redirect()->route('website.detail-produk');
+    }
+
     use WithPagination;
+
 
     public function render()
     {

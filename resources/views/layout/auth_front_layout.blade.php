@@ -1,4 +1,13 @@
+<?php
+use App\Models\SosmedTokoModel;
+use App\Models\ProfilTokoModels;
+use App\Models\Produk;
 
+$sosmed_toko = SosmedTokoModel::get();
+$profil = ProfilTokoModels::get()->first();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

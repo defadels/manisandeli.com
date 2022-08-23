@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Livewire\Website\ProdukComponent;
     use App\Http\Livewire\Website\DetailProduk;
     use App\Http\Livewire\Website\TentangKami;
+    use App\Http\Livewire\Website\HomeComponent;
 
 
     // Admin Livewire
@@ -52,7 +53,7 @@ use Illuminate\Support\Facades\Route;
 
 //My own project pages
 Route::middleware('auth')->group(function(){
-    Route::get('/', [HomeController::class, 'index'])->name('website.home');
+    Route::get('/', HomeComponent::class)->name('website.home');
     Route::get('/{id}/profile-user', ProfileUser::class)->name('website.profile.user');
     
     Route::get('/tentang-kami', TentangKami::class)->name('website.tentang');

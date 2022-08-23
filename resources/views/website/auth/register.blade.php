@@ -3,6 +3,17 @@
 @section('title','Daftar Akun')
 
 @section('content')
+<?php
+use App\Models\SosmedTokoModel;
+use App\Models\ProfilTokoModels;
+use App\Models\Produk;
+
+$sosmed_toko = SosmedTokoModel::get();
+$profil = ProfilTokoModels::get()->first();
+
+
+?>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-sm-10 col-md-12 col-lg-12 col-xl-10">

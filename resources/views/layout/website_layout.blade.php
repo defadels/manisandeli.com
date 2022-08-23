@@ -1,10 +1,15 @@
 <?php
 use App\Models\SosmedTokoModel;
 use App\Models\ProfilTokoModels;
+use App\Models\Produk;
 
 $sosmed_toko = SosmedTokoModel::get();
 $profil = ProfilTokoModels::get()->first();
 
+if(Auth::check()){
+           Cart::instance('cart')->restore(Auth::user()->email);  
+        
+        }
 
 ?>
 
@@ -90,7 +95,7 @@ $profil = ProfilTokoModels::get()->first();
         <!--=====================================
                     HEADER PART START
         =======================================-->
-        
+       
             <livewire:website.headerpart-component />
         
         <!--=====================================

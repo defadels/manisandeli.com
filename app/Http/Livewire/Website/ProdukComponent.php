@@ -11,8 +11,10 @@ use Auth;
 class ProdukComponent extends Component
 {
     public function store($produk_id, $nama_produk, $harga_jual){
-        Cart::add($produk_id,$nama_produk,1,$harga_jual)->associate('App\Models\Produk');
+        Cart::instance('cart')->add($produk_id,$nama_produk,1,$harga_jual)->associate('App\Models\Produk');
         session()->flash('message', 'Produk masuk ke keranjang');
+
+        Cart::instance('cart')->store(Auth::user()->email);
 
         return redirect()->route('website.produk');
     }
