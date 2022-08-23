@@ -10,7 +10,7 @@ use Auth;
 class CartComponent extends Component
 {
     public function tambahJumlah($rowId){
-        $product = Cart::instance('cart')->get($rowId);
+        $product = Cart::instance('cart')->get($rowId); 
 
         $qty = $product->qty + 1;
 

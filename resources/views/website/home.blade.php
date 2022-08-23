@@ -3287,7 +3287,7 @@
                                 <h5>secure payment way</h5>
                                 <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>
