@@ -12,7 +12,9 @@ use Auth;
 class CheckoutComponent extends Component
 {
 
-    public $paymentmethod, $label, $alamat, $alamatId;
+    public $paymentmethod, $label, $nama_lengkap, $email, $nomor_hp, $alamat_lengkap, $alamatId, $provinsi, $kota, $kode_pos, $alamat_id, $pelanggan_id;
+
+    
 
     protected $listeners = [
         'getAlamat' => 'showData'
@@ -21,23 +23,26 @@ class CheckoutComponent extends Component
     public function getAlamat($id){
         $this->alamatId = $id;
 
-        $alamat = AlamatPelanggan::find($id);
+        $alamat_detail = AlamatPelanggan::find($id);
 
-        $this->emit('getAlamat', $alamat);
+
+        $this->emit('getAlamat', $alamat_detail);
     }
 
-    public function showData($alamat){
-        $this->label = $alamat['label'];
-        $this->alamat = $alamat['alamat'];
+   public function showData($alamat_detail){
+        $this->label = $alamat_detail['label'];
+        $this->alamat_lengkap = $alamat_detail['alamat_lengkap'];
+        $this->kode_pos = $alamat_detail['kode_pos'];
+        $this->provinsi = $alamat_detail['provinsi'];
+        $this->kota = $alamat_detail['kota'];
+    } 
+
+    public function mount(){
+        $this->nama_lengkap = Auth::user()->nama;
+        $this->email = Auth::user()->email;
+        $this->nomor_hp = Auth::user()->nomor_hp; 
+        
     }
-
-    // public function mount(){
-
-    //     $alamat = AlamatPelanggan::find($alamatId);
-
-    //     $this->label = $alamat->label;
-    //     $this->alamat = $alamat->alamat;
-    // }
 
     public function render()
     {
@@ -55,5 +60,13 @@ class CheckoutComponent extends Component
         Cart::instance('cart')->remove($rowId);
     }
 
+
+    public function customAlamat(){
+        $this->label = 'Custom';
+        $this->alamat_lengkap = null;
+        $this->kode_pos = null;
+        $this->provinsi = null;
+        $this->kota = null;
+    }
 
 }

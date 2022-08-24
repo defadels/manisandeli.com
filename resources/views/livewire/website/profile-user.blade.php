@@ -133,7 +133,8 @@
                                     <div class="col-md-6 col-lg-4 alert fade show">
                                         <div class="profile-card address">
                                             <h6>{{$alamat->label}}</h6>
-                                            <p>{{$alamat->alamat}}</p>
+                                            <p>{{$alamat->provinsi}}, {{$alamat->kota}}, {{$alamat->kode_pos}}</p>
+                                            <p>{{$alamat->alamat_lengkap}}</p>
                                             <ul class="user-action">
                                                 <li><button class="edit icofont-edit" wire:click="getDataAlamat({{ $alamat->id }})" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit"></button></li>
                                                 <li><button class="trash icofont-ui-delete" wire:click="destroyAddress({{ $alamat->id }})" title="Remove This" data-bs-dismiss="alert"></button></li>
@@ -267,9 +268,36 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="" class="form-label">provinsi</label>
+                            <input type="text" class="form-control @error('provinsi') is-invalid @enderror" wire:model="provinsi" placeholder="Provinsi">
+                            @error('provinsi')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">kota</label>
+                            <input type="text" class="form-control @error('kota') is-invalid @enderror" wire:model="kota" placeholder="Kota/Kabupaten">
+                            @error('kota')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Kode Pos</label>
+                            <input type="text" class="form-control @error('kode_pos') is-invalid @enderror" wire:model="kode_pos" placeholder="Kode Pos">
+                            @error('kode_pos')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label class="form-label">alamat</label>
-                            <textarea class="form-control @error('alamat') is-invalid @enderror" wire:model="alamat" placeholder="Masukkan alamat lengkap"></textarea>
-                            @error('alamat')
+                            <textarea class="form-control @error('alamat') is-invalid @enderror" wire:model="alamat_lengkap" placeholder="Masukkan alamat lengkap"></textarea>
+                            @error('alamat_lengkap')
                                 <span class="text-danger">
                                     <strong>{{$message}}</strong>
                                 </span>
@@ -493,9 +521,36 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="" class="form-label">provinsi</label>
+                            <input type="text" class="form-control @error('provinsi') is-invalid @enderror" wire:model="provinsi" placeholder="Provinsi">
+                            @error('provinsi')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">kota</label>
+                            <input type="text" class="form-control @error('kota') is-invalid @enderror" wire:model="kota" placeholder="Kota/Kabupaten">
+                            @error('kota')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Kode Pos</label>
+                            <input type="text" class="form-control @error('kode_pos') is-invalid @enderror" wire:model="kode_pos" placeholder="Kode Pos">
+                            @error('kode_pos')
+                                <span class="text-danger">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label class="form-label">alamat</label>
-                            <textarea class="form-control @error('alamat') is-invalid @enderror" wire:model="alamat" placeholder="Masukkan alamat lengkap"></textarea>
-                            @error('alamat')
+                            <textarea class="form-control @error('alamat') is-invalid @enderror" wire:model="alamat_lengkap" placeholder="Masukkan alamat lengkap"></textarea>
+                            @error('alamat_lengkap')
                                 <span class="text-danger">
                                     <strong>{{$message}}</strong>
                                 </span>

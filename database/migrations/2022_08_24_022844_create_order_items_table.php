@@ -59,6 +59,8 @@ class CreateOrderItemsTable extends Migration
             $table->foreignId('alamat_id')->constrained('alamat')->onDelete('cascade');
             $table->string('invoice');
             $table->string('nama_lengkap');
+            $table->string('label');
+            $table->string('alamat_lengkap');
             $table->string('kota');
             $table->string('provinsi');
             $table->string('kode_pos');

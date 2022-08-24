@@ -93,8 +93,9 @@
 
                         </div>
                         @else 
-                        <h5 class="text-center">Keranjang Kosong</h5>
-                        <a class="btn btn-success"> Belanja Sekarang</a>
+                        <h5>Keranjang Kosong</h5>
+                        <br>
+                        <a class="btn btn-inline" href="{{route('website.produk')}}"> Belanja Sekarang</a>
                         @endif
                     </div>
                 </div>
@@ -112,19 +113,19 @@
                                 <div class="col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label class="form-label">nama</label>
-                                        <input class="form-control" placeholder="Nama lengkap Anda" type="text" wire:model="nama_lengkap" value="{{Auth::user()->nama}}">
+                                        <input class="form-control" placeholder="Nama lengkap Anda" type="text" wire:model="nama_lengkap">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label class="form-label">Nomor Handphone</label>
-                                        <input class="form-control" placeholder="Nomor telepon/handphone Anda" wire:model="nomor_hp" type="text" value="{{Auth::user()->nomor_hp}}">
+                                        <input class="form-control" placeholder="Nomor telepon/handphone Anda" wire:model="nomor_hp" type="text">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label class="form-label">Email</label>
-                                        <input class="form-control" placeholder="Email Anda" wire:model="email" type="text" value="{{Auth::user()->email}}">
+                                        <input class="form-control" placeholder="Email Anda" wire:model="email" type="email">
                                     </div>
                                 </div>
 
@@ -205,38 +206,55 @@
                                 <div class="col-md-6 col-lg-12">
                                     <div class="form-group">
                                         <label for="" class="form-label">Pilih Alamat</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            @foreach($daftar_alamat as $alamat)
-                                            <option value="{{$alamat->id}}" wire:click.prevent="getAlamat({{ $alamat->id }})">{{$alamat->label}}</option>
-                                            @endforeach
-                                            <option selected>Custom</option>
-                                          </select>
+
+                                          <br>
+                                          <br>
+
+                                          <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                        
+                                               @foreach($daftar_alamat as $alamat)
+                                               <input type="radio" class="btn-check" wire:click.prevent="getAlamat({{ $alamat->id }})"  name="btnradio" id="btnradio{{$alamat->id}}" autocomplete="off">
+                                               <label class="btn btn-sm btn-outline" for="btnradio{{$alamat->id}}">{{$alamat->label}}</label>
+                                               @endforeach
+                                               <input type="radio" class="btn-check" wire:click.prevent="customAlamat()"  name="btnradio" id="btnradiolast" autocomplete="off">
+                                               <label class="btn btn-sm btn-outline" for="btnradiolast">Custom</label>
+                                            </div>
+                                          
                                     </div>
                                 </div>
                                 <input type="hidden" name="" wire:model="alamatId">
+                                
+                                
                                 <div class="col-md-6 col-lg-4">
+                                    
+
+                                 <div class="form-group">
+                                    <label for="" class="form-label">Label</label>
+                                    <input type="text" wire:model="label" class="form-control">    
+                                </div>   
                                     <div class="form-group">
                                         <label for="" class="form-label">Provinsi</label>
-                                        <input type="text"  class="form-control" placeholder="Provinsi">
+                                        <input type="text" class="form-control" placeholder="Provinsi" wire:model="provinsi">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="" class="form-label">Kota</label>
-                                        <input type="text" class="form-control" placeholder="Kota">
+                                        <input type="text" class="form-control" placeholder="Kota" wire:model="kota">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="" class="form-label">Kode Pos</label>
-                                        <input type="text" class="form-control" placeholder="Kode Pos">
+                                        <input type="text" class="form-control" placeholder="Kode Pos" wire:model="kode_pos">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-12">
                                     <label for="" class="form-label">Alamat Lengkap</label>
-                                    <textarea name="" wire:model="alamat" placeholder="Alamat lengkap" style="height: 250px" class="form-control">{{$alamat->alamat}}</textarea>
+                                    <textarea wire:model="alamat_lengkap"  placeholder="Alamat lengkap" id="" style="height: 250px" class="form-control"></textarea>
                                 </div>
 
+                               
                             </div>
                         </div>
                     </div>
@@ -245,53 +263,41 @@
                 <div class="col-lg-12">
                     <div class="account-card mb-0">
                         <div class="account-title">
-                            <h4>payment option</h4>
-                            <button data-bs-toggle="modal" data-bs-target="#payment-add">add card</button>
+                            <h4>metode pembayaran</h4>
+                           
                         </div>
                         <div class="account-content">
                             <div class="row">
-                                <div class="col-md-6 col-lg-4 alert fade show">
-                                    <div class="payment-card payment active">
-                                        <img src="images/payment/png/01.png" alt="payment">
-                                        <h4>card number</h4>
-                                        <p>
-                                            <span>****</span>
-                                            <span>****</span>
-                                            <span>****</span>
-                                            <sup>1876</sup>
-                                        </p>
-                                        <h5>miron mahmud</h5>
-                                        <button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button>
+                              <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Pilih Bank/E-Wallet</label>
+                                    <br>
+                                    <br>
+                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4 alert fade show">
-                                    <div class="payment-card payment">
-                                        <img src="images/payment/png/02.png" alt="payment">
-                                        <h4>card number</h4>
-                                        <p>
-                                            <span>****</span>
-                                            <span>****</span>
-                                            <span>****</span>
-                                            <sup>1876</sup>
-                                        </p>
-                                        <h5>miron mahmud</h5>
-                                        <button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button>
-                                    </div>
+                              </div>
+                              <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Nama Bank</label>
+                                    <input type="text" wire:model="nama_bank" class="form-control">
                                 </div>
-                                <div class="col-md-6 col-lg-4 alert fade show">
-                                    <div class="payment-card payment">
-                                        <img src="images/payment/png/03.png" alt="payment">
-                                        <h4>card number</h4>
-                                        <p>
-                                            <span>****</span>
-                                            <span>****</span>
-                                            <span>****</span>
-                                            <sup>1876</sup>
-                                        </p>
-                                        <h5>miron mahmud</h5>
-                                        <button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="" class="form-label">Nama Pemilik</label>
+                                    <input type="text" wire:model="nama_pemilik" class="form-control">
                                 </div>
+                              </div>
+                              <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Nomor Rekening / Nomor HP</label>
+                                    <input type="text" wire:model="nama_bank" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="form-label">Je</label>
+                                    <input type="text" wire:model="nama_pemilik" class="form-control">
+                                </div>
+                              </div>
                             </div>
                         </div>
 
@@ -311,39 +317,55 @@
                                         <div class="col-md-6 col-lg-12">
                                             <div class="form-group">
                                                 <label for="" class="form-label">Pilih Alamat</label>
-                                                <select class="form-select" aria-label="Default select example">
-                                                    @foreach($daftar_alamat as $alamat)
-                                                    <option value="{{$alamat->id}}" wire:click.prevent="getAlamat({{ $alamat->id }})">{{$alamat->label}}</option>
-                                                    
-                                                    @endforeach
-                                                    <option selected>Custom</option>
-                                                  </select>
+
+                                                  <br>
+                                                  <br>
+
+                                                  <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                                
+                                                       @foreach($daftar_alamat as $alamat)
+                                                       <input type="radio" class="btn-check" wire:click.prevent="getAlamat({{ $alamat->id }})"  name="btnradio" id="btnradio{{$alamat->id}}" autocomplete="off">
+                                                       <label class="btn btn-sm btn-outline" for="btnradio{{$alamat->id}}">{{$alamat->label}}</label>
+                                                       @endforeach
+                                                       <input type="radio" class="btn-check" wire:click.prevent="customAlamat()"  name="btnradio" id="btnradiolast" autocomplete="off">
+                                                       <label class="btn btn-sm btn-outline" for="btnradiolast">Custom</label>
+                                                    </div>
+                                                  
                                             </div>
                                         </div>
                                         <input type="hidden" name="" wire:model="alamatId">
+                                        
+                                        
                                         <div class="col-md-6 col-lg-4">
-                    
+                                            
+
+                                         <div class="form-group">
+                                            <label for="" class="form-label">Label</label>
+                                            <input type="text" wire:model="label" class="form-control">    
+                                        </div>   
                                             <div class="form-group">
                                                 <label for="" class="form-label">Provinsi</label>
-                                                <input type="text" class="form-control" placeholder="Provinsi">
+                                                <input type="text" class="form-control" placeholder="Provinsi" wire:model="provinsi">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-lg-4">
                                             <div class="form-group">
                                                 <label for="" class="form-label">Kota</label>
-                                                <input type="text" class="form-control" placeholder="Kota">
+                                                <input type="text" class="form-control" placeholder="Kota" wire:model="kota">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-lg-4">
                                             <div class="form-group">
                                                 <label for="" class="form-label">Kode Pos</label>
-                                                <input type="text" class="form-control" placeholder="Kode Pos">
+                                                <input type="text" class="form-control" placeholder="Kode Pos" wire:model="kode_pos">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-lg-12">
                                             <label for="" class="form-label">Alamat Lengkap</label>
-                                            <textarea name=""  placeholder="Alamat lengkap" id="" style="height: 250px" class="form-control"></textarea>
+                                            <textarea wire:model="alamat_lengkap"  placeholder="Alamat lengkap" id="" style="height: 250px" class="form-control"></textarea>
                                         </div>
+
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -355,10 +377,10 @@
 
                         <div class="account-content">
                         <div class="chekout-coupon">
-                            <button class="coupon-btn">Do you have a coupon code?</button>
+                            <button class="coupon-btn">Punya kode kupon?</button>
                             <form class="coupon-form">
                                 <input type="text" placeholder="Enter your coupon code">
-                                <button type="submit"><span>apply</span></button>
+                                <button type="submit"><span>masukkan</span></button>
                             </form>
                         </div>
                         <div class="checkout-charge">
@@ -368,11 +390,11 @@
                                     <span>Rp.{{Session::get('checkout')['subtotal']}}</span>
                                 </li>
                                 <li>
-                                    <span>delivery fee</span>
+                                    <span>ongkos kirim</span>
                                     <span>Rp.{{Session::get('checkout')['tax']}}</span>
                                 </li>
                                 <li>
-                                    <span>discount</span>
+                                    <span>diskon</span>
                                     <span>{{Session::get('checkout')['discount']}}</span>
                                 </li>
                                 <li>
@@ -389,7 +411,7 @@
                             <label for="checkout-check">By making this purchase you agree to our <a href="#">Terms and Conditions</a>.</label>
                         </div>
                         <div class="checkout-proced">
-                            <a href="invoice.html" class="btn btn-inline">proced to checkout</a>
+                            <a href="invoice.html" class="btn btn-outline">proced to checkout</a>
                         </div>
                     </div>
                 </div>

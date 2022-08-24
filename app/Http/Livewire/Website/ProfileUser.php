@@ -118,20 +118,26 @@ class ProfileUser extends Component
     
         // Deklarasi public variabel untuk alamat
             
-            public $label, $alamat, $longitude, $latitude, $getDataAlamat, $alamatId;
+            public $label, $alamat_lengkap, $kode_pos, $kota, $provinsi, $longitude, $latitude, $getDataAlamat, $alamatId;
 
             // tambah data
 
             public function createAddress(){
                 $this->validate([
                     'label' => 'required|string',
-                    'alamat' => 'required|string|max:100'
+                    'alamat_lengkap' => 'required|string|max:100',
+                    'provinsi' => 'required',
+                    'kota' => 'required',
+                    'kode_pos' => 'required',
                 ]);
 
                 $alamat = AlamatPelanggan::create([
                     'pelanggan_id' => $this->userId,
                     'label' => $this->label,
-                    'alamat' => $this->alamat,
+                    'alamat_lengkap' => $this->alamat_lengkap,
+                    'provinsi' => $this->provinsi,
+                    'kota' => $this->kota,
+                    'kode_pos' => $this->kode_pos,
                 ]);
 
                 $this->resetInputAddress();
@@ -147,11 +153,17 @@ class ProfileUser extends Component
 
                 $this->validate([
                     'label' => 'required|string',
-                    'alamat' => 'required|string|max:100'
+                    'alamat_lengkap' => 'required|string|max:100',
+                    'provinsi' => 'required',
+                    'kota' => 'required',
+                    'kode_pos' => 'required',
                 ]);
 
                 $alamat->label = $this->label;
-                $alamat->alamat = $this->alamat;
+                $alamat->alamat_lengkap = $this->alamat_lengkap;
+                $alamat->provinsi = $this->provinsi;
+                $alamat->kota = $this->kota;
+                $alamat->kode_pos = $this->kode_pos;
 
                 $alamat->save();
 
@@ -178,7 +190,10 @@ class ProfileUser extends Component
                 $alamat = AlamatPelanggan::where('id', $id)->first();
                 
                 $this->label = $alamat->label;
-                $this->alamat = $alamat->alamat;
+                $this->alamat_lengkap = $alamat->alamat_lengkap;
+                $this->kota = $alamat->kota;
+                $this->provinsi = $alamat->provinsi;
+                $this->kode_pos = $alamat->kode_pos;
                 $this->alamatId = $alamat->id;
                 $this->statusUpdate = true;
 
