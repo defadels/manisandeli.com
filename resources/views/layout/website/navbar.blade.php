@@ -22,6 +22,29 @@
                         <li class="navbar-item">
                             <a class="navbar-link" href="{{route('admin.dashboard')}}">halaman dasbor</a>
                         </li>
+
+                        <li class="navbar-item">
+                            <a class="navbar-link" href="{{route('logout')}}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">Logout</a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </li>
+                        @endif
+
+                        @if(Auth::user()->roles == 'pelanggan')
+
+                        {{-- <li class="navbar-item">
+                            <a class="navbar-link" href="{{route('admin.dashboard')}}">halaman dasbor</a>
+                        </li> --}}
+
+                        <li class="navbar-item">
+                            <a class="navbar-link" href="{{route('logout')}}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">Logout</a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </li>
                         @endif
 
                         @if(Auth::user()->roles == 'owner')
@@ -29,13 +52,21 @@
                         <li class="navbar-item">
                             <a class="navbar-link" href="#">halaman dasbor</a>
                         </li>
+
+                        <li class="navbar-item">
+                            <a class="navbar-link" href="{{route('logout')}}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">Logout</a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </li>
                         @endif
 
                     @endauth
                     
                     @endif
 
-                    <li class="navbar-item dropdown">
+                    {{-- <li class="navbar-item dropdown">
                         <a class="navbar-link dropdown-arrow" href="#">authentic</a>
                         <ul class="dropdown-position-list">
                             <li><a href="login.html">login</a></li>
@@ -43,8 +74,9 @@
                             <li><a href="reset-password.html">reset password</a></li>
                             <li><a href="change-password.html">change password</a></li>
                         </ul>
-                    </li> 
-                     <li class="navbar-item dropdown">
+                    </li>  --}}
+
+                     {{-- <li class="navbar-item dropdown">
                         <a class="navbar-link dropdown-arrow" href="#">blogs</a>
                         <ul class="dropdown-position-list">
                             <li><a href="blog-grid.html">blog grid</a></li>
@@ -52,7 +84,7 @@
                             <li><a href="blog-details.html">blog details</a></li>
                             <li><a href="blog-author.html">blog author</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
                 <div class="navbar-info-group">
                     <div class="navbar-info">

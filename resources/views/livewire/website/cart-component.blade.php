@@ -32,10 +32,7 @@
                 </div>
             </li> 
             @endforeach
-            @else
-
-            <p class="text-center">Keranjang Kosong</p>
-            @endif
+            
         </ul>
         <div class="cart-footer">
             <button class="coupon-btn">Do you have a coupon code?</button>
@@ -43,12 +40,21 @@
                 <input type="text" placeholder="Enter your coupon code">
                 <button type="submit"><span>apply</span></button>
             </form>
-            <a class="cart-checkout-btn" href="checkout.html">
+            <a class="cart-checkout-btn" href="#" wire:click.prevent="checkout()">
                 <span class="checkout-label">Proses Pembayaran</span>
                 <span class="checkout-price">Rp.{{Cart::total()}}</span>
             </a>
 
         </div>
+        @else
+        <div class="cart-footer">
+            <h5 class="text-center">Keranjang Kosong</h5>
+            <a href="{{route('website.produk')}}" class="cart-checkout-btn">
+                <span class="checkout-label">Belanja Sekarang</span>
+            </a>
+        </div>
+            
+         @endif
     </aside>
 </header>
 </div>

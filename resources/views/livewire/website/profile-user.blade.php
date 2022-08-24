@@ -43,6 +43,7 @@
                             <div class="account-title">
                                 <h4>Your Profile</h4>
                                 <button data-bs-toggle="modal" wire:click="getData({{ $user->id }})"  data-bs-target="#profile-edit">edit profile</button>
+                                
                             </div>
                             <div class="account-content">
                                 <div class="row">

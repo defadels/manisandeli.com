@@ -25,8 +25,25 @@ class CartComponent extends Component
             Cart::instance('cart')->store(Auth::user()->email);
         }
         
-
+        $this->setAmountForCheckout();
         return view('livewire.website.cart-component');
+    }
+
+    public function checkout() {
+        if(Auth::check()) {
+            return redirect()->route('website.checkout');
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function setAmountForCheckout(){
+        session()->put('checkout', [
+            'subtotal' => Cart::instance('cart')->subtotal(),
+            'discount' => 0,
+            'tax' => Cart::instance('cart')->tax(),
+            'total' => Cart::instance('cart')->total(),
+        ]);
     }
 
     public function kurangJumlah($rowId){

@@ -301,7 +301,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">	<a class="dropdown-item" href="{{route('admin.profile-user', ['id' => Auth::user()->id])}}"><i
                             class="bx bx-user"></i><span>Profile</span></a>
-                    <div class="dropdown-divider mb-0"></div>	<a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();
+                    <div class="dropdown-divider mb-0"></div>	<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();"><i
                             class="bx bx-power-off"></i><span>Logout</span></a>
                     

@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Livewire\Website\DetailProduk;
     use App\Http\Livewire\Website\TentangKami;
     use App\Http\Livewire\Website\HomeComponent;
+    use App\Http\Livewire\Website\CheckoutComponent;
 
 
     // Admin Livewire
@@ -60,6 +61,8 @@ Route::middleware('auth')->group(function(){
     
     Route::get('/produk', ProdukComponent::class)->name('website.produk');
     Route::get('/produk/{id}/detail-produk', DetailProduk::class)->name('website.detail.produk');
+
+    Route::get('/checkout', CheckoutComponent::class)->name('website.checkout');
 
 });
 

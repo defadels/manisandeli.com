@@ -68,6 +68,7 @@ if(Auth::check()){
         <link rel="stylesheet" href="{{asset('frontend/css/product-details.css')}}">
         <link rel="stylesheet" href="{{asset('frontend/css/contact.css')}}">
         <link rel="stylesheet" href="{{asset('frontend/css/about.css')}}">
+        <link rel="stylesheet" href="{{asset('frontend/css/checkout.css')}}">
          
 
         @yield('style')
