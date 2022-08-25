@@ -328,7 +328,7 @@
                                 @foreach($daftar_bank_toko as $bank_toko)
                               <div class="col-md-6 col-lg-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault{{$bank_toko->id}}">
+                                    <input class="form-check-input" wire:click.prevent="getBankTujuan({{$bank_toko->id}})" type="radio" name="flexRadioDefault" id="flexRadioDefault{{$bank_toko->id}}">
                                     <label class="form-check-label" for="flexRadioDefault{{$bank_toko->id}}">
                                       {{$bank_toko->nama_bank}}
                                       <br>

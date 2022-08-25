@@ -48,24 +48,24 @@ class CreateOrderItemsTable extends Migration
             $table->foreignId('pelanggan_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('pembayaran_pelanggan_id')->constrained('metode_pembayaran_pelanggan')->onDelete('cascade');
             $table->string('invoice');
-            $table->enum('jenis', ['COD','Bayar di Toko', 'Bank', 'E-Wallet']);
+            $table->enum('jenis', ['COD','Bayar di Toko', 'Transfer']);
             $table->enum('status', ['Disetujui', 'Ditunda', 'Dikembalikan', 'Ditolak'])->default('Ditunda');
             $table->timestamps();
         });
 
-        Schema::create('pengiriman', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('orderan_id')->constrained('order')->onDelete('cascade');
-            $table->foreignId('alamat_id')->constrained('alamat')->onDelete('cascade');
-            $table->string('invoice');
-            $table->string('nama_lengkap');
-            $table->string('label');
-            $table->string('alamat_lengkap');
-            $table->string('kota');
-            $table->string('provinsi');
-            $table->string('kode_pos');
-            $table->timestamps();
-        });
+        // Schema::create('pengiriman', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('orderan_id')->constrained('order')->onDelete('cascade');
+        //     $table->foreignId('alamat_id')->constrained('alamat')->onDelete('cascade');
+        //     $table->string('invoice');
+        //     $table->string('nama_lengkap');
+        //     $table->string('label');
+        //     $table->string('alamat_lengkap');
+        //     $table->string('kota');
+        //     $table->string('provinsi');
+        //     $table->string('kode_pos');
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -78,6 +78,6 @@ class CreateOrderItemsTable extends Migration
         Schema::dropIfExists('order');
         Schema::dropIfExists('order_item');
         Schema::dropIfExists('transaksi');
-        Schema::dropIfExists('pengiriman');
+        // Schema::dropIfExists('pengiriman');
     }
 }
