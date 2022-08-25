@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Http\Models\Produk;
 use App\Models\AlamatPelanggan;
 use App\Models\MetodePembayaranPelanggan;
+use App\Models\MetodePembayaranToko;
 use Cart;
 use Auth;
 
@@ -14,11 +15,27 @@ class CheckoutComponent extends Component
 
     public $paymentmethod, $label, $nama_lengkap, $email, $nomor_hp, $alamat_lengkap, $alamatId, $provinsi, $kota, $kode_pos, $alamat_id, $pelanggan_id;
 
-    
+    public $nama_bank, $nama_pemilik, $nomor_rekening, $jenis;
 
     protected $listeners = [
-        'getAlamat' => 'showData'
+        'getAlamat' => 'showData',
+        'getBankPelanggan' => 'showBankPelanggan'
     ];
+
+    public function getBankPelanggan($id) {
+        $this->bankPelangganId = $id;
+
+        $bank_pelanggan = MetodePembayaranPelanggan::find($id);
+        $this->emit('getBankPelanggan', $bank_pelanggan);
+    }
+
+    public function showBankPelanggan($bank_pelanggan) {
+        $this->nama_bank = $bank_pelanggan['nama_bank'];
+        $this->nama_pemilik = $bank_pelanggan['nama_pemilik'];
+        $this->nomor_rekening = $bank_pelanggan['nomor_rekening'];
+        $this->deskripsi = $bank_pelanggan['deskripsi'];
+        $this->jenis = $bank_pelanggan['jenis'];
+    }
 
     public function getAlamat($id){
         $this->alamatId = $id;
@@ -41,7 +58,7 @@ class CheckoutComponent extends Component
         $this->nama_lengkap = Auth::user()->nama;
         $this->email = Auth::user()->email;
         $this->nomor_hp = Auth::user()->nomor_hp; 
-        
+        $this->pelanggan_id = Auth::user()->id;
     }
 
     public function render()
@@ -50,9 +67,11 @@ class CheckoutComponent extends Component
 
         $daftar_alamat = AlamatPelanggan::where('pelanggan_id', Auth::user()->id)->get();
 
-        $daftar_pembayaran = MetodePembayaranPelanggan::where('pelanggan_id', Auth::user()->id)->get();
+        $daftar_bank_pelanggan = MetodePembayaranPelanggan::where('pelanggan_id', Auth::user()->id)->get();
 
-        return view('livewire.website.checkout-component', compact('daftar_alamat','daftar_pembayaran'))->layout('layout.website_layout');
+        $daftar_bank_toko = MetodePembayaranToko::get();
+
+        return view('livewire.website.checkout-component', compact('daftar_alamat','daftar_bank_pelanggan','daftar_bank_toko'))->layout('layout.website_layout');
     }
 
     public function hapusItem($rowId){
@@ -67,6 +86,14 @@ class CheckoutComponent extends Component
         $this->kode_pos = null;
         $this->provinsi = null;
         $this->kota = null;
+    }
+
+    public function customBankPelanggan(){
+        $this->nama_bank = 'Custom';
+        $this->nama_pemilik = null;
+        $this->nomor_rekening = null;
+        $this->deskripsi = null;
+        $this->jenis = null;
     }
 
 }

@@ -19,7 +19,7 @@ class MetodePembayaranController extends Controller
         $q = $request->input('q');
 
         $daftar_pembayaran = $daftar_pembayaran->when($q, function($query) use ($q) {
-            return $query->where('nama', 'like', '%'.$q.'%')
+            return $query->where('nama_bank', 'like', '%'.$q.'%')
                         ->orWhere('nomor_rekening', 'like', '%'.$q.'%');
         })->paginate(10);
 
@@ -59,7 +59,7 @@ class MetodePembayaranController extends Controller
         $input = $request->all();
 
         $rules = [
-            'nama' => ['required','string'],
+            'nama_bank' => ['required','string'],
             'nama_pemilik' => ['string'],
             'nomor_rekening' => ['max:16'],
             'nomor_hp' => ['required', 'max:13'],
@@ -67,8 +67,8 @@ class MetodePembayaranController extends Controller
         ];
 
         $messages = [
-            'nama.required' => 'Nama harus diisi',
-            'nama.string' => 'Nama harus berupa teks',
+            'nama_bank.required' => 'Nama harus diisi',
+            'nama_bank.string' => 'Nama harus berupa teks',
             'nama_pemilik.string' => 'Nama pemilik berusaa teks',
             'nomor_rekening.max' => 'Nomor rekening maksimal 16 digit',
             'nomor_hp.required' => ['Nomor handphone harus diisi'],
@@ -81,7 +81,7 @@ class MetodePembayaranController extends Controller
 
         $pembayaran = MetodePembayaranToko::create(
             [
-                'nama' => $request->nama,
+                'nama_bank' => $request->nama_bank,
                 'nama_pemilik' => $request->nama_pemilik,
                 'deskripsi' => $request->deskripsi,
                 'nomor_rekening' => $request->nomor_rekening,
@@ -92,7 +92,7 @@ class MetodePembayaranController extends Controller
         );
 
         return redirect()->route('admin.pengaturan.pembayaran')
-        ->with('messages', __('pesan.update', ['module' => $pembayaran->nama]));
+        ->with('messages', __('pesan.update', ['module' => $pembayaran->nama_bank]));
     }
 
     /**
@@ -139,7 +139,7 @@ class MetodePembayaranController extends Controller
         $input = $request->all();
 
         $rules = [
-            'nama' => ['required','string'],
+            'nama_bank' => ['required','string'],
             'nama_pemilik' => ['string'],
             'nomor_rekening' => ['max:16'],
             'nomor_hp' => ['required', 'max:13'],
@@ -147,8 +147,8 @@ class MetodePembayaranController extends Controller
         ];
 
         $messages = [
-            'nama.required' => 'Nama harus diisi',
-            'nama.string' => 'Nama harus berupa teks',
+            'nama_bank.required' => 'Nama harus diisi',
+            'nama_bank.string' => 'Nama harus berupa teks',
             'nama_pemilik.string' => 'Nama pemilik berusaa teks',
             'nomor_rekening.max' => 'Nomor rekening maksimal 16 digit',
             'nomor_hp.required' => ['Nomor handphone harus diisi'],
@@ -159,7 +159,7 @@ class MetodePembayaranController extends Controller
 
         $validator = Validator::make($input,$rules,$messages)->validate();
 
-        $pembayaran->nama = $request->nama;
+        $pembayaran->nama_bank = $request->nama_bank;
         $pembayaran->nama_pemilik = $request->nama_pemilik;
         $pembayaran->deskripsi = $request->deskripsi;
         $pembayaran->nomor_rekening = $request->nomor_rekening;
@@ -169,7 +169,7 @@ class MetodePembayaranController extends Controller
         $pembayaran->save();
 
         return redirect()->route('admin.pengaturan.pembayaran')
-        ->with('messages', __('pesan.create', ['module' => $pembayaran->nama]));
+        ->with('messages', __('pesan.create', ['module' => $pembayaran->nama_bank]));
     }
 
     /**
@@ -182,16 +182,16 @@ class MetodePembayaranController extends Controller
     {
         try {  
 
-            $nama = $pembayaran->nama;
+            $nama_bank = $pembayaran->nama_bank;
 
             $pembayaran->delete();
 
         } 
         catch(Exception $e){
             return redirect()->route('admin.pengaturan.pembayaran')
-            ->with('messages', __('pesan.delete', ['module' => $nama]));
+            ->with('messages', __('pesan.delete', ['module' => $nama_bank]));
         }
             return redirect()->route('admin.pengaturan.pembayaran')
-            ->with('messages', __('pesan.delete', ['module' => $nama]));
+            ->with('messages', __('pesan.delete', ['module' => $nama_bank]));
     }
 }

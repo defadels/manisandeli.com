@@ -23,6 +23,7 @@
         <section class="inner-section checkout-part">
             <div class="container">
                 <div class="row">
+                    @if(Cart::count() > 0)
                  
                   <div class="col-lg-12">
                     <div class="account-card">
@@ -31,7 +32,6 @@
                         </div>
                         <div class="account-content">
                             <div class="table-scroll">
-                                @if(Cart::count() > 0)
                                 <table class="table-list">
                                     <thead>
                                         <tr>
@@ -92,11 +92,7 @@
                             </div> --}}
 
                         </div>
-                        @else 
-                        <h5>Keranjang Kosong</h5>
-                        <br>
-                        <a class="btn btn-inline" href="{{route('website.produk')}}"> Belanja Sekarang</a>
-                        @endif
+                      
                     </div>
                 </div>
 
@@ -129,20 +125,31 @@
                                     </div>
                                 </div>
 
-                               <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Metode Pembayaran</label>
+                                <label for="" class="form-label">Metode Pembayaran</label>
+
+                               <div class="col-md-6 col-lg-2">
+                              
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="paymentMethod" id="paymentMethod1" wire:model="paymentmethod" value="cod">
-                                        <label for="form-check-label">Cash On Delivery</label>
+                                        <input type="radio" class="form-check-input" name="flexRadioDefault" id="flexRadioDefault1" wire:model="paymentmethod" value="cod">
+                                        <label for="form-check-label" for="flexRadioDefault1">
+                                            Cash On Delivery
+                                    </label>
                                     </div>
+                                 
+                              
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="paymentMethod" id="paymentMethod2" wire:model="paymentmethod" value="transfer">
-                                        <label for="form-check-label">Transfer</label>
+                                        <input type="radio" class="form-check-input" name="flexRadioDefault" id="flexRadioDefault2" wire:model="paymentmethod" value="transfer">
+                                        <label for="form-check-label" for="flexRadioDefault2">
+                                            Transfer
+                                        </label>
                                     </div>
+                                
+                              
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="paymentMethod" id="paymentMethod3" wire:model="paymentmethod" value="0">
-                                        <label for="form-check-label">Bayar di Toko</label>
+                                        <input type="radio" class="form-check-input" name="flexRadioDefault" id="flexRadioDefault3" wire:model="paymentmethod" value="0">
+                                        <label for="form-check-label" for="flexRadioDefault3">
+                                            Bayar di Toko
+                                        </label>
                                     </div>
                                 </div>
                                </div>
@@ -150,6 +157,8 @@
                         </div>
                     </div>
                 </div>
+
+                
               
                 {{-- <div class="col-lg-12">
                     <div class="account-card">
@@ -203,22 +212,21 @@
                         </div>
                         <div class="account-content">
                             <div class="row">
-                                <div class="col-md-6 col-lg-12">
+                                <div class="col-md-6 col-lg-4">
                                     <div class="form-group">
-                                        <label for="" class="form-label">Pilih Alamat</label>
+                                        <label for="" class="form-label">Alamat</label>
 
-                                          <br>
-                                          <br>
-
-                                          <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                        
-                                               @foreach($daftar_alamat as $alamat)
-                                               <input type="radio" class="btn-check" wire:click.prevent="getAlamat({{ $alamat->id }})"  name="btnradio" id="btnradio{{$alamat->id}}" autocomplete="off">
-                                               <label class="btn btn-sm btn-outline" for="btnradio{{$alamat->id}}">{{$alamat->label}}</label>
-                                               @endforeach
-                                               <input type="radio" class="btn-check" wire:click.prevent="customAlamat()"  name="btnradio" id="btnradiolast" autocomplete="off">
-                                               <label class="btn btn-sm btn-outline" for="btnradiolast">Custom</label>
-                                            </div>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                              Pilih Alamat
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                            @foreach($daftar_alamat as $alamat)
+                                              <li><a class="dropdown-item" wire:click.prevent="getAlamat({{ $alamat->id }})" href="#">{{$alamat->label}}</a></li>
+                                            @endforeach
+                                              <li><a class="dropdown-item" wire:click.prevent="customAlamat()" href="#">Custom</a></li>
+                                            </ul>
+                                          </div>
                                           
                                     </div>
                                 </div>
@@ -242,13 +250,13 @@
                                         <label for="" class="form-label">Kota</label>
                                         <input type="text" class="form-control" placeholder="Kota" wire:model="kota">
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
+                                    
                                     <div class="form-group">
                                         <label for="" class="form-label">Kode Pos</label>
                                         <input type="text" class="form-control" placeholder="Kode Pos" wire:model="kode_pos">
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-6 col-lg-12">
                                     <label for="" class="form-label">Alamat Lengkap</label>
                                     <textarea wire:model="alamat_lengkap"  placeholder="Alamat lengkap" id="" style="height: 250px" class="form-control"></textarea>
@@ -270,37 +278,72 @@
                             <div class="row">
                               <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
-                                    <label for="" class="form-label">Pilih Bank/E-Wallet</label>
-                                    <br>
-                                    <br>
-                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-
-                                    </div>
+                                    <label for="" class="form-label">Bank/E-Wallet</label>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                          Pilih bank / E-Wallet
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                        @foreach($daftar_bank_pelanggan as $bank_pelanggan)
+                                          <li><a class="dropdown-item" wire:click.prevent="getBankPelanggan({{$bank_pelanggan->id}})">{{$bank_pelanggan->nama_bank}}</a></li>
+                                        @endforeach 
+                                          <li><a class="dropdown-item" wire:model="nama_bank" wire:click.prevent="customBankPelanggan()" >Custom</a></li>
+                                        </ul>
+                                      </div>
                                 </div>
                               </div>
                               <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
                                     <label for="" class="form-label">Nama Bank</label>
-                                    <input type="text" wire:model="nama_bank" class="form-control">
+                                    <input type="text" placeholder="Nama Bank" wire:model="nama_bank" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-label">Nama Pemilik</label>
-                                    <input type="text" wire:model="nama_pemilik" class="form-control">
+                                    <input type="text" placeholder="Nama Pemilik" wire:model="nama_pemilik" class="form-control">
                                 </div>
                               </div>
                               <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
                                     <label for="" class="form-label">Nomor Rekening / Nomor HP</label>
-                                    <input type="text" wire:model="nama_bank" class="form-control">
+                                    <input type="text" placeholder="Nomor Rekening / Nomor HP" wire:model="nomor_rekening" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="" class="form-label">Je</label>
-                                    <input type="text" wire:model="nama_pemilik" class="form-control">
+                                    <label for="" class="form-label">Jenis</label>
+                                    <input type="text" placeholder="Jenis" wire:model="jenis" class="form-control">
                                 </div>
                               </div>
                             </div>
                         </div>
+                    </div> 
+                </div>  
 
+                <div class="col-lg-12">
+                    <div class="account-card mb-0">
+                        <div class="account-title">
+                            <h4>rekening tujuan</h4>
+                           
+                        </div>
+                        <div class="account-content">
+                            <div class="row">
+                                @foreach($daftar_bank_toko as $bank_toko)
+                              <div class="col-md-6 col-lg-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault{{$bank_toko->id}}">
+                                    <label class="form-check-label" for="flexRadioDefault{{$bank_toko->id}}">
+                                      {{$bank_toko->nama_bank}}
+                                      <br>
+                                      {{$bank_toko->nomor_rekening}}
+                                      <br>
+                                      A/N {{$bank_toko->nama_pemilik}}
+                                    </label>
+                                  </div>
+                                </div>
+                                @endforeach
+                            
+                            </div>
+                        </div>
+                    </div> 
+                </div> 
 
                         @endif
 
@@ -314,22 +357,23 @@
                                 </div>
                                 <div class="account-content">
                                     <div class="row">
-                                        <div class="col-md-6 col-lg-12">
+                                        <div class="col-md-6 col-lg-4">
                                             <div class="form-group">
-                                                <label for="" class="form-label">Pilih Alamat</label>
+                                                <label for="" class="form-label">Alamat</label>
 
-                                                  <br>
-                                                  <br>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                      Pilih Alamat
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                    @foreach($daftar_alamat as $alamat)
+                                                      <li><a class="dropdown-item" wire:click.prevent="getAlamat({{ $alamat->id }})" href="#">{{$alamat->label}}</a></li>
+                                                    @endforeach
+                                                      <li><a class="dropdown-item" wire:click.prevent="customAlamat()" href="#">Custom</a></li>
+                                                    </ul>
+                                                  </div>
 
-                                                  <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                
-                                                       @foreach($daftar_alamat as $alamat)
-                                                       <input type="radio" class="btn-check" wire:click.prevent="getAlamat({{ $alamat->id }})"  name="btnradio" id="btnradio{{$alamat->id}}" autocomplete="off">
-                                                       <label class="btn btn-sm btn-outline" for="btnradio{{$alamat->id}}">{{$alamat->label}}</label>
-                                                       @endforeach
-                                                       <input type="radio" class="btn-check" wire:click.prevent="customAlamat()"  name="btnradio" id="btnradiolast" autocomplete="off">
-                                                       <label class="btn btn-sm btn-outline" for="btnradiolast">Custom</label>
-                                                    </div>
+                                                  
                                                   
                                             </div>
                                         </div>
@@ -339,27 +383,26 @@
                                         <div class="col-md-6 col-lg-4">
                                             
 
-                                         <div class="form-group">
-                                            <label for="" class="form-label">Label</label>
-                                            <input type="text" wire:model="label" class="form-control">    
-                                        </div>   
                                             <div class="form-group">
-                                                <label for="" class="form-label">Provinsi</label>
-                                                <input type="text" class="form-control" placeholder="Provinsi" wire:model="provinsi">
+                                                <label for="" class="form-label">Label</label>
+                                                <input type="text" wire:model="label" class="form-control">    
+                                            </div>   
+                                                <div class="form-group">
+                                                    <label for="" class="form-label">Provinsi</label>
+                                                    <input type="text" class="form-control" placeholder="Provinsi" wire:model="provinsi">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="" class="form-label">Kota</label>
-                                                <input type="text" class="form-control" placeholder="Kota" wire:model="kota">
+                                            <div class="col-md-6 col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="" class="form-label">Kota</label>
+                                                    <input type="text" class="form-control" placeholder="Kota" wire:model="kota">
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label for="" class="form-label">Kode Pos</label>
+                                                    <input type="text" class="form-control" placeholder="Kode Pos" wire:model="kode_pos">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="" class="form-label">Kode Pos</label>
-                                                <input type="text" class="form-control" placeholder="Kode Pos" wire:model="kode_pos">
-                                            </div>
-                                        </div>
                                         <div class="col-md-6 col-lg-12">
                                             <label for="" class="form-label">Alamat Lengkap</label>
                                             <textarea wire:model="alamat_lengkap"  placeholder="Alamat lengkap" id="" style="height: 250px" class="form-control"></textarea>
@@ -372,8 +415,6 @@
                         </div>
 
                         @endif
-
-                        @if(Session::has('checkout'))  
 
                         <div class="account-content">
                         <div class="chekout-coupon">
@@ -416,15 +457,24 @@
                     </div>
                 </div>
 
+              
                 
-                  @else  
+                  {{-- @else  
                     
                     <div class="col-lg-12">
                         <div class="alert-info">
-                            <p>Returning customer? <a href="login.html">Click here to login</a></p>
+                            <p>Keranjang Kosong <a href="{{route('website.produk')}}">Belanja sekarang</a></p>
                         </div>
                     </div>
-                    @endif
+                    @endif --}}
+
+                    @else 
+                    <div class="col-lg-12">
+                        <div class="alert-info">
+                            <p>Keranjang Kosong <a href="{{route('website.produk')}}">Belanja sekarang</a></p>
+                        </div>
+                    </div>
+                @endif
                 </div>
             </div>
         </section>

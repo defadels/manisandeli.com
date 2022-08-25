@@ -66,7 +66,7 @@
                        @foreach($daftar_pembayaran as $pembayaran) 
                         <tr>
                             <th scope="row">{{ $no++ }}</th>
-                            <td>{{$pembayaran->nama}}</td>
+                            <td>{{$pembayaran->nama_bank}}</td>
                             <td>{{$pembayaran->nomor_rekening}}</td>
                             <td>{{ ucfirst($pembayaran->jenis) }}</td>
                             <td>{{$pembayaran->nama_pemilik}}</td>
