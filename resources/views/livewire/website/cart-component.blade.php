@@ -35,12 +35,12 @@
             
         </ul>
         <div class="cart-footer">
-            <button class="coupon-btn">Do you have a coupon code?</button>
+            {{-- <button class="coupon-btn">Do you have a coupon code?</button>
             <form class="coupon-form">
                 <input type="text" placeholder="Enter your coupon code">
                 <button type="submit"><span>apply</span></button>
-            </form>
-            <a class="cart-checkout-btn" href="#" wire:click.prevent="checkout()">
+            </form> --}}
+            <a class="cart-checkout-btn" wire:click.prevent="checkout()">
                 <span class="checkout-label">Proses Pembayaran</span>
                 <span class="checkout-price">Rp.{{Cart::total()}}</span>
             </a>

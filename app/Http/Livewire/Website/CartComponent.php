@@ -38,12 +38,18 @@ class CartComponent extends Component
     }
 
     public function setAmountForCheckout(){
-        session()->put('checkout', [
-            'subtotal' => Cart::instance('cart')->subtotal(),
-            'discount' => 0,
-            'tax' => Cart::instance('cart')->tax(),
-            'total' => Cart::instance('cart')->total(),
-        ]);
+        if(!Cart::instance('cart')->count() > 0) {
+            session()->forget('checkout');
+            return; 
+        } else {
+                session()->put('checkout', [
+                'subtotal' => Cart::instance('cart')->subtotal(),
+                'discount' => 0,
+                'tax' => Cart::instance('cart')->tax(),
+                'total' => Cart::instance('cart')->total(),
+            ]);
+        }
+        
     }
 
     public function kurangJumlah($rowId){

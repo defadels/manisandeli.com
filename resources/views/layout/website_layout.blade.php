@@ -7,9 +7,10 @@ $sosmed_toko = SosmedTokoModel::get();
 $profil = ProfilTokoModels::get()->first();
 
 if(Auth::check()){
-           Cart::instance('cart')->restore(Auth::user()->email);  
+    
+    Cart::instance('cart')->restore(Auth::user()->email);  
         
-        }
+}
 
 ?>
 

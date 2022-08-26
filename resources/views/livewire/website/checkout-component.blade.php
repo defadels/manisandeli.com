@@ -96,6 +96,8 @@
                     </div>
                 </div>
 
+                <form wire:submit.prevent="placeOrder">            
+
                 <div class="col-lg-12">
  
                     <div class="account-card">
@@ -109,19 +111,34 @@
                                 <div class="col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label class="form-label">nama</label>
-                                        <input class="form-control" placeholder="Nama lengkap Anda" type="text" wire:model="nama_lengkap">
+                                        <input class="form-control @error('nama_lengkap') is-invalid @enderror" placeholder="Nama lengkap Anda" type="text" wire:model="nama_lengkap">
+                                        @error('nama_lengkap')
+                                            <span class="text-danger">
+                                                <strong>{{$message}}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label class="form-label">Nomor Handphone</label>
-                                        <input class="form-control" placeholder="Nomor telepon/handphone Anda" wire:model="nomor_hp" type="text">
+                                        <input class="form-control @error('nomor_hp') is-invalid @enderror" placeholder="Nomor telepon/handphone Anda" wire:model="nomor_hp" type="text">
+                                        @error('nomor_hp')
+                                            <span class="text-danger">
+                                                <strong>{{$message}}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label class="form-label">Email</label>
-                                        <input class="form-control" placeholder="Email Anda" wire:model="email" type="email">
+                                        <input class="form-control @error('email') is-invalid @enderror" placeholder="Email Anda" wire:model="email" type="email">
+                                        @error('email')
+                                            <span class="text-danger">
+                                                <strong>{{$message}}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -238,28 +255,53 @@
 
                                  <div class="form-group">
                                     <label for="" class="form-label">Label</label>
-                                    <input type="text" wire:model="label" class="form-control">    
+                                    <input type="text" wire:model="label" class="form-control">  
+                                    @error('label')
+                                     <span class="text-danger">
+                                        <strong>{{$message}}</strong>
+                                     </span>
+                                    @enderror
                                 </div>   
                                     <div class="form-group">
                                         <label for="" class="form-label">Provinsi</label>
-                                        <input type="text" class="form-control" placeholder="Provinsi" wire:model="provinsi">
+                                        <input type="text" class="form-control @error('provinsi') is-invalid @enderror" placeholder="Provinsi" wire:model="provinsi">
+                                        @error('provinsi')
+                                        <span class="text-danger">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="" class="form-label">Kota</label>
-                                        <input type="text" class="form-control" placeholder="Kota" wire:model="kota">
+                                        <input type="text" class="form-control @error('kota') is-invalid @enderror" placeholder="Kota" wire:model="kota">
+                                        @error('kota')
+                                        <span class="text-danger">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="" class="form-label">Kode Pos</label>
-                                        <input type="text" class="form-control" placeholder="Kode Pos" wire:model="kode_pos">
+                                        <input type="text" class="form-control @error('kode_pos') is-invalid @enderror" placeholder="Kode Pos" wire:model="kode_pos">
+                                        @error('kode_pos')
+                                        <span class="text-danger">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-6 col-lg-12">
                                     <label for="" class="form-label">Alamat Lengkap</label>
-                                    <textarea wire:model="alamat_lengkap"  placeholder="Alamat lengkap" id="" style="height: 250px" class="form-control"></textarea>
+                                    <textarea wire:model="alamat_lengkap"  placeholder="Alamat lengkap" id="" style="height: 250px" class="form-control @error('alamat_lengkap') is-invalid @enderror"></textarea>
+                                    @error('alamat_lengkap')
+                                     <span class="text-danger">
+                                        <strong>{{$message}}</strong>
+                                     </span>
+                                    @enderror
                                 </div>
 
                                
@@ -295,21 +337,41 @@
                               <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
                                     <label for="" class="form-label">Nama Bank</label>
-                                    <input type="text" placeholder="Nama Bank" wire:model="nama_bank" class="form-control">
+                                    <input type="text" placeholder="Nama Bank" wire:model="nama_bank" class="form-control @error('nama_bank') is-invalid @enderror">
+                                      @error('nama_bank')
+                                     <span class="text-danger">
+                                        <strong>{{$message}}</strong>
+                                     </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-label">Nama Pemilik</label>
-                                    <input type="text" placeholder="Nama Pemilik" wire:model="nama_pemilik" class="form-control">
+                                    <input type="text" placeholder="Nama Pemilik" wire:model="nama_pemilik" class="form-control @error('nama_pemilik') is-invalid @enderror">
+                                      @error('nama_pemilik')
+                                     <span class="text-danger">
+                                        <strong>{{$message}}</strong>
+                                     </span>
+                                    @enderror
                                 </div>
                               </div>
                               <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
                                     <label for="" class="form-label">Nomor Rekening / Nomor HP</label>
-                                    <input type="text" placeholder="Nomor Rekening / Nomor HP" wire:model="nomor_rekening" class="form-control">
+                                    <input type="text" placeholder="Nomor Rekening / Nomor HP" wire:model="nomor_rekening" class="form-control @error('nomor_rekening') is-invalid @enderror">
+                                      @error('nomor_rekening')
+                                     <span class="text-danger">
+                                        <strong>{{$message}}</strong>
+                                     </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="form-label">Jenis</label>
                                     <input type="text" placeholder="Jenis" wire:model="jenis" class="form-control">
+                                      @error('jenis')
+                                     <span class="text-danger">
+                                        <strong>{{$message}}</strong>
+                                     </span>
+                                    @enderror
                                 </div>
                               </div>
                             </div>
@@ -339,7 +401,12 @@
                                   </div>
                                 </div>
                                 @endforeach
-                            
+
+                            <input type="hidden" name="" wire:model="bank_tujuan_id">
+
+                            <input type="hidden" name="" wire:model="bank_tujuan">
+                            <input type="hidden" name="" wire:model="pemilik_rekening_tujuan">
+                            <input type="hidden" name="=" wire:model="rekening_tujuan">
                             </div>
                         </div>
                     </div> 
@@ -378,35 +445,61 @@
                                             </div>
                                         </div>
                                         <input type="hidden" name="" wire:model="alamatId">
-                                        
-                                        
-                                        <div class="col-md-6 col-lg-4">
-                                            
+                                
+                                
+                                <div class="col-md-6 col-lg-4">
+                                    
 
-                                            <div class="form-group">
-                                                <label for="" class="form-label">Label</label>
-                                                <input type="text" wire:model="label" class="form-control">    
-                                            </div>   
-                                                <div class="form-group">
-                                                    <label for="" class="form-label">Provinsi</label>
-                                                    <input type="text" class="form-control" placeholder="Provinsi" wire:model="provinsi">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="" class="form-label">Kota</label>
-                                                    <input type="text" class="form-control" placeholder="Kota" wire:model="kota">
-                                                </div>
-                                                
-                                                <div class="form-group">
-                                                    <label for="" class="form-label">Kode Pos</label>
-                                                    <input type="text" class="form-control" placeholder="Kode Pos" wire:model="kode_pos">
-                                                </div>
-                                            </div>
-                                        <div class="col-md-6 col-lg-12">
-                                            <label for="" class="form-label">Alamat Lengkap</label>
-                                            <textarea wire:model="alamat_lengkap"  placeholder="Alamat lengkap" id="" style="height: 250px" class="form-control"></textarea>
-                                        </div>
+                                 <div class="form-group">
+                                    <label for="" class="form-label">Label</label>
+                                    <input type="text" wire:model="label" class="form-control">  
+                                    @error('label')
+                                     <span class="text-danger">
+                                        <strong>{{$message}}</strong>
+                                     </span>
+                                    @enderror
+                                </div>   
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Provinsi</label>
+                                        <input type="text" class="form-control @error('provinsi') is-invalid @enderror" placeholder="Provinsi" wire:model="provinsi">
+                                        @error('provinsi')
+                                        <span class="text-danger">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Kota</label>
+                                        <input type="text" class="form-control @error('kota') is-invalid @enderror" placeholder="Kota" wire:model="kota">
+                                        @error('kota')
+                                        <span class="text-danger">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Kode Pos</label>
+                                        <input type="text" class="form-control @error('kode_pos') is-invalid @enderror" placeholder="Kode Pos" wire:model="kode_pos">
+                                        @error('kode_pos')
+                                        <span class="text-danger">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 col-lg-12">
+                                    <label for="" class="form-label">Alamat Lengkap</label>
+                                    <textarea wire:model="alamat_lengkap"  placeholder="Alamat lengkap" id="" style="height: 250px" class="form-control @error('alamat_lengkap') is-invalid @enderror"></textarea>
+                                    @error('alamat_lengkap')
+                                     <span class="text-danger">
+                                        <strong>{{$message}}</strong>
+                                     </span>
+                                    @enderror
+                                </div>
 
                                        
                                     </div>
@@ -418,12 +511,14 @@
 
                         <div class="account-content">
                         <div class="chekout-coupon">
-                            <button class="coupon-btn">Punya kode kupon?</button>
+                            {{-- <button class="coupon-btn">Punya kode kupon?</button>
                             <form class="coupon-form">
                                 <input type="text" placeholder="Enter your coupon code">
                                 <button type="submit"><span>masukkan</span></button>
-                            </form>
+                            </form> --}}
                         </div>
+
+                       @if(Session::has('checkout')) 
                         <div class="checkout-charge">
                             <ul>
                                 <li>
@@ -444,29 +539,23 @@
                                 </li>
                             </ul>
                         </div>
+                        @endif
+
                     </div>
 
 
-                        <div class="checkout-check">
+                        {{-- <div class="checkout-check">
                             <input type="checkbox" id="checkout-check">
                             <label for="checkout-check">By making this purchase you agree to our <a href="#">Terms and Conditions</a>.</label>
-                        </div>
+                        </div> --}}
+                        
                         <div class="checkout-proced">
-                            <a href="invoice.html" class="btn btn-outline">proced to checkout</a>
+                            {{-- <button type="submit" class="btn btn-outline">proses pembayaran</button> --}}
+                            <input type="submit" value="Proses Pembayaran" class="btn btn-outline">
+                        </form>
                         </div>
                     </div>
                 </div>
-
-              
-                
-                  {{-- @else  
-                    
-                    <div class="col-lg-12">
-                        <div class="alert-info">
-                            <p>Keranjang Kosong <a href="{{route('website.produk')}}">Belanja sekarang</a></p>
-                        </div>
-                    </div>
-                    @endif --}}
 
                     @else 
                     <div class="col-lg-12">

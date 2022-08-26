@@ -23,7 +23,7 @@ class CheckoutComponent extends Component
 
     public $nama_bank, $nama_pemilik, $nomor_rekening, $jenis;
 
-    public $tujuan_bank, $pemilik_rekening_tujuan, $rekening_tujuan;
+    public $bank_tujuan, $bank_tujuan_id, $pemilik_rekening_tujuan, $rekening_tujuan, $pembayaran_pelanggan_id, $konfirmasi;
 
     // listener untuk mengambil data
     protected $listeners = [
@@ -54,15 +54,15 @@ class CheckoutComponent extends Component
     public function getBankTujuan($id){
         $this->bank_tujuan_id = $id;
 
-        $bank_tujuan = MetodePembayaranToko::find($id);
-        $this->emit('getBankTujuan', $bank_tujuan);
+        $bank_tujuan_kepada = MetodePembayaranToko::find($id);
+        $this->emit('getBankTujuan', $bank_tujuan_kepada);
     }
 
     // function untuk tampilkan data bank toko berdasarkan id
-    public function showBankTujuan($bank_tujuan){
-        $this->tujuan_bank = $bank_tujuan['nama_bank'];
-        $this->pemilik_rekening_tujuan = $bank_tujuan['nama_pemilik'];
-        $this->rekening_tujuan = $bank_tujuan['nomor_rekening'];
+    public function showBankTujuan($bank_tujuan_kepada){
+        $this->bank_tujuan = $bank_tujuan_kepada['nama_bank'];
+        $this->pemilik_rekening_tujuan = $bank_tujuan_kepada['nama_pemilik'];
+        $this->rekening_tujuan = $bank_tujuan_kepada['nomor_rekening'];
     }
 
     // function untuk ambil data alamat pelanggan berdasarkan id
@@ -92,30 +92,108 @@ class CheckoutComponent extends Component
     }
 
     public function updated($fields){
-        $this->validateOnly($fields, [
+        if($this->paymentmethod == 0) {
+            $this->validateOnly($fields, [
             'nama_lengkap' => 'required',
-            'email' => 'required}email',
+            'email' => 'required|email',
             'nomor_hp' => 'required',
             'alamat_lengkap' => 'required',
             'provinsi' => 'required',
             'kota' => 'required',
             'kode_pos' => 'required',
         ]);
+        }
+        
+
+        if($this->paymentmethod == 'transfer'){
+            $this->validateOnly($fields, [
+                'nama_lengkap' => 'required',
+                'email' => 'required|email',
+                'nomor_hp' => 'required',
+                'alamat_lengkap' => 'required',
+                'provinsi' => 'required',
+                'kota' => 'required',
+                'kode_pos' => 'required',
+                'nama_bank' => 'required',
+                'nama_pemilik' => 'required',
+                'nomor_rekening' => 'required',
+                'bank_tujuan' => 'required',
+                'pemilik_rekening_tujuan' => 'required',
+                'rekening_tujuan' => 'required',
+            ]);
+        }
+        
+        if($this->paymentmethod == 'cod'){
+            $this->validateOnly($fields, [
+                'nama_lengkap' => 'required',
+                'email' => 'required|email',
+                'nomor_hp' => 'required',
+                'alamat_lengkap' => 'required',
+                'provinsi' => 'required',
+                'kota' => 'required',
+                'kode_pos' => 'required',
+            ]);
+        }
     }
 
     public function placeOrder(){
+
+
+    if($this->paymentmethod == 0) {
         $this->validate([
             'nama_lengkap' => 'required',
-            'email' => 'required}email',
+            'email' => 'required|email',
             'nomor_hp' => 'required',
-            'alamat_lengkap' => 'required',
-            'provinsi' => 'required',
-            'kota' => 'required',
-            'kode_pos' => 'required',
+            'pembayaran_pelanggan_id' => 'nullable'
         ]);
 
-       
-        if($paymentmethod == 'transfer'){
+        $sekarang = Carbon::now();
+
+        $invoice =  'INV/'.$sekarang->format('ymd').
+                    '/'.$sekarang->format('his').
+                    '/'.Str::upper(Str::random(6));
+
+        $order = new Order();
+        $order->pelanggan_id = Auth::user()->id;
+        $order->subtotal = session()->get('checkout')['subtotal']; 
+        $order->diskon = session()->get('checkout')['discount']; 
+        $order->total = session()->get('checkout')['total']; 
+        $order->ongkir = session()->get('checkout')['tax']; 
+        $order->invoice = $invoice;
+        $order->nama_lengkap = $this->nama_lengkap;
+        $order->email =  $this->email;
+        $order->nomor_hp = $this->nomor_hp;
+        $order->status = 'masuk';
+        $order->save();
+
+        $transaksi = new Transaksi();
+        $transaksi->orderan_id = $order->id;
+        $transaksi->invoice = $invoice;
+        $transaksi->pelanggan_id = Auth::user()->id;
+        $transaksi->metode_pembayaran = 'Bayar di Toko';
+        $transaksi->status = 'Disetujui';
+        $transaksi->save();
+    }
+
+        if($this->paymentmethod == 'transfer'){
+
+            $this->validate([
+                'nama_lengkap' => 'required',
+                'email' => 'required|email',
+                'nomor_hp' => 'required',
+                'alamat_lengkap' => 'required',
+                'provinsi' => 'required',
+                'kota' => 'required',
+                'kode_pos' => 'required',
+                'nama_bank' => 'required',
+                'nama_pemilik' => 'required',
+                'nomor_rekening' => 'required',
+                'bank_tujuan' => 'required',
+                'pemilik_rekening_tujuan' => 'required',
+                'rekening_tujuan' => 'required',
+                'alamat_id' => 'nullable'
+            ]);
+
             $sekarang = Carbon::now();
 
             $invoice =  'INV/'.$sekarang->format('ymd').
@@ -124,7 +202,6 @@ class CheckoutComponent extends Component
     
             $order = new Order();
             $order->pelanggan_id = Auth::user()->id;
-            $order->alamat_id = $this->alamatId;
             $order->subtotal = session()->get('checkout')['subtotal']; 
             $order->diskon = session()->get('checkout')['discount']; 
             $order->total = session()->get('checkout')['total']; 
@@ -133,24 +210,53 @@ class CheckoutComponent extends Component
             $order->nama_lengkap = $this->nama_lengkap;
             $order->email =  $this->email;
             $order->nomor_hp = $this->nomor_hp;
-            $order->alamat_lengkap = $this->alamat_lengkap;
-            $order->provinsi = $this->provinsi;
-            $order->kota = $this->kota;
-            $order->kode_pos = $this->kode_pos;
+            $order->metode_pembayaran = 'COD';
             $order->status = 'masuk';
+            $order->pengiriman_berbeda = 1;
             $order->save();
 
             $transaksi = new Transaksi();
+            $transaksi->orderan_id = $order->id;
+            $transaksi->invoice = $invoice;
+            $transaksi->pelanggan_id = Auth::user()->id;
+            // $transaksi->pembayaran_pelanggan_id = $this->bankPelangganId;
             $transaksi->nama_bank = $this->nama_bank;
             $transaksi->nama_pemilik = $this->nama_pemilik;
             $transaksi->nomor_rekening = $this->nomor_rekening;
-            $transaksi->deskripsi = $this->deskripsi;
-            $transaksi->jenis = $this->jenis;
-            $transaksi->tujuan_bank = $this->tujuan_bank;
+            $transaksi->bank_tujuan = $this->bank_tujuan;
             $transaksi->pemilik_rekening_tujuan = $this->pemilik_rekening_tujuan;
             $transaksi->rekening_tujuan = $this->rekening_tujuan;
+            $transaksi->metode_pembayaran = 'Bayar di Toko';
+            $transaksi->status = 'Ditunda';
             $transaksi->save();
-        }else if($paymentmethod == 'cod'){
+
+            $pengiriman = new Pengiriman();
+            $pengiriman->alamat_id = $this->alamatId;
+            $pengiriman->orderan_id = $order->id;
+            $pengiriman->alamat_lengkap = $this->alamat_lengkap;
+            $pengiriman->provinsi = $this->provinsi;
+            $pengiriman->kota = $this->kota;
+            $pengiriman->kode_pos = $this->kode_pos;
+            $pengiriman->save();
+
+
+        } 
+        
+        if($this->paymentmethod == 'cod'){
+
+            $this->validate([
+                'nama_lengkap' => 'required',
+                'email' => 'required|email',
+                'nomor_hp' => 'required',
+                'alamat_lengkap' => 'required',
+                'provinsi' => 'required',
+                'kota' => 'required',
+                'kode_pos' => 'required',
+                'pembayaran_pelanggan_id' => 'nullable',
+                'alamat_id' => 'nullable'
+            ]);
+
+
             $sekarang = Carbon::now();
 
             $invoice =  'INV/'.$sekarang->format('ymd').
@@ -159,7 +265,6 @@ class CheckoutComponent extends Component
     
             $order = new Order();
             $order->pelanggan_id = Auth::user()->id;
-            $order->alamat_id = $this->alamatId;
             $order->subtotal = session()->get('checkout')['subtotal']; 
             $order->diskon = session()->get('checkout')['discount']; 
             $order->total = session()->get('checkout')['total']; 
@@ -168,54 +273,72 @@ class CheckoutComponent extends Component
             $order->nama_lengkap = $this->nama_lengkap;
             $order->email =  $this->email;
             $order->nomor_hp = $this->nomor_hp;
-            $order->alamat_lengkap = $this->alamat_lengkap;
-            $order->provinsi = $this->provinsi;
-            $order->kota = $this->kota;
-            $order->kode_pos = $this->kode_pos;
             $order->status = 'masuk';
+            $order->pengiriman_berbeda = 1;
             $order->save();
-        } else {
-            $sekarang = Carbon::now();
 
-            $invoice =  'INV/'.$sekarang->format('ymd').
-                        '/'.$sekarang->format('his').
-                        '/'.Str::upper(Str::random(6));
-    
-            $order = new Order();
-            $order->pelanggan_id = Auth::user()->id;
-            $order->alamat_id = $this->alamatId;
-            $order->subtotal = session()->get('checkout')['subtotal']; 
-            $order->diskon = session()->get('checkout')['discount']; 
-            $order->total = session()->get('checkout')['total']; 
-            $order->ongkir = session()->get('checkout')['tax']; 
-            $order->invoice = $invoice;
-            $order->nama_lengkap = $this->nama_lengkap;
-            $order->email =  $this->email;
-            $order->nomor_hp = $this->nomor_hp;
-            $order->alamat_lengkap = $this->alamat_lengkap;
-            $order->provinsi = $this->provinsi;
-            $order->kota = $this->kota;
-            $order->kode_pos = $this->kode_pos;
-            $order->status = 'masuk';
-            $order->save();
-        }
+            $transaksi = new Transaksi();
+            $transaksi->orderan_id = $order->id;
+            $transaksi->invoice = $invoice;
+            $transaksi->pelanggan_id = Auth::user()->id;
+            $transaksi->nama_bank = $this->nama_bank;
+            $transaksi->nama_pemilik = $this->nama_pemilik;
+            $transaksi->nomor_rekening = $this->nomor_rekening;
+            $transaksi->bank_tujuan = $this->bank_tujuan;
+            $transaksi->pemilik_rekening_tujuan = $this->pemilik_rekening_tujuan;
+            $transaksi->rekening_tujuan = $this->rekening_tujuan;
+            $transaksi->metode_pembayaran = 'COD';
+            $transaksi->status = 'Ditunda';
+            $transaksi->save();
 
+            $pengiriman = new Pengiriman();
+            $pengiriman->alamat_id = $this->alamatId;
+            $pengiriman->orderan_id = $order->id;
+            $pengiriman->alamat_lengkap = $this->alamat_lengkap;
+            $pengiriman->provinsi = $this->provinsi;
+            $pengiriman->kota = $this->kota;
+            $pengiriman->kode_pos = $this->kode_pos;
+            $pengiriman->save();
 
+            
+        } 
 
         foreach(Cart::instance('cart')->content() as $item){
             $orderItem = new OrderItem();
             $orderItem->produk_id = $item->id;
-            $orderItem->order_id =  $order->id;
-            $orderItem->harga = $item->harga; 
+            $orderItem->orderan_id =  $order->id;
+            $orderItem->harga = $item->price; 
             $orderItem->jumlah = $item->qty;
             $orderItem->save();
         }
 
+        $this->konfirmasi = 1;
+
+        Cart::instance('cart')->destroy();
+        session()->forget('checkout');
+
+        session()->put('order', [
+            'invoice' => $order['invoice'],
+        ]);
+
+        return redirect()->route('website.konfirmasi');
+
+    }
+
+    public function verifyForCheckout(){
+        if($this->konfirmasi) {
+            
+            return redirect()->route('website.konfirmasi');
+        } else if(!session()->get('checkout')){
+            return redirect()->route('website.produk');
+        }
     }
 
     public function render()
     {
         Cart::instance('cart')->restore(Auth::user()->email);
+
+        // $this->verifyForCheckout();
 
         $daftar_alamat = AlamatPelanggan::where('pelanggan_id', Auth::user()->id)->get();
 
