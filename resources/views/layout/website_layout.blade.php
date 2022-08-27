@@ -79,8 +79,8 @@ if(Auth::check()){
         @livewireStyles
     </head>
     <body>
-        <div class="backdrop"></div>
-        <a class="backtop fas fa-arrow-up" href="#"></a>
+        {{-- <div class="backdrop"></div>
+        <a class="backtop fas fa-arrow-up" href="#"></a> --}}
         
         <!--=====================================
                     HEADER TOP PART START

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
     // Frontend Controller
     use App\Http\Controllers\Website\HomeController;
+    use App\Http\Controllers\SocialiteController;
 
 
 // Laravel Livewire Module
@@ -115,5 +116,8 @@ Route::middleware('auth', 'reject_except_admin')->group(function(){
 });
 
 Auth::routes(['verify' => true]);
+
+Route::get('/auth/google', [SocialiteController::class, 'redirect'])->name('auth.google');
+Route::get('/auth/google/callback', [SocialiteController::class, 'callback']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

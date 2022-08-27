@@ -23,8 +23,8 @@
                 </div>
                 <div class="user-form-group">
                     <ul class="user-form-social">
-                        <li><a href="#" class="facebook"><i class="fab fa-facebook-f"></i>login dengan facebook</a></li>
-                        <li><a href="#" class="google"><i class="fab fa-google"></i>login dengan google</a></li>
+                        <li><a href="/auth/facebook" class="facebook"><i class="fab fa-facebook-f"></i>login dengan facebook</a></li>
+                        <li><a href="{{route('auth.google')}}" class="google"><i class="fab fa-google"></i>login dengan google</a></li>
                     </ul>
                     <div class="user-form-divider">
                         <p>or</p>
