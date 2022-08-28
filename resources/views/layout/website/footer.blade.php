@@ -53,7 +53,11 @@
                 <h3 class="footer-title">link pintasan</h3>
                 <div class="footer-links">
                     <ul>
+                        @if(Auth::check())
                         <li><a href="{{route('website.profile.user', Auth::user()->id)}}">Akun Saya</a></li>
+                        @else
+                        <li><a href="{{route('login')}}">Login</a></li>
+                        @endif
                         <li><a href="{{route('website.produk')}}">Produk</a></li>
                         <li><a href="{{route('website.tentang')}}">Tentang Kami</a></li>
                         <li><a href="{{route('website.kebijakan-privasi')}}">Kebijakan Privasi</a></li>

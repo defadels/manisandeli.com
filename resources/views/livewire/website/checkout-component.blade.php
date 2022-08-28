@@ -386,8 +386,7 @@
                 <div class="col-lg-12">
                     <div class="account-card mb-0">
                         <div class="account-title">
-                            <h4>rekening tujuan</h4>
-                           
+                            <h4>rekening tujuan</h4>   
                         </div>
                         <div class="account-content">
                             <div class="row">
@@ -412,9 +411,39 @@
                             <input type="hidden" name="" wire:model="pemilik_rekening_tujuan">
                             <input type="hidden" name="=" wire:model="rekening_tujuan">
                             </div>
+                            
                         </div>
                     </div> 
                 </div> 
+
+                <div class="col-lg-12">
+                    <div class="account-card mb-0">
+                        <div class="account-title">
+                            <h4>Foto Bukti Transfer</h4>
+                        </div>
+                        <div class="account-content">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-12">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Upload Foto Bukti Transfer</label>
+                                        @if($foto_bukti_tf)
+                                            <div class="col-lg-6 col-md-4">
+                                                <img src="{{ $foto_bukti_tf->temporaryUrl() }}" class="img-fluid" alt="">
+
+                                            </div>
+                                        @endif
+                                        <input type="file" wire:model="foto_bukti_tf" class="form-control @error('foto_bukti_tf') is-invalid @enderror">
+                                        @error('foto_bukti_tf')
+                                        <span class="text-danger">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                         @endif
 

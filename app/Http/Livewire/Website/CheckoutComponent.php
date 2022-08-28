@@ -5,15 +5,17 @@ namespace App\Http\Livewire\Website;
 use Str;
 use Auth;
 use Cart;
+use Carbon\Carbon;
 use App\Models\Order;
 use Livewire\Component;
 use App\Models\OrderItem;
 use App\Models\Transaksi;
 use App\Models\Pengiriman;
 use App\Http\Models\Produk;
-use Carbon\Carbon;
+use Livewire\WithFileUploads;
 use App\Models\AlamatPelanggan;
 use App\Models\MetodePembayaranToko;
+use Illuminate\Support\Facades\Storage;
 use App\Models\MetodePembayaranPelanggan;
 
 class CheckoutComponent extends Component
@@ -23,7 +25,9 @@ class CheckoutComponent extends Component
 
     public $nama_bank, $nama_pemilik, $nomor_rekening, $jenis;
 
-    public $bank_tujuan, $bank_tujuan_id, $pemilik_rekening_tujuan, $rekening_tujuan, $pembayaran_pelanggan_id, $konfirmasi;
+    public $bank_tujuan, $bank_tujuan_id, $pemilik_rekening_tujuan, $rekening_tujuan, $pembayaran_pelanggan_id, $foto_bukti_tf, $foto_url, $konfirmasi;
+
+    use WithFileUploads;
 
     // listener untuk mengambil data
     protected $listeners = [
@@ -120,6 +124,7 @@ class CheckoutComponent extends Component
                 'bank_tujuan' => 'required',
                 'pemilik_rekening_tujuan' => 'required',
                 'rekening_tujuan' => 'required',
+                'foto_bukti_tf' => 'required|mimes:png,jpeg'
             ]);
         }
         
@@ -191,7 +196,8 @@ class CheckoutComponent extends Component
                 'bank_tujuan' => 'required',
                 'pemilik_rekening_tujuan' => 'required',
                 'rekening_tujuan' => 'required',
-                'alamat_id' => 'nullable'
+                'alamat_id' => 'nullable',
+                'foto_bukti_tf' => 'required|mimes:png,jpeg',
             ]);
 
             $sekarang = Carbon::now();
@@ -228,6 +234,19 @@ class CheckoutComponent extends Component
             $transaksi->rekening_tujuan = $this->rekening_tujuan;
             $transaksi->metode_pembayaran = 'Bayar di Toko';
             $transaksi->status = 'Ditunda';
+
+            if($this->$foto_bukti_tf){
+                $nama_file = Str::uuid();
+                $path = 'transfer/';
+                $file_extension = $this->foto_bukti_tf->extension();
+                $transaksi->foto_bukti_tf = $path.$nama_file.".".$file_extension;
+
+                $bukti_tf = $this->foto_bukti_tf;
+
+                Storage::putFileAs('/app/public/',$bukti_tf);
+
+            }
+
             $transaksi->save();
 
             $pengiriman = new Pengiriman();

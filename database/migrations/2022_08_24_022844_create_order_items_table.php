@@ -56,6 +56,7 @@ class CreateOrderItemsTable extends Migration
             $table->string('bank_tujuan')->nullable();
             $table->string('pemilik_rekening_tujuan')->nullable();
             $table->string('rekening_tujuan')->nullable();
+            $table->string('foto_bukti_tf');  
             $table->enum('metode_pembayaran', ['COD','Bayar di Toko', 'Transfer']);
             $table->enum('status', ['Disetujui', 'Ditunda', 'Dikembalikan', 'Ditolak'])->default('Ditunda');
             $table->timestamps();
