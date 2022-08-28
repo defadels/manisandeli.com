@@ -19,7 +19,7 @@ class RedirectIfNotAdmin
     {
         if(!(Auth::user()->roles == 'admin'))
         {
-            return redirect(RouteServiceProvider::ADMIN);
+            return redirect('admin/');
         }
         return $next($request);
     }

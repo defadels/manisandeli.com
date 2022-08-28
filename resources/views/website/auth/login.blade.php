@@ -21,13 +21,23 @@
                     <h2>Selamat Datang!</h2>
                     <p>Silahkan login</p>
                 </div>
+
+                @if(session()->has('message'))
+                <div class="alert alert-success">
+                    <strong>{{session('message')}}</strong>
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                @endif
+
                 <div class="user-form-group">
                     <ul class="user-form-social">
                         <li><a href="/auth/facebook" class="facebook"><i class="fab fa-facebook-f"></i>login dengan facebook</a></li>
-                        <li><a href="{{route('auth.google')}}" class="google"><i class="fab fa-google"></i>login dengan google</a></li>
+                        <li><a href="/auth/google" class="google"><i class="fab fa-google"></i>login dengan google</a></li>
                     </ul>
                     <div class="user-form-divider">
-                        <p>or</p>
+                        <p>atau</p>
                     </div>
                     <form class="user-form" method="POST" action="{{ route('login') }}">
                         @csrf
@@ -49,7 +59,7 @@
                         </div>
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                            <label class="form-check-label" for="check">Remember Me</label>
+                            <label class="form-check-label" for="check">Ingat Saya</label>
                         </div>
                         <div class="form-button">
                             <button type="submit">login</button>

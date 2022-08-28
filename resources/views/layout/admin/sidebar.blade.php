@@ -90,6 +90,13 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="{{route('website.home')}}">
+                <div class="parent-icon icon-color-6"><i class="bx bx-home-smile"></i>
+                </div>
+                <div class="menu-title">Halaman Depan</div>
+            </a>
+        </li>
        
 
     </ul>

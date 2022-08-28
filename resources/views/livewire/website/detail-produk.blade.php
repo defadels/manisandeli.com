@@ -1,3 +1,6 @@
+@section('style')
+<link rel="stylesheet" href="{{asset('frontend/css/product-details.css')}}">
+@endsection
 <div>
      <!--=====================================
                     BANNER PART START

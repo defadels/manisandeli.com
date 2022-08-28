@@ -90,15 +90,15 @@
                     <div class="navbar-info">
                         <i class="icofont-ui-touch-phone"></i>
                         <p>
-                            <small>call us</small>
-                            <span>(+880) 183 8288 389</span>
+                            <small>hubungi kami</small>
+                            <span>{{$profil->nomor_hp ?? 'Nomor hp kosong'}}</span>
                         </p>
                     </div>
                     <div class="navbar-info">
                         <i class="icofont-ui-email"></i>
                         <p>
-                            <small>email us</small>
-                            <span>support@greeny.com</span>
+                            <small>email kami</small>
+                            <span>{{$profil->email ?? 'Email kosong'}}</span>
                         </p>
                     </div>
                 </div>

@@ -25,14 +25,14 @@ if(Auth::check()){
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- AUTHOR META -->
-        <meta name="author" content="mironcoder">
-        <meta name="email" content="mironcoder@gmail.com">
-        <meta name="profile" content="https://themeforest.net/user/mironcoder">
+        <meta name="author" content="Manisan Putra Deli">
+        <meta name="email" content="manisanputradeli@gmail.com">
+        <meta name="profile" content="https://manisanputradeli.com">
 
         <!-- TEMPLATE META -->
-        <meta name="name" content="Greeny">
-        <meta name="title" content="Greeny - eCommerce HTML Template">
-        <meta name="keywords" content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, webshop, farm, grocery, natural, online store">
+        <meta name="name" content="Manisan Putra Deli">
+        <meta name="title" content="Manisan Putra Deli">
+        <meta name="keywords" content="Toko online manisan di Indonesia">
         <!--=====================================
                     META-TAG PART END
         =======================================-->
@@ -65,12 +65,6 @@ if(Auth::check()){
 
         <!-- CUSTOM -->
         <link rel="stylesheet" href="{{asset('frontend/css/main.css')}}">
-        <link rel="stylesheet" href="{{asset('frontend/css/index.css')}}">
-        <link rel="stylesheet" href="{{asset('frontend/css/product-details.css')}}">
-        <link rel="stylesheet" href="{{asset('frontend/css/contact.css')}}">
-        <link rel="stylesheet" href="{{asset('frontend/css/about.css')}}">
-        <link rel="stylesheet" href="{{asset('frontend/css/checkout.css')}}">
-         
 
         @yield('style')
         <!--=====================================
@@ -263,7 +257,7 @@ if(Auth::check()){
                 </li>
             </ul>
             <div class="category-footer">
-                <p>All Rights Reserved by <a href="#">Mironcoder</a></p>
+                <p>All Rights Reserved by <a href="#">Manisan Putra Deli</a></p>
             </div>
         </aside>
         <!--=====================================
@@ -381,10 +375,10 @@ if(Auth::check()){
                 </li>
 
                 <li><a class="nav-link" href="offer.html"><i class="icofont-sale-discount"></i>offers</a></li>
-                <li><a class="nav-link" href="about.html"><i class="icofont-info-circle"></i>about us</a></li>
+                <li><a class="nav-link" href="about.html"><i class="icofont-info-circle"></i>tentang kami</a></li>
                 <li><a class="nav-link" href="faq.html"><i class="icofont-support-faq"></i>need help</a></li>
                 <li><a class="nav-link" href="contact.html"><i class="icofont-contacts"></i>contact us</a></li>
-                <li><a class="nav-link" href="privacy.html"><i class="icofont-warning"></i>privacy policy</a></li>
+                <li><a class="nav-link" href="{{route('website.kebijakan-privasi')}}"><i class="icofont-warning"></i>kebijakan privasi</a></li>
                 <li><a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();"><i class="icofont-logout"></i>logout</a></li>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

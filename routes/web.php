@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\Website\HomeController;
     use App\Http\Controllers\SocialiteController;
 
+    // Customization Auth
+    use App\Http\Controllers\Auth\AdminLoginController;
+
 
 // Laravel Livewire Module
 
@@ -29,6 +32,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Livewire\Website\HomeComponent;
     use App\Http\Livewire\Website\CheckoutComponent;
     use App\Http\Livewire\Website\KonfirmasiComponent;
+    use App\Http\Livewire\Website\KebijakanPrivasi;
 
 
     // Admin Livewire
@@ -55,7 +59,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //My own project pages
-Route::middleware('auth')->group(function(){
+
     Route::get('/', HomeComponent::class)->name('website.home');
     Route::get('/{id}/profile-user', ProfileUser::class)->name('website.profile.user');
     
@@ -63,6 +67,10 @@ Route::middleware('auth')->group(function(){
     
     Route::get('/produk', ProdukComponent::class)->name('website.produk');
     Route::get('/produk/{id}/detail-produk', DetailProduk::class)->name('website.detail.produk');
+
+    Route::get('/kebijakan-privasi', KebijakanPrivasi::class)->name('website.kebijakan-privasi');
+
+Route::middleware('auth')->group(function(){
 
     Route::get('/checkout', CheckoutComponent::class)->name('website.checkout');
     Route::get('/terima-kasih', KonfirmasiComponent::class)->name('website.konfirmasi');
@@ -74,8 +82,11 @@ Route::prefix('owner')->name('owner.')->middleware('auth', 'reject_except_owner'
     Route::get('/', [OwnerController::class, 'index'])->name('dashboard');
 });
 
+
+Route::get('/admin', [AdminLoginController::class, 'showLoginForm']);
+
 Route::middleware('auth', 'reject_except_admin')->group(function(){
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/admin/pelanggan', PelangganComponent::class)->name('admin.pelanggan');
     Route::get('/admin/pelanggan/alamat', PelangganComponent::class)->name('admin.pelanggan.alamat');
@@ -117,7 +128,7 @@ Route::middleware('auth', 'reject_except_admin')->group(function(){
 
 Auth::routes(['verify' => true]);
 
-Route::get('/auth/google', [SocialiteController::class, 'redirect'])->name('auth.google');
-Route::get('/auth/google/callback', [SocialiteController::class, 'callback']);
+Route::get('/auth/{provider}', [SocialiteController::class, 'redirect']);
+Route::get('/auth/{provider}/callback', [SocialiteController::class, 'callback']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

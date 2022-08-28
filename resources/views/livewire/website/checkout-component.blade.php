@@ -1,3 +1,7 @@
+@section('style')
+<link rel="stylesheet" href="{{asset('frontend/css/checkout.css')}}">
+@endsection
+
 <div>
     <!--=====================================
                     BANNER PART START

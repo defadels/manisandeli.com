@@ -1,3 +1,8 @@
+@section('style')
+<link rel="stylesheet" href="{{asset('frontend/css/contact.css')}}">
+<link rel="stylesheet" href="{{asset('frontend/css/about.css')}}">
+@endsection
+
 <div>
     <!--=====================================
                     BANNER PART START

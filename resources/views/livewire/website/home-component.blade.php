@@ -1,3 +1,6 @@
+@section('style')
+<link rel="stylesheet" href="{{asset('frontend/css/index.css')}}">
+@endsection
 <div>
     <!--=====================================
                     PRODUCT VIEW START

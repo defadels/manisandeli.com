@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Validator;
 
 class SocialiteController extends Controller
 {
-    public function redirect(){
-        return Socialite::driver('google')->redirect();
+    public function redirect($provider){
+        return Socialite::driver($provider)->redirect();
     }
 
-    public function callback() {
+    public function callback($provider) {
         
         try{
-            $sociaLiteUser = Socialite::driver('google')->user();
+            $sociaLiteUser = Socialite::driver($provider)->user();
 
             // dd($sociaLiteUser);
 
@@ -27,7 +27,7 @@ class SocialiteController extends Controller
         }
 
         $user = User::where([
-            'provider' => 'google',
+            'provider' => $provider,
             'provider_id' => $sociaLiteUser->id
         ])->first();
 
@@ -45,7 +45,7 @@ class SocialiteController extends Controller
             $user = User::create([
                 'nama' => $sociaLiteUser->name,
                 'email' => $sociaLiteUser->email,
-                'provider' => 'google',
+                'provider' => $provider,
                 'provider_id' => $sociaLiteUser->id,
                 'roles' => 'pelanggan',
                 'email_verified_at' => now(),

@@ -32,15 +32,13 @@ $profil = ProfilTokoModels::get()->first();
                     <p>Daftarkan akun pribadimu dan selamat berbelanja</p>
                 </div>
                 <div class="user-form-group">
-                    {{-- <ul class="user-form-social">
-                        <li><a href="#" class="facebook"><i class="fab fa-facebook-f"></i>login with facebook</a></li>
-                        <li><a href="#" class="twitter"><i class="fab fa-twitter"></i>login with twitter</a></li>
-                        <li><a href="#" class="google"><i class="fab fa-google"></i>login with google</a></li>
-                        <li><a href="#" class="instagram"><i class="fab fa-instagram"></i>login with instagram</a></li>
-                    </ul> --}}
-                    {{-- <div class="user-form-divider">
-                        <p>or</p>
-                    </div> --}}
+                    <ul class="user-form-social">
+                        <li><a href="/auth/facebook" class="facebook"><i class="fab fa-facebook-f"></i>daftar dengan facebook</a></li>
+                        <li><a href="/auth/google" class="google"><i class="fab fa-google"></i>daftar dengan google</a></li>
+                    </ul>
+                    <div class="user-form-divider">
+                        <p>atau</p>
+                    </div>
                     <form class="user-form" method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group">

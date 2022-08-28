@@ -74,6 +74,7 @@ class RegisterController extends Controller
             'nama' => $data['nama'],
             'email' => $data['email'],
             'roles' => 'pelanggan',
+            'email_verified_at' => now(),
             'password' => Hash::make($data['password']),
         ]);
     }

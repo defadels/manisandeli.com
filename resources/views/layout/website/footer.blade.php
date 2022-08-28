@@ -53,9 +53,10 @@
                 <h3 class="footer-title">link pintasan</h3>
                 <div class="footer-links">
                     <ul>
-                        <li><a href="#">Akun Saya</a></li>
-                        <li><a href="#">Produk</a></li>
-                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="{{route('website.profile.user', Auth::user()->id)}}">Akun Saya</a></li>
+                        <li><a href="{{route('website.produk')}}">Produk</a></li>
+                        <li><a href="{{route('website.tentang')}}">Tentang Kami</a></li>
+                        <li><a href="{{route('website.kebijakan-privasi')}}">Kebijakan Privasi</a></li>
                         {{-- <li><a href="#">Best Seller</a></li> --}}
                         {{-- <li><a href="#">New Arrivals</a></li> --}}
                     </ul>

@@ -23,10 +23,11 @@
                 </a>
             </li>
             <li class="nav-item dropdown dropdown-lg">
-                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="javascript:;" data-toggle="dropdown">	<span class="msg-count">6</span>
+                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="https://dashboard.tawk.to/login" title="Live Chat" target="_blank">	
+                    {{-- <span class="msg-count">6</span> --}}
                     <i class="bx bx-comment-detail vertical-align-middle"></i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right">
+                {{-- <div class="dropdown-menu dropdown-menu-right">
                     <a href="javascript:;">
                         <div class="msg-header">
                             <h6 class="msg-header-title">6 New</h6>
@@ -170,9 +171,9 @@
                     <a href="javascript:;">
                         <div class="text-center msg-footer">View All Messages</div>
                     </a>
-                </div>
+                </div> --}}
             </li>
-            <li class="nav-item dropdown dropdown-lg">
+            {{-- <li class="nav-item dropdown dropdown-lg">
                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="javascript:;" data-toggle="dropdown">	<i class="bx bx-bell vertical-align-middle"></i>
                     <span class="msg-count">8</span>
                 </a>
@@ -288,7 +289,7 @@
                         <div class="text-center msg-footer">View All Notifications</div>
                     </a>
                 </div>
-            </li>
+            </li> --}}
             <li class="nav-item dropdown dropdown-user-profile">
                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-toggle="dropdown">
                     <div class="media user-box align-items-center">
