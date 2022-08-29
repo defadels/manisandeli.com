@@ -4,10 +4,10 @@
             <div class="navbar-content">
                 <ul class="navbar-list">
                     <li class="navbar-item">
-                        <a class="navbar-link" href="{{route('website.home')}}">home</a>
+                        <a class="navbar-link" href="{{route('website.home')}}">beranda</a>
                     </li>
                     <li class="navbar-item">
-                        <a class="navbar-link" href="{{route('website.produk')}}">shop</a>
+                        <a class="navbar-link" href="{{route('website.produk')}}">produk</a>
                     </li>
                     <li class="navbar-item">
                         <a class="navbar-link" href="{{route('website.tentang')}}">tentang kami</a>

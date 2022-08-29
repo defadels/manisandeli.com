@@ -9,8 +9,8 @@
             <div class="container">
                 <h2>product simple</h2>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="shop-4column.html">shop-4column</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('website.home')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('website.produk')}}">produk</a></li>
                     <li class="breadcrumb-item active" aria-current="page">product-simple</li>
                 </ol>
             </div>

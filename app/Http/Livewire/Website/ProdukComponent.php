@@ -23,7 +23,7 @@ class ProdukComponent extends Component
     public function render()
     {   
 
-        $daftar_produk = Produk::paginate(12);
+        $daftar_produk = Produk::get();
 
         if(Auth::check())
         {

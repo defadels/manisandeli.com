@@ -42,6 +42,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Livewire\Admin\EditProfieUserUpdate;
     use App\Http\Livewire\Admin\UserIndexComponent;
     use App\Http\Livewire\Admin\PelangganComponent;
+    use App\Http\Livewire\Admin\DesainTokoComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -110,6 +111,9 @@ Route::middleware('auth', 'reject_except_admin')->group(function(){
         Route::delete('admin/pengaturan/metode-pembayaran/edit/{pembayaran}', [MetodePembayaranController::class, 'destroy'])->name('admin.pengaturan.pembayaran.destroy');
         Route::get('admin/pengaturan/metode-pembayaran/show/{pembayaran}', [MetodePembayaranController::class, 'show'])->name('admin.pengaturan.pembayaran.show');
 
+
+        // Desain Toko Routes
+        Route::get('admin/pengaturan/desain-toko', DesainTokoComponent::class)->name('admin.pengaturan.desain-toko.index');
 
         //SOsmed User Routes
         Route::get('admin/pengaturan/user', UserIndexComponent::class)->name('admin.pengaturan.user');

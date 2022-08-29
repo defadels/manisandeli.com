@@ -11,7 +11,7 @@
             <div class="container">
                 <h2>tentang kami</h2>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('website.home')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('website.home')}}">Beranda</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Tentang Kami</li>
                 </ol>
             </div>

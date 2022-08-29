@@ -9,10 +9,10 @@
         
         <section class="inner-section single-banner" style="background: url({{asset('frontend/images/single-banner.jpg')}}) no-repeat center;">
             <div class="container">
-                <h2>my profile</h2>
+                <h2>profil saya</h2>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">profile</li>
+                    <li class="breadcrumb-item"><a href="{{route('website.home')}}">beranda</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">profil saya</li>
                 </ol>
             </div>
             
@@ -407,7 +407,7 @@
                         @csrf
                         <input type="hidden" name="" wire:model="userId">
                         <div class="form-title">
-                            <h3>edit profile info</h3>
+                            <h3>edit informasi profil</h3>
                         </div>
                         <div class="form-group">
                        @if($statusUpdate == true)    
@@ -421,7 +421,7 @@
 
                         @endif
                         
-                            <label class="form-label">profile image</label>
+                            <label class="form-label">foto profil</label>
                             <input class="form-control @error('foto_profil') is-invalid @enderror" wire:model="foto_profil" type="file">
                              @error('foto_profil')
                                 <span class="text-danger">

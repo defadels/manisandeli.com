@@ -85,6 +85,8 @@
             <ul>
                 <li> <a href="{{route('admin.pengaturan.profil-toko')}}"><i class="bx bx-right-arrow-alt"></i>Profil Umum</a>
                 </li>
+                <li> <a href="{{route('admin.pengaturan.desain-toko.index')}}"><i class="bx bx-right-arrow-alt"></i>Desain Toko</a>
+                </li>
                 <li> <a href="{{route('admin.pengaturan.sosmed-toko')}}"><i class="bx bx-right-arrow-alt"></i>Sosmed Toko</a>
                 </li>
                 </li>

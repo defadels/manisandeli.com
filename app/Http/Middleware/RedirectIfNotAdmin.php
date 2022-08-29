@@ -19,7 +19,7 @@ class RedirectIfNotAdmin
     {
         if(!(Auth::user()->roles == 'admin'))
         {
-            return redirect('admin/');
+            return redirect('/admin');
         }
         return $next($request);
     }

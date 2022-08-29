@@ -9,8 +9,8 @@
         <div class="col-md-7 col-lg-4">
             <ul class="header-top-list">
                 {{-- <li><a href="offer.html">offers</a></li> --}}
-                <li><a href="faq.html">kebijakan privasi</a></li>
-                <li><a href="contact.html">hubungi kami</a></li>
+                <li><a href="{{route('website.kebijakan-privasi')}}">kebijakan privasi</a></li>
+                <li><a href="{{route('website.tentang')}}">hubungi kami</a></li>
             </ul>
         </div>
     </div>

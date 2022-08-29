@@ -6,8 +6,8 @@
             <div class="container">
                 <h2>Shop 5 Column</h2>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">shop-5column</li>
+                    <li class="breadcrumb-item"><a href="{{route('website.produk')}}">beranda</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">produk</li>
                 </ol>
             </div>
         </section>
@@ -110,9 +110,9 @@
                             
                             {{-- <p class="page-info">Showing 12 of 60 Results</p> --}}
                             
-                            <ul class="pagination">
+                            {{-- <ul class="pagination">
                                 {{ $daftar_produk->links() }}
-                                {{-- <li class="page-item">
+                                <li class="page-item">
                                     <a class="page-link" href="#">
                                         <i class="fas fa-long-arrow-alt-left"></i>
                                     </a>
@@ -126,10 +126,10 @@
                                     <a class="page-link" href="#">
                                         <i class="fas fa-long-arrow-alt-right"></i>
                                     </a>
-                                </li> --}}
+                                </li>
 
                                 
-                            </ul>
+                            </ul> --}}
                             
                         </div>
                     </div>

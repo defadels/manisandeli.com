@@ -21,7 +21,8 @@
                 @endif
                 
             </a>
-           
+            
+            
     
             @if(Route::has('login'))
     
@@ -50,9 +51,10 @@
                 </a>
                 @endif
                 
-                @endauth
-    
+            
+
                 @else
+
                 <a href="{{route('login')}}" class="header-widget" title="Login">
                     <span>Login</span>
                     
@@ -65,6 +67,9 @@
                 <a href="{{route('register')}}" class="header-widget" title="Register">
                     <span>Register</span>
                 </a>
+            @endauth
+               
+                
     
             @endif
     
