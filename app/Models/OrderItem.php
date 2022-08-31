@@ -12,10 +12,10 @@ class OrderItem extends Model
     protected $table = 'order_item';
 
     public function order() {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class, 'orderan_id');
     }
 
-    public function produk() {
-        return $this->hasMany(Produk::class);
+    public function item() {
+        return $this->hasMany(Produk::class, 'produk_id');
     }
 }

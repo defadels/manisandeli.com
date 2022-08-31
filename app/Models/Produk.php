@@ -15,7 +15,7 @@ class Produk extends Model
 
     protected $fillable = ['nama', 'harga_jual', 'harga_pokok', 'deskripsi', 'konten', 'foto_produk', 'kode_produk'];
 
-    public function order_item() {
-        return $this->belongsTo(OrderItem::class);
+    public function item() {
+        return $this->belongsTo(OrderItem::class, 'produk_id')->withDefault();
     }
 }

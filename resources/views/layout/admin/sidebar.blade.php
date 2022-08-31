@@ -12,17 +12,17 @@
     <!--navigation-->
     <ul class="metismenu" id="menu">
         <li>
-            <a href="javascript:;" class="has-arrow">
+            <a href="{{route('admin.dashboard')}}">
                 <div class="parent-icon icon-color-1"><i class="bx bx-home-alt"></i>
                 </div>
                 <div class="menu-title">Dashboard</div>
             </a>
-            <ul>
+            {{-- <ul>
                 <li> <a href="index.html"><i class="bx bx-right-arrow-alt"></i>Analytics</a>
                 </li>
                 <li> <a href="index2.html"><i class="bx bx-right-arrow-alt"></i>Sales</a>
                 </li>
-            </ul>
+            </ul> --}}
         </li>
         <li class="menu-label">Penjualan</li>
         <li>
@@ -32,13 +32,13 @@
                 <div class="menu-title">Pesanan</div>
             </a>
             <ul>
-                <li> <a href="icons-line-icons.html"><i class="bx bx-right-arrow-alt"></i>Masuk</a>
+                <li> <a href="{{route('admin.orderan.masuk')}}"><i class="bx bx-right-arrow-alt"></i>Masuk</a>
                 </li>
-                <li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>Proses</a>
+                <li> <a href="{{route('admin.orderan.proses')}}"><i class="bx bx-right-arrow-alt"></i>Proses</a>
                 </li>
-                <li> <a href="icons-feather-icons.html"><i class="bx bx-right-arrow-alt"></i>Dikirim</a>
+                <li> <a href="{{route('admin.orderan.dikirim')}}"><i class="bx bx-right-arrow-alt"></i>Dikirim</a>
                 </li>
-                <li> <a href="icons-feather-icons.html"><i class="bx bx-right-arrow-alt"></i>Batal</a>
+                <li> <a href="{{route('admin.orderan.batal')}}"><i class="bx bx-right-arrow-alt"></i>Batal</a>
                 </li>
             </ul>
         </li>

@@ -8,16 +8,18 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <h2 class="mb-0 text-white">649 <i class='bx bxs-up-arrow-alt font-14 text-white'></i> </h2>
+                            <h2 class="mb-0 text-white">{{ $orderan_sampai->count() }}
+                                {{-- <i class='bx bxs-up-arrow-alt font-14 text-white'></i>  --}}
+                            </h2>
                         </div>
                         <div class="ml-auto font-35 text-white"><i class="bx bx-cart-alt"></i>
                         </div>
                     </div>
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-white">Item Delivered</p>
+                            <p class="mb-0 text-white">Orderan Sampai Tujuan</p>
                         </div>
-                        <div class="ml-auto font-14 text-white">+23.4%</div>
+                        {{-- <div class="ml-auto font-14 text-white">+23.4%</div> --}}
                     </div>
                 </div>
             </div>
@@ -27,16 +29,18 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <h2 class="mb-0 text-white">114 <i class='bx bxs-down-arrow-alt font-14 text-white'></i> </h2>
+                            <h2 class="mb-0 text-white">{{$karyawan->count()}}
+                                {{-- <i class='bx bxs-down-arrow-alt font-14 text-white'></i>  --}}
+                            </h2>
                         </div>
                         <div class="ml-auto font-35 text-white"><i class="bx bx-support"></i>
                         </div>
                     </div>
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-white">Refund Requests</p>
+                            <p class="mb-0 text-white">Jumlah Karyawan</p>
                         </div>
-                        <div class="ml-auto font-14 text-white">+14.7%</div>
+                        {{-- <div class="ml-auto font-14 text-white">+14.7%</div> --}}
                     </div>
                 </div>
             </div>
@@ -46,16 +50,18 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <h2 class="mb-0 text-white">98 <i class='bx bxs-up-arrow-alt font-14 text-white'></i> </h2>
+                            <h2 class="mb-0 text-white">{{ $orderan_batal->count()}}
+                                {{-- <i class='bx bxs-up-arrow-alt font-14 text-white'></i>  --}}
+                            </h2>
                         </div>
                         <div class="ml-auto font-35 text-white"><i class="bx bx-tachometer"></i>
                         </div>
                     </div>
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-white">Orders Cancelled</p>
+                            <p class="mb-0 text-white">Order Dibatalkan</p>
                         </div>
-                        <div class="ml-auto font-14 text-white">-12.9%</div>
+                        {{-- <div class="ml-auto font-14 text-white">-12.9%</div> --}}
                     </div>
                 </div>
             </div>
@@ -65,23 +71,29 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <h2 class="mb-0 text-white">208 <i class='bx bxs-up-arrow-alt font-14 text-white'></i> </h2>
+                            <h2 class="mb-0 text-white">{{ $daftar_pelanggan->count() }}
+                                {{-- <i class='bx bxs-up-arrow-alt font-14 text-white'></i> --}}
+                            </h2>
                         </div>
                         <div class="ml-auto font-35 text-white"><i class="bx bx-user"></i>
                         </div>
                     </div>
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-white">New Users</p>
+                            <p class="mb-0 text-white">Jumlah Pelanggan</p>
                         </div>
-                        <div class="ml-auto font-14 text-white">+13.6%</div>
+                        {{-- <div class="ml-auto font-14 text-white">1</div> --}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <!--end row-->
-    <div class="card radius-15">
+
+    {{-- graphic  --}}
+
+    {{-- <div class="card radius-15">
         <div class="card-header border-bottom-0">
             <div class="d-lg-flex align-items-center">
                 <div>
@@ -101,8 +113,11 @@
         <div class="card-body">
             <div id="chart1"></div>
         </div>
-    </div>
-    <div class="card-deck">
+    </div> --}}
+
+    
+    {{-- revenue device  --}}
+    {{-- <div class="card-deck">
         <div class="card radius-15">
             <div class="card-body">
                 <div class="d-flex align-items-center">
@@ -202,8 +217,11 @@
                 <div id="chart3"></div>
             </div>
         </div>
-    </div>
-    <div class="row">
+    </div> --}}
+
+
+    {{-- top categories  --}}
+    {{-- <div class="row">
         <div class="col-12 col-lg-4 d-flex align-items-stretch">
             <div class="card radius-15 w-100">
                 <div class="card-body">
@@ -327,10 +345,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+    
     <!--end row-->
+    {{-- revenue by location  --}}
     <div class="row">
-        <div class="col-12 col-lg-8">
+        {{-- <div class="col-12 col-lg-8">
             <div class="card radius-15">
                 <div class="card-header border-bottom-0">
                     <div class="d-flex align-items-center">
@@ -399,66 +419,49 @@
                     </table>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-lg-4">
+        </div> --}}
+        <div class="col-12 col-lg-12">
             <div class="card radius-15">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
-                        <h5 class="mb-0">New Users</h5>
+                        <h5 class="mb-0">Pelanggan Baru</h5>
                         <p class="mb-0 ml-auto"><i class="bx bx-dots-horizontal-rounded float-right font-24"></i>
                         </p>
                     </div>
+                   @foreach($pelanggan_baru as $user) 
                     <div class="media align-items-center mt-3">
                         <img src="https://via.placeholder.com/110x110" width="45" height="45" class="rounded-circle" alt="">
                         <div class="media-body ml-3">
-                            <p class="font-weight-bold mb-0">Neil Wagner</p>
-                            <p class="text-secondary mb-0">United Kingdom</p>
-                        </div> <a href="javascript:;" class="btn btn-sm btn-light-primary radius-10">Add</a>
+                            <p class="font-weight-bold mb-0">{{$user->nama}}</p>
+                            <p class="text-secondary mb-0">{{$user->email}}</p>
+                        </div> <a href="javascript:;" class="btn btn-sm btn-light-primary radius-10">{{$user->nomor_hp}}</a>
                     </div>
                     <hr>
-                    <div class="media align-items-center">
-                        <img src="https://via.placeholder.com/110x110" width="45" height="45" class="rounded-circle" alt="">
-                        <div class="media-body ml-3">
-                            <p class="font-weight-bold mb-0">Sampoll Dinga</p>
-                            <p class="text-secondary mb-0">America</p>
-                        </div> <a href="javascript:;" class="btn btn-sm btn-light-primary radius-10">Add</a>
-                    </div>
-                    <hr>
-                    <div class="media align-items-center">
-                        <img src="https://via.placeholder.com/110x110" width="45" height="45" class="rounded-circle" alt="">
-                        <div class="media-body ml-3">
-                            <p class="font-weight-bold mb-0">Loona Ting</p>
-                            <p class="text-secondary mb-0">Canada</p>
-                        </div> <a href="javascript:;" class="btn btn-sm btn-light-primary radius-10">Add</a>
-                    </div>
-                    <hr>
-                    <div class="media align-items-center">
-                        <img src="https://via.placeholder.com/110x110" width="45" height="45" class="rounded-circle" alt="">
-                        <div class="media-body ml-3">
-                            <p class="font-weight-bold mb-0">Lee Jong</p>
-                            <p class="text-secondary mb-0">China</p>
-                        </div> <a href="javascript:;" class="btn btn-sm btn-light-primary radius-10">Add</a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-            <div class="card radius-15">
+
+            {{-- bounce rate  --}}
+
+            {{-- <div class="card radius-15">
                 <div class="card-body">
                     <h4 class="mb-0">87.52%</h4>
                     <p class="mb-0">Bounce Rate</p>
                 </div>
                 <div id="chart8"></div>
-            </div>
+            </div> --}}
         </div>
     </div>
+
     <!--end row-->
     <div class="card radius-15">
         <div class="card-header border-bottom-0">
             <div class="d-flex align-items-center">
                 <div>
-                    <h5 class="mb-0">Recent Orders</h5>
+                    <h5 class="mb-0">Update Orderan</h5>
                 </div>
                 <div class="ml-auto">
-                    <button type="button" class="btn btn-white radius-15">View More</button>
+                    <button type="button" class="btn btn-white radius-15">Lihat Semua</button>
                 </div>
             </div>
         </div>
@@ -467,69 +470,45 @@
                 <table class="table mb-0">
                     <thead>
                         <tr>
-                            <th>Photo</th>
-                            <th>Product Name</th>
-                            <th>Customer</th>
-                            <th>Product id</th>
-                            <th>Price</th>
+                            <th>Foto</th>
+                            <th>Nama Produk</th>
+                            <th>Konsumen</th>
+                            <th>Kode Produk</th>
+                            <th>Harga</th>
                             <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    @if(count($daftar_orderan) > 0 )  
+                    <tbody>    
+                        @foreach($daftar_orderan as $orderan)
                         <tr>
                             <td>
                                 <div class="product-img bg-transparent border">
                                     <img src="{{asset('backend/assets/images/icons/smartphone.png')}}" width="35" alt="">
                                 </div>
                             </td>
-                            <td>Honor Mobile 7x</td>
-                            <td>Mitchell Daniel</td>
-                            <td>#835478</td>
-                            <td>$54.68</td>
-                            <td><a href="javascript:;" class="btn btn-sm btn-light-success btn-block radius-30">Delivered</a>
+                            <td>{{$orderan->invoice}}</td>
+                            <td>{{$orderan->nama_lengkap}}</td>
+                            <td>{{$orderan->total}}</td>
+                            {{-- <td>{{$orderan->harga}}</td> --}}
+                            <td><a href="javascript:;" class="btn btn-sm btn-light-success btn-block radius-30">{{$orderan->status}}</a>
                             </td>
                         </tr>
+                        @endforeach
+                        
+                        @else
                         <tr>
-                            <td>
-                                <div class="product-img bg-transparent border">
-                                    <img src="{{asset('backend/assets/images/icons/watch.png')}}" width="35" alt="">
-                                </div>
-                            </td>
-                            <td>Hand Watch</td>
-                            <td>Milona Burke</td>
-                            <td>#987546</td>
-                            <td>$43.78</td>
-                            <td><a href="javascript:;" class="btn btn-sm btn-light-warning btn-block radius-30">Pending</a>
+
+                            <td colspan="6">
+                                
+                                <h4 class="text-center">Orderan Kosong</h4>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <div class="product-img bg-transparent border">
-                                    <img src="{{asset('backend/assets/images/icons/laptop.png')}}" width="35" alt="">
-                                </div>
-                            </td>
-                            <td>Mini Laptop</td>
-                            <td>Craig Clayton</td>
-                            <td>#325687</td>
-                            <td>$62.21</td>
-                            <td><a href="javascript:;" class="btn btn-sm btn-light-success btn-block radius-30">Delivered</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="product-img bg-transparent border">
-                                    <img src="{{asset('backend/assets/images/icons/shirt.png')}}" width="35" alt="">
-                                </div>
-                            </td>
-                            <td>Slim-T-Shirt</td>
-                            <td>Clark Andola</td>
-                            <td>#658972</td>
-                            <td>$75.68</td>
-                            <td><a href="javascript:;" class="btn btn-sm btn-light-danger btn-block radius-30">Cancelled</a>
-                            </td>
-                        </tr>
+                @endif
                     </tbody>
+                    
                 </table>
+                
             </div>
         </div>
     </div>

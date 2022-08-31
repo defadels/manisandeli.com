@@ -16,14 +16,15 @@
                                     <img src="{{asset('backend/assets/images/logo-icon.png')}}" width="80" alt="">
                                     <h3 class="mt-4 font-weight-bold">Selamat Datang Kembali</h3>
                                 </div>
-                                <div class="input-group shadow-sm rounded mt-5">
+                                
+                                {{-- <div class="input-group shadow-sm rounded mt-5">
                                     <div class="input-group-prepend">	<span class="input-group-text bg-transparent border-0 cursor-pointer"><img src="{{asset('backend/assets/images/icons/search.svg')}}" alt="" width="16"></span>
                                     </div>
                                     <input type="button" class="form-control  border-0" value="Log in dengan google">
                                 </div>
                                 <div class="login-separater text-center"> <span>ATAU LOGIN DENGAN EMAIL</span>
                                     <hr/>
-                                </div>
+                                </div> --}}
 
                             <form action="{{route('login')}}" method="post">
                                 @csrf

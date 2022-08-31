@@ -43,6 +43,10 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Livewire\Admin\UserIndexComponent;
     use App\Http\Livewire\Admin\PelangganComponent;
     use App\Http\Livewire\Admin\DesainTokoComponent;
+    use App\Http\Livewire\Admin\Penjualan\OrderanMasuk;
+    use App\Http\Livewire\Admin\Penjualan\OrderanProses;
+    use App\Http\Livewire\Admin\Penjualan\OrderanDikirim;
+    use App\Http\Livewire\Admin\Penjualan\OrderanBatal;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -124,6 +128,12 @@ Route::middleware('auth', 'reject_except_admin')->group(function(){
         //Profil Toko Routes
         Route::get('admin/pengaturan/profil-toko', [ProfilTokoController::class, 'index'])->name('admin.pengaturan.profil-toko');
         Route::get('admin/pengaturan/profil-toko/{id}/edit', ProfilTokoUpdate::class)->name('admin.pengaturan.profil-toko.edit');
+
+        Route::get('admin/penjualan/masuk', OrderanMasuk::class)->name('admin.orderan.masuk');
+        Route::get('admin/penjualan/proses', OrderanProses::class)->name('admin.orderan.proses');
+        Route::get('admin/penjualan/dikirim', OrderanDikirim::class)->name('admin.orderan.dikirim');
+        Route::get('admin/penjualan/batal', OrderanBatal::class)->name('admin.orderan.batal');
+
 
         //Profil User Routes
         Route::get('/admin/{id}/profile-user', EditProfileUser::class)->name('admin.profile-user');

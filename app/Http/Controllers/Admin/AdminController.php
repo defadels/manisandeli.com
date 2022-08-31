@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Produk;
 
 class AdminController extends Controller
 {
@@ -15,7 +19,20 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard', ['name' => 'Fadhil']);
+
+        $daftar_pelanggan = User::where('roles', 'pelanggan')->get();
+
+        $orderan_sampai = Order::where('status', 'selesai')->get();
+
+        $orderan_batal = Order::where('status', 'batal')->get();
+
+        $karyawan = User::where('roles', 'pelanggan')->get();
+
+        $daftar_orderan = Order::orderBy('created_at', 'DESC')->get();
+
+        $pelanggan_baru = User::where('roles','pelanggan')->orderBy('created_at', 'DESC')->get();
+
+        return view('admin.dashboard', compact('daftar_pelanggan', 'orderan_sampai', 'orderan_batal', 'karyawan', 'daftar_orderan', 'pelanggan_baru'));
     }
 
     /**

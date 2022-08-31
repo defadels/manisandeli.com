@@ -65,7 +65,7 @@ class CreateOrderItemsTable extends Migration
         Schema::create('pengiriman', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('orderan_id')->constrained('order')->onDelete('cascade');
-            $table->foreignId('alamat_id')->constrained('alamat')->onDelete('cascade')->nullable();
+            $table->foreignId('alamat_id')->nullable()->constrained('alamat')->onDelete('set null');
             $table->string('invoice');
             $table->string('nama_lengkap');
             $table->string('label');

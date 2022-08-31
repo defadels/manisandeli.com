@@ -11,6 +11,8 @@ class Pengiriman extends Model
 
     protected $table = 'pengiriman';
 
+    protected $guarded = [];
+
     public function order() {
         return $this->belongsTo(Order::class);
     }

@@ -14,7 +14,7 @@ class ProdukComponent extends Component
         Cart::instance('cart')->add($produk_id,$nama_produk,1,$harga_jual)->associate('App\Models\Produk');
         session()->flash('message', 'Produk masuk ke keranjang');
 
-        Cart::instance('cart')->store(Auth::user()->email);
+        // Cart::instance('cart')->store(Auth::user()->email);
 
         return redirect()->route('website.produk');
     }

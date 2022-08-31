@@ -1,15 +1,17 @@
-<div>
-<header class="header-part">
-    <aside wire:ignore.self class="cart-sidebar">
-        <div class="cart-header">
+    
+<aside wire:ignore.self class="cart-sidebar">
+        <div  class="cart-header">
             <div class="cart-total">
                 <i class="fas fa-shopping-basket"></i> 
                 <span>total item ({{Cart::count()}})</span>
             </div>
             <button class="cart-close"><i class="icofont-close"></i></button>
         </div>
+        
         <ul class="cart-list">
+            
             @if(Cart::count() > 0)
+            
             @foreach(Cart::content() as $item)
             <li class="cart-item">
                 <div class="cart-media">
@@ -24,7 +26,7 @@
                     <div class="cart-action-group">
                         <div class="product-action">
                             <button class="action-minus" wire:click.prevent="kurangJumlah('{{$item->rowId}}')" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                            <input class="action-input" title="Quantity Number" type="number" pattern="[0-9]*" name="qty" value="{{$item->qty}}">
+                            <input class="action-input" title="Quantity Number" type="number" pattern="[0-9]*" value="{{$item->qty}}">
                             <button class="action-plus" wire:click.prevent="tambahJumlah('{{$item->rowId}}')" max="120" title="Quantity Plus"><i class="icofont-plus"></i></button>
                         </div>
                         <h6>Rp.{{number_format($item->subtotal)}}</h6>
@@ -34,11 +36,12 @@
             @endforeach
             
         </ul>
+        
         <div class="cart-footer">
             {{-- <button class="coupon-btn">Do you have a coupon code?</button>
             <form class="coupon-form">
-                <input type="text" placeholder="Enter your coupon code">
-                <button type="submit"><span>apply</span></button>
+                <input type="text" placeholder="Enter your coupon code" disabled>
+                <button type="button"><span>apply</span></button>
             </form> --}}
             <a class="cart-checkout-btn" wire:click.prevent="checkout()">
                 <span class="checkout-label">Proses Pembayaran</span>
@@ -46,6 +49,7 @@
             </a>
 
         </div>
+        
         @else
         <div class="cart-footer">
             <h5 class="text-center">Keranjang Kosong</h5>
@@ -55,6 +59,6 @@
         </div>
             
          @endif
-    </aside>
-</header>
-</div>
+
+</aside>
+

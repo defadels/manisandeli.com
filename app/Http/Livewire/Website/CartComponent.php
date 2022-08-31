@@ -21,12 +21,12 @@ class CartComponent extends Component
     {   
         if(Auth::check())
         {
-            // Cart::instance('cart')->restore(Auth::user()->email);
             Cart::instance('cart')->store(Auth::user()->email);
+            Cart::instance('cart')->restore(Auth::user()->email);
         }
         
         $this->setAmountForCheckout();
-        return view('livewire.website.cart-component');
+        return view('livewire.website.cart-component')->layout('layout.website_layout');
     }
 
     public function checkout() {

@@ -48,7 +48,7 @@ class User extends Authenticatable
     ];
 
     public function daftar_alamat(){
-        $this->hasMany('App\Models\AlamatPelanggan', 'pelanggan_id', 'id');
+       return $this->hasMany('App\Models\AlamatPelanggan', 'pelanggan_id', 'id');
     }
 
     public function daftar_pembayaran(){

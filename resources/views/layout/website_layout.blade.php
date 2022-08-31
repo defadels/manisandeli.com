@@ -73,8 +73,8 @@ if(Auth::check()){
         @livewireStyles
     </head>
     <body>
-        {{-- <div class="backdrop"></div>
-        <a class="backtop fas fa-arrow-up" href="#"></a> --}}
+        <div class="backdrop"></div>
+        {{-- <a class="backtop fas fa-arrow-up" href="#"></a> --}}
         
         <!--=====================================
                     HEADER TOP PART START
@@ -114,7 +114,7 @@ if(Auth::check()){
         <!--=====================================
                 CATEGORY SIDEBAR PART START
         =======================================-->
-        <aside class="category-sidebar">
+        {{-- <aside class="category-sidebar">
             <div class="category-header">
                 <h4 class="category-title">
                     <i class="fas fa-align-left"></i>
@@ -259,7 +259,7 @@ if(Auth::check()){
             <div class="category-footer">
                 <p>All Rights Reserved by <a href="#">Manisan Putra Deli</a></p>
             </div>
-        </aside>
+        </aside> --}}
         <!--=====================================
                 CATEGORY SIDEBAR PART END
         =======================================-->
@@ -268,7 +268,9 @@ if(Auth::check()){
         <!--=====================================
                   CART SIDEBAR PART START
         =======================================-->
-        <livewire:website.cart-component />
+        
+            <livewire:website.cart-component />
+        
         <!--=====================================
                     CART SIDEBAR PART END
         =======================================-->
@@ -277,16 +279,11 @@ if(Auth::check()){
         <!--=====================================
                   NAV SIDEBAR PART START
         =======================================-->
-        <aside class="nav-sidebar">
-        
-            
-                        <div class="nav-header">
-                            <a href="#"><img src="{{asset('frontend/images/logo.png')}}" alt="logo"></a>
-                            <button class="nav-close"><i class="icofont-close"></i></button>
-                        </div>
-
-                
-            
+        <aside class="nav-sidebar">   
+            <div class="nav-header">
+                <a href="#"><img src="{{asset('frontend/images/logo.png')}}" alt="logo"></a>
+                <button class="nav-close"><i class="icofont-close"></i></button>
+            </div>
             <div class="nav-content">
                 
 
@@ -298,148 +295,139 @@ if(Auth::check()){
 
                 @if(Auth::user()->roles == 'admin')
 
-                <div class="nav-profile">
-                        <a class="nav-user" href="#"><img src="{{asset('frontend/images/user.png')}}" alt="user"></a>
-                        <h4 class="nav-name"><a href="profile.html">{{Auth::user()->nama}}</a></h4>
-                </div> 
-                
+                    <div class="nav-profile">
+                            <a class="nav-user" href="#"><img src="{{asset('frontend/images/user.png')}}" alt="user"></a>
+                            <h4 class="nav-name"><a href="profile.html">{{Auth::user()->nama}}</a></h4>
+                    </div> 
+                    
 
-                <ul class="nav-list">
-                    <li>
-                        <a class="nav-link" href="#"><i class="icofont-home"></i>Home</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="#"><i class="icofont-food-cart"></i>shop</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="#"><i class="icofont-page"></i>product</a>
-                    </li>
-                    <li>
-                        <a class="nav-link dropdown-link" href="#"><i class="icofont-bag-alt"></i>my account</a>
-                        <ul class="dropdown-list">
-                            <li><a href="profile.html">profile</a></li>
-                            <li><a href="wallet.html">wallet</a></li>
-                            <li><a href="wishlist.html">wishlist</a></li>
-                            <li><a href="compare.html">compare</a></li>
-                            <li><a href="checkout.html">checkout</a></li>
-                            <li><a href="orderlist.html">order history</a></li>
-                            <li><a href="invoice.html">order invoice</a></li>
-                            <li><a href="email-template.html">email template</a></li>
-                        </ul>
-                    </li>
+                    <ul class="nav-list">
+                        <li>
+                            <a class="nav-link" href="{{route('website.home')}}"><i class="icofont-home"></i>Beranda</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{route('website.produk')}}"><i class="icofont-food-cart"></i>Produk</a>
+                        </li>
+                    
+                        <li>
+                            <a class="nav-link dropdown-link" href="#"><i class="icofont-bag-alt"></i>akun saya</a>
+                            <ul class="dropdown-list">
+                                <li><a href="{{route('website.profile.user', Auth::user()->id)}}">profil</a></li>
+                                {{-- <li><a href="wallet.html">wallet</a></li>
+                                <li><a href="wishlist.html">wishlist</a></li>
+                                <li><a href="compare.html">compare</a></li> --}}
+                                <li><a href="{{route('admin.dashboard')}}">halaman dasbor</a></li>
+                                <li><a href="{{route('website.checkout')}}">checkout</a></li>
+                                <li><a href="orderlist.html">riwayat order</a></li>
+                                <li><a href="invoice.html">order invoice</a></li>
+                                {{-- <li><a href="email-template.html">email template</a></li> --}}
+                            </ul>
+                        </li>
 
-                    <li><a class="nav-link" href="offer.html"><i class="icofont-sale-discount"></i>offers</a></li>
-                    <li><a class="nav-link" href="about.html"><i class="icofont-info-circle"></i>about us</a></li>
-                    <li><a class="nav-link" href="faq.html"><i class="icofont-support-faq"></i>need help</a></li>
-                    <li><a class="nav-link" href="contact.html"><i class="icofont-contacts"></i>contact us</a></li>
-                    <li><a class="nav-link" href="privacy.html"><i class="icofont-warning"></i>privacy policy</a></li>
-                    <li><a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();"><i class="icofont-logout"></i>logout</a></li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </ul>
+                        {{-- <li><a class="nav-link" href="offer.html"><i class="icofont-sale-discount"></i>offers</a></li> --}}
+                        <li><a class="nav-link" href="{{route('website.tentang')}}"><i class="icofont-info-circle"></i>tentang kami</a></li>
+                        {{-- <li><a class="nav-link" href="faq.html"><i class="icofont-support-faq"></i>need help</a></li> --}}
+                        {{-- <li><a class="nav-link" href="contact.html"><i class="icofont-contacts"></i>contact us</a></li> --}}
+                        <li><a class="nav-link" href="{{route('website.kebijakan-privasi')}}"><i class="icofont-warning"></i>kebijakan privasi</a></li>
+                        <li><a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i class="icofont-logout"></i>logout</a></li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </ul>
 
                 @endif
 
                 @if(Auth::user()->roles == 'owner')
 
-                <div class="nav-profile">
-                    <a class="nav-user" href="#"><img src="{{asset('frontend/images/user.png')}}" alt="user"></a>
-                    <h4 class="nav-name"><a href="profile.html">{{Auth::user()->nama}}</a></h4>
-            </div> 
-            
-
-            <ul class="nav-list">
-                <li>
-                    <a class="nav-link" href="#"><i class="icofont-home"></i>Home</a>
-                </li>
-                <li>
-                    <a class="nav-link" href="#"><i class="icofont-food-cart"></i>shop</a>
-                </li>
-                <li>
-                    <a class="nav-link" href="#"><i class="icofont-page"></i>product</a>
-                </li>
-                <li>
-                    <a class="nav-link dropdown-link" href="#"><i class="icofont-bag-alt"></i>my account</a>
-                    <ul class="dropdown-list">
-                        <li><a href="profile.html">profile</a></li>
-                        <li><a href="wallet.html">wallet</a></li>
-                        <li><a href="wishlist.html">wishlist</a></li>
-                        <li><a href="compare.html">compare</a></li>
-                        <li><a href="checkout.html">checkout</a></li>
-                        <li><a href="orderlist.html">order history</a></li>
-                        <li><a href="invoice.html">order invoice</a></li>
-                        <li><a href="email-template.html">email template</a></li>
-                    </ul>
-                </li>
-
-                <li><a class="nav-link" href="offer.html"><i class="icofont-sale-discount"></i>offers</a></li>
-                <li><a class="nav-link" href="about.html"><i class="icofont-info-circle"></i>tentang kami</a></li>
-                <li><a class="nav-link" href="faq.html"><i class="icofont-support-faq"></i>need help</a></li>
-                <li><a class="nav-link" href="contact.html"><i class="icofont-contacts"></i>contact us</a></li>
-                <li><a class="nav-link" href="{{route('website.kebijakan-privasi')}}"><i class="icofont-warning"></i>kebijakan privasi</a></li>
-                <li><a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();"><i class="icofont-logout"></i>logout</a></li>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
+                    <div class="nav-profile">
+                        <a class="nav-user" href="#"><img src="{{asset('frontend/images/user.png')}}" alt="user"></a>
+                        <h4 class="nav-name"><a href="profile.html">{{Auth::user()->nama}}</a></h4>
+                    </div> 
                 
-            </ul>
+
+                    <ul class="nav-list">
+                        <li>
+                            <a class="nav-link" href="{{route('website.home')}}"><i class="icofont-home"></i>Beranda</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{route('website.produk')}}"><i class="icofont-food-cart"></i>Produk</a>
+                        </li>
+                    
+                        <li>
+                            <a class="nav-link dropdown-link" href="#"><i class="icofont-bag-alt"></i>akun saya</a>
+                            <ul class="dropdown-list">
+                                <li><a href="{{route('website.profile.user', Auth::user()->id)}}">profil</a></li>
+                                {{-- <li><a href="wallet.html">wallet</a></li>
+                                <li><a href="wishlist.html">wishlist</a></li>
+                                <li><a href="compare.html">compare</a></li> --}}
+                                <li><a href="{{route('admin.dashboard')}}">halaman dasbor</a></li>
+                                <li><a href="{{route('website.checkout')}}">checkout</a></li>
+                                <li><a href="orderlist.html">riwayat order</a></li>
+                                <li><a href="invoice.html">order invoice</a></li>
+                                {{-- <li><a href="email-template.html">email template</a></li> --}}
+                            </ul>
+                        </li>
+
+                        {{-- <li><a class="nav-link" href="offer.html"><i class="icofont-sale-discount"></i>offers</a></li> --}}
+                        <li><a class="nav-link" href="{{route('website.tentang')}}"><i class="icofont-info-circle"></i>tentang kami</a></li>
+                        {{-- <li><a class="nav-link" href="faq.html"><i class="icofont-support-faq"></i>need help</a></li> --}}
+                        {{-- <li><a class="nav-link" href="contact.html"><i class="icofont-contacts"></i>contact us</a></li> --}}
+                        <li><a class="nav-link" href="{{route('website.kebijakan-privasi')}}"><i class="icofont-warning"></i>kebijakan privasi</a></li>
+                        <li><a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i class="icofont-logout"></i>logout</a></li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </ul>
 
                 @endif
 
                 @if(Auth::user()->roles == 'pelanggan')
 
-                <div class="nav-profile">
-                    <a class="nav-user" href="#"><img src="{{asset('frontend/images/user.png')}}" alt="user"></a>
-                    <h4 class="nav-name"><a href="profile.html">{{Auth::user()->nama}}</a></h4>
-            </div> 
-            
+                    <div class="nav-profile">
+                        <a class="nav-user" href="#"><img src="{{asset('frontend/images/user.png')}}" alt="user"></a>
+                        <h4 class="nav-name"><a href="profile.html">{{Auth::user()->nama}}</a></h4>
+                    </div> 
+                
 
-            <ul class="nav-list">
-                <li>
-                    <a class="nav-link" href="#"><i class="icofont-home"></i>Home</a>
-                </li>
-                <li>
-                    <a class="nav-link" href="#"><i class="icofont-food-cart"></i>shop</a>
-                </li>
-                <li>
-                    <a class="nav-link" href="#"><i class="icofont-page"></i>product</a>
-                </li>
-                <li>
-                    <a class="nav-link dropdown-link" href="#"><i class="icofont-bag-alt"></i>my account</a>
-                    <ul class="dropdown-list">
-                        <li><a href="profile.html">profile</a></li>
-                        <li><a href="wallet.html">wallet</a></li>
-                        <li><a href="wishlist.html">wishlist</a></li>
-                        <li><a href="compare.html">compare</a></li>
-                        <li><a href="checkout.html">checkout</a></li>
-                        <li><a href="orderlist.html">order history</a></li>
-                        <li><a href="invoice.html">order invoice</a></li>
-                        <li><a href="email-template.html">email template</a></li>
+                    <ul class="nav-list">
+                        <li>
+                            <a class="nav-link" href="{{route('website.home')}}"><i class="icofont-home"></i>Beranda</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{route('website.produk')}}"><i class="icofont-food-cart"></i>Produk</a>
+                        </li>
+                    
+                        <li>
+                            <a class="nav-link dropdown-link" href="#"><i class="icofont-bag-alt"></i>akun saya</a>
+                            <ul class="dropdown-list">
+                                <li><a href="{{route('website.profile.user', Auth::user()->id)}}">profil</a></li>
+                                {{-- <li><a href="wallet.html">wallet</a></li>
+                                <li><a href="wishlist.html">wishlist</a></li>
+                                <li><a href="compare.html">compare</a></li> --}}
+                                <li><a href="{{route('website.checkout')}}">checkout</a></li>
+                                <li><a href="orderlist.html">riwayat order</a></li>
+                                <li><a href="invoice.html">order invoice</a></li>
+                                {{-- <li><a href="email-template.html">email template</a></li> --}}
+                            </ul>
+                        </li>
+
+                        {{-- <li><a class="nav-link" href="offer.html"><i class="icofont-sale-discount"></i>offers</a></li> --}}
+                        <li><a class="nav-link" href="{{route('website.tentang')}}"><i class="icofont-info-circle"></i>tentang kami</a></li>
+                        {{-- <li><a class="nav-link" href="faq.html"><i class="icofont-support-faq"></i>need help</a></li> --}}
+                        {{-- <li><a class="nav-link" href="contact.html"><i class="icofont-contacts"></i>contact us</a></li> --}}
+                        <li><a class="nav-link" href="{{route('website.kebijakan-privasi')}}"><i class="icofont-warning"></i>kebijakan privasi</a></li>
+                        <li><a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i class="icofont-logout"></i>logout</a></li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </ul>
-                </li>
-
-                <li><a class="nav-link" href="offer.html"><i class="icofont-sale-discount"></i>offers</a></li>
-                <li><a class="nav-link" href="about.html"><i class="icofont-info-circle"></i>about us</a></li>
-                <li><a class="nav-link" href="faq.html"><i class="icofont-support-faq"></i>need help</a></li>
-                <li><a class="nav-link" href="contact.html"><i class="icofont-contacts"></i>contact us</a></li>
-                <li><a class="nav-link" href="privacy.html"><i class="icofont-warning"></i>privacy policy</a></li>
-                <li><a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();"><i class="icofont-logout"></i>logout</a></li>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </ul>
 
                 @endif
-            
-            @endauth
 
-            
-
-            @endif
+                @else
 
             <div class="nav-btn">
                 <a href="{{route('login')}}" class="btn btn-inline">
@@ -447,25 +435,34 @@ if(Auth::check()){
                     <span>LOGIN</span>
                 </a>
             </div>
+            
+            @endauth
+
+            
+            
+
+            @endif
+
+            
                 
                 <div class="nav-info-group">
                     <div class="nav-info">
                         <i class="icofont-ui-touch-phone"></i>
                         <p>
-                            <small>call us</small>
-                            <span>(+880) 183 8288 389</span>
+                            <small>hubungi kami</small>
+                            <span>{{$profil->nomor_hp ?? 'Nomor HP Kosong'}}</span>
                         </p>
                     </div>
                     <div class="nav-info">
                         <i class="icofont-ui-email"></i>
                         <p>
-                            <small>email us</small>
-                            <span>support@greeny.com</span>
+                            <small>email kami</small>
+                            <span>{{$profil->email ?? 'Email Kosong'}}</span>
                         </p>
                     </div>
                 </div>
                 <div class="nav-footer">
-                    <p>All Rights Reserved by <a href="#">Mironcoder</a></p>
+                    <p>All Rights Reserved by <a href="{{route('website.home')}}">Manisan Putra Deli</a></p>
                 </div>
             </div>
         </aside>
@@ -478,28 +475,28 @@ if(Auth::check()){
                     MOBILE-MENU PART START
         =======================================-->
         <div class="mobile-menu">
-            <a href="index.html" title="Home Page">
+            <a href="{{route('website.home')}}" title="Home Page">
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
-            <button class="cate-btn" title="Category List">
+            {{-- <button class="cate-btn" title="Category List">
                 <i class="fas fa-list"></i>
                 <span>category</span>
-            </button>
+            </button> --}}
             <button class="cart-btn" title="Cartlist">
                 <i class="fas fa-shopping-basket"></i>
-                <span>cartlist</span>
-                <sup>9+</sup>
+                <span>keranjang</span>
+                <sup>{{Cart::content()->count()}}</sup>
             </button>
             <a href="wishlist.html" title="Wishlist">
                 <i class="fas fa-heart"></i>
                 <span>wishlist</span>
-                <sup>0</sup>
+                {{-- <sup>0</sup> --}}
             </a>
             <a href="compare.html" title="Compare List">
                 <i class="fas fa-random"></i>
-                <span>compare</span>
-                <sup>0</sup>
+                <span>perbandingan</span>
+                {{-- <sup>0</sup> --}}
             </a>
         </div>
         <!--=====================================
@@ -543,17 +540,19 @@ if(Auth::check()){
                     JS LINK PART END
         =======================================-->
         <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/630a4c0e37898912e9658972/1gbg3i6i9';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
+
+        <script type="text/javascript">
+            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/630a4c0e37898912e9658972/1gbg3i6i9';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+            })();
+        </script>
+
     <!--End of Tawk.to Script-->
         @yield('script')
         @livewireScripts

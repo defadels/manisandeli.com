@@ -11,7 +11,9 @@ class Transaksi extends Model
 
     protected $table = 'transaksi';
 
+    protected $primaryKey = 'transaksi_id';
+
     public function order() {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class. 'transaksi_id');
     }
 }
