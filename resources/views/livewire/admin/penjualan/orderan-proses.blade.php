@@ -7,7 +7,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Proses</li>
+                    <li class="breadcrumb-item active" aria-current="page">Masuk</li>
                 </ol>
             </nav>
         </div>
@@ -22,7 +22,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-8 align-self-center">
-                    <h4>Tabel Orderan Proses</h4>
+                    <h4>Tabel Orderan Diproses</h4>
                 </div>
                 <div class="col-4">
                     <form method="get" action="{{ url('admin/pengaturan/pembayaran') }}">
@@ -71,8 +71,9 @@
                                 {{$orderan->status}}</button>    
                             </td>
                             <td>
-                                <a href="{{ route('admin.pengaturan.pembayaran.edit', $orderan->id) }}" class="btn btn-sm btn-primary" title="Edit"><i class="lni lni-pencil-alt"></i></a>
-                                <a href="{{ route('admin.pengaturan.pembayaran.show', $orderan->id) }}" class="btn btn-sm btn-secondary" title="Lihat"><i class="lni lni-eye"></i></a>
+                                <a href="{{ route('admin.orderan.masuk.detail', ['orderan_id' => $orderan->id]) }}" class="btn btn-sm btn-primary" title="Lihat"><i class="lni lni-eye"></i></a>
+                                <button type="button" wire:click.prevent="getOrder({{$orderan->id}})" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-danger" title="Batal"><i class="lni lni-ban"></i></button>
+
                             </td>
                         </tr>
                         @endforeach
@@ -80,10 +81,46 @@
                    
                 </table>
                 @else
-                    <h5 class="text-center">Orderan Proses Kosong</h5>
+                    <h5 class="text-center">Orderan Diproses Kosong</h5>
                 @endif
             </div>
         </div>
     </div>
 
+    @if($statusUpdate == true)
+    <div  wire:ignore.self class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Batalkan Pesanan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">	<span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">Anda yakin untuk membatalkan pesanan ini?</div>
+                
+                <form wire:submit.prevent="batalkanOrderan">
+                
+                    <input type="hidden" wire:model="orderan_id">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-primary">Ya, batalkan!</button>
+                    </div>
+                </form>
+               
+    
+            </div>
+        </div>
+    </div>
+    @endif
+
 </div>
+
+
+@section('script')
+    <script>
+        window.addEventListener('close-modal', event =>{
+            $('#exampleModal3').modal('hide');
+        });
+    </script>
+@endsection
+

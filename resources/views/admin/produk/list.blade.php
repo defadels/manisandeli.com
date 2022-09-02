@@ -66,8 +66,8 @@
                         <tr>
                             <th scope="row">{{ $no++ }}</th>
                             <td>{{$produk->kode_produk}}</td>
-                            <td>{{$produk->nama}}</td>
-                            <td><img src="{{ Storage::url($produk->foto_produk) }}" alt=""></td>
+                            <td>{{$produk->nama_produk}}</td>
+                            <td><img src="{{$produk->foto_produk ?? Storage::url($produk->foto_produk)   }}" style="width: 150px" alt=""></td>
                             <td>
                                 <a href="{{ route('admin.produk.edit', $produk->id) }}" class="btn btn-md btn-primary" title="Edit"><i class="lni lni-pencil-alt"></i></a>
                                 <a href="{{ route('admin.produk.show', $produk->id) }}" class="btn btn-md btn-secondary" title="Lihat"><i class="lni lni-eye"></i></a>

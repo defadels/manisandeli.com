@@ -13,7 +13,7 @@ class Order extends Model
 
     protected $guarded = [];
 
-    protected $primaryKey = 'transaksi_id';
+    // protected $primaryKey = 'transaksi_id';
 
     public function user(){
         return $this->belongsTo(User::class, 'pelanggan_id');
@@ -24,11 +24,11 @@ class Order extends Model
     }
 
     public function pengiriman(){
-        return $this->hasOne(Pengiriman::class, 'pengiriman_id');
+        return $this->hasOne(Pengiriman::class, 'id');
     }
 
     public function transaksi(){
-        return $this->hasOne(Transaksi::class, 'transaksi_id');
+        return $this->hasOne(Transaksi::class, 'id');
     }
 
     

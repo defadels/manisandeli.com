@@ -33,7 +33,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-8 align-self-center">
-                    <h4>Produk {{ $produk->nama }} </h4>
+                    <h4>Produk {{ $produk->nama_produk }} </h4>
                 </div>
             </div>
         </div>
@@ -41,44 +41,44 @@
 
                 @if(isset($produk->foto_produk))
                 <div class="form-group">
-                    <img src="{{ Storage::url($produk->foto_produk) }}" alt="" class="thumbnail">
+                    <img src="{{ $produk->foto_produk ?? Storage::url($produk->foto_produk) }}" alt="" class="thumbnail">
                 </div>
                 @endif
 
 
                 <div class="form-group">
                     <label for="kode_produk">Kode Produk</label>
-                    {{-- <input type="text" class="form-control @error('kode_produk') {{'is-invalid'}} @enderror" name="kode_produk" value="{{old('kode_produk') ??  $produk->kode_produk ?? '' }}"> --}}
+                    
                     <p>{{ $produk->kode_produk }}</p>
                 </div>
 
                 <div class="form-group">
                     <label for="nama">Nama Produk</label>
-                    {{-- <input type="text" class="form-control @error('nama') {{'is-invalid'}} @enderror" name="nama" value="{{old('nama') ??  $produk->nama ?? '' }}"> --}}
-                    <p>{{ $produk->nama }}</p>
+                    
+                    <p>{{ $produk->nama_produk }}</p>
                 </div>
 
                 <div class="form-group">
                     <label for="deskripsi">Deskripsi</label>
-                    {{-- <input type="text" class="form-control @error('deskripsi') {{'is-invalid'}} @enderror" name="deskripsi" value="{{ old('deskripsi') ?? $produk->deskripsi ?? '' }}"> --}}
+                    
                     <p>{{ $produk->deskripsi }}</p>
                 </div>
 
                 <div class="form-group">
                     <label for="harga_pokok">Harga Pokok</label>
-                    {{-- <input type="number" class="form-control @error('harga_pokok') {{'is-invalid'}} @enderror" name="harga_pokok" value="{{ old('harga_pokok') ?? $produk->harga_pokok ?? '' }}"> --}}
+          
                     <p>{{ $produk->harga_pokok }}</p>
                 </div>
                 
                 <div class="form-group">
                     <label for="harga_jual">Harga Jual</label>
-                    {{-- <input type="number" class="form-control @error('harga_jual') {{'is-invalid'}} @enderror" name="harga_jual" value="{{ old('harga_jual') ?? $produk->harga_jual ?? '' }}"> --}}
+                   
                     <p>{{ $produk->harga_jual }}</p>
                 </div>
 
                 <div class="form-group">
                     <label for="konten">Konten Produk</label>
-                    {{-- <textarea name="konten" id="summernote">{!! old('konten') ?? $produk->konten ?? '' !!}</textarea> --}}
+                    
                     <div class="bg-dark text-white radius-15 p-3 mb-2">
                         
                         <p>{!! $produk->konten !!}</p>
@@ -86,14 +86,15 @@
                 </div>
 
 
-            <div class="form-group mb-2">
+            <div class="form-group mb-4">
                     <label for="status">Status</label>
                     <br>
-                    <h4><span class="badge @if($produk->status == 'aktif') {{'badge-primary'}} @else {{ 'badge-danger '}} @endif ">{{ ucfirst($produk->status) }}</span></h4>
+                    {{-- <h4><span class="badge @if($produk->status == 'aktif') {{'badge-primary'}} @else {{ 'badge-danger '}} @endif ">{{ ucfirst($produk->status) }}</span></h4> --}}
+                    <a href="#" class="btn btn-sm @if($produk->status == 'aktif') {{'btn-light-success'}} @else {{ 'btn-light-danger '}} @endif">{{ ucfirst($produk->status) }}</a>
                 </div>    
             
-                <button type="button" onclick="window.history.back()" class="btn btn-md btn-secondary">Back</button>
-            </form>
+                <button type="button" onclick="window.history.back()" class="btn btn-md btn-secondary mt-4">Kembali</button>
+          
             
         </div>
     </div>

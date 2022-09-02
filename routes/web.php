@@ -42,8 +42,9 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Livewire\Admin\EditProfieUserUpdate;
     use App\Http\Livewire\Admin\UserIndexComponent;
     use App\Http\Livewire\Admin\PelangganComponent;
-    use App\Http\Livewire\Admin\DesainTokoComponent;
+    use App\Http\Livewire\Admin\SliderComponent;
     use App\Http\Livewire\Admin\Penjualan\OrderanMasuk;
+    use App\Http\Livewire\Admin\Penjualan\OrderanMasukDetail;
     use App\Http\Livewire\Admin\Penjualan\OrderanProses;
     use App\Http\Livewire\Admin\Penjualan\OrderanDikirim;
     use App\Http\Livewire\Admin\Penjualan\OrderanBatal;
@@ -115,11 +116,10 @@ Route::middleware('auth', 'reject_except_admin')->group(function(){
         Route::delete('admin/pengaturan/metode-pembayaran/edit/{pembayaran}', [MetodePembayaranController::class, 'destroy'])->name('admin.pengaturan.pembayaran.destroy');
         Route::get('admin/pengaturan/metode-pembayaran/show/{pembayaran}', [MetodePembayaranController::class, 'show'])->name('admin.pengaturan.pembayaran.show');
 
+        // Slider Routes
+        Route::get('admin/pengaturan/slider', SliderComponent::class)->name('admin.pengaturan.slider');
 
-        // Desain Toko Routes
-        Route::get('admin/pengaturan/desain-toko', DesainTokoComponent::class)->name('admin.pengaturan.desain-toko.index');
-
-        //SOsmed User Routes
+        //Sosmed User Routes
         Route::get('admin/pengaturan/user', UserIndexComponent::class)->name('admin.pengaturan.user');
 
         // Sosmed Toko Routes
@@ -130,6 +130,7 @@ Route::middleware('auth', 'reject_except_admin')->group(function(){
         Route::get('admin/pengaturan/profil-toko/{id}/edit', ProfilTokoUpdate::class)->name('admin.pengaturan.profil-toko.edit');
 
         Route::get('admin/penjualan/masuk', OrderanMasuk::class)->name('admin.orderan.masuk');
+        Route::get('admin/penjualan/masuk/{orderan_id}/detail', OrderanMasukDetail::class)->name('admin.orderan.masuk.detail');
         Route::get('admin/penjualan/proses', OrderanProses::class)->name('admin.orderan.proses');
         Route::get('admin/penjualan/dikirim', OrderanDikirim::class)->name('admin.orderan.dikirim');
         Route::get('admin/penjualan/batal', OrderanBatal::class)->name('admin.orderan.batal');
