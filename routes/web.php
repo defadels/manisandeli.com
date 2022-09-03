@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\Admin\Pengaturan\MetodePembayaranController;
     use App\Http\Controllers\Admin\Pengaturan\SosmedController;
     use App\Http\Controllers\Admin\Pengaturan\ProfilTokoController;
+    use App\Http\Controllers\Admin\Pengaturan\TextareaController;
 
     // Owner Controller
     use App\Http\Controllers\Owner\OwnerController;
@@ -43,6 +44,8 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Livewire\Admin\UserIndexComponent;
     use App\Http\Livewire\Admin\PelangganComponent;
     use App\Http\Livewire\Admin\SliderComponent;
+    use App\Http\Livewire\Admin\TextareaComponent;
+    use App\Http\Livewire\Admin\TextareaCreateComponent;
     use App\Http\Livewire\Admin\Penjualan\OrderanMasuk;
     use App\Http\Livewire\Admin\Penjualan\OrderanMasukDetail;
     use App\Http\Livewire\Admin\Penjualan\OrderanProses;
@@ -118,6 +121,14 @@ Route::middleware('auth', 'reject_except_admin')->group(function(){
 
         // Slider Routes
         Route::get('admin/pengaturan/slider', SliderComponent::class)->name('admin.pengaturan.slider');
+
+        // Textarea Roites
+        Route::get('admin/pengaturan/textarea', [TextareaController::class, 'index'])->name('admin.pengaturan.textarea');
+        Route::get('admin/pengaturan/textarea/tambah', [TextareaController::class, 'create'])->name('admin.pengaturan.textarea.create');
+        Route::post('admin/pengaturan/textarea', [TextareaController::class, 'store'])->name('admin.pengaturan.textarea.store');
+        Route::get('admin/pengaturan/textarea/edit/{textarea}', [TextareaController::class, 'edit'])->name('admin.pengaturan.textarea.edit');
+        Route::put('admin/pengaturan/textarea/edit/{textarea}', [TextareaController::class, 'update'])->name('admin.pengaturan.textarea.update');
+        Route::delete('admin/pengaturan/textarea/edit/{textarea}', [TextareaController::class, 'destroy'])->name('admin.pengaturan.textarea.destroy');
 
         //Sosmed User Routes
         Route::get('admin/pengaturan/user', UserIndexComponent::class)->name('admin.pengaturan.user');

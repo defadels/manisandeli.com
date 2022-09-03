@@ -151,7 +151,7 @@
                 </div>
             
                 <div class="form-group mt-2">
-                    <button type="button" onclick="window.history.back()" class="btn btn-md btn-secondary">Back</button>
+                    <button type="button" onclick="window.history.back()" class="btn btn-md btn-secondary">Kembali</button>
                     <button type="submit" class="btn btn-primary btn-md">{{$button}}</button>
                 </div>
             
@@ -192,7 +192,7 @@
 @endsection
 
 @section('scripts')
-<script src="{{asset('/assets-admin/plugins/input-tags/js/tagsinput.js') }}"></script>
+    <script src="{{asset('/assets-admin/plugins/input-tags/js/tagsinput.js') }}"></script>
 	
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 

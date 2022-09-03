@@ -7,7 +7,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Slider</li>
+                    <li class="breadcrumb-item active" aria-current="page">Testimoni</li>
                 </ol>
             </nav>
         </div>
@@ -25,16 +25,16 @@
     </div>
     @endif
     
-    <div class="mb-2"><button data-toggle="modal" data-target="#tambahData" type="button" class="btn btn-md btn-primary">+ Tambah Slider</button></div>
+    <div class="mb-2"><button data-toggle="modal" data-target="#tambahData" type="button" class="btn btn-md btn-primary">+ Tambah Testimoni</button></div>
     <div class="card radius-15">
 
         <div class="card-header">
             <div class="row">
                 <div class="col-8 align-self-center">
-                    <h4>Slider Halaman Depan</h4>
+                    <h4>Testimoni Halaman Depan</h4>
                 </div>
                 <div class="col-4">
-                    <form method="get" action="{{ url('admin/pengaturan/pembayaran') }}">
+                    <form method="get" action="{{ url('admin/pengaturan/testimoni') }}">
                         <div class="input-group">
                             <input type="text" name="q" class="form-control form-control-sm" value="{{ $req['q'] ?? '' }}">
                             <div class="input-group-append">

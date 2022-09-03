@@ -13,7 +13,7 @@ class SliderComponent extends Component
 {
     public $statusUpdate = false;
 
-    public $fotoUrl, $judul, $deskripsi, $url, $foto;
+    public $fotoUrl, $judul, $deskripsi, $url, $foto, $slider_id;
 
     use WithFileUploads;
     
@@ -67,6 +67,85 @@ class SliderComponent extends Component
         $this->resetInput();
         return redirect()->route('admin.pengaturan.slider')
         ->with('message', __('pesan.create', ['module' => $slider->judul]));
+    }
+
+    public function getData($id){
+        $slider = Slider::where('id', $id)->first();
+
+        $this->slider_id = $slider->id;
+        $this->judul = $slider->judul;
+        $this->deskripsi = $slider->deskripsi;
+        $this->url = $slider->url;
+        $this->fotoUrl = $slider->foto;
+
+        $this->statusUpdate = true;
+        $this->dispatchBrowserEvent('show-modal');
+
+    }
+
+    public function updateData(){
+
+        $this->validate([
+            'judul' => 'required|string',
+            'url' => 'required|string',
+            'deskripsi' => 'required|string',
+        ],
+        [
+            'judul.required' => 'Nama toko harus diisi',
+            'judul.string' => 'Nama toko harus diinput dengan string',
+            'url.required' => 'URL tombol harus diisi',
+            'url.string' => 'URL tombol harus diinput dengan string',
+        ]);
+
+        $slider = Slider::find($this->slider_id);
+
+        $slider->judul = $this->judul;
+        $slider->deskripsi = $this->deskripsi;
+        $slider->url = $this->url;
+        $slider->foto = $this->foto;
+
+        if($this->foto){
+            $foto_lama = $this->foto;
+
+            $nama_file = Str::uuid();
+
+            $path ='slider/';
+            $file_extension = $this->foto->extension();
+            $slider->foto = $path.$nama_file.".".$file_extension;
+
+            $gambar = $this->foto;
+            $destinationPath = storage_path('/app/public/');
+
+            $img = Image::make($gambar->path());
+            $img->fit(450, 450, function($cons){
+                $cons->aspectRatio();
+            })->save($destinationPath.$slider->foto);
+
+            Storage::disk('public')->delete($foto_lama);
+        }
+
+        $slider->save();
+        $this->resetInput();
+        return redirect()->route('admin.pengaturan.slider')
+        ->with('message', __('pesan.create', ['module' => $slider->judul]));
+
+    }
+
+
+    public function deleteData(){
+        try{
+            $slider = Slider::find($this->slider_id);
+
+            Storage::disk('public')->delete($slider->foto);
+
+            $slider->delete();
+
+        }catch(Exception $e){
+            return redirect()->route('admin.pengaturan.slider')
+            ->with('message', __('pesan.delete', ['module' => $slider->judul]));
+        }
+            return redirect()->route('admin.pengaturan.slider')
+            ->with('message', __('pesan.delete', ['module' => $slider->judul]));
     }
 
     public function resetInput(){

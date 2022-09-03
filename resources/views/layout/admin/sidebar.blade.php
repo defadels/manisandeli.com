@@ -89,6 +89,8 @@
                 </li>
                 <li> <a href="{{route('admin.pengaturan.slider')}}"><i class="bx bx-right-arrow-alt"></i>Slider</a>
                 </li>
+                <li> <a href="{{route('admin.pengaturan.textarea')}}"><i class="bx bx-right-arrow-alt"></i>Textarea</a>
+                </li>
                 
             </ul>
         </li>
