@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Livewire\Website\CheckoutComponent;
     use App\Http\Livewire\Website\KonfirmasiComponent;
     use App\Http\Livewire\Website\KebijakanPrivasi;
+    use App\Http\Livewire\Website\ComingSoonComponent;
 
 
     // Admin Livewire
@@ -79,6 +80,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('/produk/{id}/detail-produk', DetailProduk::class)->name('website.detail.produk');
 
     Route::get('/kebijakan-privasi', KebijakanPrivasi::class)->name('website.kebijakan-privasi');
+
+    Route::get('/coming-soon', ComingSoonComponent::class)->name('website.coming-soon');
 
 Route::middleware('auth')->group(function(){
 
