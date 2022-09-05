@@ -28,21 +28,17 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="about-content">
-                            <h2>Our Motive is to Provide Best for Those Who Deserve</h2>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis exercitationem commodi aliquam necessitatibus vero reiciendis quaerat illo est fuga ea temporibus natus doloremque ipsum voluptas quod deserunt expedita reprehenderit pariatur quidem quisquam, recusandae animi non! Voluptas totam repudiandae rerum molestiae possimus quis numquam sapiente sunt architecto quisquam Aliquam odio optio</p>
+                            <h2>Tentang Toko Kami</h2>
+                            <p>Isi bagian tentang kami</p>
                         </div>
                         <ul class="about-list">
                             <li>
-                                <h3>34785</h3>
-                                <h6>registered users</h6>
+                                <h3>0</h3>
+                                <h6>total pelanggan</h6>
                             </li>
                             <li>
-                                <h3>2623</h3>
-                                <h6>per day visitors</h6>
-                            </li>
-                            <li>
-                                <h3>189</h3>
-                                <h6>total products</h6>
+                                <h3>0</h3>
+                                <h6>total produk</h6>
                             </li>
                         </ul>
                     </div>
@@ -74,27 +70,27 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="contact-card">
                             <i class="icofont-location-pin"></i>
-                            <h4>head office</h4>
-                            <p>{{$profil->alamat ?? ''}}</p>
+                            <h4>alamat toko</h4>
+                            <p>{{$profil->alamat ?? 'Alamat Kosong'}}</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
                         <div class="contact-card active">
                             <i class="icofont-phone"></i>
-                            <h4>phone number</h4>
+                            <h4>nomor telepon</h4>
                             <p>
                                 {{-- <a href="#">009-215-5596 <span>(toll free)</span></a> --}}
-                                <a href="#">{{$profil->alamat ?? ''}}</a>
+                                {{$profil->nomor_hp ?? 'Nomor Telepon Kosong'}}
                             </p>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
                         <div class="contact-card">
                             <i class="icofont-email"></i>
-                            <h4>Support mail</h4>
+                            <h4>email toko</h4>
                             <p>
                                 {{-- <a href="#">contact@example.com</a> --}}
-                                <a href="#">{{$profil->email ?? ''}}</a>
+                                {{$profil->email ?? 'Email Kosong'}}
                             </p>
                         </div>
                     </div>
@@ -102,15 +98,17 @@
 
 
                 {{-- SOSMED TOKO --}}
+              @if(count($sosmed_toko) > 0)  
                 <div class="row">
+                    @foreach($sosmed_toko as $sosmed)
                     <div class="col-md-6 col-lg-4">
                         <div class="contact-card">
-                            <i class="icofont-location-pin"></i>
-                            <h4>head office</h4>
-                            <p>1Hd- 50, 010 Avenue, NY 90001 United States</p>
+                            <i class="icofont-{{strtolower($sosmed->nama)}}"></i>
+                            <h4>{{$sosmed->nama}}</h4>
+                            <p><a href="{{$sosmed->url}}" target="_blank">@{{$sosmed->username ?? ''}}</a></p>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4">
+                    {{-- <div class="col-md-6 col-lg-4">
                         <div class="contact-card active">
                             <i class="icofont-phone"></i>
                             <h4>phone number</h4>
@@ -129,8 +127,13 @@
                                 <a href="#">info@example.com</a>
                             </p>
                         </div>
-                    </div>
+                    </div> --}}
+                    @endforeach
                 </div>
+
+              @endif
+
+
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="contact-map">
@@ -142,31 +145,31 @@
                             <h4>Beri Kami Kritik dan Saran</h4>
                             <div class="form-group">
                                 <div class="form-input-group">
-                                    <input class="form-control" type="text" placeholder="Your Name">
+                                    <input class="form-control" type="text" placeholder="Nama Lengkap Anda">
                                     <i class="icofont-user-alt-3"></i>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-input-group">
-                                    <input class="form-control" type="text" placeholder="Your Email">
+                                    <input class="form-control" type="text" placeholder="Email Anda">
                                     <i class="icofont-email"></i>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-input-group">
-                                    <input class="form-control" type="text" placeholder="Your Subject">
+                                    <input class="form-control" type="text" placeholder="Subjek Anda">
                                     <i class="icofont-book-mark"></i>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-input-group">
-                                    <textarea class="form-control" placeholder="Your Message"></textarea>
+                                    <textarea class="form-control" placeholder="Pesan Anda"></textarea>
                                     <i class="icofont-paragraph"></i>
                                 </div>
                             </div>
                             <button type="submit" class="form-btn-group">
                                 <i class="fas fa-envelope"></i>
-                                <span>send message</span>
+                                <span>kirim pesan</span>
                             </button>
                         </form>
                     </div>

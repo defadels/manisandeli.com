@@ -47,12 +47,12 @@
                                     @enderror
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col">
+                                    {{-- <div class="form-group col">
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                             <label class="custom-control-label" for="check">Ingat Saya</label>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group col text-right"> <a href="{{route('password.request')}}"><i class='bx bxs-key mr-2'></i>Lupa Password?</a>
                                     </div>
                                 </div>

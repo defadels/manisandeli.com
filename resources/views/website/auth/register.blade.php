@@ -33,7 +33,7 @@ $profil = ProfilTokoModels::get()->first();
                 </div>
                 <div class="user-form-group">
                     <ul class="user-form-social">
-                        <li><a href="/auth/facebook" class="facebook"><i class="fab fa-facebook-f"></i>daftar dengan facebook</a></li>
+                        {{-- <li><a href="/auth/facebook" class="facebook"><i class="fab fa-facebook-f"></i>daftar dengan facebook</a></li> --}}
                         <li><a href="/auth/google" class="google"><i class="fab fa-google"></i>daftar dengan google</a></li>
                     </ul>
                     <div class="user-form-divider">
