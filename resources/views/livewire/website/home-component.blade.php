@@ -116,56 +116,70 @@
             @if(count($daftar_slider) > 0)
              @foreach($daftar_slider as $slider)
 
-             <div class="banner-part banner-{{$slider->id}}">
+             @if($slider->id % 2 == 1)
+             <div class="banner-part banner-1">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-md-6 col-lg-6">
                             <div class="banner-content">
-                                <h1>free home delivery within 24 hours now.</h1>
-                                <p>Lorem ipsum dolor consectetur adipisicing elit modi consequatur eaque expedita porro necessitatibus eveniet voluptatum quis pariatur Laboriosam molestiae architecto excepturi</p>
+                                <h1>{{$slider->judul}}</h1>
+                                <p>{{$slider->deskripsi}}</p>
                                 <div class="banner-btn">
-                                    <a class="btn btn-inline" href="shop-4column.html">
+                                    <a class="btn btn-inline" href="{{$slider->url}}">
                                         <i class="fas fa-shopping-basket"></i>
-                                        <span>shop now</span>
+                                        <span>kunjungi sekarang</span>
                                     </a>
-                                    <a class="btn btn-outline" href="offer.html">
+                                    {{-- <a class="btn btn-outline" href="offer.html">
                                         <i class="icofont-sale-discount"></i>
                                         <span>get offer</span>
-                                    </a>
+                                    </a> --}}
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6">
                             <div class="banner-img">
+                                @if(isset($slider->foto))
+                                
+                                <img src="{{Storage::url($slider->foto)}}" alt="index">
+                                @else
+                                
                                 <img src="{{asset('frontend/images/home/index/01.png')}}" alt="index">
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @endif
 
-                @if($slider->id * 2)
+                @if($slider->id % 2 == 0)
                 <div class="banner-part banner-2">
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-md-6 col-lg-6">
                                 <div class="banner-img">
+                                    @if(isset($slider->foto))
+                                    
+                                    <img src="{{Storage::url($slider->foto)}}" alt="index">
+                                    @else
+                                    
                                     <img src="{{asset('frontend/images/home/index/02.png')}}" alt="index">
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-6">
                                 <div class="banner-content">
-                                    <h1>free home delivery within 24 hours now.</h1>
-                                    <p>Lorem ipsum dolor consectetur adipisicing elit modi consequatur eaque expedita porro necessitatibus eveniet voluptatum quis pariatur Laboriosam molestiae architecto excepturi</p>
+                                    <h1>{{$slider->judul}}</h1>
+                                    <p>{{$slider->deskripsi}}</p>
                                     <div class="banner-btn">
-                                        <a class="btn btn-inline" href="shop-4column.html">
+                                        <a class="btn btn-inline" href="{{$slider->url}}">
                                             <i class="fas fa-shopping-basket"></i>
-                                            <span>shop now</span>
+                                            <span>kunjungi sekarang</span>
                                         </a>
-                                        <a class="btn btn-outline" href="offer.html">
+                                        {{-- <a class="btn btn-outline" href="offer.html">
                                             <i class="icofont-sale-discount"></i>
                                             <span>get offer</span>
-                                        </a>
+                                        </a> --}}
                                     </div>
                                 </div>
                             </div>
@@ -236,7 +250,10 @@
         <!--=====================================
                     PROMOTION PART START
         =======================================-->
-        <div class="section promo-part">
+
+            {{-- Media Promosi 1 --}}
+
+        {{-- <div class="section promo-part">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -246,7 +263,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--=====================================
                     PROMOTION PART END
         =======================================-->
@@ -585,7 +602,7 @@
                             </div>
                             <a href="shop-4column.html" class="btn btn-inline">
                                 <i class="fas fa-shopping-basket"></i>
-                                <span>shop now</span>
+                                <span>kunjungi sekarang</span>
                             </a>
                         </div>
                     </div>
@@ -976,7 +993,10 @@
         <!--=====================================
                     PROMOTION PART START
         =======================================-->
-        <div class="section promo-part">
+
+            {{-- Media promosi 2  --}}
+
+        {{-- <div class="section promo-part">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6 px-xl-3">
@@ -991,7 +1011,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
+
         <!--=====================================
                     PROMOTION PART END
         =======================================-->
@@ -2550,6 +2571,47 @@
         <!--=====================================
                   TESTIMONIAL PART START
         =======================================-->
+       @if(count($daftar_testimoni) > 0) 
+        <section class="section testimonial-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading">
+                            <h2>testimoni konsumen</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="testimonial-slider slider-arrow">
+                            @foreach($daftar_testimoni as $testimoni)
+                            <div class="testimonial-card">
+                                <i class="fas fa-quote-left"></i>
+                                <p>{{$testimoni->keterangan}}</p>
+                                <h5>{{$testimoni->nama_konsumen}}</h5>
+                                <ul>
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                </ul>
+                                @if(isset($testimoni->foto_konsumen))
+                                <img src="{{Storage::url($testimoni->foto_konsumen)}}" alt="testimonial">
+                                @else
+                                <img src="{{asset('frontend/images/avatar/01.jpg')}}" alt="testimonial">
+                                @endif
+                            </div>
+                            @endforeach
+                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        @else 
+
         <section class="section testimonial-part">
             <div class="container">
                 <div class="row">
@@ -2581,6 +2643,8 @@
                 </div>
             </div>
         </section>
+    
+        @endif
         <!--=====================================
                    TESTIMONIAL PART END
         =======================================-->
@@ -2766,7 +2830,10 @@
         <!--=====================================
                     INTRO PART START
         =======================================-->
-        <section class="intro-part">
+
+            {{-- INTRO PART  --}}
+
+        {{-- <section class="intro-part">
             <div class="container">
                 <div class="row intro-content">
                     <div class="col-sm-6 col-lg-3">
@@ -2815,7 +2882,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
         <!--=====================================
                     INTRO PART END
         =======================================-->

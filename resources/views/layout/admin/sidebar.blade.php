@@ -91,6 +91,8 @@
                 </li>
                 <li> <a href="{{route('admin.pengaturan.textarea')}}"><i class="bx bx-right-arrow-alt"></i>Textarea</a>
                 </li>
+                <li> <a href="{{route('admin.pengaturan.testimoni')}}"><i class="bx bx-right-arrow-alt"></i>Testimoni</a>
+                </li>
                 
             </ul>
         </li>

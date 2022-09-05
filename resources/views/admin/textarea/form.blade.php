@@ -36,6 +36,10 @@
     <form method="POST" action="{{ route($url, $textarea->id ?? '') }}" >
         @csrf
 
+        @if(isset($textarea))
+            @method('put')
+        @endif
+
     <div class="card-header">
         <div class="row">
             <div class="col-8 align-self-center">

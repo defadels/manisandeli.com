@@ -48,14 +48,13 @@
         <div class="card-body">
 
             <div class="table-responsive">
-                @if(count($daftar_slider) > 0) 
+                @if(count($daftar_testimoni) > 0) 
                 <table class="table mb-0">
                     <thead>
                         <tr>
                             <th scope="col">Foto</th>
-                            <th scope="col">Judul</th>
-                            <th scope="col">Deskripsi</th>
-                            <th scope="col">Url</th>
+                            <th scope="col">Nama Konsumen</th>
+                            <th scope="col">keterangan</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -66,18 +65,14 @@
                     @endphp
                     
                     <tbody>
-                       @foreach($daftar_slider as $slider) 
+                       @foreach($daftar_testimoni as $testimoni) 
                         <tr>
-                            <td><img src="{{Storage::url($slider->foto)}}" style="width: 580px" class="img-fluid" alt=""></td>
-                            <td>{{$slider->judul}}</td>
-                            <td>{{ $slider->deskripsi }}</td>   
+                            <td><img src="{{Storage::url($testimoni->foto_konsumen)}}" style="width: 100" class="img-fluid" alt=""></td>
+                            <td>{{$testimoni->nama_konsumen}}</td>
+                            <td>{{ $testimoni->keterangan }}</td>   
                             <td>
-                                <button class="btn btn-sm btn-light-success btn-block radius-30">
-                                {{$slider->url}}</button>    
-                            </td>
-                            <td>
-                                <button type="button" wire:click.prevent="getData({{$slider->id}})" data-toggle="modal" data-target="#editModal" class="btn btn-sm btn-primary" title="Lihat"><i class="lni lni-eye"></i></button>
-                                <button type="button" wire:click.prevent="getData({{$slider->id}})" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-danger" title="Batal"><i class="lni lni-ban"></i></button>
+                                <button type="button" wire:click.prevent="getData({{$testimoni->id}})" data-toggle="modal" data-target="#editModal" class="btn btn-sm btn-primary" title="Lihat"><i class="lni lni-eye"></i></button>
+                                <button type="button" wire:click.prevent="getData({{$testimoni->id}})" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-danger" title="Batal"><i class="lni lni-ban"></i></button>
 
                             </td>
                         </tr>
@@ -86,7 +81,7 @@
                    
                 </table>
                 @else
-                    <h5 class="text-center">Slider Kosong</h5>
+                    <h5 class="text-center">Testimoni Kosong</h5>
                 @endif
             </div>
         </div>
@@ -105,7 +100,7 @@
                 
                 <form wire:submit.prevent="deleteData">
                 
-                    <input type="hidden" wire:model="slider_id">
+                    <input type="hidden" wire:model="testimoni_id">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
                         <button type="submit" class="btn btn-primary">Ya, hapus!</button>
@@ -125,22 +120,22 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">	<span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form wire:submit.prevent="updateData">
+                <form wire:submit.prevent="update">
                     @csrf  
-                   <input type="hidden" wire:model="slider_id"> 
+                   <input type="hidden" wire:model="testimoni_id"> 
 
                   <div class="modal-body">
                       <div class="form-group">
-                          <label for="">Foto Slider</label>
-                          @if($foto)
-                          <img src="{{ $foto->temporaryUrl() }}" style="width: 580px;" class="img-fluid" alt="">
+                          <label for="">Foto Konsumen</label>
+                          @if($foto_konsumen)
+                          <img src="{{ $foto_konsumen->temporaryUrl() }}" style="width: 580px;" class="img-fluid" alt="">
                           @endif
-                          @if($fotoUrl && !$foto)
+                          @if($fotoUrl && !$foto_konsumen)
                           <img src="{{ Storage::url($fotoUrl) }}" style="width: 580px;" class="img-fluid" alt="">
                           @endif
                           
-                          <input type="file" class="form-control @error('foto') is-invalid @enderror" wire:model="foto">
-                          @error('foto')
+                          <input type="file" class="form-control @error('foto_konsumen') is-invalid @enderror" wire:model="foto_konsumen">
+                          @error('foto_konsumen')
                           <span class="text-danger">
                               <strong>{{$message}}</strong>
                           </span>
@@ -149,27 +144,18 @@
                           <small>File foto berukuran 580px x 520px</small>
                       </div>
                       <div class="form-group">
-                          <label for="">Judul</label>
-                          <input type="text" class="form-control @error('judul') is-invalid @enderror" placeholder="Judul Slider" wire:model="judul">
-                          @error('judul')
+                          <label for="">Nama Konsumen</label>
+                          <input type="text" class="form-control @error('nama_konsumen') is-invalid @enderror" placeholder="Nama Konsumen Slider" wire:model="nama_konsumen">
+                          @error('nama_konsumen')
                               <span class="text-danger">
                                   <strong>{{$message}}</strong>
                               </span>
                           @enderror
                       </div>
                       <div class="form-group">
-                          <label for="">Deskripsi</label>
-                          <textarea name="" wire:model="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="" style="height: 70px;"></textarea>
-                          @error('deskripsi')
-                              <span class="text-danger">
-                                  <strong>{{$message}}</strong>
-                              </span>
-                          @enderror
-                      </div>
-                      <div class="form-group">
-                          <label for="">Tombol URL</label>
-                          <input type="text" class="form-control @error('url') is-invalid @enderror" placeholder="URL Link" wire:model="url">
-                          @error('url')
+                          <label for="">Keterangan</label>
+                          <textarea name="" wire:model="keterangan" class="form-control @error('keterangan') is-invalid @enderror" id="" style="height: 70px;"></textarea>
+                          @error('keterangan')
                               <span class="text-danger">
                                   <strong>{{$message}}</strong>
                               </span>
@@ -198,16 +184,16 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">	<span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form wire:submit.prevent="tambahData">
+                <form wire:submit.prevent="store">
                   @csrf  
         
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="">Foto Slider</label>
-                        @if($foto)
-                        <img src="{{ $foto->temporaryUrl() }}" style="width: 580px; height:520px;" class="img-fluid" alt="">
+                        <label for="">Foto Konsumen</label>
+                        @if($foto_konsumen)
+                        <img src="{{ $foto_konsumen->temporaryUrl() }}" style="width: 580px; height:520px;" class="img-fluid" alt="">
                         @endif
-                        <input type="file" class="form-control @error('foto') is-invalid @enderror" wire:model="foto">
+                        <input type="file" class="form-control @error('foto') is-invalid @enderror" wire:model="foto_konsumen">
                         @error('foto')
                         <span class="text-danger">
                             <strong>{{$message}}</strong>
@@ -217,32 +203,24 @@
                         <small>File foto berukuran 580px x 520px</small>
                     </div>
                     <div class="form-group">
-                        <label for="">Judul</label>
-                        <input type="text" class="form-control @error('judul') is-invalid @enderror" placeholder="Judul Slider" wire:model="judul">
-                        @error('judul')
+                        <label for="">Nama Konsumen</label>
+                        <input type="text" class="form-control @error('nama_konsumen') is-invalid @enderror" placeholder="Nama Konsumen Slider" wire:model="nama_konsumen">
+                        @error('nama_konsumen')
                             <span class="text-danger">
                                 <strong>{{$message}}</strong>
                             </span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Deskripsi</label>
-                        <textarea name="" wire:model="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="" style="height: 70px;"></textarea>
-                        @error('deskripsi')
+                        <label for="">Keterangan</label>
+                        <textarea name="" wire:model="keterangan" class="form-control @error('keterangan') is-invalid @enderror" id="" style="height: 70px;"></textarea>
+                        @error('keterangan')
                             <span class="text-danger">
                                 <strong>{{$message}}</strong>
                             </span>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="">Tombol URL</label>
-                        <input type="text" class="form-control @error('url') is-invalid @enderror" placeholder="URL Link" wire:model="url">
-                        @error('url')
-                            <span class="text-danger">
-                                <strong>{{$message}}</strong>
-                            </span>
-                        @enderror
-                    </div>
+                   
                 </div>
                 
                 

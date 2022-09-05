@@ -72,8 +72,9 @@
                             <td>{{$slider->judul}}</td>
                             <td>{{ $slider->deskripsi }}</td>   
                             <td>
-                                <button class="btn btn-sm btn-light-success btn-block radius-30">
-                                {{$slider->url}}</button>    
+                                <a href="{{$slider->url}}" target="_blank" class="btn btn-sm btn-light-success btn-block radius-30">
+                                LINK URL
+                                </a>    
                             </td>
                             <td>
                                 <button type="button" wire:click.prevent="getData({{$slider->id}})" data-toggle="modal" data-target="#editModal" class="btn btn-sm btn-primary" title="Lihat"><i class="lni lni-eye"></i></button>

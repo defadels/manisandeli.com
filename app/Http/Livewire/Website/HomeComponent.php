@@ -7,6 +7,7 @@ use Auth;
 use App\Models\Produk;
 use App\Models\Slider;
 use App\Models\Textarea;
+use App\Models\Testimoni;
 use Cart;
 
 class HomeComponent extends Component
@@ -21,7 +22,8 @@ class HomeComponent extends Component
 
         $daftar_slider = Slider::get();
         $daftar_textarea = Textarea::get();
+        $daftar_testimoni = Testimoni::get();
 
-        return view('livewire.website.home-component',compact('daftar_slider','daftar_textarea'))->layout('layout.website_layout');
+        return view('livewire.website.home-component',compact('daftar_slider','daftar_textarea','daftar_testimoni'))->layout('layout.website_layout');
     }
 }

@@ -136,8 +136,18 @@ class TextareaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Textarea $textarea)
     {
-        //
+        try{
+            $judul = $textarea->judul;
+
+            $textarea->delete();
+
+        }catch(Exception $e){
+            return redirect()->route('admin.pengaturan.textarea')
+            ->with('messages', __('pesan.error', ['module' => $judul]));
+        }
+            return redirect()->route('admin.pengaturan.textarea')
+            ->with('messages', __('pesan.delete', ['module' => $judul]));
     }
 }

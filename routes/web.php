@@ -46,6 +46,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Livewire\Admin\SliderComponent;
     use App\Http\Livewire\Admin\TextareaComponent;
     use App\Http\Livewire\Admin\TextareaCreateComponent;
+    use App\Http\Livewire\Admin\TestimoniComponent;
     use App\Http\Livewire\Admin\Penjualan\OrderanMasuk;
     use App\Http\Livewire\Admin\Penjualan\OrderanMasukDetail;
     use App\Http\Livewire\Admin\Penjualan\OrderanProses;
@@ -121,6 +122,9 @@ Route::middleware('auth', 'reject_except_admin')->group(function(){
 
         // Slider Routes
         Route::get('admin/pengaturan/slider', SliderComponent::class)->name('admin.pengaturan.slider');
+
+        // Testimoni Routes
+        Route::get('admin/pengaturan/testimoni', TestimoniComponent::class)->name('admin.pengaturan.testimoni');
 
         // Textarea Roites
         Route::get('admin/pengaturan/textarea', [TextareaController::class, 'index'])->name('admin.pengaturan.textarea');
