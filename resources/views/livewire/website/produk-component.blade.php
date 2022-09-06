@@ -4,9 +4,9 @@
         =======================================-->
         <section class="inner-section single-banner" style="background: url({{asset('frontend/images/single-banner.jpg')}}) no-repeat center;">
             <div class="container">
-                <h2>Shop 5 Column</h2>
+                <h2>Produk</h2>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('website.produk')}}">beranda</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('website.home')}}">beranda</a></li>
                     <li class="breadcrumb-item active" aria-current="page">produk</li>
                 </ol>
             </div>
@@ -21,7 +21,10 @@
         =======================================-->
         <section class="inner-section shop-part">
             <div class="container">
-                <div class="row">
+
+                {{-- Fitur filter  --}}
+
+                {{-- <div class="row">
                     <div class="col-lg-12">
                         <div class="top-filter">
                             <div class="filter-show">
@@ -48,7 +51,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5">
                     @foreach($daftar_produk as $produk)
                     <div class="col">
