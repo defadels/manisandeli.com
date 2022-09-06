@@ -7,7 +7,7 @@
                     BANNER PART START
         =======================================-->
         
-        <section class="inner-section single-banner" style="background: url({{asset('frontend/images/single-banner.jpg')}}) no-repeat center;">
+        <section class="inner-section single-banner" style="background: url(frontend/images/single-banner.jpg) no-repeat center;">
             <div class="container">
                 <h2>profil saya</h2>
                 <ol class="breadcrumb">

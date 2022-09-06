@@ -5,7 +5,7 @@
      <!--=====================================
                     BANNER PART START
         =======================================-->
-        <section class="single-banner inner-section" style="background: url({{asset('frontend/images/single-banner.jpg')}}) no-repeat center;">
+        <section class="single-banner inner-section" style="background: url(images/single-banner.jpg) no-repeat center;">
             <div class="container">
                 <h2>product simple</h2>
                 <ol class="breadcrumb">

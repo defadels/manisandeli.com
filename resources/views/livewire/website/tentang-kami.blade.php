@@ -71,7 +71,7 @@
                         <div class="contact-card">
                             <i class="icofont-location-pin"></i>
                             <h4>alamat toko</h4>
-                            <p>{{$profil->alamat ?? 'Alamat Kosong'}}</p>
+                            <p>{{$profil_toko->alamat ?? 'Alamat Kosong'}}</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
@@ -80,7 +80,7 @@
                             <h4>nomor telepon</h4>
                             <p>
                                 {{-- <a href="#">009-215-5596 <span>(toll free)</span></a> --}}
-                                {{$profil->nomor_hp ?? 'Nomor Telepon Kosong'}}
+                                {{$profil_toko->nomor_hp ?? 'Nomor Telepon Kosong'}}
                             </p>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                             <h4>email toko</h4>
                             <p>
                                 {{-- <a href="#">contact@example.com</a> --}}
-                                {{$profil->email ?? 'Email Kosong'}}
+                                {{$profil_toko->email ?? 'Email Kosong'}}
                             </p>
                         </div>
                     </div>
@@ -145,32 +145,32 @@
                             <h4>Beri Kami Kritik dan Saran</h4>
                             <div class="form-group">
                                 <div class="form-input-group">
-                                    <input class="form-control" type="text" placeholder="Nama Lengkap Anda">
+                                    <input class="form-control" type="text"  id="nama" @if(Auth::check()) value="{{Auth::user()->nama}}" @endif placeholder="Nama Lengkap Anda" required>
                                     <i class="icofont-user-alt-3"></i>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-input-group">
-                                    <input class="form-control" type="text" placeholder="Email Anda">
+                                    <input class="form-control" type="email" id="email" @if(Auth::check()) value="{{Auth::user()->email}}" @endif placeholder="Email Anda" required>
                                     <i class="icofont-email"></i>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-input-group">
-                                    <input class="form-control" type="text" placeholder="Subjek Anda">
+                                    <input class="form-control" type="text" id="subjek" placeholder="Subjek Anda" required>
                                     <i class="icofont-book-mark"></i>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-input-group">
-                                    <textarea class="form-control" placeholder="Pesan Anda"></textarea>
+                                    <textarea class="form-control" id="isiPesan" placeholder="Pesan Anda" required></textarea>
                                     <i class="icofont-paragraph"></i>
                                 </div>
                             </div>
-                            <button type="submit" class="form-btn-group">
+                            <a href="javascript:void(0)" id="kirim" class="form-btn-group">
                                 <i class="fas fa-envelope"></i>
                                 <span>kirim pesan</span>
-                            </button>
+                            </a>
                         </form>
                     </div>
                 </div>
@@ -221,3 +221,30 @@
                     CONTACT PART END
         =======================================-->
 </div>
+
+@section('script')
+
+<script>
+    document.querySelector("#kirim").addEventListener("click", kirimPesan);
+
+    function kirimPesan(){
+        const linkWA = 'https://api.whatsapp.com/send?phone=62882015366684<&text=';
+
+        const namaLengkap = document.querySelector("#nama").value;
+
+        const email = document.querySelector("#email").value;
+
+        const subjek = document.querySelector("#subjek").value;
+
+        const isiPesan = document.querySelector("#isiPesan").value;
+
+            const pesan = "Assalamualaikum, saya mengirim pesan melalui website www.manisanputradeli.com%0A" + "%0ANama :"+ namaLengkap +"%0AEmail :"+" "+email+"%0ASubjek :"+" "+subjek+"%0A%0AIsi pesan :"+" "+isiPesan;
+
+        window.open(linkWA+pesan);
+
+    }
+
+</script>
+
+
+@endsection
