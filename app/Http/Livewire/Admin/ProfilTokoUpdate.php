@@ -16,7 +16,7 @@ class ProfilTokoUpdate extends Component
 
     // public $statusUpdate = true;
 
-    public $profilId, $nama, $email, $url, $nomor_hp, $logo, $logoUrl;
+    public $profilId, $nama, $email, $url, $nomor_hp, $logo, $logoUrl, $deskripsi, $alamat;
 
     // protected $listeners = [
     //     'getData' => 'showProfile'
@@ -31,6 +31,8 @@ class ProfilTokoUpdate extends Component
         $this->email = $profil->email;
         $this->url = $profil->url;
         $this->nomor_hp = $profil->nomor_hp;
+        $this->alamat = $profil->alamat;
+        $this->deskripsi = $profil->deskripsi;
         $this->logoUrl = $profil->logo;
     }
 
@@ -61,7 +63,8 @@ class ProfilTokoUpdate extends Component
         $profil->email = $this->email;
         $profil->url = $this->url;
         $profil->nomor_hp = $this->nomor_hp;
-        $profil->logo = $this->logo;
+        $profil->deskripsi = $this->deskripsi;
+        $profil->alamat = $this->alamat;
 
         if($this->logo){
             $foto_lama = $this->logo;
@@ -96,5 +99,7 @@ class ProfilTokoUpdate extends Component
         $this->url = null;
         $this->nomor_hp = null;
         $this->email = null;
+        $this->deskripsi = null;
+        $this->alamat = null;
     }
 }

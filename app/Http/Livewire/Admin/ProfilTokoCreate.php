@@ -13,7 +13,7 @@ class ProfilTokoCreate extends Component
 {
     use WithFileUploads;
 
-    public $nama, $url, $email, $nomor_hp, $logo;
+    public $nama, $url, $email, $nomor_hp, $logo, $deskripsi, $alamat;
 
     public function render()
     {
@@ -39,9 +39,10 @@ class ProfilTokoCreate extends Component
         $profil = ProfilTokoModels::create([
             'nama' => $this->nama,
             'url' => $this->url,
-            'logo' => $this->logo,
             'nomor_hp' => $this->nomor_hp,
-            'email' => $this->email
+            'email' => $this->email,
+            'deskripsi' => $this->deskripsi,
+            'alamat' => $this->alamat,
         ]);
 
         if($this->logo){
@@ -73,5 +74,7 @@ class ProfilTokoCreate extends Component
         $this->url = null;
         $this->nomor_hp = null;
         $this->email = null;
+        $this->deskripsi = null;
+        $this->alamat = null;
     }
 }

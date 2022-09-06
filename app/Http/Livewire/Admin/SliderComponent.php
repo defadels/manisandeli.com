@@ -40,7 +40,6 @@ class SliderComponent extends Component
         ]);
 
         $slider = Slider::create([
-            'foto' => $this->foto,
             'judul' => $this->judul,
             'deskripsi' => $this->deskripsi,
             'url' => $this->url
@@ -102,7 +101,6 @@ class SliderComponent extends Component
         $slider->judul = $this->judul;
         $slider->deskripsi = $this->deskripsi;
         $slider->url = $this->url;
-        $slider->foto = $this->foto;
 
         if($this->foto){
             $foto_lama = $this->foto;

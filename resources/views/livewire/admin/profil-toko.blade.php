@@ -32,24 +32,29 @@
                     <img src="{{Storage::url($profil->logo)}}" alt="" class="img-fluid"> 
                 </div>
 
-                <div class="form-group">
-                    <h5>Nama Website</h5>
-                       <p>{{$profil->nama}}</p>  
-                </div>
-
-                <div class="form-group">
-                    <h5>URL Website</h5>
-                       <p>{{$profil->url}}</p>                     
-                </div>
-
-                <div class="form-group">
-                    <h5>Email</h5>
-                      <p>{{$profil->email}}</p>   
-                </div>
-
-                <div class="form-group">
-                    <h5>Nomor Handphone</h5>
-                    <p>{{$profil->nomor_hp}}</p> 
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>Nama Website</th>
+                            <td>{{$profil->nama}}</td>
+                        </tr>
+                        <tr>
+                            <th>Deskripsi (Bio)</th>
+                            <td>{{$profil->deskripsi}}</td>
+                        </tr>
+                        <tr>
+                            <th>URL Website</th>
+                            <td>{{$profil->url}}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{$profil->email}}</td>
+                        </tr>
+                        <tr>
+                            <th>Alamat</th>
+                            <td>{{$profil->alamat}}</td>
+                        </tr>
+                    </table>
                 </div>
 
                 <div class="form-group">

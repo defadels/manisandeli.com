@@ -46,7 +46,7 @@ if(Auth::check()){
         <!-- FAVICON -->
         @if($profil)
 
-        <link rel="icon" href="{{Storage::link($profil->logo)}}">
+        <link rel="icon" href="{{Storage::url($profil->logo)}}">
         @else
         <link rel="icon" href="{{asset('frontend/images/favicon.png')}}">
 
