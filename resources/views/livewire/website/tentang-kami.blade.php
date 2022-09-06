@@ -105,7 +105,7 @@
                         <div class="contact-card">
                             <i class="icofont-{{strtolower($sosmed->nama)}}"></i>
                             <h4>{{$sosmed->nama}}</h4>
-                            <p><a href="{{$sosmed->url}}" target="_blank">@{{$sosmed->username ?? ''}}</a></p>
+                            <p><a href="{{$sosmed->url}}" target="_blank">@ {{$sosmed->username ?? ''}}</a></p>
                         </div>
                     </div>
                     {{-- <div class="col-md-6 col-lg-4">
