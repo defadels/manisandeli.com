@@ -34,7 +34,6 @@
             <input type="hidden" name="" wire:model="id">
 
             <div class="form-group">
-                <label for="">Foto Profil</label>
 
                 @if($foto_profil)
                     <img src="{{ $foto_profil->temporaryUrl() }}" class="img-fluid" alt="">
@@ -42,6 +41,11 @@
                 @if($fotoUrl && !$foto_profil)
                     <img src="{{ Storage::url($fotoUrl) }}" class="img-fluid" alt="">
                 @endif
+            </div>
+
+            <div class="form-group">
+                <label for="">Foto Profil</label>
+
                 
                 <input type="file" name="foto_profil" wire:model="foto_profil" class="form-control" id="">
                 

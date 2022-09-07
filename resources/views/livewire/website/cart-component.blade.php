@@ -15,12 +15,17 @@
             @foreach(Cart::content() as $item)
             <li class="cart-item">
                 <div class="cart-media">
-                    <a href="#"><img src="{{ $item->model->foto_produk ?? asset('frontend/images/product/01.jpg')}}" alt="product"></a>
-                    <button wire:click.prevent="hapusItem('{{$item->rowId}}')" class="cart-delete"><i class="far fa-trash-alt"></i></button>
+                    <a href="#">
+                        @if(isset($item->model->foto_produk))
+                        <img src="{{ Storage::url($item->model->foto_produk) }}" alt="product"></a>
+                        @else
+                        <img src="{{  asset('frontend/images/product/01.jpg')}}" alt="product"></a>
+                        @endif
+                        <button wire:click.prevent="hapusItem('{{$item->rowId}}')" class="cart-delete"><i class="far fa-trash-alt"></i></button>
                 </div>
                 <div class="cart-info-group">
                     <div class="cart-info">
-                        <h6><a href="product-single.html">{{$item->model->nama_produk}}</a></h6>
+                        <h6><a href="{{route('website.detail.produk',$item->model->id)}}">{{$item->model->nama_produk}}</a></h6>
                         <p>Rp.{{number_format($item->model->harga_jual)}}</p>
                     </div>
                     <div class="cart-action-group">

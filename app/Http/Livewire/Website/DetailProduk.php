@@ -21,7 +21,7 @@ class DetailProduk extends Component
         Cart::instance('cart')->add($produk_id,$nama_produk,1,$harga_jual)->associate('App\Models\Produk');
         session()->flash('message', 'Produk masuk ke keranjang');
 
-        return redirect()->route('website.detail-produk');
+        return redirect()->route('website.detail-produk',$produk->id);
     }
 
     use WithPagination;

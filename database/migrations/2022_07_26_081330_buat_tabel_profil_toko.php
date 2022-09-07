@@ -20,7 +20,7 @@ class BuatTabelProfilToko extends Migration
             $table->string('logo')->nullable();
             $table->string('email')->nullable();
             $table->string('nomor_hp')->nullable();
-            $table->text('alamat')->nullable();
+            $table->string('alamat')->nullable();
             $table->string('deskripsi')->nullable();
             $table->timestamps();
         });

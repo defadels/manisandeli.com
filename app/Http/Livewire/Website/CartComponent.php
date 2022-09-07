@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Http\Models\Produk;
 use Cart;
 use Auth;
+use Session;
 
 class CartComponent extends Component
 {
@@ -39,7 +40,7 @@ class CartComponent extends Component
 
     public function setAmountForCheckout(){
         if(!Cart::instance('cart')->count() > 0) {
-            session()->forget('checkout');
+            Session::forget('checkout');
             return; 
         } else {
                 session()->put('checkout', [

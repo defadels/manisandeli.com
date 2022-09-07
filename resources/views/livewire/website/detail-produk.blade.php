@@ -11,7 +11,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('website.home')}}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{route('website.produk')}}">produk</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">product-simple</li>
+                    <li class="breadcrumb-item active" aria-current="page">detail produk</li>
                 </ol>
             </div>
         </section>
@@ -33,7 +33,7 @@
                                 {{-- <label class="details-label off">-10%</label> --}}
                             </div>
                             <ul class="details-preview"> 
-                                <li><img src="{{ $produk->foto_produk ?? asset('frontend/images/product/01.jpg')}}" alt="product"></li>
+                                <li><img src="{{Storage::url($produk->foto_produk)}}" alt="product"></li>
                                 <li><img src="{{asset('frontend/images/product/01.jpg')}}" alt="product"></li>
                                 <li><img src="{{asset('frontend/images/product/01.jpg')}}" alt="product"></li>
                                 <li><img src="{{asset('frontend/images/product/01.jpg')}}" alt="product"></li>
@@ -55,7 +55,7 @@
                             <li class="product-nav-prev">
                                 <a href="#">
                                     <i class="icofont-arrow-left"></i>
-                                    prev product
+                                    produk sebelumnya
                                     <span class="product-nav-popup">
                                         <img src="{{$produk->foto_produk ?? asset('frontend/images/product/02.jpg')}}" alt="product">
                                         <small>green chilis</small>
@@ -64,7 +64,7 @@
                             </li>
                             <li class="product-nav-next">
                                 <a href="#">
-                                    next product
+                                    produk selanjutnya
                                     <i class="icofont-arrow-right"></i>
                                     <span class="product-nav-popup">
                                         <img src="{{asset('frontend/images/product/03.jpg')}}" alt="product">
@@ -76,15 +76,15 @@
                         <div class="details-content">
                             <h3 class="details-name"><a href="#">{{$produk->nama_produk}}</a></h3>
                             <div class="details-meta">
-                                <p>SKU:<span>1234567</span></p>
-                                <p>BRAND:<a href="#">radhuni</a></p>
+                                {{-- <p>SKU:<span>1234567</span></p>
+                                <p>BRAND:<a href="#">radhuni</a></p> --}}
                             </div>
                             <div class="details-rating">
                                 <i class="active icofont-star"></i>
                                 <i class="active icofont-star"></i>
                                 <i class="active icofont-star"></i>
                                 <i class="active icofont-star"></i>
-                                <i class="icofont-star"></i>
+                                <i class="active icofont-star"></i>
                                 {{-- <a href="#">(3 reviews)</a> --}}
                             </div>
                             <h3 class="details-price">
@@ -92,14 +92,16 @@
                                 <span>Rp.{{number_format($produk->harga_jual)}}<small>/per kilo</small></span>
                             </h3>
                             <p class="details-desc">{{$produk->deskripsi}}</p>
-                            <div class="details-list-group">
+                            
+                            
+                            {{-- <div class="details-list-group">
                                 <label class="details-list-title">tags:</label>
                                 <ul class="details-tag-list">
                                     <li><a href="#">organic</a></li>
                                     <li><a href="#">fruits</a></li>
                                     <li><a href="#">chilis</a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
 
                             <!-- TOMBOL SHARE KE SOSMED -->
 
@@ -347,13 +349,13 @@
                                 <button class="product-wish wish">
                                     <i class="fas fa-heart"></i>
                                 </button>
-                                <a class="product-image" href="product-video.html">
-                                    <img src="{{ $produk->foto_produk ?? asset('frontend/images/product/01.jpg')}}" alt="product">
+                                <a class="product-image" href="{{route('website.detail.produk',$produk->id)}}">
+                                    <img src="{{ Storage::url($produk->foto_produk)}}" alt="product">
                                 </a>
                                 <div class="product-widget">
                                     {{-- <a title="Product Compare" href="compare.html" class="fas fa-random"></a> --}}
                                     {{-- <a title="Product Video" href="https://youtu.be/9xzcVxSBbG8" class="venobox fas fa-play" data-autoplay="true" data-vbtype="video"></a> --}}
-                                    <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></a>
+                                    <a title="Product View" href="{{route('website.detail.produk',$produk->id)}}" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></a>
                                 </div>
                             </div>
                             <div class="product-content">
@@ -362,7 +364,7 @@
                                     <i class="active icofont-star"></i>
                                     <i class="active icofont-star"></i>
                                     <i class="active icofont-star"></i>
-                                    <i class="icofont-star"></i>
+                                    <i class="active icofont-star"></i>
                                     {{-- <a href="product-video.html">(3)</a> --}}
                                 </div>
                                 <h6 class="product-name">

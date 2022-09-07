@@ -57,18 +57,18 @@
                     <div class="col">
                         <div class="product-card">
                             <div class="product-media">
-                                <div class="product-label">
+                                {{-- <div class="product-label">
                                     <label class="label-text new">new</label>
-                                </div>
+                                </div> --}}
                                 <button class="product-wish wish">
                                     <i class="fas fa-heart"></i>
                                 </button>
-                                <a class="product-image" href="product-video.html">
-                                    <img src="{{$produk->foto_produk ?? asset('frontend/images/product/01.jpg')}}" alt="product">
+                                <a class="product-image" href="{{route('website.detail.produk',$produk->id)}}">
+                                    <img src="{{Storage::url($produk->foto_produk)}}" alt="product">
                                 </a>
                                 <div class="product-widget">
-                                    <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
-                                    <a title="Product Video" href="https://youtu.be/9xzcVxSBbG8" class="venobox fas fa-play" data-autoplay="true" data-vbtype="video"></a>
+                                    {{-- <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
+                                    <a title="Product Video" href="https://youtu.be/9xzcVxSBbG8" class="venobox fas fa-play" data-autoplay="true" data-vbtype="video"></a> --}}
                                     <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></a>
                                 </div>
                             </div>
@@ -78,8 +78,8 @@
                                     <i class="active icofont-star"></i>
                                     <i class="active icofont-star"></i>
                                     <i class="active icofont-star"></i>
-                                    <i class="icofont-star"></i>
-                                    <a href="product-video.html">(3)</a>
+                                    <i class="active icofont-star"></i>
+                                    {{-- <a href="product-video.html">(3)</a> --}}
                                 </div>
                                 <h6 class="product-name">
                                     <a href="{{route('website.detail.produk',$produk->id)}}">{{$produk->nama_produk}}</a>

@@ -10,7 +10,13 @@
                         <img src="{{asset('frontend/images/logo.png')}}" alt="logo">
                         @endif
                     </button>
-                    <a href="{{route('website.home')}}"><img src="{{$profil->logo ?? asset('frontend/images/logo.png')}}" alt="logo"></a>
+                    <a href="{{route('website.home')}}">
+                        @if($profil)
+                        <img src="{{ Storage::url($profil->logo)}}" alt="logo">
+                        @else
+                        <img src="{{asset('frontend/images/logo.png')}}" alt="logo">
+                        @endif
+                    </a>
                     <button class="header-src"><i class="fas fa-search"></i></button>
                 </div>
         
