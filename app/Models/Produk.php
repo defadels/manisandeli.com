@@ -13,7 +13,7 @@ class Produk extends Model
 
     protected $guarded = [];
 
-    protected $fillable = ['nama', 'harga_jual', 'harga_pokok', 'deskripsi', 'konten', 'foto_produk', 'kode_produk'];
+    protected $fillable = ['nama_produk', 'harga_jual', 'harga_pokok', 'deskripsi', 'konten', 'foto_produk', 'kode_produk'];
 
     // public function item() {
     //     return $this->belongsTo(OrderItem::class, 'produk_id')->withDefault();

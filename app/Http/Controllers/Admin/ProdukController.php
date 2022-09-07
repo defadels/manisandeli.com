@@ -23,9 +23,9 @@ class ProdukController extends Controller
         $q = $request->input('q');
 
         $daftar_produk = $daftar_produk->when($q, function($query) use ($q) {
-            return $query->where('nama', 'like', '%'.$q.'%')
+            return $query->where('nama_produk', 'like', '%'.$q.'%')
                         ->orWhere('kode_produk', 'like', '%'.$q.'%');
-        })->paginate(10);
+        })->get();
 
         return view('admin.produk.list', compact('daftar_produk', 'request'));
     }
@@ -76,9 +76,8 @@ class ProdukController extends Controller
 
         $produk = Produk::create(
             [
-                'nama_produk' => $request->nama,
+                'nama_produk' => $request->nama_produk,
                 'kode_produk' => $request->kode_produk,
-                'foto_produk' => $request->foto_produk,
                 'deskripsi' => $request->deskripsi,
                 'harga_jual' => $request->harga_jual,
                 'harga_pokok' => $request->harga_pokok,
@@ -104,13 +103,13 @@ class ProdukController extends Controller
 
             // dd($produk);
 
-            $produk->save();
-    
+            
         }
-
+        
+        $produk->save();
 
         return redirect()->route('admin.produk')
-        ->with('messages', __('pesan.create', ['module' => $request->input('nama')]));
+        ->with('messages', __('pesan.create', ['module' => $request->input('nama_produk')]));
     }
 
     /**
@@ -171,7 +170,7 @@ class ProdukController extends Controller
 
         $validator = Validator::make($input, $rules, $messages)->validate();
 
-        $produk->nama = $request->nama;
+        $produk->nama_produk = $request->nama_produk;
         $produk->kode_produk = $request->kode_produk;
         $produk->deskripsi = $request->deskripsi;
         $produk->konten = $request->konten;
@@ -206,7 +205,7 @@ class ProdukController extends Controller
         $produk->save();
 
         return redirect()->route('admin.produk')
-        ->with('messages', __('pesan.update', ['modlue' => $produk->nama]));
+        ->with('messages', __('pesan.update', ['modlue' => $produk->nama_produk]));
     }
 
     /**
@@ -219,7 +218,7 @@ class ProdukController extends Controller
     {
         try{
 
-            $nama = $produk->nama;
+            $nama_produk = $produk->nama_produk;
 
             Storage::disk('public')->delete($produk->foto_produk);
             $produk->delete();
@@ -227,9 +226,9 @@ class ProdukController extends Controller
 
         }catch(Exception $e){
             return redirect()->route('admin.produk')
-            ->with('messages', __('pesan.delete', ['module' => $nama]));
+            ->with('messages', __('pesan.delete', ['module' => $nama_produk]));
         }
             return redirect()->route('admin.produk')
-            ->with('messages', __('pesan.delete', ['module' => $nama]));
+            ->with('messages', __('pesan.delete', ['module' => $nama_produk]));
     }
 }
