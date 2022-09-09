@@ -44,7 +44,7 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">INV</th>
+                            <th scope="col">Invoice</th>
                             <th scope="col">Nama Konsumen</th>
                             <th scope="col">Nomor Handphone</th>
                             <th scope="col">Tanggal Order</th>
@@ -71,7 +71,7 @@
                                 {{$orderan->status}}</button>    
                             </td>
                             <td>
-                                <a href="{{ route('admin.orderan.masuk.detail', ['orderan_id' => $orderan->id]) }}" class="btn btn-sm btn-primary" title="Lihat"><i class="lni lni-eye"></i></a>
+                                <a href="{{ route('admin.orderan.proses.detail', ['orderan_id' => $orderan->id]) }}" class="btn btn-sm btn-primary" title="Lihat"><i class="lni lni-eye"></i></a>
                                 <button type="button" wire:click.prevent="getOrder({{$orderan->id}})" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-danger" title="Batal"><i class="lni lni-ban"></i></button>
 
                             </td>

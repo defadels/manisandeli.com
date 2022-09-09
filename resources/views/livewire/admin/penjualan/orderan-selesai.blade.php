@@ -7,7 +7,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Batal</li>
+                    <li class="breadcrumb-item active" aria-current="page">Masuk</li>
                 </ol>
             </nav>
         </div>
@@ -22,7 +22,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-8 align-self-center">
-                    <h4>Tabel Orderan Proses</h4>
+                    <h4>Tabel Orderan Masuk</h4>
                 </div>
                 <div class="col-4">
                     <form method="get" action="{{ url('admin/pengaturan/pembayaran') }}">
@@ -67,11 +67,12 @@
                             <td>{{ $orderan->nomor_hp }}</td>   
                             <td>{{$orderan->created_at}}</td>
                             <td>
-                                <button class="btn btn-sm btn-light-danger btn-block radius-30">
+                                <button class="btn btn-sm btn-light-success btn-block radius-30">
                                 {{$orderan->status}}</button>    
                             </td>
                             <td>
-                                <a href="{{ route('admin.orderan.batal.detail', $orderan->id) }}" class="btn btn-sm btn-secondary" title="Lihat"><i class="lni lni-eye"></i></a>
+                                <a href="{{ route('admin.orderan.selesai.detail', ['orderan_id' => $orderan->id]) }}" class="btn btn-sm btn-primary" title="Lihat"><i class="lni lni-eye"></i></a>
+
                             </td>
                         </tr>
                         @endforeach
@@ -79,10 +80,15 @@
                    
                 </table>
                 @else
-                    <h5 class="text-center">Orderan Batal Kosong</h5>
+                    <h5 class="text-center">Orderan Masuk Kosong</h5>
                 @endif
             </div>
         </div>
     </div>
 
+    
+
 </div>
+
+
+

@@ -7,9 +7,8 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Pengiriman;
 
-class OrderanMasukDetail extends Component
+class OrderanProsesDetail extends Component
 {
-
     public $orderan_id;
 
     public function mount($orderan_id) {
@@ -20,15 +19,15 @@ class OrderanMasukDetail extends Component
     {
         $orderan = Order::find($this->orderan_id);
 
-        return view('livewire.admin.penjualan.orderan-masuk-detail', compact('orderan'))->layout('layout.admin_layout');
+        return view('livewire.admin.penjualan.orderan-proses-detail', compact('orderan'))->layout('layout.admin_layout');
     }
 
     public function konfirmasiOrderan(){
         $orderan = Order::find($this->orderan_id);
 
-        $orderan->status = 'diproses';
+        $orderan->status = 'selesai';
         $orderan->save();
 
-        return redirect()->route('admin.orderan.proses');
+        return redirect()->route('admin.orderan.selesai');
     }
 }

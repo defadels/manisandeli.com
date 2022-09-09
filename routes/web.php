@@ -51,8 +51,13 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Livewire\Admin\Penjualan\OrderanMasuk;
     use App\Http\Livewire\Admin\Penjualan\OrderanMasukDetail;
     use App\Http\Livewire\Admin\Penjualan\OrderanProses;
+    use App\Http\Livewire\Admin\Penjualan\OrderanProsesDetail;
     use App\Http\Livewire\Admin\Penjualan\OrderanDikirim;
+    use App\Http\Livewire\Admin\Penjualan\OrderanDikirimDetail;
+    use App\Http\Livewire\Admin\Penjualan\OrderanSelesai;
+    use App\Http\Livewire\Admin\Penjualan\OrderanSelesaiDetail;
     use App\Http\Livewire\Admin\Penjualan\OrderanBatal;
+    use App\Http\Livewire\Admin\Penjualan\OrderanBatalDetail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -150,8 +155,13 @@ Route::middleware('auth', 'reject_except_admin')->group(function(){
         Route::get('admin/penjualan/masuk', OrderanMasuk::class)->name('admin.orderan.masuk');
         Route::get('admin/penjualan/masuk/{orderan_id}/detail', OrderanMasukDetail::class)->name('admin.orderan.masuk.detail');
         Route::get('admin/penjualan/proses', OrderanProses::class)->name('admin.orderan.proses');
+        Route::get('admin/penjualan/proses/{orderan_id}/detail', OrderanProsesDetail::class)->name('admin.orderan.proses.detail');
         Route::get('admin/penjualan/dikirim', OrderanDikirim::class)->name('admin.orderan.dikirim');
+        Route::get('admin/penjualan/dikirim/{orderan_id}/detail', OrderanDikirimDetail::class)->name('admin.orderan.dikirim.detail');
+        Route::get('admin/penjualan/selesai', OrderanSelesai::class)->name('admin.orderan.selesai');
+        Route::get('admin/penjualan/selesai/{orderan_id}/detail', OrderanSelesaiDetail::class)->name('admin.orderan.selesai.detail');
         Route::get('admin/penjualan/batal', OrderanBatal::class)->name('admin.orderan.batal');
+        Route::get('admin/penjualan/batal/{orderan_id}/detail', OrderanBatalDetail::class)->name('admin.orderan.batal.detail');
 
 
         //Profil User Routes

@@ -38,6 +38,8 @@
                 </li>
                 <li> <a href="{{route('admin.orderan.dikirim')}}"><i class="bx bx-right-arrow-alt"></i>Dikirim</a>
                 </li>
+                <li> <a href="{{route('admin.orderan.selesai')}}"><i class="bx bx-right-arrow-alt"></i>Selesai</a>
+                </li>
                 <li> <a href="{{route('admin.orderan.batal')}}"><i class="bx bx-right-arrow-alt"></i>Batal</a>
                 </li>
             </ul>

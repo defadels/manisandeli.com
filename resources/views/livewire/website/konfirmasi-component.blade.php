@@ -10,7 +10,7 @@
                      ERROR PART START
         =======================================-->
         <?php
-            $links = "https://api.whatsapp.com/send?phone=6281370721854<&text=Assalamu'alaikum, perkenalkan saya ".Auth::user()->nama." Saya mengirim pesan melalui website manisanputradeli.com.%0A"."%0ASaya sudah melakukan pembayaran dengan %0A"."%0AKode Invoice : ".Session::get('order')['invoice']."%0AApakah bisa diproses?";
+            $links = "https://api.whatsapp.com/send?phone=6287822838595<&text=Assalamu'alaikum, perkenalkan saya ".Auth::user()->nama." Saya mengirim pesan melalui website manisanputradeli.com.%0A"."%0ASaya sudah melakukan pembayaran dengan %0A"."%0AKode Invoice : ".Session::get('order')['invoice']."%0AApakah bisa diproses?";
         ?>
         <section class="error-part">
             <div class="container">

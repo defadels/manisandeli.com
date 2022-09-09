@@ -24,7 +24,7 @@ class Order extends Model
     }
 
     public function pengiriman(){
-        return $this->hasOne(Pengiriman::class, 'id');
+        return $this->hasOne(Pengiriman::class, 'orderan_id');
     }
 
     public function transaksi(){

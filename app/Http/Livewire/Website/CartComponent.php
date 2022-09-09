@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\Website;
 
+use Auth;
+use Cart;
 use Livewire\Component;
 use App\Http\Models\Produk;
-use Cart;
-use Auth;
-use Session;
+use Illuminate\Support\Facades\Session;
+
 
 class CartComponent extends Component
 {
@@ -43,7 +44,7 @@ class CartComponent extends Component
             Session::forget('checkout');
             return; 
         } else {
-                session()->put('checkout', [
+                Session::put('checkout', [
                 'subtotal' => Cart::instance('cart')->subtotal(),
                 'discount' => 0,
                 'tax' => Cart::instance('cart')->tax(),

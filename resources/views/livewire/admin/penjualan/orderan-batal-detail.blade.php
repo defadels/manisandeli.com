@@ -7,7 +7,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Masuk</li>
+                    <li class="breadcrumb-item active" aria-current="page">Diproses</li>
                 </ol>
             </nav>
         </div>
@@ -149,34 +149,31 @@
                     <tr>
                         <th>Metode Pembayaran</th>
                         <td>{{$orderan->transaksi->metode_pembayaran ?? '-'}}</td>
-                        
-                        <th>Bank Tujuan</th>
-                        <td>{{$orderan->transaksi->bank_tujuan ?? '~'}}</td>
-                    </tr>
-                    <tr>
                         <th>Status</th>
                         <td>{{$orderan->transaksi->status ?? '-'}}</td>
-
-                        <th>Pemilik Rekening Tujuan</th>
-                        <td>{{$orderan->transaksi->pemilik_rekening_tujuan ?? '~'}}</td>
+                        
                     </tr>
                     <tr>
                         <th>Bank</th>
                         <td>{{$orderan->transaksi->nama_bank ?? '~'}}</td>
-
-                        <th>Nomor Rekening Tujuan</th>
-                        <td>{{$orderan->transaksi->rekening_tujuan ?? '~'}}</td>
-                        
-                    </tr>
-                    <tr>
-                       <th>Nama Pemilik</th>
-                        <td>{{$orderan->transaksi->nama_pemlik ?? '~'}}</td> 
+                        <th>Nama Pemilik</th>
+                        <td>{{$orderan->transaksi->nama_pemlik ?? '~'}}</td>
                     </tr>
                     <tr>
                         <th>Nomor Rekening</th>
                         <td>{{$orderan->transaksi->nomor_rekening ?? '~'}}</td>
                         {{-- <th>Provinsi</th>
                         <td>{{$orderan->transaksi->provinsi}}</td> --}}
+                    </tr>
+                    <tr>
+                        <th>Bank Tujuan</th>
+                        <td>{{$orderan->transaksi->bank_tujuan ?? '~'}}</td>
+                        <th>Pemilik Rekening Tujuan</th>
+                        <td>{{$orderan->transaksi->pemilik_rekening_tujuan ?? '~'}}</td>
+                    </tr>
+                    <tr>
+                        <th>Nomor Rekening Tujuan</th>
+                        <td>{{$orderan->transaksi->rekening_tujuan ?? '~'}}</td>
                     </tr>
                     
                 </table>
@@ -235,60 +232,6 @@
         </div>
     </div>
     @endif
-
-    @if($orderan->pengiriman_berbeda)
-
-    <div class="card radius-15">
-        <div class="card-header">
-            <div class="row">
-                <div class="col-8 align-self-center">
-                    <h6>Konfirmasi Pengiriman</h6>
-                </div>
-                
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                 <button type="button" class="btn btn-sm btn-secondary ml-3" onclick="window.history.back()" > Kembali</button>
-                
-                <form wire:submit.prevent="konfirmasiOrderan">
-                    <input type="hidden" name="" wire:model="orderan_id">
-                    <button type="submit" class="btn btn-sm btn-success ml-3">Konfirmasi Pengiriman</button>
-                </form>
-            </div>
-           
-        </div>
-    </div>
-    
-
-    @else
-
-    <div class="card radius-15">
-        <div class="card-header">
-            <div class="row">
-                <div class="col-8 align-self-center">
-                    <h6>Konfirmasi Pembayaran</h6>
-                </div>
-                
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                 <button type="button" class="btn btn-sm btn-secondary ml-3" onclick="window.history.back()" > Kembali</button>
-                
-                <form wire:submit.prevent="konfirmasiOrderan">
-                    <input type="hidden" name="" wire:model="orderan_id">
-                    <button type="submit" class="btn btn-sm btn-success ml-3">Konfirmasi Pembayaran</button>
-                </form>
-            </div>
-           
-        </div>
-    </div>
-    
-    @endif
-
-
-
     
     
     

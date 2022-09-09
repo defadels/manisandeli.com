@@ -38,11 +38,9 @@ class MetodePembayaranController extends Controller
         $button = 'Simpan';
         
         $daftar_jenis = [
-            'COD' => 'COD',
-            'Cash' => 'Cash',
+
             'Bank' => 'Bank',
-            'E-Wallet' => 'E-Wallet',
-            'Custom' => 'Custom'
+            'E-Wallet' => 'E-Wallet'
         ];
 
         return view('admin.pengaturan.pembayaran.form', compact('url','button', 'daftar_jenis'));
@@ -115,13 +113,12 @@ class MetodePembayaranController extends Controller
     public function edit(MetodePembayaranToko $pembayaran)
     {
         $url = 'admin.pengaturan.pembayaran.update';
+
         $button = 'Simpan';
+        
         $daftar_jenis = [
-            'COD' => 'COD',
-            'Cash' => 'Cash',
             'Bank' => 'Bank',
-            'E-Wallet' => 'E-Wallet',
-            'Custom' => 'Custom'
+            'E-Wallet' => 'E-Wallet'
         ];
 
         return view('admin.pengaturan.pembayaran.form', compact('url','button', 'daftar_jenis', 'pembayaran'));

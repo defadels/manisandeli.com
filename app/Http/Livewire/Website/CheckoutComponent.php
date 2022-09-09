@@ -15,6 +15,7 @@ use App\Http\Models\Produk;
 use Livewire\WithFileUploads;
 use App\Models\AlamatPelanggan;
 use App\Models\MetodePembayaranToko;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Models\MetodePembayaranPelanggan;
 
@@ -157,13 +158,14 @@ class CheckoutComponent extends Component
         $invoice =  'INV/'.$sekarang->format('ymd').
                     '/'.$sekarang->format('his').
                     '/'.Str::upper(Str::random(6));
+        $cart = Cart::instance('cart');
 
         $order = new Order();
         $order->pelanggan_id = Auth::user()->id;
-        $order->subtotal = session()->get('checkout')['subtotal']; 
-        $order->diskon = session()->get('checkout')['discount']; 
-        $order->total = session()->get('checkout')['total']; 
-        $order->ongkir = session()->get('checkout')['tax']; 
+        $order->subtotal = $cart->subtotal; 
+        $order->diskon = 0; 
+        $order->total = $cart->total; 
+        $order->ongkir = $cart->tax; 
         $order->invoice = $invoice;
         $order->nama_lengkap = $this->nama_lengkap;
         $order->email =  $this->email;
@@ -176,7 +178,7 @@ class CheckoutComponent extends Component
         $transaksi->invoice = $invoice;
         $transaksi->pelanggan_id = Auth::user()->id;
         $transaksi->metode_pembayaran = 'Bayar di Toko';
-        $transaksi->status = 'Disetujui';
+        $transaksi->status = 'Ditunda';
         $transaksi->save();
     }
 
@@ -208,10 +210,12 @@ class CheckoutComponent extends Component
     
             $order = new Order();
             $order->pelanggan_id = Auth::user()->id;
-            $order->subtotal = session()->get('checkout')['subtotal']; 
-            $order->diskon = session()->get('checkout')['discount']; 
-            $order->total = session()->get('checkout')['total']; 
-            $order->ongkir = session()->get('checkout')['tax']; 
+        
+            
+            $order->subtotal = Cart::instance('cart')->subtotal; 
+            $order->diskon = 0; 
+            $order->total = Cart::instance('cart')->total; 
+            $order->ongkir = Cart::instance('cart')->tax; 
             $order->invoice = $invoice;
             $order->nama_lengkap = $this->nama_lengkap;
             $order->email =  $this->email;
@@ -232,7 +236,7 @@ class CheckoutComponent extends Component
             $transaksi->bank_tujuan = $this->bank_tujuan;
             $transaksi->pemilik_rekening_tujuan = $this->pemilik_rekening_tujuan;
             $transaksi->rekening_tujuan = $this->rekening_tujuan;
-            $transaksi->metode_pembayaran = 'Bayar di Toko';
+            $transaksi->metode_pembayaran = 'Transfer';
             $transaksi->status = 'Ditunda';
 
             if($this->$foto_bukti_tf){
@@ -284,10 +288,12 @@ class CheckoutComponent extends Component
     
             $order = new Order();
             $order->pelanggan_id = Auth::user()->id;
-            $order->subtotal = session()->get('checkout')['subtotal']; 
-            $order->diskon = session()->get('checkout')['discount']; 
-            $order->total = session()->get('checkout')['total']; 
-            $order->ongkir = session()->get('checkout')['tax']; 
+            
+            
+            $order->subtotal = Cart::instance('cart')->subtotal; 
+            $order->diskon = 0; 
+            $order->total = Cart::instance('cart')->total; 
+            $order->ongkir = Cart::instance('cart')->tax; 
             $order->invoice = $invoice;
             $order->nama_lengkap = $this->nama_lengkap;
             $order->email =  $this->email;
@@ -314,6 +320,9 @@ class CheckoutComponent extends Component
             $pengiriman->alamat_id = $this->alamatId;
             $pengiriman->orderan_id = $order->id;
             $pengiriman->alamat_lengkap = $this->alamat_lengkap;
+            $pengiriman->nama_lengkap = $this->nama_lengkap;
+            $pengiriman->label = $this->label;
+            $pengiriman->invoice = $invoice;
             $pengiriman->provinsi = $this->provinsi;
             $pengiriman->kota = $this->kota;
             $pengiriman->kode_pos = $this->kode_pos;
@@ -334,9 +343,9 @@ class CheckoutComponent extends Component
         $this->konfirmasi = 1;
 
         Cart::instance('cart')->destroy();
-        session()->forget('checkout');
+        Session::forget('checkout');
 
-        session()->put('order', [
+        Session::put('order', [
             'invoice' => $order['invoice'],
         ]);
 
@@ -348,7 +357,7 @@ class CheckoutComponent extends Component
         if($this->konfirmasi) {
             
             return redirect()->route('website.konfirmasi');
-        } else if(!session()->get('checkout')){
+        } else if(!Session::get('checkout')){
             return redirect()->route('website.produk');
         }
     }
