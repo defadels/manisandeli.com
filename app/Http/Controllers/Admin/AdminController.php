@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Produk;
+use Storage;
 
 class AdminController extends Controller
 {
@@ -26,7 +27,7 @@ class AdminController extends Controller
 
         $orderan_batal = Order::where('status', 'batal')->get();
 
-        $karyawan = User::where('roles', 'pelanggan')->get();
+        $karyawan = User::where('roles', 'admin')->get();
 
         $daftar_orderan = Order::orderBy('created_at', 'DESC')->get();
 

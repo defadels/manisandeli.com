@@ -12,6 +12,9 @@
                     <li class="navbar-item">
                         <a class="navbar-link" href="{{route('website.tentang')}}">tentang kami</a>
                     </li>
+                    <li class="navbar-item">
+                        <a class="navbar-link" href="{{route('website.orderanku')}}">orderanku</a>
+                    </li>
 
                     @if(Route::has('login'))
 

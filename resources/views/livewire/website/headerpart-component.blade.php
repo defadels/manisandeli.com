@@ -83,19 +83,19 @@
                 
         
                 <form class="header-form">
-                    <input type="text" placeholder="Search anything..." disabled>
-                    <button><i class="fas fa-search"></i></button>
+                    {{-- <input type="text" placeholder="Selamat berbelanja!" disabled> --}}
+                    {{-- <button><i class="fas fa-search"></i></button> --}}
                 </form>
         
                 <div class="header-widget-group">
-                    <a href="{{route('website.coming-soon')}}" class="header-widget" title="Compare List">
+                    {{-- <a href="{{route('website.coming-soon')}}" class="header-widget" title="Compare List">
                         <i class="fas fa-random"></i>
-                        {{-- <sup>0</sup> --}}
-                    </a>
-                    <a href="{{route('website.coming-soon')}}" class="header-widget" title="Wishlist">
+                        <sup>0</sup>
+                    </a> --}}
+                    {{-- <a href="{{route('website.coming-soon')}}" class="header-widget" title="Wishlist">
                         <i class="fas fa-heart"></i>
-                        {{-- <sup>0</sup> --}}
-                    </a>
+                        <sup>0</sup>
+                    </a> --}}
                     <button class="header-widget header-cart" title="Cartlist">
                         <i class="fas fa-shopping-basket"></i>
                         <sup>{{Cart::count()}}</sup>

@@ -64,8 +64,8 @@
                                 <td>{{$pelanggan->email}}</td>
                                 <td>{{$pelanggan->nomor_hp}}</td>
                                 <td>
-                                    <a href="{{ route('admin.pelanggan.alamat', $pelanggan->id) }}" class="btn btn-md btn-primary" title="Alamat Pelanggan"><i class="lni lni-map-marker"></i></a>
-                                    <a href="{{ route('admin.pelanggan.keranjang', $pelanggan->id) }}" class="btn btn-md btn-warning" title="Keranjang"><i class="lni lni-cart-full"></i></a>
+                                    <a href="{{ route('admin.pelanggan.alamat', $pelanggan->id) }}" class="btn btn-md btn-primary" title="Biodata Pelanggan"><i class="lni lni-user"></i></a>
+                                    {{-- <a href="{{ route('admin.pelanggan.keranjang', $pelanggan->id) }}" class="btn btn-md btn-warning" title="Keranjang"><i class="lni lni-cart-full"></i></a> --}}
                                 </td>
                             </tr>
                             @endforeach
@@ -79,4 +79,62 @@
             </div>
         </div>
     </div>
+
+    @if($statusView == true)
+    <div wire:ignore.self class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"> Biodata Pelanggan </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">	<span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>Profil Pelanggan</h5>
+                    <table class="table">
+                        <thead>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Nomor Handphone</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ $pelanggan->nama }}</td>
+                                <td>{{ $pelanggan->email }}</td>
+                                <td>{{ $pelanggan->nomor_hp }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    <h5>Alamat Pelanggan</h5>
+                    <table class="table">
+                        <thead>
+                            <th>Label</th>
+                            <th>Provinsi</th>
+                            <th>Kota</th>
+                            <th>Kode Pos</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        
+                    </div>
+
+               
+    
+            </div>
+        </div>
+    </div>
+
+    @endif
+
 </div>

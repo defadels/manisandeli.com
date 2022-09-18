@@ -32,9 +32,14 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Livewire\Website\TentangKami;
     use App\Http\Livewire\Website\HomeComponent;
     use App\Http\Livewire\Website\CheckoutComponent;
+    use App\Http\Livewire\Website\CheckoutCODComponent;
+    use App\Http\Livewire\Website\CheckoutTransferComponent;
+    use App\Http\Livewire\Website\CheckoutTransferAlamat;
+    use App\Http\Livewire\Website\CheckoutTransferToko;
     use App\Http\Livewire\Website\KonfirmasiComponent;
     use App\Http\Livewire\Website\KebijakanPrivasi;
     use App\Http\Livewire\Website\ComingSoonComponent;
+    use App\Http\Livewire\Website\OrderankuComponent;
 
 
     // Admin Livewire
@@ -87,10 +92,15 @@ use Illuminate\Support\Facades\Route;
     Route::get('/kebijakan-privasi', KebijakanPrivasi::class)->name('website.kebijakan-privasi');
 
     Route::get('/coming-soon', ComingSoonComponent::class)->name('website.coming-soon');
+    Route::get('/orderanku', OrderankuComponent::class)->name('website.orderanku');
 
 Route::middleware('auth')->group(function(){
 
     Route::get('/checkout', CheckoutComponent::class)->name('website.checkout');
+    Route::get('/checkout/transfer', CheckoutTransferComponent::class)->name('website.checkout.transfer');
+    Route::get('/checkout/transfer/alamat-pribadi', CheckoutTransferAlamat::class)->name('website.checkout.transfer.alamat');
+    Route::get('/checkout/transfer/ambil-ditoko', CheckoutTransferToko::class)->name('website.checkout.transfer.ditoko');
+    Route::get('/checkout/cash-on-delivery', CheckoutCODComponent::class)->name('website.checkout.cod');
     Route::get('/terima-kasih', KonfirmasiComponent::class)->name('website.konfirmasi');
 
 });

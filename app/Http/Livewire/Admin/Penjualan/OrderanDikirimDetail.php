@@ -19,6 +19,8 @@ class OrderanDikirimDetail extends Component
     {
         $orderan = Order::find($this->orderan_id);
 
+        $transaksi = Transaksi::where('orderan_id', $this->orderan_id)->first();
+
         return view('livewire.admin.penjualan.orderan-dikirim-detail', compact('orderan'))->layout('layout.admin_layout');
     }
 }

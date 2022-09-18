@@ -19,7 +19,14 @@
         <!--=====================================
                     BANNER PART END
         =======================================-->
-
+        @if(session()->has('message'))
+        <div class="alert alert-success">
+            <strong>{{session('message')}}</strong>
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+        </div>
+        @endif
 
         <!--=====================================
                     CHECKOUT PART START
@@ -32,7 +39,7 @@
                   <div class="col-lg-12">
                     <div class="account-card">
                         <div class="account-title">
-                            <h4>Your order</h4>
+                            <h4>pesanan anda</h4>
                         </div>
                         <div class="account-content">
                             <div class="table-scroll">
@@ -100,85 +107,43 @@
                     </div>
                 </div>
 
-                <form wire:submit.prevent="placeOrder">            
 
                 <div class="col-lg-12">
- 
                     <div class="account-card">
                         <div class="account-title">
-                            <h4>Your Profile</h4>
-                            
+                            <h4>Metode Pembayaran</h4>
                         </div>
+
                         <div class="account-content">
                             <div class="row">
-                               
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <label class="form-label">nama</label>
-                                        <input class="form-control @error('nama_lengkap') is-invalid @enderror" placeholder="Nama lengkap Anda" type="text" wire:model="nama_lengkap">
-                                        @error('nama_lengkap')
-                                            <span class="text-danger">
-                                                <strong>{{$message}}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <label class="form-label">Nomor Handphone</label>
-                                        <input class="form-control @error('nomor_hp') is-invalid @enderror" placeholder="Nomor telepon/handphone Anda" wire:model="nomor_hp" type="text">
-                                        @error('nomor_hp')
-                                            <span class="text-danger">
-                                                <strong>{{$message}}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <label class="form-label">Email</label>
-                                        <input class="form-control @error('email') is-invalid @enderror" placeholder="Email Anda" wire:model="email" type="email">
-                                        @error('email')
-                                            <span class="text-danger">
-                                                <strong>{{$message}}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="col-md-6 col-lg-4" >
 
-                                <label for="" class="form-label">Metode Pembayaran</label>
+                                    <label for="" class= "form-label">Metode Pembayaran</label>
 
-                               <div class="col-md-6 col-lg-2">
-                              
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="flexRadioDefault" id="flexRadioDefault1" wire:model="paymentmethod" value="cod">
-                                        <label for="form-check-label" for="flexRadioDefault1">
-                                            Cash On Delivery
-                                    </label>
-                                    </div>
-                                 
-                              
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="flexRadioDefault" id="flexRadioDefault2" wire:model="paymentmethod" value="transfer">
-                                        <label for="form-check-label" for="flexRadioDefault2">
-                                            Transfer
-                                        </label>
+                                    <div class="form-group">
+
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                              Pilih Metode Pembayaran
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                              <li><a class="dropdown-item" href="{{ route('website.checkout.cod') }}">Cash On Delivery (COD)</a> </li>
+                                              <li><a class="dropdown-item" href="{{ route('website.checkout.transfer') }}">Transfer</a> </li>
+                                              <li><a class="dropdown-item" href="">Bayar & Ambil di Toko</a> </li>
+                                            </ul>
+                                          </div>
+            
                                     </div>
                                 
-                              
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="flexRadioDefault" id="flexRadioDefault3" wire:model="paymentmethod" value="0">
-                                        <label for="form-check-label" for="flexRadioDefault3">
-                                            Bayar di Toko
-                                        </label>
-                                    </div>
                                 </div>
-                               </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <form wire:submit.prevent="placeOrder">           
                 
               
                 {{-- <div class="col-lg-12">
@@ -224,325 +189,17 @@
                     </div>
                 </div> --}}
 
-              @if($paymentmethod == 'transfer')  
-                <div class="col-lg-12">
-                    <div class="account-card">
-                        <div class="account-title">
-                            <h4>alamat pengiriman</h4>
-                           
-                        </div>
-                        <div class="account-content">
-                            <div class="row">
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Alamat</label>
+              {{-- @if($paymentmethod == 'transfer')
+              
+              <livewire:website.checkout-transfer-component />
+              
+              @elseif($paymentmethod == 'cod')
+              
+              <livewire:website.checkout-c-o-d-component />
 
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                              Pilih Alamat
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                            @foreach($daftar_alamat as $alamat)
-                                              <li><a class="dropdown-item" wire:click.prevent="getAlamat({{ $alamat->id }})" href="#">{{$alamat->label}}</a></li>
-                                            @endforeach
-                                              <li><a class="dropdown-item" wire:click.prevent="customAlamat()" href="#">Custom</a></li>
-                                            </ul>
-                                          </div>
-                                          
-                                    </div>
-                                </div>
-                                <input type="hidden" name="" wire:model="alamatId">
-                                
-                                
-                                <div class="col-md-6 col-lg-4">
-                                    
+             @endif --}}
 
-                                 <div class="form-group">
-                                    <label for="" class="form-label">Label</label>
-                                    <input type="text" wire:model="label" class="form-control">  
-                                    @error('label')
-                                     <span class="text-danger">
-                                        <strong>{{$message}}</strong>
-                                     </span>
-                                    @enderror
-                                </div>   
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Provinsi</label>
-                                        <input type="text" class="form-control @error('provinsi') is-invalid @enderror" placeholder="Provinsi" wire:model="provinsi">
-                                        @error('provinsi')
-                                        <span class="text-danger">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Kota</label>
-                                        <input type="text" class="form-control @error('kota') is-invalid @enderror" placeholder="Kota" wire:model="kota">
-                                        @error('kota')
-                                        <span class="text-danger">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Kode Pos</label>
-                                        <input type="text" class="form-control @error('kode_pos') is-invalid @enderror" placeholder="Kode Pos" wire:model="kode_pos">
-                                        @error('kode_pos')
-                                        <span class="text-danger">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-6 col-lg-12">
-                                    <label for="" class="form-label">Alamat Lengkap</label>
-                                    <textarea wire:model="alamat_lengkap"  placeholder="Alamat lengkap" id="" style="height: 250px" class="form-control @error('alamat_lengkap') is-invalid @enderror"></textarea>
-                                    @error('alamat_lengkap')
-                                     <span class="text-danger">
-                                        <strong>{{$message}}</strong>
-                                     </span>
-                                    @enderror
-                                </div>
-
-                               
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-12">
-                    <div class="account-card mb-0">
-                        <div class="account-title">
-                            <h4>metode pembayaran</h4>
-                           
-                        </div>
-                        <div class="account-content">
-                            <div class="row">
-                              <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Bank/E-Wallet</label>
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                          Pilih bank / E-Wallet
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                        @foreach($daftar_bank_pelanggan as $bank_pelanggan)
-                                          <li><a class="dropdown-item" wire:click.prevent="getBankPelanggan({{$bank_pelanggan->id}})">{{$bank_pelanggan->nama_bank}}</a></li>
-                                        @endforeach 
-                                          <li><a class="dropdown-item" wire:model="nama_bank" wire:click.prevent="customBankPelanggan()" >Custom</a></li>
-                                        </ul>
-                                      </div>
-                                </div>
-                              </div>
-                              <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Nama Bank</label>
-                                    <input type="text" placeholder="Nama Bank" wire:model="nama_bank" class="form-control @error('nama_bank') is-invalid @enderror">
-                                      @error('nama_bank')
-                                     <span class="text-danger">
-                                        <strong>{{$message}}</strong>
-                                     </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="form-label">Nama Pemilik</label>
-                                    <input type="text" placeholder="Nama Pemilik" wire:model="nama_pemilik" class="form-control @error('nama_pemilik') is-invalid @enderror">
-                                      @error('nama_pemilik')
-                                     <span class="text-danger">
-                                        <strong>{{$message}}</strong>
-                                     </span>
-                                    @enderror
-                                </div>
-                              </div>
-                              <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Nomor Rekening / Nomor HP</label>
-                                    <input type="text" placeholder="Nomor Rekening / Nomor HP" wire:model="nomor_rekening" class="form-control @error('nomor_rekening') is-invalid @enderror">
-                                      @error('nomor_rekening')
-                                     <span class="text-danger">
-                                        <strong>{{$message}}</strong>
-                                     </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="form-label">Jenis</label>
-                                    <input type="text" placeholder="Jenis" wire:model="jenis" class="form-control">
-                                      @error('jenis')
-                                     <span class="text-danger">
-                                        <strong>{{$message}}</strong>
-                                     </span>
-                                    @enderror
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div> 
-                </div>  
-
-                <div class="col-lg-12">
-                    <div class="account-card mb-0">
-                        <div class="account-title">
-                            <h4>rekening tujuan</h4>   
-                        </div>
-                        <div class="account-content">
-                            <div class="row">
-                                @foreach($daftar_bank_toko as $bank_toko)
-                              <div class="col-md-6 col-lg-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" wire:click.prevent="getBankTujuan({{$bank_toko->id}})" type="radio" name="flexRadioDefault" id="flexRadioDefault{{$bank_toko->id}}">
-                                    <label class="form-check-label" for="flexRadioDefault{{$bank_toko->id}}">
-                                      {{$bank_toko->nama_bank}}
-                                      <br>
-                                      {{$bank_toko->nomor_rekening}}
-                                      <br>
-                                      A/N {{$bank_toko->nama_pemilik}}
-                                    </label>
-                                  </div>
-                                </div>
-                                @endforeach
-
-                            <input type="hidden" name="" wire:model="bank_tujuan_id">
-
-                            <input type="hidden" name="" wire:model="bank_tujuan">
-                            <input type="hidden" name="" wire:model="pemilik_rekening_tujuan">
-                            <input type="hidden" name="=" wire:model="rekening_tujuan">
-                            </div>
-                            
-                        </div>
-                    </div> 
-                </div> 
-
-                <div class="col-lg-12">
-                    <div class="account-card mb-0">
-                        <div class="account-title">
-                            <h4>Foto Bukti Transfer</h4>
-                        </div>
-                        <div class="account-content">
-                            <div class="row">
-                                <div class="col-md-6 col-lg-12">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Upload Foto Bukti Transfer</label>
-                                        @if($foto_bukti_tf)
-                                            <div class="col-lg-6 col-md-4">
-                                                <img src="{{ $foto_bukti_tf->temporaryUrl() }}" class="img-fluid" alt="">
-
-                                            </div>
-                                        @endif
-                                        <input type="file" wire:model="foto_bukti_tf" class="form-control @error('foto_bukti_tf') is-invalid @enderror">
-                                        @error('foto_bukti_tf')
-                                        <span class="text-danger">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                        @endif
-
-                        @if($paymentmethod == 'cod')
-
-                        <div class="col-lg-12">
-                            <div class="account-card">
-                                <div class="account-title">
-                                    <h4>alamat pengiriman</h4>
-                                    
-                                </div>
-                                <div class="account-content">
-                                    <div class="row">
-                                        <div class="col-md-6 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="" class="form-label">Alamat</label>
-
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                      Pilih Alamat
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                    @foreach($daftar_alamat as $alamat)
-                                                      <li><a class="dropdown-item" wire:click.prevent="getAlamat({{ $alamat->id }})" href="#">{{$alamat->label}}</a></li>
-                                                    @endforeach
-                                                      <li><a class="dropdown-item" wire:click.prevent="customAlamat()" href="#">Custom</a></li>
-                                                    </ul>
-                                                  </div>
-
-                                                  
-                                                  
-                                            </div>
-                                        </div>
-                                        <input type="hidden" name="" wire:model="alamatId">
-                                
-                                
-                                <div class="col-md-6 col-lg-4">
-                                    
-
-                                 <div class="form-group">
-                                    <label for="" class="form-label">Label</label>
-                                    <input type="text" wire:model="label" class="form-control">  
-                                    @error('label')
-                                     <span class="text-danger">
-                                        <strong>{{$message}}</strong>
-                                     </span>
-                                    @enderror
-                                </div>   
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Provinsi</label>
-                                        <input type="text" class="form-control @error('provinsi') is-invalid @enderror" placeholder="Provinsi" wire:model="provinsi">
-                                        @error('provinsi')
-                                        <span class="text-danger">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Kota</label>
-                                        <input type="text" class="form-control @error('kota') is-invalid @enderror" placeholder="Kota" wire:model="kota">
-                                        @error('kota')
-                                        <span class="text-danger">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Kode Pos</label>
-                                        <input type="text" class="form-control @error('kode_pos') is-invalid @enderror" placeholder="Kode Pos" wire:model="kode_pos">
-                                        @error('kode_pos')
-                                        <span class="text-danger">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-6 col-lg-12">
-                                    <label for="" class="form-label">Alamat Lengkap</label>
-                                    <textarea wire:model="alamat_lengkap"  placeholder="Alamat lengkap" id="" style="height: 250px" class="form-control @error('alamat_lengkap') is-invalid @enderror"></textarea>
-                                    @error('alamat_lengkap')
-                                     <span class="text-danger">
-                                        <strong>{{$message}}</strong>
-                                     </span>
-                                    @enderror
-                                </div>
-
-                                       
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        @endif
-
-                        <div class="account-content">
+                <div class="account-content">
                         <div class="chekout-coupon">
                             {{-- <button class="coupon-btn">Punya kode kupon?</button>
                             <form class="coupon-form">
@@ -555,6 +212,22 @@
                         <div class="checkout-charge">
                             <ul>
                                 <li>
+                                    <span>Sub total</span>
+                                    <span>Rp.{{Cart::instance('cart')->subtotal()}}</span>
+                                </li>
+                                <li>
+                                    <span>ongkos kirim</span>
+                                    <span>Rp.{{Cart::instance('cart')->tax()}}</span>
+                                </li>
+                                <li>
+                                    <span>diskon</span>
+                                    <span>{{Cart::instance('cart')->discount}}</span>
+                                </li>
+                                <li>
+                                    <span>Total<small>(Incl. VAT)</small></span>
+                                    <span>Rp.{{Cart::instance('cart')->total()}}</span>
+                                </li>
+                                {{-- <li>
                                     <span>Sub total</span>
                                     <span>Rp.{{Session::get('checkout')['subtotal']}}</span>
                                 </li>
@@ -569,7 +242,7 @@
                                 <li>
                                     <span>Total<small>(Incl. VAT)</small></span>
                                     <span>Rp.{{Session::get('checkout')['total']}}</span>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                         @endif

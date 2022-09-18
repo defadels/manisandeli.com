@@ -29,9 +29,9 @@
                     <div class="col-lg-6">
                         <div class="about-content">
                             <h2>Tentang Toko Kami</h2>
-                            <p>Isi bagian tentang kami</p>
+                            <p>{{$profil->deskripsi ?? 'Deskripsi kosong'}}</p>
                         </div>
-                        <ul class="about-list">
+                        {{-- <ul class="about-list">
                             <li>
                                 <h3>0</h3>
                                 <h6>total pelanggan</h6>
@@ -40,14 +40,17 @@
                                 <h3>0</h3>
                                 <h6>total produk</h6>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </div>
                     <div class="col-lg-6">
                         <div class="about-img">
-                            <img src="{{asset('frontend/images/about/01.jpg')}}" alt="about">
-                            <img src="{{asset('frontend/images/about/02.jpg')}}" alt="about">
-                            <img src="{{asset('frontend/images/about/03.jpg')}}" alt="about">
-                            <img src="{{asset('frontend/images/about/04.jpg')}}" alt="about">
+                            @foreach($daftar_produk as $produk)
+                                @if(isset($produk))
+                                <img src="{{ Storage::url($produk->foto_produk) }}" alt="about">
+                                @else
+                                <img src="{{asset('frontend/images/about/01.jpg')}}" alt="about">
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>

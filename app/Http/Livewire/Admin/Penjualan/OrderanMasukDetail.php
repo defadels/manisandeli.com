@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Pengiriman;
+use App\Models\Transaksi;
 
 class OrderanMasukDetail extends Component
 {
@@ -20,7 +21,9 @@ class OrderanMasukDetail extends Component
     {
         $orderan = Order::find($this->orderan_id);
 
-        return view('livewire.admin.penjualan.orderan-masuk-detail', compact('orderan'))->layout('layout.admin_layout');
+        $transaksi = Transaksi::where('orderan_id', $this->orderan_id)->first();
+
+        return view('livewire.admin.penjualan.orderan-masuk-detail', compact('orderan','transaksi'))->layout('layout.admin_layout');
     }
 
     public function konfirmasiOrderan(){

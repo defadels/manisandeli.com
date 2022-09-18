@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Pengiriman;
+use App\Models\ProfilTokoModels;
+use Storage;
 
 class OrderanSelesaiDetail extends Component
 {
@@ -19,6 +21,8 @@ class OrderanSelesaiDetail extends Component
     {
         $orderan = Order::find($this->orderan_id);
 
-        return view('livewire.admin.penjualan.orderan-selesai-detail',compact('orderan'))->layout('layout.admin_layout');
+        $profil_toko = ProfilTokoModels::first();
+
+        return view('livewire.admin.penjualan.orderan-selesai-detail',compact('orderan','profil_toko'))->layout('layout.admin_layout');
     }
 }

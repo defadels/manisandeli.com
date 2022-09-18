@@ -20,6 +20,8 @@ class OrderanBatalDetail extends Component
     {
         $orderan = Order::find($this->orderan_id);
 
+        $transaksi = Transaksi::where('orderan_id', $this->orderan_id)->first();
+
         return view('livewire.admin.penjualan.orderan-batal-detail',compact('orderan'))->layout('layout.admin_layout');
     }
 }

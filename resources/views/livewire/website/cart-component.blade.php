@@ -50,7 +50,7 @@
             </form> --}}
             <a class="cart-checkout-btn" wire:click.prevent="checkout()">
                 <span class="checkout-label">Proses Pembayaran</span>
-                <span class="checkout-price">Rp.{{Cart::total()}}</span>
+                <span class="checkout-price">Rp.{{Cart::subtotal()}}</span>
             </a>
 
         </div>

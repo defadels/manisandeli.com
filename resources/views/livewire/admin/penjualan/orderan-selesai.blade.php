@@ -80,7 +80,7 @@
                    
                 </table>
                 @else
-                    <h5 class="text-center">Orderan Masuk Kosong</h5>
+                    <h5 class="text-center">Orderan Selesai Kosong</h5>
                 @endif
             </div>
         </div>

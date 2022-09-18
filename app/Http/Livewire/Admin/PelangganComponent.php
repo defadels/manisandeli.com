@@ -10,6 +10,7 @@ class PelangganComponent extends Component
 {
     public $search;
     public $paginate = 5;
+    public $statusView = null;
 
     protected $updateQueryString = ['search'];
 

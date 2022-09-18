@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'tax' => 0.5,
+    'tax' => 7.5,
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return [
 
     'database' => [
 
-        'connection' => null,
+        'connection' => env('DB_CONNECTION'),
 
         'table' => 'shoppingcart',
 

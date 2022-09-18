@@ -148,32 +148,38 @@
                 <table class="table mb-0">
                     <tr>
                         <th>Metode Pembayaran</th>
-                        <td>{{$orderan->transaksi->metode_pembayaran ?? '-'}}</td>
+                        <td>{{$transaksi->metode_pembayaran ?? '-'}}</td>
                         <th>Status</th>
-                        <td>{{$orderan->transaksi->status ?? '-'}}</td>
+                        <td>{{$transaksi->status ??'-' }}</td>
                         
                     </tr>
                     <tr>
                         <th>Bank</th>
-                        <td>{{$orderan->transaksi->nama_bank ?? '~'}}</td>
+                        <td>{{$transaksi->nama_bank ?? '~'}}</td>
                         <th>Nama Pemilik</th>
-                        <td>{{$orderan->transaksi->nama_pemlik ?? '~'}}</td>
+                        <td>{{$transaksi->nama_pemlik ?? '~'}}</td>
                     </tr>
                     <tr>
                         <th>Nomor Rekening</th>
-                        <td>{{$orderan->transaksi->nomor_rekening ?? '~'}}</td>
+                        <td>{{$transaksi->nomor_rekening ?? '~'}}</td>
                         {{-- <th>Provinsi</th>
-                        <td>{{$orderan->transaksi->provinsi}}</td> --}}
+                        <td>{{$transaksi->provinsi}}</td> --}}
                     </tr>
                     <tr>
                         <th>Bank Tujuan</th>
-                        <td>{{$orderan->transaksi->bank_tujuan ?? '~'}}</td>
+                        <td>{{$transaksi->bank_tujuan ?? '~'}}</td>
                         <th>Pemilik Rekening Tujuan</th>
-                        <td>{{$orderan->transaksi->pemilik_rekening_tujuan ?? '~'}}</td>
+                        <td>{{$transaksi->pemilik_rekening_tujuan ?? '~'}}</td>
                     </tr>
                     <tr>
                         <th>Nomor Rekening Tujuan</th>
-                        <td>{{$orderan->transaksi->rekening_tujuan ?? '~'}}</td>
+                        <td>{{$transaksi->rekening_tujuan ?? '~'}}</td>
+                        @if(isset($transaksi->foto_bukti_tf))
+                        <td>
+
+                            <button type="button" data-toggle="modal" data-target="#fotoTransfer" class="btn btn-primary radius-15"><i class="lni lni-image"></i> Foto Bukti Transfer</button>
+                        </td>
+                         @endif
                     </tr>
                     
                 </table>
@@ -285,7 +291,31 @@
     @endif
 
 
+    @if(isset($transaksi->foto_bukti_tf))
+    <div  wire:ignore.self class="modal fade" id="fotoTransfer" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Foto Bukti Transfer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">	<span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
+                    <img src="{{ Storage::url($transaksi->foto_bukti_tf) }}" alt="" class="img-fluid">
+
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                </div>
+               
+    
+            </div>
+        </div>
+    </div>
+
+    @endif
     
     
     

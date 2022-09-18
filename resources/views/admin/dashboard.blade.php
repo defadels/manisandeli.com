@@ -17,7 +17,7 @@
                     </div>
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-white">Orderan Sampai Tujuan</p>
+                            <p class="mb-0 text-white">Orderan Selesai</p>
                         </div>
                         {{-- <div class="ml-auto font-14 text-white">+23.4%</div> --}}
                     </div>
@@ -461,7 +461,7 @@
                     <h5 class="mb-0">Update Orderan</h5>
                 </div>
                 <div class="ml-auto">
-                    <button type="button" class="btn btn-white radius-15">Lihat Semua</button>
+                    <a href="{{route('admin.orderan.masuk')}}" class="btn btn-white radius-15">Lihat Semua</a>
                 </div>
             </div>
         </div>
@@ -471,10 +471,9 @@
                     <thead>
                         <tr>
                             <th>Foto</th>
-                            <th>Nama Produk</th>
+                            <th>Invoice</th>
                             <th>Konsumen</th>
-                            <th>Kode Produk</th>
-                            <th>Harga</th>
+                            <th>Total</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -484,14 +483,24 @@
                         <tr>
                             <td>
                                 <div class="product-img bg-transparent border">
+                                    @if(isset($orderan->user->foto_profil))
+                                    <img src="{{ Storage::url($orderan->user->foto_profil) }}" width="35" alt="">
+                                    @else 
                                     <img src="{{asset('backend/assets/images/icons/smartphone.png')}}" width="35" alt="">
+                                    @endif
                                 </div>
                             </td>
                             <td>{{$orderan->invoice}}</td>
                             <td>{{$orderan->nama_lengkap}}</td>
-                            <td>{{$orderan->total}}</td>
+                            <td>Rp. {{$orderan->total}}</td>
                             {{-- <td>{{$orderan->harga}}</td> --}}
-                            <td><a href="javascript:;" class="btn btn-sm btn-light-success btn-block radius-30">{{$orderan->status}}</a>
+                            <td><a href="javascript:;" class="btn btn-sm 
+                                @if($orderan->status =='batal') btn-light-danger @endif
+                                @if($orderan->status =='masuk') btn-light-info @endif
+                                @if($orderan->status =='proses') btn-light-secondary @endif 
+                                @if($orderan->status =='dikirm') btn-light-warning @endif 
+                                @if($orderan->status =='selesai') btn-light-success @endif 
+                                btn-block radius-30">{{$orderan->status}}</a>
                             </td>
                         </tr>
                         @endforeach

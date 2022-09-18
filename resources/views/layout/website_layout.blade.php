@@ -314,8 +314,8 @@ if(Auth::check()){
                             <ul class="dropdown-list">
                                 <li><a href="{{route('website.profile.user', Auth::user()->id)}}">profil</a></li>
                                 {{-- <li><a href="wallet.html">wallet</a></li> --}}
-                                <li><a href="{{route('website.coming-soon')}}">wishlist</a></li>
-                                <li><a href="{{route('website.coming-soon')}}">compare</a></li>
+                                {{-- <li><a href="{{route('website.coming-soon')}}">wishlist</a></li> --}}
+                                {{-- <li><a href="{{route('website.coming-soon')}}">compare</a></li> --}}
                                 <li><a href="{{route('admin.dashboard')}}">halaman dasbor</a></li>
                                 <li><a href="{{route('website.checkout')}}">checkout</a></li>
                                 <li><a href="orderlist.html">riwayat order</a></li>
@@ -359,8 +359,8 @@ if(Auth::check()){
                             <ul class="dropdown-list">
                                 <li><a href="{{route('website.profile.user', Auth::user()->id)}}">profil</a></li>
                                 {{-- <li><a href="wallet.html">wallet</a></li> --}}
-                                <li><a href="{{route('website.coming-soon')}}">wishlist</a></li>
-                                <li><a href="{{route('website.coming-soon')}}">compare</a></li>
+                                {{-- <li><a href="{{route('website.coming-soon')}}">wishlist</a></li> --}}
+                                {{-- <li><a href="{{route('website.coming-soon')}}">compare</a></li> --}}
                                 <li><a href="{{route('admin.dashboard')}}">halaman dasbor</a></li>
                                 <li><a href="{{route('website.checkout')}}">checkout</a></li>
                                 <li><a href="orderlist.html">riwayat order</a></li>
@@ -404,8 +404,8 @@ if(Auth::check()){
                             <ul class="dropdown-list">
                                 <li><a href="{{route('website.profile.user', Auth::user()->id)}}">profil</a></li>
                                 {{-- <li><a href="wallet.html">wallet</a></li> --}}
-                                <li><a href="{{route('website.coming-soon')}}">wishlist</a></li>
-                                <li><a href="{{route('website.coming-soon')}}">compare</a></li>
+                                {{-- <li><a href="{{route('website.coming-soon')}}">wishlist</a></li> --}}
+                                {{-- <li><a href="{{route('website.coming-soon')}}">compare</a></li> --}}
                                 <li><a href="{{route('website.checkout')}}">checkout</a></li>
                                 <li><a href="orderlist.html">riwayat order</a></li>
                                 <li><a href="invoice.html">order invoice</a></li>
@@ -488,16 +488,16 @@ if(Auth::check()){
                 <span>keranjang</span>
                 <sup>{{Cart::content()->count()}}</sup>
             </button>
-            <a href="{{route('website.coming-soon')}}" title="Wishlist">
+            {{-- <a href="{{route('website.coming-soon')}}" title="Wishlist">
                 <i class="fas fa-heart"></i>
                 <span>wishlist</span>
-                {{-- <sup>0</sup> --}}
-            </a>
-            <a href="{{route('website.coming-soon')}}" title="Compare List">
+                <sup>0</sup>
+            </a> --}}
+            {{-- <a href="{{route('website.coming-soon')}}" title="Compare List">
                 <i class="fas fa-random"></i>
                 <span>perbandingan</span>
-                {{-- <sup>0</sup> --}}
-            </a>
+                <sup>0</sup>
+            </a> --}}
         </div>
         <!--=====================================
                     MOBILE-MENU PART END
