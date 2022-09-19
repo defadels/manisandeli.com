@@ -170,9 +170,9 @@ class CheckoutTransferToko extends Component
                 $order = new Order();
                 $order->pelanggan_id = Auth::user()->id;
                 $order->subtotal = Cart::instance('cart')->subtotal; 
-                $order->diskon = 0; 
+                $order->diskon = 0.00; 
                 $order->total = Cart::instance('cart')->subtotal; 
-                $order->ongkir = 0; 
+                $order->ongkir = 0.00; 
                 $order->invoice = $invoice;
                 $order->nama_lengkap = $this->nama_lengkap;
                 $order->email =  $this->email;

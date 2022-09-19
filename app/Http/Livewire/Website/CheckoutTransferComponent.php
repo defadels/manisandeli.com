@@ -169,7 +169,7 @@ class CheckoutTransferComponent extends Component
                 $order = new Order();
                 $order->pelanggan_id = Auth::user()->id;
                 $order->subtotal = Cart::instance('cart')->subtotal; 
-                $order->diskon = 0; 
+                $order->diskon = 0.00; 
                 $order->total = Cart::instance('cart')->total; 
                 $order->ongkir = Cart::instance('cart')->tax; 
                 $order->invoice = $invoice;

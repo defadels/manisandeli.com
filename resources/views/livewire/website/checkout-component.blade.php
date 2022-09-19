@@ -130,7 +130,7 @@
                                             <ul class="dropdown-menu">
                                               <li><a class="dropdown-item" href="{{ route('website.checkout.cod') }}">Cash On Delivery (COD)</a> </li>
                                               <li><a class="dropdown-item" href="{{ route('website.checkout.transfer') }}">Transfer</a> </li>
-                                              <li><a class="dropdown-item" href="">Bayar & Ambil di Toko</a> </li>
+                                              <li><a class="dropdown-item" href="{{ route('website.checkout')}}">Bayar & Ambil di Toko</a> </li>
                                             </ul>
                                           </div>
             
@@ -146,58 +146,57 @@
                 <form wire:submit.prevent="placeOrder">           
                 
               
-                {{-- <div class="col-lg-12">
-                    <div class="account-card">
-                        <div class="account-title">
-                            <h4>contact number</h4>
-                            <button data-bs-toggle="modal" data-bs-target="#contact-add">add contact</button>
-                        </div>
-                        <div class="account-content">
-                            <div class="row">
-                                <div class="col-md-6 col-lg-4 alert fade show">
-                                    <div class="profile-card contact active">
-                                        <h6>primary</h6>
-                                        <p>+8801838288389</p>
-                                        <ul>
-                                            <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#contact-edit"></button></li>
-                                            <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
-                                        </ul>
+                    <div class="col-lg-12">
+ 
+                        <div class="account-card">
+                            <div class="account-title">
+                                <h4>profil konsumen</h4>
+                                
+                            </div>
+                            <div class="account-content">
+                                <div class="row">
+                                   
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">nama</label>
+                                            <input class="form-control @error('nama_lengkap') is-invalid @enderror" placeholder="Nama lengkap Anda" type="text" wire:model="nama_lengkap">
+                                            @error('nama_lengkap')
+                                                <span class="text-danger">
+                                                    <strong>{{$message}}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
                                     </div>
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Nomor Handphone</label>
+                                            <input class="form-control @error('nomor_hp') is-invalid @enderror" placeholder="Nomor telepon/handphone Anda" wire:model="nomor_hp" type="text">
+                                            @error('nomor_hp')
+                                                <span class="text-danger">
+                                                    <strong>{{$message}}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Email</label>
+                                            <input class="form-control @error('email') is-invalid @enderror" placeholder="Email Anda" wire:model="email" type="email">
+                                            @error('email')
+                                                <span class="text-danger">
+                                                    <strong>{{$message}}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                
+                                
                                 </div>
-                                <div class="col-md-6 col-lg-4 alert fade show">
-                                    <div class="profile-card contact">
-                                        <h6>secondary</h6>
-                                        <p>+8801941101915</p>
-                                        <ul>
-                                            <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#contact-edit"></button></li>
-                                            <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 alert fade show">
-                                    <div class="profile-card contact">
-                                        <h6>secondary</h6>
-                                        <p>+8801747875727</p>
-                                        <ul>
-                                            <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#contact-edit"></button></li>
-                                            <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
-                                        </ul>
-                                    </div>
+                                          
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> --}}
-
-              {{-- @if($paymentmethod == 'transfer')
-              
-              <livewire:website.checkout-transfer-component />
-              
-              @elseif($paymentmethod == 'cod')
-              
-              <livewire:website.checkout-c-o-d-component />
-
-             @endif --}}
 
                 <div class="account-content">
                         <div class="chekout-coupon">
@@ -217,15 +216,15 @@
                                 </li>
                                 <li>
                                     <span>ongkos kirim</span>
-                                    <span>Rp.{{Cart::instance('cart')->tax()}}</span>
+                                    <span>Rp.0.00</span>
                                 </li>
                                 <li>
                                     <span>diskon</span>
-                                    <span>{{Cart::instance('cart')->discount}}</span>
+                                    <span>Rp.0.00</span>
                                 </li>
                                 <li>
                                     <span>Total<small>(Incl. VAT)</small></span>
-                                    <span>Rp.{{Cart::instance('cart')->total()}}</span>
+                                    <span>Rp.{{Cart::instance('cart')->subtotal()}}</span>
                                 </li>
                                 {{-- <li>
                                     <span>Sub total</span>

@@ -90,7 +90,7 @@
                                         <ul class="dropdown-menu">
                                           <li><a class="dropdown-item" href="{{ route('website.checkout.cod') }}">Cash On Delivery (COD)</a> </li>
                                           <li><a class="dropdown-item" href="{{ route('website.checkout.transfer') }}">Transfer</a> </li>
-                                          <li><a class="dropdown-item" href="">Bayar & Ambil di Toko</a> </li>
+                                          <li><a class="dropdown-item" href="{{ route('website.checkout')}}">Bayar & Ambil di Toko</a> </li>
                                         </ul>
                                       </div>
         
@@ -168,9 +168,7 @@
 
                         </div>
                         
-                    </div>
-
-                <form wire:submit.prevent="placeOrder"> 
+                    </div> 
                 
                 </div>
                           
@@ -419,7 +417,7 @@
                     </li>
                     <li>
                         <span>diskon</span>
-                        <span>{{Cart::instance('cart')->discount}}</span>
+                        <span>Rp.0.00</span>
                     </li>
                     <li>
                         <span>Total<small>(Incl. VAT)</small></span>

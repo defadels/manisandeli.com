@@ -153,7 +153,7 @@
                                             </li>
                                             <li>
                                                 <h6>metode pembayaran</h6>
-                                                <p>{{$orderan->transaksi->metode_pembayaran}}</p>
+                                                <p>{{$orderan->transaksi->metode_pembayaran ?? '-'}}</p>
                                             </li>
                                             <li>
                                                 <h6>Total Item</h6>
