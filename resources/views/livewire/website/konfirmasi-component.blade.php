@@ -15,10 +15,15 @@
         <section class="error-part">
             <div class="container">
                 <h1>Pembayaran Berhasil !</h1>
+                @if($profil_toko->logo)
+                <img class="img-fluid" src="{{Storage::url($profil_toko->logo)}}" alt="error">
+                @else 
                 <img class="img-fluid" src="{{asset('frontend/images/error.png')}}" alt="error">
+                
+                @endif 
                 <h3>Terima kasih sudah belanja</h3>
-                <p>Silahkan klik tombol di bawah ini agar mengkonfirmasi pembayaran Anda.</p>
-                <a href="{{$links}}" target="_blank">konfirmasi</a>
+                <p>Kami akan proses pesanan Anda.</p>
+                <a href="{{route('website.produk')}}" target="_blank">Belanja lagi</a>
             </div>
         </section>
         <!--=====================================
