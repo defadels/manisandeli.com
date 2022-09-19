@@ -17,12 +17,21 @@
                 </div>
                 <div class="menu-title">Dashboard</div>
             </a>
+
+          
             {{-- <ul>
                 <li> <a href="index.html"><i class="bx bx-right-arrow-alt"></i>Analytics</a>
                 </li>
                 <li> <a href="index2.html"><i class="bx bx-right-arrow-alt"></i>Sales</a>
                 </li>
             </ul> --}}
+        </li>
+        <li>
+            <a href="{{route('admin.laporan')}}">
+                <div class="parent-icon icon-color-4"><i class="bx bx-file"></i>
+                </div>
+                <div class="menu-title">Laporan</div>
+            </a>
         </li>
         <li class="menu-label">Penjualan</li>
         <li>

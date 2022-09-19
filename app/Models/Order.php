@@ -28,7 +28,7 @@ class Order extends Model
     }
 
     public function transaksi(){
-        return $this->hasOne(Transaksi::class, 'id');
+        return $this->hasOne(Transaksi::class, 'orderan_id');
     }
 
     

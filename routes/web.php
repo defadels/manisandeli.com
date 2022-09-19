@@ -44,6 +44,7 @@ use Illuminate\Support\Facades\Route;
 
     // Admin Livewire
     use App\Http\Livewire\Admin\SosmedToko;
+    use App\Http\Livewire\Admin\LaporanComponent;
     use App\Http\Livewire\Admin\ProfilTokoUpdate;
     use App\Http\Livewire\Admin\EditProfileUser;
     use App\Http\Livewire\Admin\EditProfieUserUpdate;
@@ -116,6 +117,8 @@ Route::get('/admin', [AdminLoginController::class, 'showLoginForm']);
 Route::middleware('auth', 'reject_except_admin')->group(function(){
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
+    Route::get('/admin/laporan', LaporanComponent::class)->name('admin.laporan');
+    
     Route::get('/admin/pelanggan', PelangganComponent::class)->name('admin.pelanggan');
     Route::get('/admin/pelanggan/alamat', PelangganComponent::class)->name('admin.pelanggan.alamat');
     Route::get('/admin/pelanggan/keranjang', PelangganComponent::class)->name('admin.pelanggan.keranjang');

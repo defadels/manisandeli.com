@@ -486,7 +486,7 @@
                                     @if(isset($orderan->user->foto_profil))
                                     <img src="{{ Storage::url($orderan->user->foto_profil) }}" width="35" alt="">
                                     @else 
-                                    <img src="{{asset('backend/assets/images/icons/smartphone.png')}}" width="35" alt="">
+                                    <img src="https://via.placeholder.com/110x110" width="45" height="45" class="rounded-circle" alt="">
                                     @endif
                                 </div>
                             </td>

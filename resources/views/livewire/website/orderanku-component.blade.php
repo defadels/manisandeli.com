@@ -152,12 +152,16 @@
                                                 <p>{{$orderan->invoice}}</p>
                                             </li>
                                             <li>
+                                                <h6>metode pembayaran</h6>
+                                                <p>{{$orderan->transaksi->metode_pembayaran}}</p>
+                                            </li>
+                                            <li>
                                                 <h6>Total Item</h6>
                                                 <p>{{$orderan->order_item->count()}} Item</p>
                                             </li>
                                             <li>
-                                                <h6>Waktu Order</h6>
-                                                <p>7th February 2021</p>
+                                                <h6>Tanggal Order</h6>
+                                                <p>{{$orderan->created_at->format('d-m-Y')}}</p>
                                             </li>
                                             {{-- <li>
                                                 <h6>Delivery Time</h6>

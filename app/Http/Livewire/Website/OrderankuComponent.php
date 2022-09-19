@@ -16,6 +16,8 @@ class OrderankuComponent extends Component
     {
         $daftar_orderan = Order::where('pelanggan_id', Auth::user()->id)->get();
 
-        return view('livewire.website.orderanku-component',compact('daftar_orderan'))->layout('layout.website_layout');
+        $transaksi = Transaksi::where('pelanggan_id', Auth::user()->id)->get();
+
+        return view('livewire.website.orderanku-component',compact('daftar_orderan','transaksi'))->layout('layout.website_layout');
     }
 }
