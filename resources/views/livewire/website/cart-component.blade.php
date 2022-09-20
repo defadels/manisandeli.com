@@ -5,7 +5,7 @@
                 <i class="fas fa-shopping-basket"></i> 
                 <span>total item ({{Cart::count()}})</span>
             </div>
-            <button class="cart-close"><i class="icofont-close"></i></button>
+            <a href="#" class="cart-close"><i class="icofont-close"></i></a>
         </div>
         
         <ul class="cart-list">

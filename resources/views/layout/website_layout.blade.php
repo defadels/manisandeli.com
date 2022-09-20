@@ -287,7 +287,7 @@ $profil = ProfilTokoModels::get()->first();
 
                 <a href="{{route('website.home')}}"><img src="{{asset('frontend/images/logo.png')}}" alt="{{$profil->nama ?? 'Manisan Putra Deli'}}"></a>
                 @endif
-                <button class="nav-close"><i class="icofont-close"></i></button>
+                <a href="#" class="nav-close"><i class="icofont-close"></i></a>
             </div>
             <div class="nav-content">
                 
