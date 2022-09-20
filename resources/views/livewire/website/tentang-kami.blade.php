@@ -29,7 +29,7 @@
                     <div class="col-lg-6">
                         <div class="about-content">
                             <h2>Tentang Toko Kami</h2>
-                            <p>{{$profil->deskripsi ?? 'Deskripsi kosong'}}</p>
+                            <p>{{$profil_toko->deskripsi ?? 'Deskripsi kosong'}}</p>
                         </div>
                         {{-- <ul class="about-list">
                             <li>
