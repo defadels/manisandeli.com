@@ -64,6 +64,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Livewire\Admin\Penjualan\OrderanSelesaiDetail;
     use App\Http\Livewire\Admin\Penjualan\OrderanBatal;
     use App\Http\Livewire\Admin\Penjualan\OrderanBatalDetail;
+    use App\Http\Livewire\Admin\Penjualan\OrderanPrint;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -175,6 +176,7 @@ Route::middleware('auth', 'reject_except_admin')->group(function(){
         Route::get('admin/penjualan/selesai/{orderan_id}/detail', OrderanSelesaiDetail::class)->name('admin.orderan.selesai.detail');
         Route::get('admin/penjualan/batal', OrderanBatal::class)->name('admin.orderan.batal');
         Route::get('admin/penjualan/batal/{orderan_id}/detail', OrderanBatalDetail::class)->name('admin.orderan.batal.detail');
+        Route::get('admin/penjualan/{orderan_id}/print', [AdminController::class, 'print'])->name('admin.orderan.print');
 
 
         //Profil User Routes

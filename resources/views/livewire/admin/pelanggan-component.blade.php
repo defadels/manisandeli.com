@@ -98,26 +98,26 @@
                                 <th>Foto Profil</th>
                             </tr>
                             <tr>
-                                <td><img src="{{ Storage::url($pelanggan->foto_profil) }}" alt=""></td>
+                                <td><img src="{{ Storage::url($foto_profil) }}" alt=""></td>
                             </tr>
                             <tr>
                                 <th>Nama</th>
                             </tr>
 
                             <tr>
-                                <td>{{ $pelanggan->nama }}</td>
+                                <td>{{ $nama_lengkap }}</td>
                             </tr>
                             <tr>
                                 <th>Email</th>
                             </tr>
                             <tr>
-                                <td>{{ $pelanggan->email }}</td>
+                                <td>{{ $email }}</td>
                             </tr>
                             <tr>
                                 <th>Nomor Handphone</th>
                             </tr>
                             <tr>
-                                <td>{{ $pelanggan->nomor_hp }}</td>
+                                <td>{{ $nomor_hp }}</td>
                             </tr>
                         </tbody>
                     </table>

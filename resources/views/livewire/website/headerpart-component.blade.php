@@ -99,7 +99,7 @@
                     <button class="header-widget header-cart" title="Cartlist">
                         <i class="fas fa-shopping-basket"></i>
                         <sup>{{Cart::count()}}</sup>
-                        <span>total harga<small>Rp.{{ Cart::subtotal() }}</small></span>
+                        <span>total harga<small>Rp.{{ number_format(Cart::subtotal()) }}</small></span>
                     </button>
                 </div>
             </div>

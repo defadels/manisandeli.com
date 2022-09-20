@@ -212,7 +212,7 @@
                             <ul>
                                 <li>
                                     <span>Sub total</span>
-                                    <span>Rp.{{Cart::instance('cart')->subtotal()}}</span>
+                                    <span>Rp.{{number_format(Cart::instance('cart')->subtotal())}}</span>
                                 </li>
                                 <li>
                                     <span>ongkos kirim</span>
@@ -224,7 +224,7 @@
                                 </li>
                                 <li>
                                     <span>Total<small>(Incl. VAT)</small></span>
-                                    <span>Rp.{{Cart::instance('cart')->subtotal()}}</span>
+                                    <span>Rp.{{number_format(Cart::instance('cart')->subtotal())}}</span>
                                 </li>
                                 {{-- <li>
                                     <span>Sub total</span>

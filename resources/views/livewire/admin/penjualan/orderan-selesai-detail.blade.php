@@ -21,13 +21,13 @@
 
         <div class="card-body">
             <div id="invoice">
-                {{-- <div class="toolbar hidden-print">
+                <div class="toolbar hidden-print">
                     <div class="text-right">
-                        <button type="button" class="btn btn-dark"><i class="fa fa-print"></i> Print</button>
-                        <button type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
+                        <a href="{{route('admin.orderan.print', $orderan->id)}}" target="_blank" class="btn btn-dark"><i class="lni lni-printer"></i> Print Invoice </a>
+                        {{-- <button type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export as PDF</button> --}}
                     </div>
                     <hr/>
-                </div> --}}
+                </div>
                 <div class="invoice overflow-auto">
                     <div style="min-width: 400px">
                         <header>
@@ -58,14 +58,14 @@
                                 <div class="col invoice-to">
                                     <div class="text-gray-light">INVOICE KEPADA:</div>
                                     <h2 class="to">{{$orderan->nama_lengkap}}</h2>
-                                    <div class="address">{{$orderan->pengiriman->alamat_lengkap}}</div>
+                                    <div class="address">{{$orderan->pengiriman->alamat_lengkap ?? $orderan->transaksi->metode_pembayaran}}</div>
                                     <div class="email"><a href="{{$orderan->email}}">{{$orderan->email}}</a>
                                     </div>
                                 </div>
                                 <div class="col invoice-details">
                                     <h4 class="invoice-id">{{$orderan->invoice}}</h4>
-                                    <div class="date">Date of Invoice: 01/10/2018</div>
-                                    <div class="date">Due Date: 30/10/2018</div>
+                                    <div class="date">Tanggal Invoice: {{$orderan->created_at->format('d/m/Y')}}</div>
+                                    <div class="date">Batas Pembayaran: {{$orderan->created_at->addDay(30)->format('d/m/Y')}}</div>
                                 </div>
                             </div>
                             <table>
@@ -78,12 +78,15 @@
                                         <th class="text-right">TOTAL</th>
                                     </tr>
                                 </thead>
+                                @php    
+                                     $no = 1;
+                                @endphp
                                 <tbody>
                                     @foreach($orderan->order_item as $item) 
                                     <tr>
-                                        <td class="no">01</td>
+                                        <td class="no">{{$no++}}</td>
                                         <td class="text-left">
-                                            <h3>{{$item->item->nama_produk}}</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
+                                            <h3>{{$item->item->nama_produk}}</h3>  </td>
                                         <td class="qty">{{$item->jumlah}}</td>
                                         <td class="unit">Rp.{{number_format($item->harga)}}</td>
                                         <td class="total">Rp.{{number_format($item->harga * $item->jumlah)}}</td>
@@ -94,17 +97,17 @@
                                     <tr>
                                         <td colspan="2"></td>
                                         <td colspan="2">SUBTOTAL</td>
-                                        <td>Rp.{{$orderan->subtotal}}</td>
+                                        <td>Rp.{{number_format($orderan->subtotal)}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2"></td>
                                         <td colspan="2">ONGKOS KIRIM 25%</td>
-                                        <td>Rp.{{$orderan->ongkir}}</td>
+                                        <td>Rp.{{number_format($orderan->ongkir)}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2"></td>
                                         <td colspan="2">GRAND TOTAL</td>
-                                        <td>Rp.{{$orderan->total}}</td>
+                                        <td>Rp.{{number_format($orderan->total)}}</td>
                                     </tr>
                                 </tfoot>
                             </table>

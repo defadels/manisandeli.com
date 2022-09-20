@@ -67,7 +67,7 @@
                             <td>{{ $orderan->nomor_hp }}</td>   
                             <td>{{$orderan->created_at}}</td>
                             <td>
-                                <button class="btn btn-sm btn-light-success btn-block radius-30">
+                                <button class="btn btn-sm btn-light-warning btn-block radius-30">
                                 {{$orderan->status}}</button>    
                             </td>
                             <td>

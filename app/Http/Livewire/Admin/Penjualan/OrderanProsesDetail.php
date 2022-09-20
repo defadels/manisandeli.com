@@ -28,16 +28,26 @@ class OrderanProsesDetail extends Component
     public function konfirmasiOrderan(){
         $orderan = Order::find($this->orderan_id);
 
-        $orderan->status = 'selesai';
-        $orderan->save();
-
         if($orderan->transaksi->metode_pembayaran == 'Bayar di Toko'){
-            $transaksi = Transaksi::where('orderan_id', $this->orderan_id);
 
-            $transaksi->status = 'Disetujui';
-            $transaksi->save();
+            $bayar = Transaksi::findOrFail($this->orderan_id, 'orderan_id');
+            $bayar->status = 'Disetujui';
+            $bayar->save(); 
+
+            $orderan = Order::find($this->orderan_id);
+            $orderan->status = 'selesai';
+            $orderan->save();
+
+            return redirect()->route('admin.orderan.selesai');
+
+        } else if($orderan->transaksi->metode_pembayaran == 'COD') {
+            $orderan = Order::find($this->orderan_id);
+
+            $orderan->status = 'dikirim';
+            $orderan->save();
+
+            return redirect()->route('admin.orderan.dikirim');
         }
-
-        return redirect()->route('admin.orderan.selesai');
+        
     }
 }

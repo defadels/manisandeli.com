@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" class="dark-theme">
+<html lang="id" class="dark-theme">
 
 <head>
 	<!-- Required meta tags -->

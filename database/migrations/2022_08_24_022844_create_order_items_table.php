@@ -22,10 +22,10 @@ class CreateOrderItemsTable extends Migration
             // $table->string('kota');
             // $table->string('provinsi');
             // $table->string('kode_pos');
-            $table->string('subtotal');
-            $table->string('total');
-            $table->string('diskon');
-            $table->string('ongkir');
+            $table->decimal('subtotal');
+            $table->decimal('total');
+            $table->decimal('diskon');
+            $table->decimal('ongkir');
             $table->string('invoice');
             $table->string('nama_lengkap');
             $table->string('email');

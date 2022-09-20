@@ -76,19 +76,19 @@
                     <p>Subtotal</p>
                 </div>
                 <div class="col-lg-6">
-                    <strong>Rp. {{$orderan->subtotal}}</strong>  
+                    <strong>Rp. {{number_format($orderan->subtotal)}}</strong>  
                 </div>
                 <div class="col-lg-6">
                     <p>Ongkos Kirim</p>  
                 </div>
                 <div class="col-lg-6">
-                    <strong>Rp. {{$orderan->ongkir}}</strong>  
+                    <strong>Rp. {{number_format($orderan->ongkir)}}</strong>  
                 </div>
                 <div class="col-lg-6">
                     <p>Total</p>  
                 </div>
                 <div class="col-lg-6">
-                    <strong>Rp. {{$orderan->total}}</strong>  
+                    <strong>Rp. {{number_format($orderan->total)}}</strong>  
                 </div>
             </div>
 
@@ -175,9 +175,8 @@
                     <tr>
                         <th>Nomor Rekening</th>
                         <td>{{$transaksi->nomor_rekening ?? '~'}}</td>
-                        @if(isset($transaksi->foto_bukti_tf))
+                        @if(isset($transaksi->foto_bukti_tf) > 1)
                         <td>
-
                             <button type="button" data-toggle="modal" data-target="#fotoTransfer" class="btn btn-primary radius-15"><i class="lni lni-image"></i> Foto Bukti Transfer</button>
                         </td>
                          @endif

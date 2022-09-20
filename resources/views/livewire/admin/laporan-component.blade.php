@@ -68,8 +68,8 @@
                                 <td>{{$item->item->nama_produk}}</td>
                                 <td>{{$item->jumlah}}</td>
                                 <td>Rp.{{number_format($item->item->harga_jual)}}</td>
-                                <td>Rp.{{$item->order->ongkir}}</td>
-                                <td>Rp.{{$item->order->total}}</td>
+                                <td>Rp.{{number_format($item->order->ongkir)}}</td>
+                                <td>Rp.{{number_format($item->order->total)}}</td>
                                 <td></td>
                                 <td>Rp.{{number_format($item->item->harga_pokok)}}</td>
                                 <td>Rp.{{number_format($item->item->harga_jual)}}</td>

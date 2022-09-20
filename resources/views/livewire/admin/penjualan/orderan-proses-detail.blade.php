@@ -76,19 +76,19 @@
                     <p>Subtotal</p>
                 </div>
                 <div class="col-lg-6">
-                    <strong>Rp. {{$orderan->subtotal}}</strong>  
+                    <strong>Rp. {{number_format($orderan->subtotal)}}</strong>  
                 </div>
                 <div class="col-lg-6">
                     <p>Ongkos Kirim</p>  
                 </div>
                 <div class="col-lg-6">
-                    <strong>Rp. {{$orderan->ongkir}}</strong>  
+                    <strong>Rp. {{number_format($orderan->ongkir)}}</strong>  
                 </div>
                 <div class="col-lg-6">
                     <p>Total</p>  
                 </div>
                 <div class="col-lg-6">
-                    <strong>Rp. {{$orderan->total}}</strong>  
+                    <strong>Rp. {{number_format($orderan->total)}}</strong>  
                 </div>
             </div>
 
@@ -149,39 +149,41 @@
                     <tr>
                         <th>Metode Pembayaran</th>
                         <td>{{$transaksi->metode_pembayaran ?? '-'}}</td>
-                        <th>Status</th>
-                        <td>{{$transaksi->status ??'-' }}</td>
                         
-                    </tr>
-                    <tr>
-                        <th>Bank</th>
-                        <td>{{$transaksi->nama_bank ?? '~'}}</td>
-                        <th>Nama Pemilik</th>
-                        <td>{{$transaksi->nama_pemlik ?? '~'}}</td>
-                    </tr>
-                    <tr>
-                        <th>Nomor Rekening</th>
-                        <td>{{$transaksi->nomor_rekening ?? '~'}}</td>
-                        {{-- <th>Provinsi</th>
-                        <td>{{$transaksi->provinsi}}</td> --}}
-                    </tr>
-                    <tr>
                         <th>Bank Tujuan</th>
                         <td>{{$transaksi->bank_tujuan ?? '~'}}</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>{{$transaksi->status ?? '-'}}</td>
+
                         <th>Pemilik Rekening Tujuan</th>
                         <td>{{$transaksi->pemilik_rekening_tujuan ?? '~'}}</td>
                     </tr>
                     <tr>
+                        <th>Bank</th>
+                        <td>{{$transaksi->nama_bank ?? '~'}}</td>
+
                         <th>Nomor Rekening Tujuan</th>
                         <td>{{$transaksi->rekening_tujuan ?? '~'}}</td>
-                        @if(isset($transaksi->foto_bukti_tf))
+                        
+                    </tr>
+                    <tr>
+                       <th>Nama Pemilik</th>
+                        <td>{{$transaksi->nama_pemlik ?? '~'}}</td> 
+                    </tr>
+                    <tr>
+                        <th>Nomor Rekening</th>
+                        <td>{{$transaksi->nomor_rekening ?? '~'}}</td>
+                        @if(isset($transaksi->foto_bukti_tf) > 1)
                         <td>
-
                             <button type="button" data-toggle="modal" data-target="#fotoTransfer" class="btn btn-primary radius-15"><i class="lni lni-image"></i> Foto Bukti Transfer</button>
                         </td>
                          @endif
+                        {{-- <th>Provinsi</th>
+                        <td>{{$orderan->transaksi->provinsi}}</td> --}}
                     </tr>
-                    
+                   
                 </table>
             </div>
             
@@ -256,7 +258,7 @@
                 
                 <form wire:submit.prevent="konfirmasiOrderan">
                     <input type="hidden" name="" wire:model="orderan_id">
-                    <button type="submit" class="btn btn-sm btn-success ml-3">Selesai</button>
+                    <button type="submit" class="btn btn-sm btn-success ml-3">Kirim ke Tujuan</button>
                 </form>
             </div>
            

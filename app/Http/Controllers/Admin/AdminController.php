@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Produk;
+use App\Models\Pengiriman;
+use App\Models\ProfilTokoModels;
 use Storage;
 
 class AdminController extends Controller
@@ -44,6 +46,16 @@ class AdminController extends Controller
     public function create()
     {
         //
+    }
+
+
+    public function print($id){
+        
+        $orderan = Order::find($id);
+
+        $profil_toko = ProfilTokoModels::first();
+
+        return view('admin.order-print', compact('profil_toko','orderan'));
     }
 
     /**
