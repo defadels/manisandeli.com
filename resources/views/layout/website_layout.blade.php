@@ -318,8 +318,8 @@ if(Auth::check()){
                                 {{-- <li><a href="{{route('website.coming-soon')}}">compare</a></li> --}}
                                 <li><a href="{{route('admin.dashboard')}}">halaman dasbor</a></li>
                                 <li><a href="{{route('website.checkout')}}">checkout</a></li>
-                                <li><a href="orderlist.html">riwayat order</a></li>
-                                <li><a href="invoice.html">order invoice</a></li>
+                                <li><a href="{{route('website.orderanku')}}">orderanku</a></li>
+                                {{-- <li><a href="invoice.html">order invoice</a></li> --}}
                                 {{-- <li><a href="email-template.html">email template</a></li> --}}
                             </ul>
                         </li>
@@ -363,8 +363,8 @@ if(Auth::check()){
                                 {{-- <li><a href="{{route('website.coming-soon')}}">compare</a></li> --}}
                                 <li><a href="{{route('admin.dashboard')}}">halaman dasbor</a></li>
                                 <li><a href="{{route('website.checkout')}}">checkout</a></li>
-                                <li><a href="orderlist.html">riwayat order</a></li>
-                                <li><a href="invoice.html">order invoice</a></li>
+                                <li><a href="{{route('website.orderanku')}}">orderanku</a></li>
+                                {{-- <li><a href="invoice.html">order invoice</a></li> --}}
                                 {{-- <li><a href="email-template.html">email template</a></li> --}}
                             </ul>
                         </li>
@@ -407,8 +407,8 @@ if(Auth::check()){
                                 {{-- <li><a href="{{route('website.coming-soon')}}">wishlist</a></li> --}}
                                 {{-- <li><a href="{{route('website.coming-soon')}}">compare</a></li> --}}
                                 <li><a href="{{route('website.checkout')}}">checkout</a></li>
-                                <li><a href="orderlist.html">riwayat order</a></li>
-                                <li><a href="invoice.html">order invoice</a></li>
+                                <li><a href="{{route('website.orderanku')}}">orderanku</a></li>
+                                {{-- <li><a href="invoice.html">order invoice</a></li> --}}
                                 {{-- <li><a href="email-template.html">email template</a></li> --}}
                             </ul>
                         </li>
