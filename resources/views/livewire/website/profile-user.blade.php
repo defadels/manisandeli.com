@@ -49,7 +49,7 @@
                                 <div class="row">
                                     <div class="col-lg-2">
                                         <div class="profile-image">
-                                            <a href="#"><img src="@if($user->foto_profil)  {{ Storage::url($user->foto_profil) }} @else {{asset('frontend/images/user.png')}} @endif" alt="user"></a>
+                                            <a href="#"><img src="@if($user->foto_profil)  {{ Storage::url($user->foto_profil) }} @else {{asset('frontend/images/user.png')}} @endif" alt="{{Auth::user()->nama}}"></a>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-4">
@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="col-lg-2">
                                         <div class="profile-btn">
-                                            <a href="{{route('password.request')}}">change pass.</a>
+                                            <a href="{{route('password.request')}}">ganti sandi</a>
                                         </div>
                                     </div>
                                 </div>
@@ -359,11 +359,8 @@
                             <label class="form-label">jenis</label>
                             <select wire:model="jenis" class="form-select @error('jenis') is-invalid @enderror">
                                 <option selected>pilih jenis</option>
-                                <option value="COD">COD</option>
-                                <option value="Cash">Cash</option>
                                 <option value="Bank">Bank</option>
                                 <option value="E-Wallet">E-Wallet</option>
-                                <option value="Custom">Custom</option>
                             </select>
                             @error('jenis')
                                 <span class="text-danger">
@@ -500,17 +497,7 @@
                         <div class="form-title">
                             <h3>edit alamat</h3>
                         </div>
-                        {{-- <div class="form-group">
-                            <label class="form-label">title</label>
-                            <select class="form-select">
-                                <option selected>choose title</option>
-                                <option value="home">home</option>
-                                <option value="office">office</option>
-                                <option value="Bussiness">Bussiness</option>
-                                <option value="academy">academy</option>
-                                <option value="others">others</option>
-                            </select>
-                        </div> --}}
+                   
                         <div class="form-group">
                             <label for="" class="form-label">label alamat</label>
                             <input type="text" class="form-control @error('label') is-invalid @enderror" wire:model="label" placeholder="Label alamat">
@@ -613,11 +600,8 @@
                             <label class="form-label">jenis</label>
                             <select wire:model="jenis" class="form-select @error('jenis') is-invalid @enderror">
                                 <option selected>pilih jenis</option>
-                                <option value="COD">COD</option>
-                                <option value="Cash">Cash</option>
                                 <option value="Bank">Bank</option>
                                 <option value="E-Wallet">E-Wallet</option>
-                                <option value="Custom">Custom</option>
                             </select>
                             @error('jenis')
                                 <span class="text-danger">

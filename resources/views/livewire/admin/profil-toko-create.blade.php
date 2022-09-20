@@ -27,7 +27,7 @@
 
                 <div class="form-group">
                     @if($logo)
-                        <img src="{{$logo->temporaryUrl()}}" class="img-fluid" alt="" srcset="">
+                        <img src="{{$logo->temporaryUrl()}}" class="img-fluid" alt="{{$profil->nama}}" srcset="">
                     @endif
                     
                     <label for="">Logo Website</label>

@@ -36,7 +36,7 @@
                                 <div class="col">
                                     <a href="javascript:;">
                                         @if(isset($profil_toko->logo))
-                                        <img src="{{Storage::url($profil_toko->logo)}}" width="80" alt="" />
+                                        <img src="{{Storage::url($profil_toko->logo)}}" width="80" alt="{{$profil_toko->nama}}" />
                                         @else
                                         <img src="{{asset('backend/assets/images/logo-icon.png')}}" width="80" alt="" />
                                         @endif

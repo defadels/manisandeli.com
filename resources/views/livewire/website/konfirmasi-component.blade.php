@@ -16,7 +16,7 @@
             <div class="container">
                 <h1>Pembayaran Berhasil !</h1>
                 @if(isset($profil_toko->logo))
-                <img class="img-fluid" src="{{Storage::url($profil_toko->logo)}}" alt="error">
+                <img class="img-fluid" src="{{Storage::url($profil_toko->logo)}}" alt="{{$profil_toko->nama}}">
                 @else 
                 <img class="img-fluid" src="{{asset('frontend/images/error.png')}}" alt="error">
                 

@@ -7,7 +7,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Diproses</li>
+                    <li class="breadcrumb-item active" aria-current="page">Batal</li>
                 </ol>
             </nav>
         </div>
@@ -52,7 +52,7 @@
                     <tbody>
                        @foreach($orderan->order_item as $item) 
                         <tr>
-                            <th scope="row"><img src="{{ Storage::url($item->item->foto_produk )}}" class="img-thumbnail" style="width:150px;" alt=""></th>
+                            <th scope="row"><img src="{{ Storage::url($item->item->foto_produk )}}" class="img-thumbnail" style="width:150px;" alt="{{$item->item->nama_produk}}"></th>
                             <td>{{$item->item->nama_produk}}</td>
                             <td>{{$item->jumlah}}kg</td>
                             <td>Rp.{{number_format($item->harga)}}</td>

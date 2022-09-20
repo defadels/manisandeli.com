@@ -64,7 +64,7 @@
                                     <i class="fas fa-heart"></i>
                                 </button>
                                 <a class="product-image" href="{{route('website.detail.produk',$produk->id)}}">
-                                    <img src="{{Storage::url($produk->foto_produk)}}" alt="product">
+                                    <img src="{{Storage::url($produk->foto_produk)}}" alt="{{$produk->nama_produk}}">
                                 </a>
                                 <div class="product-widget">
                                     {{-- <a title="Product Compare" href="compare.html" class="fas fa-random"></a>

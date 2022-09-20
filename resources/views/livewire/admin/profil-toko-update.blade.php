@@ -26,10 +26,10 @@
 
                 <div class="form-group">
                     @if($logo)
-                        <img src="{{$logo->temporaryUrl()}}" class="img-fluid" alt="" srcset="">
+                        <img src="{{$logo->temporaryUrl()}}" class="img-fluid" alt="{{$profil->nama}}" srcset="">
                     @endif
                     @if($logoUrl && !$logo)
-                        <img src="{{ Storage::url($logoUrl) }}" alt="" class="img-fluid">
+                        <img src="{{ Storage::url($logoUrl) }}" alt="{{$profil->nama}}" class="img-fluid">
                     @endif
 
 

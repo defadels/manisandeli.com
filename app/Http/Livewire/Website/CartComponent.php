@@ -24,7 +24,7 @@ class CartComponent extends Component
         if(Auth::check())
         {
             Cart::instance('cart')->store(Auth::user()->email);
-            Cart::instance('cart')->restore(Auth::user()->email);
+            // Cart::instance('cart')->restore(Auth::user()->email);
         }
         
         $this->setAmountForCheckout();
@@ -41,16 +41,17 @@ class CartComponent extends Component
 
     public function setAmountForCheckout(){
         if(!Cart::instance('cart')->count() > 0) {
-            Session::forget('checkout');
+            session()->forget('checkout');
             return; 
-        } else {
-                Session::put('checkout', [
-                'subtotal' => Cart::instance('cart')->subtotal(),
-                'discount' => 0,
-                'tax' => Cart::instance('cart')->tax(),
-                'total' => Cart::instance('cart')->total(),
+        } 
+                
+        Session::put('checkout', [
+        'subtotal' => Cart::instance('cart')->subtotal(),
+        'discount' => 0,
+        'tax' => Cart::instance('cart')->tax(),
+        'total' => Cart::instance('cart')->total(),
             ]);
-        }
+        
         
     }
 

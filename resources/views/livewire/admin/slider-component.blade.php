@@ -68,7 +68,7 @@
                     <tbody>
                        @foreach($daftar_slider as $slider) 
                         <tr>
-                            <td><img src="{{Storage::url($slider->foto)}}" style="width: 580px" class="img-fluid" alt=""></td>
+                            <td><img src="{{Storage::url($slider->foto)}}" style="width: 580px" class="img-fluid" alt="{{$slider->judul}}"></td>
                             <td>{{$slider->judul}}</td>
                             <td>{{ $slider->deskripsi }}</td>   
                             <td>

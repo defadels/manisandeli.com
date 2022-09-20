@@ -69,7 +69,7 @@
                             <td>{{$produk->nama_produk}}</td>
                             <td>
                          
-                                <img src="{{Storage::url($produk->foto_produk)   }}" style="width: 150px" alt=""></td>
+                                <img src="{{Storage::url($produk->foto_produk)   }}" style="width: 150px" alt="{{$produk->nama_produk}}"></td>
  
                                 <td>
                                 <a href="{{ route('admin.produk.edit', $produk->id) }}" class="btn btn-md btn-primary" title="Edit"><i class="lni lni-pencil-alt"></i></a>

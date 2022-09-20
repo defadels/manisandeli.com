@@ -98,7 +98,7 @@
                                 <th>Foto Profil</th>
                             </tr>
                             <tr>
-                                <td><img src="{{ Storage::url($foto_profil) }}" alt=""></td>
+                                <td><img src="{{ Storage::url($foto_profil) }}" alt="$nama_lengkap"></td>
                             </tr>
                             <tr>
                                 <th>Nama</th>

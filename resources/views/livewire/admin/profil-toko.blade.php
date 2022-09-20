@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <h5>Logo Website</h5>
                       <br>
-                    <img src="{{Storage::url($profil->logo)}}" alt="" class="img-fluid"> 
+                    <img src="{{Storage::url($profil->logo)}}" alt="{{$profil->nama}}" class="img-fluid"> 
                 </div>
 
                 <div class="table-responsive">

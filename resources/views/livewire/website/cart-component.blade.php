@@ -17,9 +17,9 @@
                 <div class="cart-media">
                     <a href="#">
                         @if(isset($item->model->foto_produk))
-                        <img src="{{ Storage::url($item->model->foto_produk) }}" alt="product"></a>
+                        <img src="{{ Storage::url($item->model->foto_produk) }}" alt="{{$item->model->nama_produk}}"></a>
                         @else
-                        <img src="{{  asset('frontend/images/product/01.jpg')}}" alt="product"></a>
+                        <img src="{{  asset('frontend/images/product/01.jpg')}}" alt="{{$item->model->nama_produk}}"></a>
                         @endif
                         <button wire:click.prevent="hapusItem('{{$item->rowId}}')" class="cart-delete"><i class="far fa-trash-alt"></i></button>
                 </div>

@@ -16,7 +16,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-11 align-self-center">
-                <h4>Ubah Profil Toko</h4>
+                <h4>Ubah Profil User</h4>
             </div>
             <div class="col-1">
                     <div class="input-group">
@@ -57,7 +57,7 @@
             </div>
 
             <div class="form-group">
-                <label for="">Nama Website</label>
+                <label for="">Nama Lengkap</label>
                 <input type="text" name="nama" wire:model="nama" id="" class="form-control @error('nama') is-invalid @enderror">
                 @error('nama')
                     <span class="text-danger">

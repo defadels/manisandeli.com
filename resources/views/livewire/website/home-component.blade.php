@@ -140,7 +140,7 @@
                             <div class="banner-img">
                                 @if(isset($slider->foto))
                                 
-                                <img src="{{Storage::url($slider->foto)}}" alt="index">
+                                <img src="{{Storage::url($slider->foto)}}" alt="{{$slider->judul}}">
                                 @else
                                 
                                 <img src="{{asset('frontend/images/home/index/01.png')}}" alt="index">
@@ -160,7 +160,7 @@
                                 <div class="banner-img">
                                     @if(isset($slider->foto))
                                     
-                                    <img src="{{Storage::url($slider->foto)}}" alt="index">
+                                    <img src="{{Storage::url($slider->foto)}}" alt="{{$slider->judul}}">
                                     @else
                                     
                                     <img src="{{asset('frontend/images/home/index/02.png')}}" alt="index">
@@ -2597,7 +2597,7 @@
                                     <li class="fas fa-star"></li>
                                 </ul>
                                 @if(isset($testimoni->foto_konsumen))
-                                <img src="{{Storage::url($testimoni->foto_konsumen)}}" alt="testimonial">
+                                <img src="{{Storage::url($testimoni->foto_konsumen)}}" alt="{{$testimoni->nama_konsumen}}">
                                 @else
                                 <img src="{{asset('frontend/images/avatar/01.jpg')}}" alt="testimonial">
                                 @endif

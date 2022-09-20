@@ -59,7 +59,7 @@
                                         @foreach(Cart::content() as $item)
                                         <tr>
                                             <td class="table-serial"><h6>01</h6></td>
-                                            <td class="table-image"><img src="{{ Storage::url($item->model->foto_produk)}}" alt="product"></td>
+                                            <td class="table-image"><img src="{{ Storage::url($item->model->foto_produk)}}" alt="{{$item->model->nama_produk}}"></td>
                                             <td class="table-name"><h6>{{$item->model->nama_produk}}</h6></td>
                                             <td class="table-price"><h6>Rp. {{number_format($item->model->harga_jual)}}<small>/kilo</small></h6></td>
                                             {{-- <td class="table-brand"><h6>Fresh Company</h6></td> --}}

@@ -484,15 +484,15 @@
                             <td>
                                 <div class="product-img bg-transparent border">
                                     @if(isset($orderan->user->foto_profil))
-                                    <img src="{{ Storage::url($orderan->user->foto_profil) }}" width="35" alt="">
+                                    <img src="{{ Storage::url($orderan->user->foto_profil) }}" width="35" alt="{{$orderan->user->nama}}">
                                     @else 
-                                    <img src="https://via.placeholder.com/110x110" width="45" height="45" class="rounded-circle" alt="">
+                                    <img src="https://via.placeholder.com/110x110" width="45" height="45" class="rounded-circle" alt="{{$orderan->user->nama}}">
                                     @endif
                                 </div>
                             </td>
                             <td>{{$orderan->invoice}}</td>
                             <td>{{$orderan->nama_lengkap}}</td>
-                            <td>Rp. {{$orderan->total}}</td>
+                            <td>Rp. {{number_format($orderan->total)}}</td>
                             {{-- <td>{{$orderan->harga}}</td> --}}
                             <td><a href="javascript:;" class="btn btn-sm 
                                 @if($orderan->status =='batal') btn-light-danger @endif

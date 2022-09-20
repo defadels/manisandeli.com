@@ -41,7 +41,7 @@
 
                 @if(isset($produk->foto_produk))
                 <div class="form-group">
-                    <img src="{{ Storage::url($produk->foto_produk) }}" alt="" class="thumbnail">
+                    <img src="{{ Storage::url($produk->foto_produk) }}" alt="{{ $produk->nama_produk }}" class="thumbnail">
                 </div>
                 @endif
 

@@ -48,7 +48,7 @@
 
                         <div class="orderlist">
                             <div class="orderlist-head">
-                                <h5>#{{$orderan->invoice}}</h5>
+                                <h5> <small>#{{$orderan->invoice}}</small> </h5>
                                 <h5>orderan {{$orderan->status}}</h5>
                             </div>
                             <div class="orderlist-body">
@@ -212,9 +212,9 @@
                                                     <tr>
                                                         <td class="table-serial"><h6>01</h6></td>
                                                         @if(isset($item->item->foto_produk))
-                                                        <td class="table-image"><img src="{{Storage::url($item->item->foto_produk)}}" alt="product"></td>
+                                                        <td class="table-image"><img src="{{Storage::url($item->item->foto_produk)}}" alt="{{$item->item->nama_produk}}"></td>
                                                         @else
-                                                        <td class="table-image"><img src="{{asset('frontend/images/product/01.jpg')}}" alt="product"></td>
+                                                        <td class="table-image"><img src="{{asset('frontend/images/product/01.jpg')}}" alt="{{$item->item->nama_produk}}"></td>
 
                                                         @endif
                                                         <td class="table-name"><h6>{{$item->item->nama_produk}}</h6></td>

@@ -102,24 +102,16 @@ class CheckoutComponent extends Component
         }
 
         $this->konfirmasi = 1;
-
-        Session::forget('checkout');
         
-        Session::put('order', [
-            'invoice' => $order['invoice'],
-        ]);
-
-        Cart::instance('cart')->destroy();
-        
-        return redirect()->route('website.konfirmasi');
+        session()->forget('checkout');
 
     }
 
     public function verifyForCheckout(){
         if($this->konfirmasi) {
-            
+            Cart::destroy();
             return redirect()->route('website.konfirmasi');
-        } else if(!Session::get('checkout')){
+        } else if(!session()->get('checkout')){
             return redirect()->route('website.produk');
         }
     }
@@ -128,19 +120,7 @@ class CheckoutComponent extends Component
     {
         Cart::instance('cart')->restore(Auth::user()->email);
 
-        // $this->verifyForCheckout();
-
-        // if($this->shipping == 'alamat'){
-        //     $cart = Cart::content();
-
-        //     $ongkir= 5.50;
-        //     config(['cart.tax' => $ongkir]);
-
-        //     foreach($cart as $keranjang){
-        //         $keranjang->setTaxRate($ongkir);
-        //         Cart::update($keranjang->rowId, $keranjang->qty);
-        //     }
-        // }
+        $this->verifyForCheckout();
 
         $daftar_alamat = AlamatPelanggan::where('pelanggan_id', Auth::user()->id)->get();
 

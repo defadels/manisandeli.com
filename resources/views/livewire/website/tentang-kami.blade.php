@@ -46,7 +46,7 @@
                         <div class="about-img">
                             @foreach($daftar_produk as $produk)
                                 @if(isset($produk))
-                                <img src="{{ Storage::url($produk->foto_produk) }}" alt="about">
+                                <img src="{{ Storage::url($produk->foto_produk) }}" alt="{{$produk->nama_produk}}">
                                 @else
                                 <img src="{{asset('frontend/images/about/01.jpg')}}" alt="about">
                                 @endif

@@ -7,7 +7,7 @@
         =======================================-->
         <section class="single-banner inner-section" style="background: url(images/single-banner.jpg) no-repeat center;">
             <div class="container">
-                <h2>product simple</h2>
+                <h2>Detail Produk</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('website.home')}}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{route('website.produk')}}">produk</a></li>
@@ -52,26 +52,42 @@
                     </div>
                     <div class="col-lg-6">
                         <ul class="product-navigation">
+                            @if(isset($produk_sebelumnya))
                             <li class="product-nav-prev">
-                                <a href="#">
+                                <a href="{{route('website.detail.produk', $prevId)}}">
                                     <i class="icofont-arrow-left"></i>
                                     produk sebelumnya
                                     <span class="product-nav-popup">
-                                        <img src="{{$produk->foto_produk ?? asset('frontend/images/product/02.jpg')}}" alt="product">
-                                        <small>green chilis</small>
+                                        @if(isset($produk_sebelumnya->foto_produk))
+                                        <img src="{{Storage::url($produk_sebelumnya->foto_produk)}}" alt="{{$produk_sebelumnya->nama_produk}}">
+                                        @else 
+                                        <img src="{{asset('frontend/images/product/02.jpg')}}" alt="{{$produk_sebelumnya->nama_produk}}">
+
+                                        @endif
+                                        <small>{{$produk_sebelumnya->nama_produk}}</small>
                                     </span>
                                 </a>
                             </li>
+                            @endif
+
+                            @if(isset($produk_selanjutnya))
                             <li class="product-nav-next">
-                                <a href="#">
+                                <a href="{{route('website.detail.produk', $nextId)}}">
                                     produk selanjutnya
                                     <i class="icofont-arrow-right"></i>
                                     <span class="product-nav-popup">
-                                        <img src="{{asset('frontend/images/product/03.jpg')}}" alt="product">
-                                        <small>green chilis</small>
+                                        @if(isset($produk_selanjutnya->foto_produk))
+                                        <img src="{{Storage::url($produk_selanjutnya->foto_produk)}}" alt="{{$produk_selanjutnya->nama_produk}}">
+                                        @else 
+                                        <img src="{{asset('frontend/images/product/02.jpg')}}" alt="{{$produk_selanjutnya->nama_produk}}">
+
+                                        @endif
+                                        <small>{{$produk_selanjutnya->nama_produk}}</small>
                                     </span>
                                 </a>
                             </li>
+                            @endif
+
                         </ul>
                         <div class="details-content">
                             <h3 class="details-name"><a href="#">{{$produk->nama_produk}}</a></h3>
@@ -116,15 +132,11 @@
                             </div> --}}
 
                             <div class="details-add-group">
-                                <button class="product-add" wire:click.prevent="store({{$produk->id}},'{{$produk->nama_produk}}',{{$produk->harga_jual}})" title="Add to Cart">
+                                <button class="product-add" wire:click.prevent="store({{$produk->id}},'{{$produk->nama_produk}}',{{$produk->harga_jual}})" title="Tambah ke Keranjang">
                                     <i class="fas fa-shopping-basket"></i>
-                                    <span>add to cart</span>
+                                    <span>tambah ke keranjang</span>
                                 </button>
-                                <div class="product-action">
-                                    <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                                    <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">
-                                    <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                                </div>
+
                             </div>
 
                             <!-- DETAIL TOMBOL AKSI -->

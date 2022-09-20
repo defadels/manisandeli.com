@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <label for="">Foto Profil</label>
                           <div class="col-6">
-                        <img src="{{ Storage::url($user->foto_profil) }}" alt="" class="img-fluid">    
+                        <img src="{{ Storage::url($user->foto_profil) }}" alt="{{$user->nama}}" class="img-fluid">    
                         </div> 
                     </div>
     

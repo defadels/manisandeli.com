@@ -7,7 +7,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Diproses</li>
+                    <li class="breadcrumb-item active" aria-current="page">Selesai</li>
                 </ol>
             </nav>
         </div>
@@ -35,7 +35,7 @@
                                 <div class="col">
                                     <a href="javascript:;">
                                         @if(isset($profil_toko->logo))
-                                        <img src="{{Storage::url($profil_toko->logo)}}" width="80" alt="" />
+                                        <img src="{{Storage::url($profil_toko->logo)}}" width="80" alt="{{$profil_toko->nama}}" />
                                         @else
                                         <img src="{{asset('backend/assets/images/logo-icon.png')}}" width="80" alt="" />
                                         @endif

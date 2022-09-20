@@ -6,11 +6,11 @@ use App\Models\Produk;
 $sosmed_toko = SosmedTokoModel::get();
 $profil = ProfilTokoModels::get()->first();
 
-if(Auth::check()){
+// if(Auth::check()){
     
-    Cart::instance('cart')->restore(Auth::user()->email);  
+//     Cart::instance('cart')->restore(Auth::user()->email);  
         
-}
+// }
 
 ?>
 
@@ -281,7 +281,12 @@ if(Auth::check()){
         =======================================-->
         <aside class="nav-sidebar">   
             <div class="nav-header">
-                <a href="#"><img src="{{asset('frontend/images/logo.png')}}" alt="logo"></a>
+                @if(isset($profil->logo))
+                <a href="{{route('website.home')}}"><img src="{{Storage::url($profil->logo)}}" alt="{{$profil->nama ?? 'Manisan Putra Deli'}}"></a>
+                @else 
+
+                <a href="{{route('website.home')}}"><img src="{{asset('frontend/images/logo.png')}}" alt="{{$profil->nama ?? 'Manisan Putra Deli'}}"></a>
+                @endif
                 <button class="nav-close"><i class="icofont-close"></i></button>
             </div>
             <div class="nav-content">
@@ -296,7 +301,7 @@ if(Auth::check()){
                 @if(Auth::user()->roles == 'admin')
 
                     <div class="nav-profile">
-                            <a class="nav-user" href="#"><img src="{{asset('frontend/images/user.png')}}" alt="user"></a>
+                            <a class="nav-user" href="#"><img src="@if(Auth::user()->foto_profil) {{Storage::url(Auth::user()->foto_profil)}} @else {{asset('frontend/images/user.png') }} @endif" alt="user"></a>
                             <h4 class="nav-name"><a href="profile.html">{{Auth::user()->nama}}</a></h4>
                     </div> 
                     
