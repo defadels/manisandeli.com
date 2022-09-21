@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="nama_bank">Nama Bank/E-Wallet/Lokasi COD</label>
+                    <label for="nama_bank">Nama Bank/E-Wallet</label>
                     <input type="text" class="form-control @error('nama_bank') {{'is-invalid'}} @enderror" name="nama_bank" value="{{old('nama_bank') ??  $pembayaran->nama_bank ?? '' }}">
                         @error('nama_bank')'
                             <span class="text-danger">

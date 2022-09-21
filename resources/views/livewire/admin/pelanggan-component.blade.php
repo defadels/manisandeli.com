@@ -90,7 +90,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h5>Profil Pelanggan</h5>
                     <table class="table mb-0">
 
                         <tbody>
