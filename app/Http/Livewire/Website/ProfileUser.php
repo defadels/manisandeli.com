@@ -17,14 +17,14 @@ class ProfileUser extends Component
 
     public $nama, $email, $foto_profil, $getData, $userId, $fotoUrl, $nomor_hp;
     public $statusUpdate = false;
-    
+
 
     public function mount($id){
 
         $this->userId = $id;
 
         $user = User::where('id', $id)->first();
-        
+
         $this->nama = $user->nama;
         $this->email = $user->email;
         $this->nomor_hp = $user->nomor_hp;
@@ -43,7 +43,7 @@ class ProfileUser extends Component
         $daftar_alamat = AlamatPelanggan::where('pelanggan_id', $this->userId)->get();
 
         $daftar_pembayaran = MetodePembayaranPelanggan::where('pelanggan_id', $this->userId)->get();
-        
+
         return view('livewire.website.profile-user', compact('user', 'daftar_alamat', 'daftar_pembayaran'))->layout('layout.website_layout');
     }
 
@@ -80,7 +80,7 @@ class ProfileUser extends Component
 
             Storage::disk('public')->delete($foto_lama);
         }
-        
+
         $this->resetInputUser();
         $user->save();
 
@@ -95,7 +95,7 @@ class ProfileUser extends Component
 
     public function getData($id){
         $user = User::where('id', $id)->first();
-        
+
         $this->nama = $user->nama;
         $this->email = $user->email;
         $this->userId = $user->id;
@@ -115,9 +115,9 @@ class ProfileUser extends Component
     }
 
     // Proses data alamat pelanggan
-    
+
         // Deklarasi public variabel untuk alamat
-            
+
             public $label, $alamat_lengkap, $kode_pos, $kota, $provinsi, $longitude, $latitude, $getDataAlamat, $alamatId;
 
             // tambah data
@@ -188,7 +188,7 @@ class ProfileUser extends Component
 
             public function getDataAlamat($id){
                 $alamat = AlamatPelanggan::where('id', $id)->first();
-                
+
                 $this->label = $alamat->label;
                 $this->alamat_lengkap = $alamat->alamat_lengkap;
                 $this->kota = $alamat->kota;
@@ -204,13 +204,13 @@ class ProfileUser extends Component
             private function resetInputAddress(){
                 $this->label = null;
                 $this->alamat = null;
-               
+
             }
 
     // Proses data metode pembayaran pelanggan
 
     // Deklarasi public variabel untuk alamat
-            
+
     public $nama_bank, $nama_pemilik, $nomor_rekening, $deskripsi, $jenis, $getDataPembayaran, $pembayaranId, $status;
 
     // tambah data
@@ -282,7 +282,7 @@ class ProfileUser extends Component
 
     public function getDataPembayaran($id){
         $pembayaran = MetodePembayaranPelanggan::where('id', $id)->first();
-        
+
         $this->nama_bank = $pembayaran->nama_bank;
         $this->nama_pemilik = $pembayaran->nama_pemilik;
         $this->nomor_rekening = $pembayaran->nomor_rekening;

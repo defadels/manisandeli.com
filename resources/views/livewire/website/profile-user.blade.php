@@ -2,11 +2,11 @@
 <link rel="stylesheet" href="{{asset('frontend/css/profile.css')}}">
 @endsection
 <div>
-    
+
     <!--=====================================
                     BANNER PART START
         =======================================-->
-        
+
         <section class="inner-section single-banner" style="background: url(frontend/images/single-banner.jpg) no-repeat center;">
             <div class="container">
                 <h2>profil saya</h2>
@@ -15,9 +15,9 @@
                     <li class="breadcrumb-item active" aria-current="page">profil saya</li>
                 </ol>
             </div>
-            
+
         </section>
-        
+
         <!--=====================================
                     BANNER PART END
         =======================================-->
@@ -26,7 +26,7 @@
         <!--=====================================
                     PROFILE PART START
         =======================================-->
-        
+
         <section class="inner-section profile-part">
             <div class="container">
                 <div class="row">
@@ -43,7 +43,7 @@
                             <div class="account-title">
                                 <h4>Your Profile</h4>
                                 <button data-bs-toggle="modal" wire:click="getData({{ $user->id }})"  data-bs-target="#profile-edit">edit profile</button>
-                                
+
                             </div>
                             <div class="account-content">
                                 <div class="row">
@@ -77,7 +77,7 @@
                      <!--=====================================
                                CONTACT NUMBER LIST HIDDEN
                     =======================================-->
-                    
+
                     {{-- <div class="col-lg-12">
                         <div class="account-card">
                             <div class="account-title">
@@ -142,7 +142,7 @@
                                         </div>
                                     </div>
                                     @endforeach
-                                    
+
                                     @else
 
                                     <h5 class="text-center">
@@ -212,7 +212,7 @@
         =======================================-->
         <!-- contact add form -->
         <div class="modal fade" id="contact-add">
-            <div class="modal-dialog modal-dialog-centered"> 
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
                     <form class="modal-form">
@@ -233,13 +233,13 @@
                         </div>
                         <button class="form-btn" type="submit">save contact info</button>
                     </form>
-                </div> 
-            </div> 
+                </div>
+            </div>
         </div>
 
         <!-- address add form -->
         <div wire:ignore.self class="modal fade" id="address-add">
-            <div class="modal-dialog modal-dialog-centered"> 
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
                     <form class="modal-form" wire:submit.prevent="createAddress">
@@ -305,13 +305,13 @@
                         </div>
                         <button class="form-btn" type="submit">simpan alamat</button>
                     </form>
-                </div> 
-            </div> 
+                </div>
+            </div>
         </div>
 
         <!-- payment add form -->
         <div wire:ignore.self class="modal fade" id="payment-add">
-            <div class="modal-dialog modal-dialog-centered"> 
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
                     <form class="modal-form" wire:submit.prevent="createPayment">
@@ -367,7 +367,7 @@
                                     <strong>{{$message}}</strong>
                                 </span>
                             @enderror
-                        </div> 
+                        </div>
                         <div class="form-group">
                             <label for="" class="form-label">status</label>
                             <select wire:model="status" name="" id="" class="form-select @error('status') is-invalid @enderror">
@@ -383,21 +383,21 @@
                         </div>
                         <button class="form-btn" type="submit">simpan kartu pembayaran</button>
                     </form>
-                </div> 
-            </div> 
+                </div>
+            </div>
         </div>
         <!--=====================================
                     MODAL ADD FORM END
         =======================================-->
 
-        
+
         <!--=====================================
                     MODAL EDIT FORM START
         =======================================-->
         <!-- profile edit form -->
         <div wire:ignore.self class="modal fade" id="profile-edit">
-            <div class="modal-dialog modal-dialog-centered"> 
-                
+            <div class="modal-dialog modal-dialog-centered">
+
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
                     <form class="modal-form" wire:submit.prevent="userUpdate">
@@ -407,7 +407,7 @@
                             <h3>edit informasi profil</h3>
                         </div>
                         <div class="form-group">
-                       @if($statusUpdate == true)    
+                       @if($statusUpdate == true)
 
                             @if($user->foto_profil)
                             <img src="{{ empty(!$foto_profil) ? $foto_profil->temporaryUrl():route('website.profile.user',$user->id)}}" class="img-fluid" alt="" srcset="">
@@ -417,7 +417,7 @@
                             @endif
 
                         @endif
-                        
+
                             <label class="form-label">foto profil</label>
                             <input class="form-control @error('foto_profil') is-invalid @enderror" wire:model="foto_profil" type="file">
                              @error('foto_profil')
@@ -455,14 +455,14 @@
                         </div>
                         <button class="form-btn" type="submit">simpan</button>
                     </form>
-                </div> 
-                
-            </div> 
+                </div>
+
+            </div>
         </div>
 
         <!-- contact edit form -->
         <div class="modal fade" id="contact-edit">
-            <div class="modal-dialog modal-dialog-centered"> 
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
                     <form class="modal-form">
@@ -482,13 +482,13 @@
                         </div>
                         <button class="form-btn" type="submit">save contact info</button>
                     </form>
-                </div> 
-            </div> 
+                </div>
+            </div>
         </div>
 
         <!-- address edit form -->
         <div wire:ignore.self class="modal fade" id="address-edit">
-            <div class="modal-dialog modal-dialog-centered"> 
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
                     <form class="modal-form" wire:submit.prevent="updateAddress">
@@ -497,7 +497,7 @@
                         <div class="form-title">
                             <h3>edit alamat</h3>
                         </div>
-                   
+
                         <div class="form-group">
                             <label for="" class="form-label">label alamat</label>
                             <input type="text" class="form-control @error('label') is-invalid @enderror" wire:model="label" placeholder="Label alamat">
@@ -545,13 +545,13 @@
                         </div>
                         <button class="form-btn" type="submit">ubah alamat</button>
                     </form>
-                </div> 
-            </div> 
+                </div>
+            </div>
         </div>
 
          <!-- payment edit form -->
          <div wire:ignore.self class="modal fade" id="payment-edit">
-            <div class="modal-dialog modal-dialog-centered"> 
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
                     <form class="modal-form" wire:submit.prevent="updatePayment">
@@ -608,7 +608,7 @@
                                     <strong>{{$message}}</strong>
                                 </span>
                             @enderror
-                        </div> 
+                        </div>
                         <div class="form-group">
                             <label for="" class="form-label">status</label>
                             <select wire:model="status" name="" id="" class="form-select @error('status') is-invalid @enderror">
@@ -624,8 +624,8 @@
                         </div>
                         <button class="form-btn" type="submit">simpan kartu pembayaran</button>
                     </form>
-                </div> 
-            </div> 
+                </div>
+            </div>
         </div>
         <!--=====================================
                     MODAL EDIT FORM END
