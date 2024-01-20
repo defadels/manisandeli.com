@@ -103,7 +103,15 @@ class CheckoutComponent extends Component
 
         $this->konfirmasi = 1;
         
-        session()->forget('checkout');
+        Session::forget('checkout');
+        
+        Session::put('order', [
+            'invoice' => $order['invoice'],
+        ]);
+
+        Cart::instance('cart')->destroy();
+        
+        return redirect()->route('website.konfirmasi');
 
     }
 
@@ -120,7 +128,7 @@ class CheckoutComponent extends Component
     {
         Cart::instance('cart')->restore(Auth::user()->email);
 
-        $this->verifyForCheckout();
+        // $this->verifyForCheckout();
 
         $daftar_alamat = AlamatPelanggan::where('pelanggan_id', Auth::user()->id)->get();
 
